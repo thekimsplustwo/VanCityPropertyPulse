@@ -21,7 +21,7 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 * Integrate with a map API to display properties on a map.
 <br><br>
 
-**Task Breakdown**
+## **Task Breakdown**
 1. Collect and store real estate listing data.
  * Set up a MongoDB database for storing listing data.
  * Use Node.js and Express.js to scrape or consume data from a real estate API.
