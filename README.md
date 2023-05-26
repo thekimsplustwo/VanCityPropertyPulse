@@ -6,30 +6,32 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 ## **Project Task Requirements**
 
 **Minimal Requirements:**
-* Collect and store real estate listing data.
-* Implement user interface for searching and filtering through listings.
-* Display basic property details such as price and location.
-
-**Standard Requirements:**
-* Implement a feature for users to save favorite properties.
-* Display housing price trends over time.
-* Provide alerts for price changes.
-* Incorporate a user authentication system.
-
-**Stretch Requirements:**
-* Predict future housing price trends using machine learning algorithms.
-* Integrate with a map API to display properties on a map.
+1. Collect and store real estate listing data.
+2. Implement user interface for searching and filtering through listings.
+3. Display basic property details such as price and location.
 <br><br>
 
-## **Task Breakdown**
+**Standard Requirements:**
+1. Implement a feature for users to save favorite properties.
+2. Display housing price trends over time.
+3. Provide alerts for price changes.
+4. Incorporate a user authentication system.
+<br><br>
+
+**Stretch Requirements:**
+1. Predict future housing price trends using machine learning algorithms.
+2. Integrate with a map API to display properties on a map.
+<br><br>
+
+**Task Breakdown:**
 1. Collect and store real estate listing data.
- * Set up a MongoDB database for storing listing data.
- * Use Node.js and Express.js to scrape or consume data from a real estate API.
- * Schedule regular data updates.
+    - Set up a MongoDB database for storing listing data.
+    - Use Node.js and Express.js to scrape or consume data from a real estate API.
+    - Schedule regular data updates.
 2. Implement user interface for searching and filtering through listings.
- * Set up a React.js application for the client-side interface.
- * Implement a listings page with a table or list of properties.
- * Add search and filter options for users to refine listings.
+    - Set up a React.js application for the client-side interface.
+    - Implement a listings page with a table or list of properties.
+    - Add search and filter options for users to refine listings.
 <br><br>
 
 ## **Prototypes**
