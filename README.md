@@ -1,3 +1,5 @@
+# **VanCity Property Pulse**
+
 ## **Project Description**
 
 Our project is aimed at potential homebuyers, real estate investors, and market enthusiasts in the Vancouver area. Our platform will support the activity of tracking real estate listings and price trends within the Vancouver housing market. We plan to store data on real estate listings including properties' addresses, asking prices, selling prices, number of rooms, square footage, etc. Users will be able to search and filter through these listings based on their preferences, save their favorite properties, receive alerts for price changes, and visualize housing price trends via various charts or graphs. Should time permit, we also hope to incorporate a feature predicting future housing price trends and integrate with a map API for a more interactive user experience.
