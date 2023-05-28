@@ -40,3 +40,41 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 ![Main](https://storage.googleapis.com/pukkukim/455%20Main.png)
 ![Geolocation](https://storage.googleapis.com/pukkukim/455%20Geolocation.png)
 ![Item](https://storage.googleapis.com/pukkukim/455%20Item.png)
+
+
+### :gear: Development Workflow
+
+
+#### Getting Started
+
+
+#### Setting up the Mongo DB
+
+
+#### Setting up React App
+
+
+
+#### Making Changes
+1. Create a new feature branch off of the `main` branch and name it with the number of the Issue you'll be working on (e.g. `ISSUE-01`).
+2. Make changes and commit your changes to your feature branch with [Conventional Commit Messages](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13) 
+3. Once you're satisfied that your changes address the ticket, open a new pull request for your feature branch with the corresponding Issue ticket number and title as the PR title (e.g. ISSUE-61: Implement POST/api/v1/payments) 
+4. Fill out [PR template](https://github.com/czhaoca/TheKimsPlusTwo/blob/main/.github/PULL_REQUEST_TEMPLATE.md) when you post a PR
+5. Resolve all merge conflicts as needed.
+6. Assign other team members to review your PR and be open and available to address feedback.
+7. Comment the PR link in the ISSUE ticket.
+8. After approval from the reviewer, confirm the PR and merge your feature branch into the `main` branch.
+9. While merging your feature branch, always use `squash and merge`.
+9. Confirm that your changes are reflected in the `main` branch, and then delete your feature branch.
+
+#### Little Things to Note
+1. Follow [Conventional Commit Messages](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13) 
+2. Use ISSUE number as branch name. (Ex. ISSUE-61)
+3. Use ISSUE number + title as a PR title (Ex. SNAK-61-Implement POST/api/v1/payments)
+4. Fill out [PR template](https://github.com/czhaoca/TheKimsPlusTwo/blob/main/.github/PULL_REQUEST_TEMPLATE.md) when you post a PR
+
+#### Branches
+| Branch | Description |
+|--------|-------------|
+| `main` | anything & everything |
+| `TICKET-NUMBER` | feature, user story, bugs, fixes (e.g. `ISSUE-50`) |
