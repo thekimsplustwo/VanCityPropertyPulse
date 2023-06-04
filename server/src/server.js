@@ -1,23 +1,29 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+import http from 'http';
+import cors from 'cors';
+import express, { Express, Request, Response } from 'express';
+import routes from './routes';
 
-const http = require('http');
-const cors = require('cors');
-const express = require('express');
+dotenv.config();
+
+const PORT = process.env.PORT || 10010;
+
+const allowedOrigins = [`http://localhost:${PORT}`];
 
 const corsOption = {
   origin: '*',
 };
+
 const app = express();
 app.use(cors(corsOption));
 app.use(express.json());
-//app.use(routes);
+app.use(routes);
 
 app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });
 });
 
 const server = http.createServer(app);
-const PORT = process.env.PORT || 10010;
 
 const start = async () => {
   try {
