@@ -1,0 +1,61 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "plugin:import/recommended",
+    "plugin:import/warnings",
+    "plugin:prettier/recommended",
+    "prettier"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": [
+      "warn",
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/jsx-one-expression-per-line": 0,
+    "eqeqeq": "warn",
+    "dot-notation": "warn",
+    "no-await-in-loop": "error",
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error"
+        ]
+      }
+    ],
+    "no-multiple-empty-lines": "warn",
+    "no-var": "warn",
+    "no-unused-vars": "off",
+    "space-unary-ops": ["error", {"words": true, "nonwords": false}],
+    "spaced-comment": "off"
+  },
+  "ignorePatterns": [
+    "dist/",
+    "node_modules/"
+  ]
+}
