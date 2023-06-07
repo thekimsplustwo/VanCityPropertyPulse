@@ -2,7 +2,6 @@
   "env": {
     "browser": true,
     "es6": true,
-    "commonjs": true,
     "node": true
   },
   "extends": [
@@ -23,9 +22,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": [
-          "src"
-        ]
+        "paths": ["src"]
       }
     },
     "react": {
@@ -37,42 +34,38 @@
     "react/jsx-filename-extension": [
       "warn",
       {
-        "extensions": [
-          ".js",
-          ".jsx"
-        ]
+        "extensions": [".js", ".jsx"]
       }
     ],
     "react/react-in-jsx-scope": 0,
     "react/jsx-one-expression-per-line": 0,
     "react/destructuring-assignment": "warn",
     "react/jsx-pascal-case": "warn",
+    "react/jsx-uses-react": "off",
     "react/no-direct-mutation-state": "warn",
     "react/jsx-no-useless-fragment": "warn",
     "react/no-unused-state": "warn",
     "react/jsx-key": "warn",
     "react/self-closing-comp": "warn",
     "react/jsx-curly-brace-presence": "warn",
+    "react/prop-types": "off",
     "eqeqeq": "warn",
+    "default-param-last": "off",
     "dot-notation": "warn",
+    "import/no-extraneous-dependencies": "off",
     "no-await-in-loop": "error",
     "no-console": [
       "warn",
       {
-        "allow": [
-          "warn",
-          "error"
-        ]
+        "allow": ["warn", "error"]
       }
     ],
     "no-multiple-empty-lines": "warn",
+    "no-shadow": "warn",
     "no-var": "warn",
-    "no-unused-vars": "off",
-    "space-unary-ops": ["error", {"words": true, "nonwords": false}],
+    "no-unused-vars": "warn",
+    "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "spaced-comment": "off"
   },
-  "ignorePatterns": [
-    "dist/",
-    "node_modules/"
-  ]
+  "ignorePatterns": ["dist/", "node_modules/"]
 }

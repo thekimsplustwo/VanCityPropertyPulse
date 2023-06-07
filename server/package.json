@@ -23,6 +23,12 @@
     "parse5": "^7.1.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.22.1",
+    "@babel/eslint-parser": "^7.21.8",
+    "@babel/plugin-transform-runtime": "^7.22.4",
+    "@babel/preset-env": "^7.22.4",
+    "@babel/runtime": "^7.22.3",
+    "babel-loader": "^9.1.2",
     "bcryptjs": "^2.4.3",
     "eslint": "^8.42.0",
     "eslint-config-airbnb-base": "^15.0.0",
