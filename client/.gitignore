@@ -60,6 +60,6 @@ yarn-error.log*
 *.log
 
 #database
-/data
+*/data
 /database/data
 *.insert*data.sql

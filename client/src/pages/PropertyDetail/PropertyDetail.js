@@ -13,8 +13,8 @@ function Property() {
 
   return (
     <Wrapper>
-      <DetailedInfo />
       <ImageCarousel />
+      <DetailedInfo />
     </Wrapper>
   );
 }
@@ -25,9 +25,8 @@ const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid blue;
+  justify-content: space-around;
+  align-items: stretch;
 `;
 
 export default Property;

@@ -15,7 +15,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/properties/:id" element={<PropertyDetail />} />
+        <Route path="/properties" element={<PropertyDetail />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/likes" element={<Likes />} />
       </Routes>
