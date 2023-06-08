@@ -4,13 +4,11 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Carousel from 'react-material-ui-carousel';
 import { Paper, Box } from '@mui/material';
-import { images } from '../../data/data';
 import Image from './Image';
 
 function ImageCarousel(props) {
   const { property } = props;
-  const id = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
-  const propertyImages = images.find(({ pid }) => pid === id).images;
+  const { propertyImages } = props;
   return (
     <Wrapper>
       <Section>
