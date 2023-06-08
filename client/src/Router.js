@@ -5,6 +5,7 @@ import PropertyDetail from './pages/PropertyDetail/PropertyDetail';
 import MyPage from './pages/MyPage/MyPage';
 import Likes from './pages/Likes/Likes';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import ScrollTop from './components/ScrollTop/ScrollTop';
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/likes" element={<Likes />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
