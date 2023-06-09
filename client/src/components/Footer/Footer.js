@@ -11,13 +11,12 @@ function Footer() {
             <FooterInfoTop>VanCity Property Pulse</FooterInfoTop>
             <FooterInfoBottom>
               <InfoBottom>
-                <span>by TheKimsPlusTwo</span>
+                <p>by TheKimsPlusTwo</p>
+              </InfoBottom>
+              <InfoBottom>
+                <p>UBC CPSC455</p>
               </InfoBottom>
             </FooterInfoBottom>
-            <Rights>
-              <span>UBC CPSC455</span>
-              <div />
-            </Rights>
           </div>
           <FooterRight>
             <FooterIcon>
@@ -54,7 +53,7 @@ const FooterWrapper = styled.div`
 const FooterContent = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 2em 2rem;
+  padding: 2em 2em;
   color: #bdbdbd;
 `;
 
@@ -76,23 +75,7 @@ const FooterInfoBottom = styled.div`
   font-size: 12px;
 `;
 
-const Rights = styled.div`
-  margin: 12px 0 0 0;
-  font-size: 12px;
-`;
-
 const InfoBottom = styled.div`
-  display: flex;
-  margin: 0 0 4px 0;
-
-  div {
-    margin: 0 0 0 6px;
-    padding: 0 0 0 6px;
-    border-left: 1px solid #bdbdbd;
-  }
-`;
-
-const InfoBottomSecond = styled.div`
   display: flex;
   margin: 0 0 4px 0;
 
