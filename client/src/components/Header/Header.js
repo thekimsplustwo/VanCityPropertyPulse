@@ -11,8 +11,7 @@ const FixedNav = styled.div`
 function Header() {
   return (
     <FixedNav>
-      {' '}
-      <Nav />{' '}
+      <Nav />
     </FixedNav>
   );
 }
