@@ -1,28 +1,28 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import dummy from './DummyUser';
-import { Margin, Bold } from '../../styles/UserProfile';
+import styled from 'styled-components';
+import { user } from '../../data/data';
 
 function UserInfo() {
   return (
     <Margin>
       <p>
-        <Bold>First Name: </Bold> {dummy.firstName}
+        <Bold>First Name: </Bold> {user.firstName}
       </p>
       <p>
-        <Bold>Last Name: </Bold> {dummy.lastName}
+        <Bold>Last Name: </Bold> {user.lastName}
       </p>
       <p>
-        <Bold>Age: </Bold> {dummy.age}
+        <Bold>Age: </Bold> {user.age}
       </p>
       <p>
-        <Bold>Email: </Bold> {dummy.email}
+        <Bold>Email: </Bold> {user.email}
       </p>
       <p>
-        <Bold>Phone Number: </Bold> {dummy.phoneNum}
+        <Bold>Phone Number: </Bold> {user.phoneNum}
       </p>
       <p>
-        <Bold>Region: </Bold> {dummy.region}
+        <Bold>Region: </Bold> {user.region}
       </p>
       <Button variant="outlined">Edit Profile</Button>
     </Margin>
@@ -30,3 +30,14 @@ function UserInfo() {
 }
 
 export default UserInfo;
+
+const Margin = styled.div`
+  margin: 20px;
+  font-family: arial, sans-serif;
+  line-height: 30pt;
+  text-align: center;
+`;
+
+const Bold = styled.b`
+  font-weight: bold;
+`;

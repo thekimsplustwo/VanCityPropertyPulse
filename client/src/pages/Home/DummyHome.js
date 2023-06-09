@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-function Home() {
+function DummyHome() {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -15,4 +15,4 @@ const Main = styled.div`
   height: 100vh;
   display: flex;
 `;
-export default Home;
+export default DummyHome;

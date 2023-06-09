@@ -1,15 +1,15 @@
 import React from 'react';
-import dummy from './DummyUser';
-import { Image, MarginOnly } from '../../styles/UserProfile';
+import styled from 'styled-components';
+import { user } from '../../data/data';
 
 function UserFavourites() {
-  return dummy.favourites.length === 0 ? (
+  return user.favourites.length === 0 ? (
     <div>Nothing to see!</div>
   ) : (
-    dummy.favourites.map(url => {
+    user.favourites.map(url => {
       return (
-        <MarginOnly key={dummy.id}>
-          <Image src={url} alt={dummy.region} />
+        <MarginOnly key={user.id}>
+          <Image src={url} alt={user.region} />
         </MarginOnly>
       );
     })
@@ -17,3 +17,12 @@ function UserFavourites() {
 }
 
 export default UserFavourites;
+
+const Image = styled.img`
+  width: 150px;
+  height: 150px;
+`;
+
+const MarginOnly = styled.div`
+  margin: 20px;
+`;

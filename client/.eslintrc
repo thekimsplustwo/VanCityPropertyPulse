@@ -22,7 +22,7 @@
   "settings": {
     "import/resolver": {
       "node": {
-        "paths": ["src"]
+        "moduleDirectory": ["node_modules", "src"]
       }
     },
     "react": {
@@ -44,6 +44,7 @@
     "react/jsx-uses-react": "off",
     "react/no-direct-mutation-state": "warn",
     "react/jsx-no-useless-fragment": "warn",
+    "react/no-array-index-key": "warn",
     "react/no-unused-state": "warn",
     "react/jsx-key": "warn",
     "react/self-closing-comp": "warn",
