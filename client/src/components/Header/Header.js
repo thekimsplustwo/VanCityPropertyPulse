@@ -1,13 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import Nav from './Nav';
+
+const FixedNav = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+`;
 
 function Header() {
-  return <HeaderWrapper>headerWrapper hahaha</HeaderWrapper>;
+  return (
+    <FixedNav>
+      {' '}
+      <Nav />{' '}
+    </FixedNav>
+  );
 }
-
-const HeaderWrapper = styled.div`
-  width: 100%;
-  border-bottom: 1px solid #f1f3f5;
-`;
 
 export default Header;
