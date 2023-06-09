@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import CoPresentIcon from '@mui/icons-material/CoPresent';
 
 function Footer() {
   return (
@@ -25,10 +27,14 @@ function Footer() {
           </div>
           <FooterRight>
             <FooterIcon>
-              <div />
+              <a href="https://github.com/czhaoca/TheKimsPlusTwo">
+                <GitHubIcon style={{ fontSize: '40px' }} />
+              </a>
             </FooterIcon>
             <FooterIcon>
-              <div />
+              <a href="https://blogs.ubc.ca/cpsc4552023s">
+                <CoPresentIcon style={{ fontSize: '40px' }} />
+              </a>
             </FooterIcon>
           </FooterRight>
         </FooterContent>
@@ -41,10 +47,12 @@ const FooterContainer = styled.div`
   background: #ffffff;
   color: #bdbdbd;
   border: 1px solid #ececec;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 `;
 
 const FooterWrapper = styled.div`
-  max-width: 1152px;
   margin: 0 auto;
   background: #ffffff;
 `;
@@ -52,7 +60,7 @@ const FooterWrapper = styled.div`
 const FooterContent = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 32px 20px;
+  padding: 2em 2rem;
   color: #bdbdbd;
 `;
 
@@ -107,23 +115,20 @@ const InfoBottomSecond = styled.div`
 `;
 
 const FooterRight = styled.div`
+  width: 12vw;
   display: flex;
-  align-items: center;
+  justify-content: flex-end;
+  align-content: center;
+  svg {
+    margin-left: 1rem;
+    &:hover {
+      cursor: pointer;
+      color: #373737;
+    }
 `;
 
 const FooterIcon = styled.div`
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 34px;
-    height: 34px;
-    margin: 0 10px 0 0;
-    color: black;
-    border: 1px solid transparent;
-    border-radius: 20px;
-    background: #bdbdbd;
-  }
+  display: flex;
 `;
 
 export default Footer;
