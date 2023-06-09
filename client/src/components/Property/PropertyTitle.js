@@ -1,16 +1,9 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { FavoriteBorderOutlined } from '@mui/icons-material';
-import ImageCarousel from './ImageCarousel';
-import DetailedInfo from './DetailedInfo';
-import { images } from '../../data/data';
-
-const id = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
-const propertyImages = images.find(({ pid }) => pid === id).images;
 
 function PropertyHeader(props) {
-  const { id } = props;
+  const { pid } = props;
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
@@ -21,18 +14,16 @@ function PropertyHeader(props) {
     <Wrapper>
       <HeaderWrapper>
         <HeaderTitle>
-          <h1>${id}</h1>
+          <h1>${pid}</h1>
         </HeaderTitle>
       </HeaderWrapper>
     </Wrapper>
   );
 }
-
-const Main = styled.div``;
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 const HeaderWrapper = styled.div`
@@ -40,7 +31,7 @@ const HeaderWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  padding: 20px;
+  padding: 20px 0;
 `;
 
 const HeaderTitle = styled.div`

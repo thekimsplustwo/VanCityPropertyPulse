@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Carousel from 'react-material-ui-carousel';
-import { Paper, Box } from '@mui/material';
+import { Box } from '@mui/material';
 import Image from './Image';
 
 function ImageCarousel(props) {
@@ -14,17 +14,6 @@ function ImageCarousel(props) {
       <Section>
         {propertyImages ? (
           <Box sx={{ maxWidth: 500, flexGrow: 1 }}>
-            <Paper
-              square
-              elevation={0}
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                height: 50,
-                pl: 2,
-                bgcolor: 'background.default',
-              }}
-            />
             <Carousel>
               {propertyImages.map((image, index) => (
                 <Image key={index} image={image} />

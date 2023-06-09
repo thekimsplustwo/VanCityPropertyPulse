@@ -16,7 +16,7 @@ function Property() {
   return (
     <Wrapper>
       <HeaderWrapper>
-        <PropertyHeader id={params.pid} />
+        <PropertyHeader pid={params.pid} />
         <MenuItems />
       </HeaderWrapper>
       <ContentWrapper>
@@ -38,13 +38,12 @@ const Wrapper = styled.div`
 const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  padding: 20px;
+  align-items: flex-start;
+  padding: 20px 50px;
 `;
 
 const ContentWrapper = styled.div`
-  padding: 50px;
+  padding: 10px 50px;
   display: flex;
   justify-content: space-around;
   align-items: stretch;

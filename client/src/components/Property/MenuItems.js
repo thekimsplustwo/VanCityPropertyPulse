@@ -26,6 +26,7 @@ function MenuItems(props) {
 
 const Wrapper = styled.div`
   display: flex;
+  margin-top: 10px;
 `;
 
 const MenuContainer = styled.div`
@@ -36,8 +37,8 @@ const MenuContainer = styled.div`
   border: 2px solid gray;
   opacity: 0.3;
   border-radius: 10px;
-  padding: 3px 8px;
-  margin: 0 10px;
+  padding: 3px 0;
+  margin: 10px;
   &:hover {
     cursor: pointer;
     opacity: 1;
@@ -47,7 +48,7 @@ const MenuContainer = styled.div`
 const MenuOpt = styled.div`
   padding: 0 0.3rem;
   font-size: 15px;
-  font-weight: 500px;
+  font-weight: 5rem;
 `;
 
 export default MenuItems;
