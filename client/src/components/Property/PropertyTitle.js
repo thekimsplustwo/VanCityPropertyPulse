@@ -44,36 +44,4 @@ const HeaderTitle = styled.div`
   }
 `;
 
-const HeaderIcons = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-`;
-
-const MenuContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid gray;
-  opacity: 0.3;
-  &:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
-  border-radius: 10px;
-  padding: 3px 8px;
-`;
-
-const MenuOpt = styled.div`
-  padding: 0 0.3rem;
-  font-size: 15px;
-  font-weight: 500px;
-`;
-const ContentWrapper = styled.div`
-  padding: 50px;
-  display: flex;
-  justify-content: space-around;
-  align-items: stretch;
-`;
-
 export default PropertyHeader;
