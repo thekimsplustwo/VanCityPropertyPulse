@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import styled from 'styled-components';
 import { user } from '../../data/data';
-import { Margin, Bold, ProfileImage } from '../../styles/UserProfile';
 
 function UserCard() {
   //   const [{ photo, firstName }] = user;
@@ -21,3 +21,19 @@ function UserCard() {
 }
 
 export default UserCard;
+
+const Margin = styled.div`
+  margin: 20px;
+  font-family: arial, sans-serif;
+  line-height: 30pt;
+  text-align: center;
+`;
+
+const Bold = styled.b`
+  font-weight: bold;
+`;
+
+const ProfileImage = styled.img`
+  width: 150px;
+  height: 150px;
+`;

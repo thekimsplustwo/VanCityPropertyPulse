@@ -8,7 +8,6 @@ import Grid from '@mui/material/Unstable_Grid2';
 import UserCard from '../../components/User/UserCard';
 import UserFavourites from '../../components/User/UserFavourites';
 import UserInfo from '../../components/User/UserInfo';
-import { Wrapper } from '../../styles/UserProfile';
 
 function MyPage() {
   const navigate = useNavigate();
@@ -53,6 +52,23 @@ function MyPage() {
   );
 }
 
-const Main = styled.div``;
-
 export default MyPage;
+
+const Main = styled.div`
+  height: 100vh;
+  width: 100vw;
+  padding-top: 8em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Wrapper = styled.div`
+  border-radius: 25px;
+  border: 4px solid black;
+  padding: 16px;
+  width: 100%;
+  margin: 10px;
+  background-color: white;
+  text-align: center;
+`;

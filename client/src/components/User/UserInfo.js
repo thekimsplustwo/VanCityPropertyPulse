@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
+import styled from 'styled-components';
 import { user } from '../../data/data';
-import { Margin, Bold } from '../../styles/UserProfile';
 
 function UserInfo() {
   return (
@@ -30,3 +30,14 @@ function UserInfo() {
 }
 
 export default UserInfo;
+
+const Margin = styled.div`
+  margin: 20px;
+  font-family: arial, sans-serif;
+  line-height: 30pt;
+  text-align: center;
+`;
+
+const Bold = styled.b`
+  font-weight: bold;
+`;

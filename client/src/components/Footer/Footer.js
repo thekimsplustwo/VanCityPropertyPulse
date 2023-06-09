@@ -10,15 +10,12 @@ function Footer() {
           <div>
             <FooterInfoTop>VanCity Property Pulse</FooterInfoTop>
             <FooterInfoBottom>
-              <InfoBottomFisrt>
+              <InfoBottom>
                 <span>by TheKimsPlusTwo</span>
-              </InfoBottomFisrt>
-              <InfoBottomSecond>
-                <span>CPSC455 2023S</span>
-              </InfoBottomSecond>
+              </InfoBottom>
             </FooterInfoBottom>
             <Rights>
-              <span>UBC</span>
+              <span>UBC CPSC455</span>
               <div />
             </Rights>
           </div>
@@ -84,7 +81,7 @@ const Rights = styled.div`
   font-size: 12px;
 `;
 
-const InfoBottomFisrt = styled.div`
+const InfoBottom = styled.div`
   display: flex;
   margin: 0 0 4px 0;
 
