@@ -1,27 +1,22 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { FavoriteBorderOutlined } from '@mui/icons-material';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import DetailedInfo from '../../components/Property/DetailedInfo';
 import { images } from '../../data/data';
 import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
 
-const id = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
-const propertyImages = images.find(({ pid }) => pid === id).images;
-
 function Property() {
-  const navigate = useNavigate();
-  const location = useLocation();
   const params = useParams();
+
+  const propertyImages = images.find(({ pid }) => pid === params.pid).images;
   const [query, setQuery] = useSearchParams();
   const searchParams = new URLSearchParams(query);
 
   return (
     <Wrapper>
       <HeaderWrapper>
-        <PropertyHeader id={id} />
+        <PropertyHeader id={params.pid} />
         <MenuItems />
       </HeaderWrapper>
       <ContentWrapper>
@@ -32,9 +27,8 @@ function Property() {
   );
 }
 
-const Main = styled.div``;
-
 const Wrapper = styled.div`
+  padding-top: 8em;
   width: 100vw;
   height: 100vh;
   display: flex;

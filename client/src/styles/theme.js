@@ -1,5 +1,3 @@
-const themeColor = {
-  colors: '#ff385c',
-};
+const themeColorPink = '#ff385c';
 
-export default themeColor;
+export default themeColorPink;

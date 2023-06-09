@@ -1,16 +1,16 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import dummy from './DummyUser';
+import { user } from '../../data/data';
 import { Margin, Bold, ProfileImage } from '../../styles/UserProfile';
 
 function UserCard() {
-  //   const [{ photo, firstName }] = dummy;
+  //   const [{ photo, firstName }] = user;
   return (
     <Margin>
       <div>
-        <ProfileImage src={dummy.photo} alt={dummy.firstName} />
+        <ProfileImage src={user.photo} alt={user.firstName} />
         <p>
-          Welcome, <Bold>{dummy.firstName}</Bold>!❤️
+          Welcome, <Bold>{user.firstName}</Bold>!❤️
         </p>
       </div>
       <Button variant="outlined" color="error">
