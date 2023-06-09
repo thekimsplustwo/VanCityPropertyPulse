@@ -1,11 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import DummyHome from './pages/Home/DummyHome';
 import Home from './pages/Home/Home';
-import Property from './pages/Property/Property';
+import PropertyDetail from './pages/PropertyDetail/PropertyDetail';
 import MyPage from './pages/MyPage/MyPage';
 import Likes from './pages/Likes/Likes';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 import ScrollTop from './components/ScrollTop/ScrollTop';
+import Compare from './pages/Compare/Compare';
 
 function Router() {
   return (
@@ -13,12 +16,14 @@ function Router() {
       <ScrollTop />
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<DummyHome />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/property/:id" element={<Property />} />
+        <Route path="/properties/:pid" element={<PropertyDetail />} />
+        <Route path="/compare" element={<Compare />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/likes" element={<Likes />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }

@@ -1,23 +1,33 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import HomeIcon from '@mui/icons-material/Home';
-import { Link } from 'react-router-dom';
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Avatar,
+  Button,
+  Tooltip,
+  MenuItem,
+  ListItemIcon,
+} from '@mui/material';
 
+import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
+import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
+import { Link } from 'react-router-dom';
+import themeColorPink from '../../styles/theme';
+
+const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
+const themeColor = themeColorPink;
 const pages = [
-  { name: 'Home', path: '/home' },
-  { name: 'Property', path: '/property/:id' },
-  { name: 'Compare', path: '/compare' },
+  { name: 'Home', icon: <HomeOutlinedIcon />, path: '/home' },
+  { name: 'Property', icon: <FeedOutlinedIcon />, path: `/properties/${pid}` },
+  { name: 'Compare', icon: <CompareArrowsOutlinedIcon />, path: '/compare' },
 ];
 const settings = [
   { name: 'Profile', path: '/mypage' },
@@ -25,50 +35,60 @@ const settings = [
   { name: 'Logout', path: '/logout' },
 ];
 
-const HOT_PINK = '#FF69B4';
-
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ setSearchToggle }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = event => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleSearchBarVisibility = e => {
+    const pathSuffix = e.currentTarget.href?.split('/').pop();
+    if (pathSuffix === 'home') {
+      setSearchToggle(true);
+    } else {
+      setSearchToggle(false);
+    }
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseNavMenu = e => {
+    setAnchorElNav(null);
+    handleSearchBarVisibility(e);
+  };
+
+  const handleCloseUserMenu = e => {
     setAnchorElUser(null);
+    handleSearchBarVisibility(e);
   };
 
   return (
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'flex-start' }}>
-          <HomeIcon sx={{ color: HOT_PINK, fontSize: 'large', display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <HomeIcon sx={{ color: themeColor, fontSize: 'large', display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: HOT_PINK,
+              color: themeColor,
               textDecoration: 'none',
+              fontSize: 15,
             }}
           >
-            TheKimsPlusTwo
+            VanCityPropertyPulse
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -76,7 +96,7 @@ function ResponsiveAppBar() {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="#bdbdbd"
             >
               <MenuIcon />
             </IconButton>
@@ -100,6 +120,7 @@ function ResponsiveAppBar() {
             >
               {pages.map(page => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <ListItemIcon>{page.icon}</ListItemIcon>
                   <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
@@ -122,18 +143,18 @@ function ResponsiveAppBar() {
               textDecoration: 'none',
             }}
           >
-            TheKimsPlusTwo
+            VanCityPropertyPulse
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
             {pages.map(page => (
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ fontSize: '2rem', my: 2, color: HOT_PINK, display: 'block' }}
+                sx={{ fontSize: '2rem', my: 2, color: themeColor, display: 'block' }}
                 component={Link}
                 to={page.path}
               >
-                {page.name}
+                {page.icon}
               </Button>
             ))}
           </Box>
@@ -174,4 +195,5 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;

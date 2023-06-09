@@ -1,16 +1,16 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import dummy from './DummyUser';
-import { Margin, Bold, ProfileImage } from '../../styles/UserProfile';
+import styled from 'styled-components';
+import { user } from '../../data/data';
 
 function UserCard() {
-  //   const [{ photo, firstName }] = dummy;
+  //   const [{ photo, firstName }] = user;
   return (
     <Margin>
       <div>
-        <ProfileImage src={dummy.photo} alt={dummy.firstName} />
+        <ProfileImage src={user.photo} alt={user.firstName} />
         <p>
-          Welcome, <Bold>{dummy.firstName}</Bold>!❤️
+          Welcome, <Bold>{user.firstName}</Bold>!❤️
         </p>
       </div>
       <Button variant="outlined" color="error">
@@ -21,3 +21,19 @@ function UserCard() {
 }
 
 export default UserCard;
+
+const Margin = styled.div`
+  margin: 20px;
+  font-family: arial, sans-serif;
+  line-height: 30pt;
+  text-align: center;
+`;
+
+const Bold = styled.b`
+  font-weight: bold;
+`;
+
+const ProfileImage = styled.img`
+  width: 150px;
+  height: 150px;
+`;

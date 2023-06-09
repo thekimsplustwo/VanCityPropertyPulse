@@ -9,6 +9,11 @@ function Compare() {
   return <Main />;
 }
 
-const Main = styled.div``;
+const Main = styled.div`
+  padding-top: 5em;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+`;
 
 export default Compare;
