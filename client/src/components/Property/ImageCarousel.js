@@ -42,7 +42,7 @@ function ImageCarousel(props) {
 export default ImageCarousel;
 
 const Wrapper = styled.div`
-  margin: 30px;
+  padding: 30px;
   width: 100vw;
   hight: 100vh;
 `;

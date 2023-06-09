@@ -35,7 +35,6 @@ const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  border: 7px solid green;
 `;
 
 const HeaderWrapper = styled.div`
@@ -46,13 +45,13 @@ const HeaderWrapper = styled.div`
     font-size: 30px;
     font-weight: 700;
   }
+  padding: 20px;
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: stretch;
-  border: 7px solid pink;
 `;
 
 export default Property;
