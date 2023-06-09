@@ -87,7 +87,7 @@ function ResponsiveAppBar({ setSearchToggle }) {
               fontSize: 15,
             }}
           >
-            TheKimsPlusTwo
+            VanCityPropertyPulse
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -143,7 +143,7 @@ function ResponsiveAppBar({ setSearchToggle }) {
               textDecoration: 'none',
             }}
           >
-            TheKimsPlusTwo
+            VanCityPropertyPulse
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
             {pages.map(page => (

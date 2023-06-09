@@ -8,16 +8,13 @@ function Footer() {
       <FooterWrapper>
         <FooterContent>
           <div>
-            <FooterInfoTop>
-              <img alt="Logo" src="/images/logo.png" />
-              <div>VanCity Property</div>
-            </FooterInfoTop>
+            <FooterInfoTop>VanCity Property Pulse</FooterInfoTop>
             <FooterInfoBottom>
               <InfoBottomFisrt>
-                <span>CPSC 455 2023S</span>
+                <span>by TheKimsPlusTwo</span>
               </InfoBottomFisrt>
               <InfoBottomSecond>
-                <span>TheKimPlusTwo</span>
+                <span>CPSC455 2023S</span>
               </InfoBottomSecond>
             </FooterInfoBottom>
             <Rights>
@@ -68,11 +65,6 @@ const FooterInfoTop = styled.div`
   display: flex;
   align-items: end;
   margin: 0 0 12px 0;
-
-  img {
-    width: 86px;
-    height: 20px;
-  }
 
   div {
     font-size: 12px;
