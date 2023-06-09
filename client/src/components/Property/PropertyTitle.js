@@ -2,16 +2,15 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { FavoriteBorderOutlined } from '@mui/icons-material';
-import ImageCarousel from '../../components/Property/ImageCarousel';
-import DetailedInfo from '../../components/Property/DetailedInfo';
+import ImageCarousel from './ImageCarousel';
+import DetailedInfo from './DetailedInfo';
 import { images } from '../../data/data';
-import PropertyHeader from '../../components/Property/PropertyTitle';
-import MenuItems from '../../components/Property/MenuItems';
 
 const id = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const propertyImages = images.find(({ pid }) => pid === id).images;
 
-function Property() {
+function PropertyHeader(props) {
+  const { id } = props;
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
@@ -21,13 +20,10 @@ function Property() {
   return (
     <Wrapper>
       <HeaderWrapper>
-        <PropertyHeader id={id} />
-        <MenuItems />
+        <HeaderTitle>
+          <h1>${id}</h1>
+        </HeaderTitle>
       </HeaderWrapper>
-      <ContentWrapper>
-        <ImageCarousel propertyImages={propertyImages} />
-        <DetailedInfo />
-      </ContentWrapper>
     </Wrapper>
   );
 }
@@ -35,8 +31,6 @@ function Property() {
 const Main = styled.div``;
 
 const Wrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 `;
@@ -49,6 +43,41 @@ const HeaderWrapper = styled.div`
   padding: 20px;
 `;
 
+const HeaderTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+  }
+`;
+
+const HeaderIcons = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const MenuContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid gray;
+  opacity: 0.3;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+  border-radius: 10px;
+  padding: 3px 8px;
+`;
+
+const MenuOpt = styled.div`
+  padding: 0 0.3rem;
+  font-size: 15px;
+  font-weight: 500px;
+`;
 const ContentWrapper = styled.div`
   padding: 50px;
   display: flex;
@@ -56,4 +85,4 @@ const ContentWrapper = styled.div`
   align-items: stretch;
 `;
 
-export default Property;
+export default PropertyHeader;

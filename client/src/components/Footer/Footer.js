@@ -13,30 +13,17 @@ function Footer() {
             <FooterInfoBottom>
               <InfoBottomFisrt>
                 <span>CPSC 455 2023S</span>
-                <div>Instructors: Ian, Danya</div>
-                <div />
-                <div />
               </InfoBottomFisrt>
               <InfoBottomSecond>
                 <span>TheKimPlusTwo</span>
-                <div>Jieun Kim</div>
-                <div>github: </div>
               </InfoBottomSecond>
             </FooterInfoBottom>
             <Rights>
-              <div>UBC</div>
+              <span>UBC</span>
+              <div />
             </Rights>
           </div>
           <FooterRight>
-            <FooterIcon>
-              <div />
-            </FooterIcon>
-            <FooterIcon>
-              <div />
-            </FooterIcon>
-            <FooterIcon>
-              <div />
-            </FooterIcon>
             <FooterIcon>
               <div />
             </FooterIcon>
@@ -51,20 +38,22 @@ function Footer() {
 }
 
 const FooterContainer = styled.div`
-  background: #303740;
+  background: #ffffff;
   color: #bdbdbd;
+  border: 1px solid #ececec;
 `;
 
 const FooterWrapper = styled.div`
   max-width: 1152px;
   margin: 0 auto;
-  background: #303740;
+  background: #ffffff;
 `;
 
 const FooterContent = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 32px 20px;
+  color: #bdbdbd;
 `;
 
 const FooterInfoTop = styled.div`

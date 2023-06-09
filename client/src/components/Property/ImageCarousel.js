@@ -13,7 +13,7 @@ function ImageCarousel(props) {
     <Wrapper>
       <Section>
         {propertyImages ? (
-          <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+          <Box sx={{ maxWidth: 500, flexGrow: 1 }}>
             <Paper
               square
               elevation={0}
@@ -42,7 +42,6 @@ function ImageCarousel(props) {
 export default ImageCarousel;
 
 const Wrapper = styled.div`
-  padding: 30px;
   width: 100vw;
   hight: 100vh;
 `;

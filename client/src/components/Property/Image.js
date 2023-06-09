@@ -10,9 +10,9 @@ function Image(props) {
       <Box
         component="img"
         sx={{
-          height: 255,
+          height: 300,
           display: 'block',
-          maxWidth: 400,
+          maxWidth: 500,
           overflow: 'hidden',
           width: '100%',
         }}
