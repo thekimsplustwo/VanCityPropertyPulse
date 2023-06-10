@@ -8,32 +8,34 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 ## **Project Task Requirements**
 
 **Minimal Requirements:**
-1. Collect and store real estate listing data.
-2. Implement user interface for searching and filtering through listings.
-3. Display basic property details such as price and location.
+1. Display properties on the website.
+2. Set up a full stack website with basic functionality.
+3. Gather and store housing price data and location data for Vancouver.
+4. Display housing prices on a geolocation interface.
 <br><br>
 
 **Standard Requirements:**
-1. Implement a feature for users to save favorite properties.
-2. Display housing price trends over time.
-3. Provide alerts for price changes.
-4. Incorporate a user authentication system.
+1. Implement a search functionality to allow users to find housing prices in specific locations.
+2. Add a feature to visualize housing price trends over time.
+3. Design the interface to allow users to easily compare housing prices between different neighbourhoods.
+4. Implement data validation and error handling processes.
 <br><br>
 
 **Stretch Requirements:**
-1. Predict future housing price trends using machine learning algorithms.
-2. Integrate with a map API to display properties on a map.
+1. Add a predictive feature to estimate future housing prices based on historical data.
+2. Include average rental prices in each neighbourhood for comparison and investment insights.
 <br><br>
 
 **Task Breakdown:**
-1. Collect and store real estate listing data.
-    - Set up a MongoDB database for storing listing data.
-    - Use Node.js and Express.js to scrape or consume data from a real estate API.
-    - Schedule regular data updates.
-2. Implement user interface for searching and filtering through listings.
-    - Set up a React.js application for the client-side interface.
-    - Implement a listings page with a table or list of properties.
-    - Add search and filter options for users to refine listings.
+1. Set up a full stack website with basic functionality.
+    - Setup the front-end with a basic layout and design
+    - Setup the back-end with appropriate server, routing and database setup
+    - Integrate the front-end and back-end
+2. Gather and store housing price data and location data for Vancouver.
+    - Find appropriate data sources/APIs for housing price and location data
+    - Implement data fetching mechanisms
+    - Design and implement database schema
+    - Store fetched data into the database
 <br><br>
 
 ## **Prototypes**
@@ -48,7 +50,7 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 #### Getting Started
 * Make sure you have [Node.js](https://nodejs.org/en/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed
 * Clone this repo to your local machine.
-* `npm install` from the ./server folder, to get the dependencies for the server.
+* `npm install` from the `./server` folder, to get the dependencies for the server.
 * `npm install` from `./client` folder, to get the dependencies for the client.
 * Spawn a local node server with `npm run server` and a client with `npm run client`
 * `npm start`to run both the server and the client concurrently.
