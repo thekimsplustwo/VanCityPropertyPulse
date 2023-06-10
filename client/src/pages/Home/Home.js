@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import DisplayCard from '../../components/Property/DisplayCard';
 
 function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  return <Main />;
+  return <DisplayCard />;
 }
 
 const Main = styled.div`
