@@ -63,6 +63,7 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: stretch;
+  margin: 0;
 `;
 
 export default Property;
