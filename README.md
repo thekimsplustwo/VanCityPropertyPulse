@@ -8,9 +8,9 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 ## **Project Task Requirements**
 
 **Minimal Requirements:**
-1. Collect and store real estate listing data.
-2. Implement user interface for searching and filtering through listings.
-3. Display basic property details such as price and location.
+1. Display a list of properties.
+2. Display property's detailed information such as price and location.
+3. Implement user interface for searching and filtering through listings.
 <br><br>
 
 **Standard Requirements:**
@@ -26,14 +26,23 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 <br><br>
 
 **Task Breakdown:**
-1. Collect and store real estate listing data.
-    - Set up a MongoDB database for storing listing data.
-    - Use Node.js and Express.js to scrape or consume data from a real estate API.
-    - Schedule regular data updates.
-2. Implement user interface for searching and filtering through listings.
+1. Display a list of properties
+    - Set up a React.js application for the client-side interface
+    - Create a mock date for a list of properties
+    - Create a component that contains a list of properties
+    - Create a component that contains a single property as a child component of the listing component
+<br><br>
+2.  Display property's detailed information such as price and location
+    - Set up a React.js application for the client-side interface
+    - Get selected property id (pid) from URL ( /properties/:pid ) to retreive property information 
+    - Display property information such as address, price, and image(s)
+<br><br>
+3. Implement user interface for searching and filtering through listings.
     - Set up a React.js application for the client-side interface.
     - Implement a listings page with a table or list of properties.
     - Add search and filter options for users to refine listings.
+    - Pass the search and filter options to the listing component 
+    - Re-render the listing page at option submit 
 <br><br>
 
 ## **Prototypes**
