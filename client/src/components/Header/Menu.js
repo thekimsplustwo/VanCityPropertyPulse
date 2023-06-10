@@ -49,10 +49,12 @@ function ResponsiveAppBar({ setSearchToggle }) {
 
   const handleSearchBarVisibility = e => {
     const pathSuffix = e.currentTarget.href?.split('/').pop();
-    if (pathSuffix === 'home') {
-      setSearchToggle(true);
-    } else {
-      setSearchToggle(false);
+    if (pathSuffix) {
+      if (pathSuffix === 'home') {
+        setSearchToggle(true);
+      } else {
+        setSearchToggle(false);
+      }
     }
   };
 
@@ -120,13 +122,15 @@ function ResponsiveAppBar({ setSearchToggle }) {
             >
               {pages.map(page => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <ListItemIcon>{page.icon}</ListItemIcon>
-                  <Typography textAlign="center">{page.name}</Typography>
+                  <Link to={page.path}>
+                    <ListItemIcon>{page.icon}</ListItemIcon>
+                    <Typography textAlign="center">{page.name}</Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <HomeIcon sx={{ fontSize: 'large', display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <HomeIcon sx={{ color: themeColor, fontSize: '3rem', display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h3"
             noWrap
@@ -139,11 +143,11 @@ function ResponsiveAppBar({ setSearchToggle }) {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: themeColor,
               textDecoration: 'none',
             }}
           >
-            VanCityPropertyPulse
+            VanCity
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
             {pages.map(page => (
