@@ -36,4 +36,5 @@ const ImageContainer = styled.div`
   display: block;
   max-width: 400px;
   overflow: hidden;
+  line-height: 5px;
 `;

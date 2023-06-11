@@ -6,6 +6,22 @@ import { images } from '../../data/data';
 import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
 
+const demoPropertyDetails = {
+  type: 'House',
+  style: 'Contemporary',
+  size: '5000+ sqft',
+  lotSize: '45.60 x 146.54 Feet',
+  age: '0-5',
+  taxes: '$5,000 /yr',
+  added: 'Jun 9 2021',
+  updated: 'Jun 10, 2021',
+  lastChecked: 'Jun 10, 2021',
+  mls: 'W5267789',
+  source: 'Toronto Real Estate Board',
+  listedBy: 'Demo Brokerage',
+  description: `This contemporary-style house is a stunning property that offers a spacious living experience. With a size of over 5000 square feet, this home provides ample room for comfortable living and entertaining. The lot size measures approximately 45.60 x 146.54 feet, providing a generous outdoor space for various activities.`,
+};
+
 function Property() {
   const params = useParams();
 
@@ -21,7 +37,7 @@ function Property() {
       </HeaderWrapper>
       <ContentWrapper>
         <ImageCarousel propertyImages={propertyImages} />
-        <DetailedInfo />
+        <DetailedInfo propertyDetails={demoPropertyDetails} />
       </ContentWrapper>
     </Wrapper>
   );
@@ -47,6 +63,7 @@ const ContentWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: stretch;
+  margin: 0;
 `;
 
 export default Property;
