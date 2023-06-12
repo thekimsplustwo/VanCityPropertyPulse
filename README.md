@@ -57,7 +57,7 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 #### Getting Started
 * Make sure you have [Node.js](https://nodejs.org/en/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed
 * Clone this repo to your local machine.
-* `npm install` from the ./server folder, to get the dependencies for the server.
+* `npm install` from the `./server` folder, to get the dependencies for the server.
 * `npm install` from `./client` folder, to get the dependencies for the client.
 * Spawn a local node server with `npm run server` and a client with `npm run client`
 * `npm start`to run both the server and the client concurrently.
