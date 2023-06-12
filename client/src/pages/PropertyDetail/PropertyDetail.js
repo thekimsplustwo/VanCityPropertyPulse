@@ -1,10 +1,12 @@
 import { useParams, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
+import Divider from '@mui/material/Divider';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import DetailedInfo from '../../components/Property/DetailedInfo';
 import { images } from '../../data/data';
 import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
+import AdditionalInfo from '../../components/Property/AdditonalInfo';
 
 const demoPropertyDetails = {
   type: 'House',
@@ -39,6 +41,8 @@ function Property() {
         <ImageCarousel propertyImages={propertyImages} />
         <DetailedInfo propertyDetails={demoPropertyDetails} />
       </ContentWrapper>
+      <Divider sx={{ borderBottomWidth: 1 }} />
+      <AdditionalInfo />
     </Wrapper>
   );
 }
