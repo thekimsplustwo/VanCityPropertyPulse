@@ -8,6 +8,7 @@ import Grid from '@mui/material/Unstable_Grid2';
 import UserCard from '../../components/User/UserCard';
 import UserFavourites from '../../components/User/UserFavourites';
 import UserInfo from '../../components/User/UserInfo';
+import UserPageLeft from '../../components/User/UserPageLeft';
 
 function MyPage() {
   const navigate = useNavigate();
@@ -22,33 +23,28 @@ function MyPage() {
   }));
 
   return (
-    <Box
-      sx={{
-        height: '100vh',
-        width: '100vw',
-        paddingTop: '8em',
-      }}
-    >
-      <Grid container spacing={8}>
-        <Grid>
-          <div style={{ flexDirection: 'column' }}>
+    <Main>
+      <Box
+        sx={{
+          height: '100vh',
+          width: '100vw',
+          paddingTop: '8em',
+        }}
+      >
+        <Grid container spacing={4}>
+          <Grid item xs={4}>
+            <UserPageLeft />
+          </Grid>
+          <Grid item xs={7.7}>
             <Wrapper>
-              <UserCard />
+              <ImageList cols="3">
+                <UserFavourites />
+              </ImageList>
             </Wrapper>
-            <Wrapper>
-              <UserInfo />
-            </Wrapper>
-          </div>
+          </Grid>
         </Grid>
-        <Grid xs={7}>
-          <Wrapper>
-            <ImageList cols="3">
-              <UserFavourites />
-            </ImageList>
-          </Wrapper>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Main>
   );
 }
 
@@ -57,18 +53,18 @@ export default MyPage;
 const Main = styled.div`
   height: 100vh;
   width: 100vw;
-  padding-top: 8em;
+  padding: 1em;
   display: flex;
   flex-direction: column;
   justify-content: center;
 `;
 
 const Wrapper = styled.div`
-  border-radius: 25px;
-  border: 4px solid black;
+  border-radius: 15px;
+  // border: 4px solid #b9bbb6;
   padding: 16px;
   width: 100%;
-  margin: 10px;
+  margin: 20px;
   background-color: white;
   text-align: center;
 `;
