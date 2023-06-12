@@ -24,19 +24,10 @@ import themeColorPink from '../../styles/theme';
 
 const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
-const navIconStyle = { fontSize: '2rem', color: themeColor };
 const pages = [
-  { name: 'Home', icon: <HomeOutlinedIcon sx={navIconStyle} />, path: '/home' },
-  {
-    name: 'Property',
-    icon: <FeedOutlinedIcon sx={navIconStyle} />,
-    path: `/properties/${pid}`,
-  },
-  {
-    name: 'Compare',
-    icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
-    path: '/compare',
-  },
+  { name: 'Home', icon: <HomeOutlinedIcon />, path: '/home' },
+  { name: 'Property', icon: <FeedOutlinedIcon />, path: `/properties/${pid}` },
+  { name: 'Compare', icon: <CompareArrowsOutlinedIcon />, path: '/compare' },
 ];
 const settings = [
   { name: 'Profile', path: '/mypage' },
@@ -44,7 +35,7 @@ const settings = [
   { name: 'Logout', path: '/logout' },
 ];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ setSearchToggle }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -56,19 +47,30 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleSearchBarVisibility = e => {
+    const pathSuffix = e.currentTarget.href?.split('/').pop();
+    if (pathSuffix === 'home') {
+      setSearchToggle(true);
+    } else {
+      setSearchToggle(false);
+    }
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseNavMenu = e => {
+    setAnchorElNav(null);
+    handleSearchBarVisibility(e);
+  };
+
+  const handleCloseUserMenu = e => {
     setAnchorElUser(null);
+    handleSearchBarVisibility(e);
   };
 
   return (
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
-      <Container maxWidth={false}>
+      <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: 'flex-start' }}>
-          <HomeIcon sx={{ color: themeColor, fontSize: '2.5rem', display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <HomeIcon sx={{ color: themeColor, fontSize: 'large', display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -78,11 +80,11 @@ function ResponsiveAppBar() {
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
-              fontWeight: 530,
+              fontWeight: 700,
               letterSpacing: '.3rem',
               color: themeColor,
               textDecoration: 'none',
-              fontSize: '2rem',
+              fontSize: 15,
             }}
           >
             VanCityPropertyPulse
@@ -118,15 +120,13 @@ function ResponsiveAppBar() {
             >
               {pages.map(page => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Link to={page.path}>
-                    <ListItemIcon>{page.icon}</ListItemIcon>
-                    <Typography textAlign="center">{page.name}</Typography>
-                  </Link>
+                  <ListItemIcon>{page.icon}</ListItemIcon>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <HomeIcon sx={{ color: themeColor, fontSize: '3rem', display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <HomeIcon sx={{ fontSize: 'large', display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h3"
             noWrap
@@ -139,18 +139,18 @@ function ResponsiveAppBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: themeColor,
+              color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            VanCity
+            VanCityPropertyPulse
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
             {pages.map(page => (
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, display: 'block' }}
+                sx={{ fontSize: '2rem', my: 2, color: themeColor, display: 'block' }}
                 component={Link}
                 to={page.path}
               >
