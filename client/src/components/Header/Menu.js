@@ -24,10 +24,19 @@ import themeColorPink from '../../styles/theme';
 
 const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
+const navIconStyle = { fontSize: '2rem', color: themeColor };
 const pages = [
-  { name: 'Home', icon: <HomeOutlinedIcon />, path: '/home' },
-  { name: 'Property', icon: <FeedOutlinedIcon />, path: `/properties/${pid}` },
-  { name: 'Compare', icon: <CompareArrowsOutlinedIcon />, path: '/compare' },
+  { name: 'Home', icon: <HomeOutlinedIcon sx={navIconStyle} />, path: '/home' },
+  {
+    name: 'Property',
+    icon: <FeedOutlinedIcon sx={navIconStyle} />,
+    path: `/properties/${pid}`,
+  },
+  {
+    name: 'Compare',
+    icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
+    path: '/compare',
+  },
 ];
 const settings = [
   { name: 'Profile', path: '/mypage' },
@@ -35,7 +44,7 @@ const settings = [
   { name: 'Logout', path: '/logout' },
 ];
 
-function ResponsiveAppBar({ setSearchToggle }) {
+function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -47,32 +56,19 @@ function ResponsiveAppBar({ setSearchToggle }) {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleSearchBarVisibility = e => {
-    const pathSuffix = e.currentTarget.href?.split('/').pop();
-    if (pathSuffix) {
-      if (pathSuffix === 'home') {
-        setSearchToggle(true);
-      } else {
-        setSearchToggle(false);
-      }
-    }
-  };
-
-  const handleCloseNavMenu = e => {
+  const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-    handleSearchBarVisibility(e);
   };
 
-  const handleCloseUserMenu = e => {
+  const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    handleSearchBarVisibility(e);
   };
 
   return (
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
-      <Container maxWidth="xl">
+      <Container maxWidth={false}>
         <Toolbar disableGutters sx={{ justifyContent: 'flex-start' }}>
-          <HomeIcon sx={{ color: themeColor, fontSize: 'large', display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <HomeIcon sx={{ color: themeColor, fontSize: '2.5rem', display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -82,11 +78,11 @@ function ResponsiveAppBar({ setSearchToggle }) {
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
-              fontWeight: 700,
+              fontWeight: 530,
               letterSpacing: '.3rem',
               color: themeColor,
               textDecoration: 'none',
-              fontSize: 15,
+              fontSize: '2rem',
             }}
           >
             VanCityPropertyPulse
@@ -154,7 +150,7 @@ function ResponsiveAppBar({ setSearchToggle }) {
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
-                sx={{ fontSize: '2rem', my: 2, color: themeColor, display: 'block' }}
+                sx={{ my: 2, display: 'block' }}
                 component={Link}
                 to={page.path}
               >
