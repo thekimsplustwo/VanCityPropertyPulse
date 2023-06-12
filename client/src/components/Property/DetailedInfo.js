@@ -98,10 +98,10 @@ function DetailedInfo(props) {
       </Grid>
 
       <Divider sx={{ borderBottomWidth: 3 }}></Divider>
-      <div style={{ textAlign: 'center', marginBottom: '3rem', marginTop: '3rem' }}>
+      <div style={{ textAlign: 'left', marginBottom: '3rem', marginTop: '3rem' }}>
         <p>
           <InfoRow>
-            <Bold>Description: </Bold> {description}
+            <BoldHeader>Overview </BoldHeader> {description}
           </InfoRow>
         </p>
       </div>
@@ -135,4 +135,10 @@ const Bold = styled.b`
 
 const Column = styled.div`
   flex: 1;
+`;
+
+const BoldHeader = styled.h2`
+  font-weight: bold;
+  font-size: 25px;
+  margin-bottom: 20px;
 `;

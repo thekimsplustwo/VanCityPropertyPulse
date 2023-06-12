@@ -11,7 +11,7 @@ import themeColorPink from '../../styles/theme';
 function AdditionalInfo() {
   return (
     <Wrapper>
-      <Divider sx={{ borderBottomWidth: 5 }} />
+      <Divider sx={{ borderBottomWidth: 3 }} />
       <InfoRow>
         <Bold>Sold History</Bold>
         <ButtonWrapper>
@@ -21,7 +21,7 @@ function AdditionalInfo() {
       <MarginBottom>
         <Description>Listing records and last sold date.</Description>
       </MarginBottom>
-      <Divider sx={{ borderBottomWidth: 5 }} />
+      <Divider sx={{ borderBottomWidth: 3 }} />
       <InfoRow>
         <Bold>Home Value</Bold>
         <ButtonWrapper>
@@ -31,7 +31,7 @@ function AdditionalInfo() {
       <MarginBottom>
         <Description>Price estimate and comparables.</Description>
       </MarginBottom>
-      <Divider sx={{ borderBottomWidth: 5 }} />
+      <Divider sx={{ borderBottomWidth: 3 }} />
       <InfoRow>
         <Bold>Neighbourhood</Bold>
         <ButtonWrapper>
