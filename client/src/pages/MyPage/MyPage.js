@@ -61,10 +61,10 @@ const Main = styled.div`
 
 const Wrapper = styled.div`
   border-radius: 15px;
-  // border: 4px solid #b9bbb6;
   padding: 16px;
   width: 100%;
   margin: 20px;
   background-color: white;
   text-align: center;
+  box-shadow: 10px 10px #fbe8e9;
 `;

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { Info, ArrowForward, Add } from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
-import themeColorPink from '../../styles/theme';
+import { themeColorPink } from '../../styles/theme';
 // import { Bold, InfoRow } from './DetailedInfo';
 
 function AdditionalInfo() {

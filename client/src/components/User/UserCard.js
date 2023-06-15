@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { user } from '../../data/data';
 
 function UserCard() {
-  //   const [{ photo, firstName }] = user;
   return (
     <Margin>
       <div>

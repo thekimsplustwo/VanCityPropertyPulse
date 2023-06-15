@@ -3,13 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
-import { Info } from '@mui/icons-material';
+import { Info, ArrowForward } from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
-import { ArrowForward } from '@mui/icons-material';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
-import themeColorPink from '../../styles/theme';
+import { themeColorPink } from '../../styles/theme';
 
 function DetailedInfo(props) {
   // decompose props
@@ -97,7 +96,7 @@ function DetailedInfo(props) {
         </Grid>
       </Grid>
 
-      <Divider sx={{ borderBottomWidth: 3 }}></Divider>
+      <Divider sx={{ borderBottomWidth: 3 }} />
       <div style={{ textAlign: 'left', marginBottom: '3rem', marginTop: '3rem' }}>
         <p>
           <InfoRow>

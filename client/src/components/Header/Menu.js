@@ -20,7 +20,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { Link } from 'react-router-dom';
-import themeColorPink from '../../styles/theme';
+import { themeColorPink } from '../../styles/theme';
 
 const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
