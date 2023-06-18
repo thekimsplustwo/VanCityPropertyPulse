@@ -1,7 +1,7 @@
-import React from 'react';
 import './PropertyCard.css';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { convertPriceToCAD } from '../../utils/utils';
 
 function PropertyCard({ property }) {
   const navigate = useNavigate();
@@ -15,10 +15,10 @@ function PropertyCard({ property }) {
       <div className="property-card">
         <img src={property.imgSrc} alt="Property" className="property-image" />
         <div className="property-info">
-          <div className="property-price">${property.price}</div>
-          <div className="property-location">
-            {property.city}, {property.neighborhood}
+          <div className="property-price">
+            {convertPriceToCAD(property.price)}
           </div>
+          <div className="property-location">{property.address}</div>
         </div>
       </div>
     </Img>

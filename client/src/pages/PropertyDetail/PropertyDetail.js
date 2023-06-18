@@ -1,9 +1,4 @@
-import {
-  useParams,
-  useSearchParams,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -16,21 +11,19 @@ import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
 
 function Property() {
-  const location = useLocation();
   const { zpid } = useParams();
   const property = useSelector(state => state.property.list);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPropertyAsync(zpid));
-  }, []);
-  const streetAddress = property?.address?.streetAddress ?? '';
+  }, [dispatch, property]);
   const images = Array.isArray(property.imgSrc)
     ? property.imgSrc
     : [property.imgSrc];
   return (
     <Wrapper>
       <HeaderWrapper>
-        <PropertyHeader streetAddress={streetAddress} />
+        <PropertyHeader propertyDetails={property} />
         <MenuItems />
       </HeaderWrapper>
       <ContentWrapper>
