@@ -43,6 +43,8 @@ function Property() {
   );
 }
 
+export default Property;
+
 const Wrapper = styled.div`
   padding-top: 6em;
   width: 100%;
@@ -65,5 +67,3 @@ const ContentWrapper = styled.div`
   align-items: stretch;
   margin: 0;
 `;
-
-export default Property;

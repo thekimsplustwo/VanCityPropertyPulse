@@ -11,11 +11,15 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import MapIcon from '@mui/icons-material/Map';
 
 function MenuItems(props) {
+  const handleLikesBtn = () => {
+    //
+  };
+
   return (
     <Wrapper>
       <MenuContainer>
         <FavoriteBorderOutlined />
-        <MenuOpt>Save</MenuOpt>
+        <MenuOpt onClick={() => handleLikesBtn()}>Save</MenuOpt>
       </MenuContainer>
       <MenuContainer>
         <ReplyIcon />
