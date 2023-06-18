@@ -1121,7 +1121,7 @@ export const propertyDetails = [
 export const properties = [
   {
     zpid: 2062513896,
-    imgScr:
+    imgSrc:
       'https://photos.zillowstatic.com/fp/06517fb6f997410348e1ab3732d65032-p_e.jpg',
     address: '3639 W 16th Ave #305, Vancouver, BC V6R 3B7',
     price: 2399000,
@@ -1251,7 +1251,7 @@ export const properties = [
   },
   {
     zpid: 314481587,
-    imgScr:
+    imgSrc:
       'https://photos.zillowstatic.com/fp/2c8370d1c658f9ad8f34b2658f38b017-p_d.jpg',
     address: '7753 13th Ave, Burnaby, BC V3N 2E5',
     price: 2798000,
