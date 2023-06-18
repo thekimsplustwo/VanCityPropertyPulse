@@ -7,8 +7,7 @@ import {
 } from 'react-router-dom';
 import styled from 'styled-components';
 
-function PropertyHeader(props) {
-  const { zpid } = props;
+function PropertyHeader({ streetAddress }) {
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
@@ -19,7 +18,7 @@ function PropertyHeader(props) {
     <Wrapper>
       <HeaderWrapper>
         <HeaderTitle>
-          <h1>{zpid}</h1>
+          <h1>{streetAddress}</h1>
         </HeaderTitle>
       </HeaderWrapper>
     </Wrapper>

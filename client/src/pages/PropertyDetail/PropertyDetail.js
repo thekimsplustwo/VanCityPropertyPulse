@@ -18,18 +18,17 @@ function Property() {
   const { zpid } = useParams();
   const property = useSelector(state => state.property.list);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getPropertyAsync(zpid));
-  }, [dispatch, zpid]);
-
+  }, []);
+  const streetAddress = property?.address?.streetAddress ?? '';
   const images = Array.isArray(property.imgSrc)
     ? property.imgSrc
     : [property.imgSrc];
   return (
     <Wrapper>
       <HeaderWrapper>
-        <PropertyHeader zpid={zpid} />
+        <PropertyHeader streetAddress={streetAddress} />
         <MenuItems />
       </HeaderWrapper>
       <ContentWrapper>
@@ -41,11 +40,11 @@ function Property() {
 }
 
 const Wrapper = styled.div`
-  padding-top: 8em;
-  width: 100vw;
-  height: 100vh;
+  padding-top: 6em;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  align-item: space-around;
 `;
 
 const HeaderWrapper = styled.div`

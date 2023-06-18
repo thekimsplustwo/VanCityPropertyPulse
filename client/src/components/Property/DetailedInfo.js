@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { Info } from '@mui/icons-material';
 
-function DetailedInfo(props) {
+function DetailedInfo({ propertyDetails }) {
   // decompose props
   const cssStyle = {
     backgroundColor: 'lightgrey',
@@ -25,76 +25,49 @@ function DetailedInfo(props) {
     source,
     listedBy,
     description,
-  } = props.propertyDetails;
+  } = propertyDetails;
+
   return (
     <Wrapper>
-      <div style={cssStyle}>
-        <p>
-          <InfoRow>
-            <Bold>Type: </Bold> {type}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Style: </Bold> {style}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Size: </Bold> {size}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Lot Size: </Bold> {lotSize}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold> House Age: </Bold> {age}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Taxes: </Bold> {taxes}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Added: </Bold> {added}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Updated: </Bold> {updated}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Last Checked: </Bold> {lastChecked}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>MLS: </Bold> {mls}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Source: </Bold> {source}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Listed By: </Bold> {listedBy}
-          </InfoRow>
-        </p>
-        <p>
-          <InfoRow>
-            <Bold>Description: </Bold> {description}
-          </InfoRow>
-        </p>
-      </div>
+      <InfoRow>
+        <Bold>Type: </Bold> {type}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Style: </Bold> {style}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Size: </Bold> {size}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Lot Size: </Bold> {lotSize}
+      </InfoRow>
+      <InfoRow>
+        <Bold> House Age: </Bold> {age}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Taxes: </Bold> {taxes}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Added: </Bold> {added}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Updated: </Bold> {updated}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Last Checked: </Bold> {lastChecked}
+      </InfoRow>
+      <InfoRow>
+        <Bold>MLS: </Bold> {mls}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Source: </Bold> {source}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Listed By: </Bold> {listedBy}
+      </InfoRow>
+      <InfoRow>
+        <Bold>Description: </Bold> {description}
+      </InfoRow>
     </Wrapper>
   );
 }
@@ -105,10 +78,10 @@ const InfoRow = styled.p`
 `;
 
 const Wrapper = styled.div`
+  width: 65rem;
   display: 'flex';
-  font-size: 20px;
+  font-size: 15px;
   flex-direction: column;
-  font-family: arial, sans-serif;
 `;
 
 const Section = styled.section`

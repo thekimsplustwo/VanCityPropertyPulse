@@ -11,20 +11,22 @@ function PropertyCard({ property }) {
     });
   };
   return (
-    <div className="property-card">
-      <Img onClick={() => navigateToPropertyPage(property.zpid)}>
+    <Img onClick={() => navigateToPropertyPage(property.zpid)}>
+      <div className="property-card">
         <img src={property.imgSrc} alt="Property" className="property-image" />
-      </Img>
-      <div className="property-info">
-        <div className="property-price">${property.price}</div>
-        <div className="property-location">
-          {property.city}, {property.neighborhood}
+        <div className="property-info">
+          <div className="property-price">${property.price}</div>
+          <div className="property-location">
+            {property.city}, {property.neighborhood}
+          </div>
         </div>
       </div>
-    </div>
+    </Img>
   );
 }
 
 export default PropertyCard;
 
-const Img = styled.div``;
+const Img = styled.div`
+  margin: 23px;
+`;

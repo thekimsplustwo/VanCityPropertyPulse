@@ -32,45 +32,45 @@ function MyPage() {
   }));
 
   return (
-    <Box
-      sx={{
-        height: '100vh',
-        width: '100vw',
-        paddingTop: '8em',
-      }}
-    >
-      <Grid container spacing={8}>
-        <Grid>
-          <div style={{ flexDirection: 'column' }}>
+    <Main>
+      <Box
+        sx={{
+          width: '100%',
+          paddingTop: '5em',
+        }}
+      >
+        <Grid container spacing={8}>
+          <Grid>
+            <div style={{ flexDirection: 'column' }}>
+              <Wrapper>
+                <UserCard user={user} />
+              </Wrapper>
+              <Wrapper>
+                <UserInfo user={user} />
+              </Wrapper>
+            </div>
+          </Grid>
+          <Grid xs={7}>
             <Wrapper>
-              <UserCard user={user} />
+              <ImageList cols="3">
+                <UserFavourites />
+              </ImageList>
             </Wrapper>
-            <Wrapper>
-              <UserInfo user={user} />
-            </Wrapper>
-          </div>
+          </Grid>
         </Grid>
-        <Grid xs={7}>
-          <Wrapper>
-            <ImageList cols="3">
-              <UserFavourites />
-            </ImageList>
-          </Wrapper>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Main>
   );
 }
 
 export default MyPage;
 
 const Main = styled.div`
-  height: 100vh;
-  width: 100vw;
-  padding-top: 8em;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 30px;
 `;
 
 const Wrapper = styled.div`

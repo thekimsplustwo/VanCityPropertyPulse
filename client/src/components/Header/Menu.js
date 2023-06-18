@@ -28,11 +28,6 @@ const navIconStyle = { fontSize: '2rem', color: themeColor };
 const pages = [
   { name: 'Home', icon: <HomeOutlinedIcon sx={navIconStyle} />, path: '/home' },
   {
-    name: 'Property',
-    icon: <FeedOutlinedIcon sx={navIconStyle} />,
-    path: `/properties/${pid}`,
-  },
-  {
     name: 'Compare',
     icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
     path: '/compare',
@@ -71,7 +66,7 @@ function ResponsiveAppBar() {
           <HomeIcon
             sx={{
               color: themeColor,
-              fontSize: '2.5rem',
+              fontSize: '1.5rem',
               display: { xs: 'none', md: 'flex' },
               mr: 1,
             }}
@@ -84,12 +79,11 @@ function ResponsiveAppBar() {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 530,
+              fontWeight: 630,
               letterSpacing: '.3rem',
               color: themeColor,
               textDecoration: 'none',
-              fontSize: '2rem',
+              fontSize: '1.5rem',
             }}
           >
             VanCityPropertyPulse
@@ -136,7 +130,7 @@ function ResponsiveAppBar() {
           <HomeIcon
             sx={{
               color: themeColor,
-              fontSize: '3rem',
+              fontSize: '2rem',
               display: { xs: 'flex', md: 'none' },
               mr: 1,
             }}
@@ -150,11 +144,11 @@ function ResponsiveAppBar() {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: themeColor,
               textDecoration: 'none',
+              fontSize: '2rem',
             }}
           >
             VanCity
