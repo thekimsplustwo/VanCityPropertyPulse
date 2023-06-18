@@ -10,6 +10,7 @@ import UserCard from '../../components/User/UserCard';
 import UserFavourites from '../../components/User/UserFavourites';
 import UserInfo from '../../components/User/UserInfo';
 import { getUserAsync } from '../../redux/users/thunks';
+import UserPageLeft from '../../components/User/UserPageLeft';
 
 const USER_EMAIL = 'johndoe@gmail.com';
 
@@ -39,18 +40,11 @@ function MyPage() {
           paddingTop: '5em',
         }}
       >
-        <Grid container spacing={8}>
-          <Grid>
-            <div style={{ flexDirection: 'column' }}>
-              <Wrapper>
-                <UserCard user={user} />
-              </Wrapper>
-              <Wrapper>
-                <UserInfo user={user} />
-              </Wrapper>
-            </div>
+        <Grid container spacing={4}>
+          <Grid item xs={4}>
+            <UserPageLeft user={user} />
           </Grid>
-          <Grid xs={7}>
+          <Grid item xs={7.7}>
             <Wrapper>
               <ImageList cols="3">
                 <UserFavourites />
@@ -74,11 +68,11 @@ const Main = styled.div`
 `;
 
 const Wrapper = styled.div`
-  border-radius: 25px;
-  border: 4px solid black;
+  border-radius: 15px;
   padding: 16px;
   width: 100%;
-  margin: 10px;
+  margin: 20px;
   background-color: white;
   text-align: center;
+  box-shadow: 10px 10px #fbe8e9;
 `;

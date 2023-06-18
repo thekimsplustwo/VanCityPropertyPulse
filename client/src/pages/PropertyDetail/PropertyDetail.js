@@ -7,10 +7,12 @@ import {
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import Divider from '@mui/material/Divider';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import DetailedInfo from '../../components/Property/DetailedInfo';
 import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
+import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
 
 function Property() {
@@ -35,6 +37,8 @@ function Property() {
         <ImageCarousel propertyImages={images} />
         <DetailedInfo propertyDetails={property} />
       </ContentWrapper>
+      <Divider sx={{ borderBottomWidth: 1 }} />
+      <AdditionalInfo />
     </Wrapper>
   );
 }
