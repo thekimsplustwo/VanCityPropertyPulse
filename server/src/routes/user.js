@@ -8,6 +8,7 @@ const userRouter = Router();
 
 userRouter.put('/', asyncWrap(userController.updateUserInfo));
 userRouter.get('/', asyncWrap(userController.login));
+userRouter.get('/:email', asyncWrap(userController.getUser));
 userRouter.post('/', asyncWrap(userController.signup));
 
 // userRouter.put('/', verifyToken, asyncWrap(userController.updateUserInfo));

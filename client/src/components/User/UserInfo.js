@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import styled from 'styled-components';
 import { user } from '../../data/data';
 
-function UserInfo() {
+function UserInfo({ user }) {
   return (
     <Margin>
       <p>

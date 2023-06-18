@@ -8,7 +8,7 @@ import {
 import styled from 'styled-components';
 
 function PropertyHeader(props) {
-  const { pid } = props;
+  const { zpid } = props;
   const navigate = useNavigate();
   const location = useLocation();
   const params = useParams();
@@ -19,7 +19,7 @@ function PropertyHeader(props) {
     <Wrapper>
       <HeaderWrapper>
         <HeaderTitle>
-          <h1>${pid}</h1>
+          <h1>{zpid}</h1>
         </HeaderTitle>
       </HeaderWrapper>
     </Wrapper>

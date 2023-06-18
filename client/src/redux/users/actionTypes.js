@@ -1,5 +1,5 @@
 export const actionTypes = {
-  GET_USERS: 'users/getUsers',
+  LOGIN: 'users/login',
   GET_USER: 'users/getUser',
-  ADD_USER: 'users/addUser',
+  SIGNUP: 'users/signup',
 };

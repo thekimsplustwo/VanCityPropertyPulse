@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ImageList from '@mui/material/ImageList';
 import Box from '@mui/material/Box';
@@ -8,10 +9,19 @@ import Grid from '@mui/material/Unstable_Grid2';
 import UserCard from '../../components/User/UserCard';
 import UserFavourites from '../../components/User/UserFavourites';
 import UserInfo from '../../components/User/UserInfo';
+import { getUserAsync } from '../../redux/users/thunks';
+
+const USER_EMAIL = 'johndoe@gmail.com';
 
 function MyPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const user = useSelector(state => state.users.list);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserAsync(USER_EMAIL));
+  }, [dispatch]);
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -33,10 +43,10 @@ function MyPage() {
         <Grid>
           <div style={{ flexDirection: 'column' }}>
             <Wrapper>
-              <UserCard />
+              <UserCard user={user} />
             </Wrapper>
             <Wrapper>
-              <UserInfo />
+              <UserInfo user={user} />
             </Wrapper>
           </div>
         </Grid>

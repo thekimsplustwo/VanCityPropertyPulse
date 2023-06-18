@@ -1,43 +1,40 @@
-import { useParams, useSearchParams } from 'react-router-dom';
+import {
+  useParams,
+  useSearchParams,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import DetailedInfo from '../../components/Property/DetailedInfo';
-import { images } from '../../data/data';
 import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
-
-const demoPropertyDetails = {
-  type: 'House',
-  style: 'Contemporary',
-  size: '5000+ sqft',
-  lotSize: '45.60 x 146.54 Feet',
-  age: '0-5',
-  taxes: '$5,000 /yr',
-  added: 'Jun 9 2021',
-  updated: 'Jun 10, 2021',
-  lastChecked: 'Jun 10, 2021',
-  mls: 'W5267789',
-  source: 'Toronto Real Estate Board',
-  listedBy: 'Demo Brokerage',
-  description: `This contemporary-style house is a stunning property that offers a spacious living experience. With a size of over 5000 square feet, this home provides ample room for comfortable living and entertaining. The lot size measures approximately 45.60 x 146.54 feet, providing a generous outdoor space for various activities.`,
-};
+import { getPropertyAsync } from '../../redux/property/thunks';
 
 function Property() {
-  const params = useParams();
+  const location = useLocation();
+  const { zpid } = useParams();
+  const property = useSelector(state => state.property.list);
+  const dispatch = useDispatch();
 
-  const propertyImages = images.find(({ pid }) => pid === params.pid).images;
-  const [query, setQuery] = useSearchParams();
-  const searchParams = new URLSearchParams(query);
+  useEffect(() => {
+    dispatch(getPropertyAsync(zpid));
+  }, [dispatch, zpid]);
 
+  const images = Array.isArray(property.imgSrc)
+    ? property.imgSrc
+    : [property.imgSrc];
   return (
     <Wrapper>
       <HeaderWrapper>
-        <PropertyHeader pid={params.pid} />
+        <PropertyHeader zpid={zpid} />
         <MenuItems />
       </HeaderWrapper>
       <ContentWrapper>
-        <ImageCarousel propertyImages={propertyImages} />
-        <DetailedInfo propertyDetails={demoPropertyDetails} />
+        <ImageCarousel propertyImages={images} />
+        <DetailedInfo propertyDetails={property} />
       </ContentWrapper>
     </Wrapper>
   );

@@ -2,16 +2,17 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { actionTypes } from './actionTypes';
 import UserService from './service';
 
-export const getUsersAsync = createAsyncThunk(
-  actionTypes.GET_USERS,
-  async () => {
-    return UserService.getUsers();
+export const getUserAsync = createAsyncThunk(
+  actionTypes.GET_USER,
+  async email => {
+    return UserService.getUser(email);
   }
 );
 
-export const addUserAsync = createAsyncThunk(
-  actionTypes.ADD_USER,
-  async name => {
-    return UserService.addUser({ name });
-  }
-);
+export const loginAsync = createAsyncThunk(actionTypes.LOGIN, async () => {
+  return UserService.login();
+});
+
+export const signupAsync = createAsyncThunk(actionTypes.SIGNUP, async email => {
+  return UserService.signup({ email });
+});

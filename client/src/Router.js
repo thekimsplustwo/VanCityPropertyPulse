@@ -18,7 +18,7 @@ function Router() {
       <Routes>
         <Route path="/" element={<DummyHome />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/properties/:pid" element={<PropertyDetail />} />
+        <Route path="/properties/:zpid" element={<PropertyDetail />} />
         <Route path="/compare" element={<Compare />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/likes" element={<Likes />} />

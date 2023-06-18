@@ -1,12 +1,13 @@
+import axios from 'axios';
 import { BASE_URL } from '../../config';
 
-const addUser = async name => {
+const signup = async email => {
   const response = await fetch(`${BASE_URL}/users`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(name),
+    body: JSON.stringify(email),
   });
 
   const data = await response.json();
@@ -18,14 +19,22 @@ const addUser = async name => {
   return data;
 };
 
-const getUsers = async () => {
-  const response = await fetch(`${BASE_URL}/users`, {
+const getUser = async email => {
+  const response = await fetch(`${BASE_URL}/users/${email}`, {
     method: 'GET',
   });
   return response.json();
 };
 
+const login = async email => {
+  const response = await axios.post(`${BASE_URL}/users`, {
+    email,
+  });
+  return response.json();
+};
+
 export default {
-  addUser,
-  getUsers,
+  signup,
+  login,
+  getUser,
 };

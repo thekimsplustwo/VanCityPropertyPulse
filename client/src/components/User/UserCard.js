@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import styled from 'styled-components';
 import { user } from '../../data/data';
 
-function UserCard() {
+function UserCard({ user }) {
   //   const [{ photo, firstName }] = user;
   return (
     <Margin>

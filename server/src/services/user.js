@@ -52,9 +52,9 @@ const createToken = async userId => {
 };
 
 export const getUserInfoByEmail = async email => {
-  if (!validateEmail(email)) {
-    errorGenerator({ message: errorType.INVALID_EMAIL, statusCode: 404 });
-  }
+  // if (!validateEmail(email)) {
+  //   errorGenerator({ message: errorType.INVALID_EMAIL, statusCode: 404 });
+  // }
   const user = await userModel.getUserInfoByEmail(email);
   if (!user) {
     errorGenerator({ message: errorType.USER_NOT_EXIST, statusCode: 404 });

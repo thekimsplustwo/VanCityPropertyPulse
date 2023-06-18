@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { user } from '../../data/data';
 
 function UserFavourites() {
+  const user = { favourites: [] };
   return user.favourites.length === 0 ? (
     <div>Nothing to see!</div>
   ) : (

@@ -16,8 +16,14 @@ const login = async (req, res) => {
   return res.status(201).json(token);
 };
 
+const getUser = async (req, res) => {
+  const { email } = req.params;
+  const token = await userService.getUserInfoByEmail(email);
+  return res.status(201).json(token);
+};
+
 const updateUserInfo = async (req, res) => {
   //
 };
 
-export { signup, login, updateUserInfo };
+export { signup, login, updateUserInfo, getUser };

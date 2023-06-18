@@ -66,6 +66,7 @@
     "no-shadow": "warn",
     "no-var": "warn",
     "no-unused-vars": "warn",
+    "object-curly-newline": "off",
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "spaced-comment": "off"
   },
