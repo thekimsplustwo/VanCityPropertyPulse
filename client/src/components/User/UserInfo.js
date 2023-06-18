@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
-import { user } from '../../data/data';
 
 function UserInfo({ user }) {
   return (
