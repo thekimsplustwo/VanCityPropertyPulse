@@ -9,8 +9,8 @@ export const verifyToken = async (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1]; //bearer
     //const token = req.headers.authorization;
     const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-    const userId = decodedToken.email;
-    const user = await getUserInfoByEmail(userId);
+    const { email } = decodedToken;
+    const user = await getUserInfoByEmail(email);
     if (!user) {
       res.status(401).send('Unauthorized');
     } else {
