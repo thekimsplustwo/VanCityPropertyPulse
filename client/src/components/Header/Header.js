@@ -16,4 +16,6 @@ const FixedNav = styled.div`
   top: 0;
   width: 100%;
   margin: 0 auto;
+  font-family: 'AirbnbCereal_W_Bk', 'Montserrat', sans-serif, Courier, monospace;
+  border-bottom: 1px solid rgb(230, 230, 230);
 `;

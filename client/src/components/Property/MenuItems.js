@@ -1,16 +1,25 @@
 import React, { useEffect } from 'react';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import {
+  useLocation,
+  useNavigate,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 import styled from 'styled-components';
 import { FavoriteBorderOutlined } from '@mui/icons-material';
 import ReplyIcon from '@mui/icons-material/Reply';
 import MapIcon from '@mui/icons-material/Map';
 
 function MenuItems(props) {
+  const handleLikesBtn = () => {
+    //
+  };
+
   return (
     <Wrapper>
       <MenuContainer>
         <FavoriteBorderOutlined />
-        <MenuOpt>Save</MenuOpt>
+        <MenuOpt onClick={() => handleLikesBtn()}>Save</MenuOpt>
       </MenuContainer>
       <MenuContainer>
         <ReplyIcon />

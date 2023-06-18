@@ -15,7 +15,12 @@ function AdditionalInfo() {
       <InfoRow>
         <Bold>Sold History</Bold>
         <ButtonWrapper>
-          <Button variant="outlined" color="success" size="medium" endIcon={<Add />} />
+          <Button
+            variant="outlined"
+            color="success"
+            size="medium"
+            endIcon={<Add />}
+          />
         </ButtonWrapper>
       </InfoRow>
       <MarginBottom>
@@ -25,7 +30,12 @@ function AdditionalInfo() {
       <InfoRow>
         <Bold>Home Value</Bold>
         <ButtonWrapper>
-          <Button variant="outlined" color="success" size="medium" endIcon={<Add />} />
+          <Button
+            variant="outlined"
+            color="success"
+            size="medium"
+            endIcon={<Add />}
+          />
         </ButtonWrapper>
       </InfoRow>
       <MarginBottom>
@@ -35,11 +45,18 @@ function AdditionalInfo() {
       <InfoRow>
         <Bold>Neighbourhood</Bold>
         <ButtonWrapper>
-          <Button variant="outlined" color="success" size="medium" endIcon={<Add />} />
+          <Button
+            variant="outlined"
+            color="success"
+            size="medium"
+            endIcon={<Add />}
+          />
         </ButtonWrapper>
       </InfoRow>
       <MarginBottom>
-        <Description>Schoolds, amenities, travel times, and market trends.</Description>
+        <Description>
+          Schoolds, amenities, travel times, and market trends.
+        </Description>
       </MarginBottom>
     </Wrapper>
   );

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ImageList from '@mui/material/ImageList';
 import Box from '@mui/material/Box';
@@ -8,11 +9,20 @@ import Grid from '@mui/material/Unstable_Grid2';
 import UserCard from '../../components/User/UserCard';
 import UserFavourites from '../../components/User/UserFavourites';
 import UserInfo from '../../components/User/UserInfo';
+import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
+
+const USER_EMAIL = 'johndoe@gmail.com';
 
 function MyPage() {
   const navigate = useNavigate();
   const location = useLocation();
+  const user = useSelector(state => state.users.list);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserAsync(USER_EMAIL));
+  }, [dispatch]);
 
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,14 +36,14 @@ function MyPage() {
     <Main>
       <Box
         sx={{
-          height: '100vh',
           width: '100vw',
-          paddingTop: '8em',
+          height: '100vh',
+          paddingTop: '5em',
         }}
       >
         <Grid container spacing={4}>
           <Grid item xs={4}>
-            <UserPageLeft />
+            <UserPageLeft user={user} />
           </Grid>
           <Grid item xs={7.7}>
             <Wrapper>
@@ -51,12 +61,11 @@ function MyPage() {
 export default MyPage;
 
 const Main = styled.div`
-  height: 100vh;
-  width: 100vw;
-  padding: 1em;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 30px;
 `;
 
 const Wrapper = styled.div`
