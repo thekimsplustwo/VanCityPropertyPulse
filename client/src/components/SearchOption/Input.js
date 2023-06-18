@@ -8,7 +8,13 @@ export default function Input() {
   return (
     <Paper
       component="form"
-      sx={{ marginTop: '1rem', p: '2px 4px', display: { xs: 'none', md: 'flex' }, alignItems: 'center', width: 400 }}
+      sx={{
+        marginTop: '1rem',
+        p: '2px 4px',
+        display: { xs: 'none', md: 'flex' },
+        alignItems: 'center',
+        width: 400,
+      }}
     >
       <InputBase
         sx={{ ml: 1, flex: 1 }}

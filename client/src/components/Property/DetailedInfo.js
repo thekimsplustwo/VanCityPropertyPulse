@@ -11,8 +11,21 @@ function DetailedInfo(props) {
     backgroundColor: 'lightgrey',
     padding: '20px',
   };
-  const { type, style, size, lotSize, age, taxes, added, updated, lastChecked, mls, source, listedBy, description } =
-    props.propertyDetails;
+  const {
+    type,
+    style,
+    size,
+    lotSize,
+    age,
+    taxes,
+    added,
+    updated,
+    lastChecked,
+    mls,
+    source,
+    listedBy,
+    description,
+  } = props.propertyDetails;
   return (
     <Wrapper>
       <div style={cssStyle}>

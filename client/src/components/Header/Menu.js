@@ -68,7 +68,14 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth={false}>
         <Toolbar disableGutters sx={{ justifyContent: 'flex-start' }}>
-          <HomeIcon sx={{ color: themeColor, fontSize: '2.5rem', display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <HomeIcon
+            sx={{
+              color: themeColor,
+              fontSize: '2.5rem',
+              display: { xs: 'none', md: 'flex' },
+              mr: 1,
+            }}
+          />
           <Typography
             variant="h5"
             noWrap
@@ -126,7 +133,14 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
           </Box>
-          <HomeIcon sx={{ color: themeColor, fontSize: '3rem', display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <HomeIcon
+            sx={{
+              color: themeColor,
+              fontSize: '3rem',
+              display: { xs: 'flex', md: 'none' },
+              mr: 1,
+            }}
+          />
           <Typography
             variant="h3"
             noWrap
@@ -145,7 +159,13 @@ function ResponsiveAppBar() {
           >
             VanCity
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end' }}>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'none', md: 'flex' },
+              justifyContent: 'flex-end',
+            }}
+          >
             {pages.map(page => (
               <Button
                 key={page.name}
