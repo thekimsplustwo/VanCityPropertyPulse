@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PropertyGrid from '../../components/Property/PropertyGrid';
 import demoHouseImage from '../../assets/images/demoHouse.jpg';
 import { getListAsync } from '../../redux/home/thunks';
+import SearchComponent from '../../components/SearchOption/SearchComponent';
 
 function Home() {
   const navigate = useNavigate();
@@ -19,6 +20,7 @@ function Home() {
 
   return (
     <Main>
+      <SearchComponent />
       <PropertyGrid properties={properties} />
     </Main>
   );
