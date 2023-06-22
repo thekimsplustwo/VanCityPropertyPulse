@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
 
@@ -18,12 +19,14 @@ function UserInfo({ user }) {
         <Bold>Email: </Bold> {user.email}
       </p>
       <p>
-        <Bold>Phone Number: </Bold> {user.phoneNum}
+        <Bold>Phone Number: </Bold> {user.phoneNumber}
       </p>
       <p>
         <Bold>Region: </Bold> {user.region}
       </p>
-      <Button variant="outlined">Edit Profile</Button>
+      <Link to="/edituser">
+        <Button variant="outlined">Edit Profile</Button>
+      </Link>
     </Margin>
   );
 }
