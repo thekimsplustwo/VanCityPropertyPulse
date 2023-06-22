@@ -17,18 +17,17 @@ function DetailedInfo({ propertyDetails }) {
   };
 
   const {
-    type,
-    style,
-    size,
-    lotSize,
-    age,
-    taxes,
-    added,
-    updated,
-    lastChecked,
-    mls,
-    source,
-    listedBy,
+    homeType,
+    yearBuilt,
+    livingArea,
+    pricePerSquareFoot,
+    monthlyHoaFee,
+    datePosted,
+    annualHomeownersInsurance,
+    homeStatus,
+    hasGarage,
+    bathrooms,
+    bedrooms,
     description,
   } = propertyDetails;
 
@@ -37,75 +36,84 @@ function DetailedInfo({ propertyDetails }) {
       maxWidth="xl"
       style={{ marginTop: '0rem', marginBottom: '7rem' }}
     >
-      <Grid container spacing={20}>
-        <Grid item xs={12} sm={6}>
-          <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
-            <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
-              <InfoRow>
-                <Bold>Type: </Bold> {type}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Style: </Bold> {style}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Size: </Bold> {size}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Lot Size: </Bold> {lotSize}
-              </InfoRow>
-              <InfoRow>
-                <Bold> House Age: </Bold> {age}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Taxes: </Bold> {taxes}
-              </InfoRow>
-            </Typography>
-          </div>
+      <Box
+        sx={{
+          width: '100vw',
+          height: '100vh',
+          paddingTop: '5em',
+        }}
+      >
+        <Grid container spacing={20}>
+          <Grid item xs={12} sm={6}>
+            <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
+              <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+                <InfoRow>
+                  <Bold>Home Type: </Bold> {homeType}
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Year Built: </Bold> {yearBuilt}
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Living Area: </Bold> {livingArea}
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Price Per sqft: </Bold> {pricePerSquareFoot}
+                </InfoRow>
+                <InfoRow>
+                  <Bold> House Age: </Bold>
+                  {new Date().getFullYear() - yearBuilt}
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Monthly Strata Fee: </Bold> {monthlyHoaFee}
+                </InfoRow>
+              </Typography>
+            </div>
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
+              <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+                <InfoRow>
+                  <Bold>Date Posted: </Bold> {datePosted}
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Home Insurance: </Bold> {annualHomeownersInsurance} CAD
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Home Status: </Bold> {homeStatus}
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Garage: </Bold> {hasGarage === true ? 'Yes' : 'No'}
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Bathrooms: </Bold> {bathrooms}
+                </InfoRow>
+                <InfoRow>
+                  <Bold>Bedrooms: </Bold> {bedrooms}
+                </InfoRow>
+              </Typography>
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
-            <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
-              <InfoRow>
-                <Bold>Added: </Bold> {added}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Updated: </Bold> {updated}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Last Checked: </Bold> {lastChecked}
-              </InfoRow>
-              <InfoRow>
-                <Bold>MLS: </Bold> {mls}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Source: </Bold> {source}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Listed By: </Bold> {listedBy}
-              </InfoRow>
-            </Typography>
-          </div>
-        </Grid>
-      </Grid>
 
-      <Divider sx={{ borderBottomWidth: 3 }} />
-      <div
-        style={{ textAlign: 'left', marginBottom: '3rem', marginTop: '3rem' }}
-      >
-        <p>
-          <InfoRow>
-            <BoldHeader>Overview </BoldHeader> {description}
-          </InfoRow>
-        </p>
-      </div>
-      <Button
-        variant="outlined"
-        color="success"
-        size="large"
-        endIcon={<ArrowForward />}
-      >
-        See More Facts and Features
-      </Button>
+        <Divider sx={{ borderBottomWidth: 3 }} />
+        <div
+          style={{ textAlign: 'left', marginBottom: '3rem', marginTop: '3rem' }}
+        >
+          <p>
+            <InfoRow>
+              <BoldHeader>Overview </BoldHeader> {description}
+            </InfoRow>
+          </p>
+        </div>
+        <Button
+          variant="outlined"
+          color="success"
+          size="large"
+          endIcon={<ArrowForward />}
+        >
+          See More Facts and Features
+        </Button>
+      </Box>
     </Container>
   );
 }
@@ -139,4 +147,17 @@ const BoldHeader = styled.h2`
   font-weight: bold;
   font-size: 25px;
   margin-bottom: 20px;
+`;
+
+const Box = styled.div`
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: "#f5f5f5"";
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 10px 10px #fbe8e9;
 `;
