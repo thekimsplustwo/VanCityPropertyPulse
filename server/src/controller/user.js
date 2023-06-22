@@ -17,9 +17,9 @@ const login = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const { email } = req.params;
-  const token = await userService.getUserInfoByEmail(email);
-  return res.status(201).json(token);
+  const { email } = req;
+  const user = await userService.getUserInfoByEmail(email);
+  return res.status(201).json(user);
 };
 
 const updateUserInfo = async (req, res) => {

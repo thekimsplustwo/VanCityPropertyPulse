@@ -4,7 +4,7 @@ export const errorGenerator = obj => {
   throw error;
 };
 
-export const errorType = {
+export const ERROR_TYPE = {
   INVALID_EMAIL: 'INVALID_EMAIL',
   USER_NOT_EXIST: 'USER_NOT_EXIST',
 };

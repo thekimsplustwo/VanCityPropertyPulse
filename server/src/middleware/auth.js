@@ -1,21 +1,29 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { getUserInfoByEmail } from '../models/user.js';
+import * as model from '../models/index.js';
 
 dotenv.config();
+
+const { MOCK } = process.env;
+const { SECRET_KEY } = process.env;
+
+dotenv.config();
+
+const userModel = MOCK ? model.mockUserModel : model.userModel;
 
 export const verifyToken = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1]; //bearer
+    const email = token;
     //const token = req.headers.authorization;
-    const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-    const { email } = decodedToken;
-    const user = await getUserInfoByEmail(email);
+    //const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+    //const { email } = decodedToken;
+    const user = await userModel.getUserInfoByEmail(email);
     if (!user) {
       res.status(401).send('Unauthorized');
     } else {
       req.token = token;
-      req.user = user;
+      req.email = email;
       next();
     }
   } catch (error) {
