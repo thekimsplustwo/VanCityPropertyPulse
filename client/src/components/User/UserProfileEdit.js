@@ -9,13 +9,6 @@ function UserProfileEdit() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    // firstName: '',
-    // lastName: '',
-    // age: '',
-    // email: '',
-    // phoneNumber: '',
-    // region: '',
-    // photo: null,
     firstName: user.firstName,
     lastName: user.lastName,
     age: user.age.toString(),
@@ -29,23 +22,12 @@ function UserProfileEdit() {
     const { name, value } = e.target;
     setFormData(prevFormData => ({
       ...prevFormData,
-      //   [name]: value,
       [name]: value !== '' ? value : user[name],
     }));
   };
 
-  //   const handlePhotoUpload = e => {
-  //     const file = e.target.files[0];
-  //     setFormData(prevFormData => ({
-  //       ...prevFormData,
-  //       photo: file,
-  //     }));
-  //   };
-
   const handleSubmit = e => {
     e.preventDefault();
-    // Perform the form submission or API call to update the user profile
-    console.log('Form data:', formData);
     // Reset the form
     setFormData({
       firstName: '',
@@ -57,82 +39,89 @@ function UserProfileEdit() {
       //   photo: null,
     });
     updateUser(formData);
-    console.log(`user id is ${user.id}`);
     navigate(`/mypage/${user.id}`);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      First Name:
-      <TextField
-        sx={{ marginBottom: '10px' }}
-        type="text"
-        name="firstName"
-        value={formData.firstName}
-        onChange={handleInputChange}
-      />
-      <br />
-      Last Name:
-      <TextField
-        sx={{ marginBottom: '10px' }}
-        type="text"
-        name="lastName"
-        value={formData.lastName}
-        onChange={handleInputChange}
-      />
-      <br />
-      Age:
-      <TextField
-        sx={{ marginBottom: '10px' }}
-        disabled
-        id="outlined-disabled"
-        defaultValue={user.age}
-        type="number"
-        name="age"
-        onChange={handleInputChange}
-      />
-      <br />
-      Email:
-      <TextField
-        sx={{ marginBottom: '10px' }}
-        type="email"
-        name="email"
-        value={formData.email}
-        onChange={handleInputChange}
-      />
-      <br />
-      Phone Number:
-      <TextField
-        sx={{ marginBottom: '10px' }}
-        type="text"
-        name="phoneNumber"
-        value={formData.phoneNumber}
-        onChange={handleInputChange}
-      />
-      <br />
-      Region:
-      <TextField
-        sx={{ marginBottom: '10px' }}
-        type="text"
-        name="region"
-        value={formData.region}
-        onChange={handleInputChange}
-      />
-      <br />
-      {/* Photo:
-      <input
-        style={{ marginBottom: '10px' }}
-        type="file"
-        accept="image/*"
-        name="photo"
-        onChange={handlePhotoUpload}
-      />
-      <br /> */}
-      <Button type="submit" variant="outlined">
-        Save
-      </Button>
-    </form>
+    <Main>
+      <form onSubmit={handleSubmit}>
+        <FormContainer>
+          <h1>Edit Profile</h1>
+          <TextField
+            type="text"
+            label="First Name"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            type="text"
+            label="Last Name"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            type="number"
+            label="Age"
+            disabled
+            value={formData.age}
+            name="age"
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            type="email"
+            label="Email"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            type="text"
+            label="Phone Number"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleInputChange}
+          />
+
+          <TextField
+            type="text"
+            label="Region"
+            name="region"
+            value={formData.region}
+            onChange={handleInputChange}
+          />
+        </FormContainer>
+        <Button type="submit" variant="outlined">
+          Save
+        </Button>
+      </form>
+    </Main>
   );
 }
+
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+`;
+
+const Main = styled.div`
+  //   margin-left: auto;
+  //   margin-right: auto;
+  //   width: 25em;
+
+  padding: 16px;
+  width: 35em;
+  height: 35em;
+  margin: 20px;
+  background-color: white;
+  text-align: center;
+`;
 
 export default UserProfileEdit;
