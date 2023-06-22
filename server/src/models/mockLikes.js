@@ -14,7 +14,7 @@ const addLikes = async (email, property) => {
   } else {
     likes.push({ email, properties: [property] });
   }
-  return likes;
+  return likes.find(user => user.email === email);
 };
 
 const removeLikes = (email, zpid) => {
