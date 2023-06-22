@@ -4,6 +4,10 @@ import { BASE_URL } from '../../config';
 const getLikes = async () => {
   const response = await fetch(`${BASE_URL}/likes`, {
     method: 'GET',
+    headers: {
+      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
+      Authorization: 'Bearer johndoe@gmail.com',
+    },
   });
   const data = await response.json();
   if (!response.ok) {
@@ -18,6 +22,8 @@ const addLikes = async zpid => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
+      Authorization: 'Bearer johndoe@gmail.com',
     },
     body: JSON.stringify({ zpid }),
   });
@@ -35,6 +41,8 @@ const deleteLikes = async zpid => {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
+      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
+      Authorization: 'Bearer johndoe@gmail.com',
     },
   });
 
