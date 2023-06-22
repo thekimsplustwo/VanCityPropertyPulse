@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import ImageList from '@mui/material/ImageList';
@@ -12,14 +12,18 @@ import UserInfo from '../../components/User/UserInfo';
 import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
 import { tempUserProfile } from '../../data/tempUserProfile';
+import { useUser } from '../../components/User/UserProvider';
 
 const USER_EMAIL = 'johndoe@gmail.com';
 
 function MyPage() {
   const navigate = useNavigate();
   const location = useLocation();
+
   // const user = useSelector(state => state.users.list);
-  const user = tempUserProfile;
+  // const user = tempUserProfile;
+  const { user } = useUser();
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,12 +48,12 @@ function MyPage() {
         }}
       >
         <Grid container spacing={4}>
-          <Grid item xs={4}>
+          <Grid item="true" xs={4}>
             <UserPageLeft user={user} />
           </Grid>
-          <Grid item xs={7.7}>
+          <Grid item="true" xs={7.7}>
             <Wrapper>
-              <ImageList cols="3">
+              <ImageList cols={3}>
                 <UserFavourites />
               </ImageList>
             </Wrapper>

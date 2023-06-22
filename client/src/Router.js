@@ -10,23 +10,27 @@ import Footer from './components/Footer/Footer';
 import ScrollTop from './components/ScrollTop/ScrollTop';
 import Compare from './pages/Compare/Compare';
 import EditUser from './pages/EditUser/EditUser';
+import { UserProvider } from './components/User/UserProvider';
 
 function Router() {
   return (
-    <BrowserRouter>
-      <ScrollTop />
-      <Header />
-      <Routes>
-        <Route path="/" element={<DummyHome />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/properties/:zpid" element={<PropertyDetail />} />
-        <Route path="/compare" element={<Compare />} />
-        <Route path="/mypage" element={<MyPage />} />
-        <Route path="/edituser" element={<EditUser />} />
-        <Route path="/likes" element={<Likes />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <ScrollTop />
+        <Header />
+        <Routes>
+          <Route path="/" element={<DummyHome />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/properties/:zpid" element={<PropertyDetail />} />
+          <Route path="/compare" element={<Compare />} />
+          {/* <Route path="/mypage" element={<MyPage />} /> */}
+          <Route path="/mypage/:userId" element={<MyPage />} />
+          <Route path="/edituser" element={<EditUser />} />
+          <Route path="/likes" element={<Likes />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </UserProvider>
   );
 }
 

@@ -1,36 +1,46 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { TextField, Button } from '@mui/material';
+import { useUser } from './UserProvider';
 
-function UserProfileEdit(user) {
+function UserProfileEdit() {
+  const { user, updateUser } = useUser();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    age: '',
-    email: '',
-    phoneNumber: '',
-    region: '',
-    photo: null,
+    // firstName: '',
+    // lastName: '',
+    // age: '',
+    // email: '',
+    // phoneNumber: '',
+    // region: '',
+    // photo: null,
+    firstName: user.firstName,
+    lastName: user.lastName,
+    age: user.age.toString(),
+    email: user.email,
+    phoneNumber: user.phoneNumber,
+    region: user.region,
+    photo: user.photo,
   });
 
   const handleInputChange = e => {
     const { name, value } = e.target;
     setFormData(prevFormData => ({
       ...prevFormData,
-      [name]: value,
+      //   [name]: value,
+      [name]: value !== '' ? value : user[name],
     }));
   };
 
-  const handlePhotoUpload = e => {
-    const file = e.target.files[0];
-    setFormData(prevFormData => ({
-      ...prevFormData,
-      photo: file,
-    }));
-  };
+  //   const handlePhotoUpload = e => {
+  //     const file = e.target.files[0];
+  //     setFormData(prevFormData => ({
+  //       ...prevFormData,
+  //       photo: file,
+  //     }));
+  //   };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -44,9 +54,11 @@ function UserProfileEdit(user) {
       email: '',
       phoneNumber: '',
       region: '',
-      photo: null,
+      //   photo: null,
     });
-    navigate('/mypage');
+    updateUser(formData);
+    console.log(`user id is ${user.id}`);
+    navigate(`/mypage/${user.id}`);
   };
 
   return (
@@ -108,7 +120,7 @@ function UserProfileEdit(user) {
         onChange={handleInputChange}
       />
       <br />
-      Photo:
+      {/* Photo:
       <input
         style={{ marginBottom: '10px' }}
         type="file"
@@ -116,7 +128,7 @@ function UserProfileEdit(user) {
         name="photo"
         onChange={handlePhotoUpload}
       />
-      <br />
+      <br /> */}
       <Button type="submit" variant="outlined">
         Save
       </Button>

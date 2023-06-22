@@ -4,10 +4,11 @@ import UserProfileEdit from '../../components/User/UserProfileEdit';
 import { tempUserProfile } from '../../data/tempUserProfile';
 
 function EditUser() {
-  const user = tempUserProfile;
+  // const user = tempUserProfile;
   return (
     <Main>
-      <UserProfileEdit user={user} />
+      {/* <UserProfileEdit user={user} /> */}
+      <UserProfileEdit />
     </Main>
   );
 }
