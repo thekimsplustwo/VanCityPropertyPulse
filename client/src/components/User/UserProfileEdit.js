@@ -89,7 +89,6 @@ function UserProfileEdit() {
         defaultValue={user.age}
         type="number"
         name="age"
-        value={formData.age}
         onChange={handleInputChange}
       />
       <br />
