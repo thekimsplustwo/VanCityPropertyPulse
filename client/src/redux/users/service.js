@@ -24,7 +24,7 @@ const getUser = async email => {
   const response = await fetch(`${BASE_URL}/users`, {
     method: 'GET',
     headers: {
-      Authorization: `token ${email}`,
+      Authorization: `Bearer ${email}`,
     },
   });
   return response.json();
@@ -38,7 +38,7 @@ const login = async email => {
     },
     {
       headers: {
-        Authorization: `token ${email}`,
+        Authorization: `Bearer ${email}`,
       },
     }
   );
