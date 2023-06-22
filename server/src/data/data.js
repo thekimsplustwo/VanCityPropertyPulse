@@ -4,7 +4,7 @@ export const users = [
     firstName: 'Pukku',
     lastName: 'Kim',
     age: 7,
-    email: 'pukku@ubc.ca',
+    email: 'pukku@gmail.com',
     phoneNumber: '7787787788',
     region: 'Point Grey',
     photo: 'https://storage.googleapis.com/pukkukim/%E1%84%88%E1%85%AE.jpg',
@@ -61,6 +61,70 @@ export const users = [
   },
 ];
 
+export const likes = [
+  {
+    email: 'pukku@gmail.com',
+    properties: [
+      {
+        zpid: 2058115054,
+        imgSrc:
+          'https://photos.zillowstatic.com/fp/443cba475dafbbaa5d825b7f40cadf23-p_e.jpg',
+        address: '2507 Maple St #314, Vancouver, BC V6J 0E1',
+        price: 858000,
+        bedrooms: 1,
+        bathrooms: 1,
+        livingArea: 662,
+        propertyType: 'CONDO',
+        listingStatus: 'FOR_SALE',
+        unit: '# 314',
+      },
+      {
+        zpid: 2057115039,
+        imgSrc:
+          'https://photos.zillowstatic.com/fp/6bf34c152c53b95c57a6eb3c4f99921a-p_d.jpg',
+        address: '523 King Edward Ave W #412, Vancouver, BC V5Z 0J3',
+        price: 708000,
+        bedrooms: 1,
+        bathrooms: 0,
+        livingArea: 574,
+        propertyType: 'CONDO',
+        listingStatus: 'FOR_SALE',
+        unit: '# 412',
+      },
+    ],
+  },
+  {
+    email: 'johndoe@gmail.com',
+    properties: [
+      {
+        zpid: 2062513896,
+        imgSrc:
+          'https://photos.zillowstatic.com/fp/06517fb6f997410348e1ab3732d65032-p_e.jpg',
+        address: '3639 W 16th Ave #305, Vancouver, BC V6R 3B7',
+        price: 2399000,
+        bedrooms: 2,
+        bathrooms: 3,
+        livingArea: 1257,
+        propertyType: 'CONDO',
+        listingStatus: 'FOR_SALE',
+        unit: '# 305',
+      },
+      {
+        zpid: 2057514562,
+        imgSrc:
+          'https://photos.zillowstatic.com/fp/bfc924a3bf887976461e066756b222ef-p_e.jpg',
+        address: '2080 Broadway W #865, Vancouver, BC V6J 0C7',
+        price: 1328000,
+        bedrooms: 2,
+        bathrooms: 2,
+        livingArea: 1075,
+        propertyType: 'CONDO',
+        listingStatus: 'FOR_SALE',
+        unit: '# 865',
+      },
+    ],
+  },
+];
 export const propertyDetails = [
   {
     zpid: 2062513896,

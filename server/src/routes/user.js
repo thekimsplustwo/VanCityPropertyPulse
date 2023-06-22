@@ -6,13 +6,14 @@ import { verifyToken } from '../middleware/auth.js';
 
 const userRouter = Router();
 
-userRouter.put('/', asyncWrap(userController.updateUserInfo));
-userRouter.get('/', asyncWrap(userController.login));
-userRouter.get('/:email', asyncWrap(userController.getUser));
-userRouter.post('/', asyncWrap(userController.signup));
+// userRouter.put('/', asyncWrap(userController.updateUserInfo));
+// userRouter.get('/', asyncWrap(userController.login));
+// userRouter.get('/:email', asyncWrap(userController.getUser));
+// userRouter.post('/', asyncWrap(userController.signup));
 
-// userRouter.put('/', verifyToken, asyncWrap(userController.updateUserInfo));
-// userRouter.get('/', verifyToken, asyncWrap(userController.login));
-// userRouter.post('/', verifyToken, asyncWrap(userController.signup));
+userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
+userRouter.put('/', verifyToken, asyncWrap(userController.updateUserInfo));
+userRouter.get('/', verifyToken, asyncWrap(userController.login));
+userRouter.post('/', asyncWrap(userController.signup));
 
 export default userRouter;

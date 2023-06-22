@@ -49,6 +49,7 @@
     "no-var": "warn",
     "no-unused-vars": "warn",
     "object-curly-newline": "off",
+    "prefer-destructuring": ["error", {"object": true, "array": false}],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "spaced-comment": "off"
   },

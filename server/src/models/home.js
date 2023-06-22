@@ -1,3 +1,5 @@
-export const getList = async () => {
+const getList = async () => {
   //
 };
+
+export { getList };
