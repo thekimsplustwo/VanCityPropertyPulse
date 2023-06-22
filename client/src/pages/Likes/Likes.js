@@ -4,18 +4,19 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import PropertyGrid from '../../components/Property/PropertyGrid';
 import demoHouseImage from '../../assets/images/demoHouse.jpg';
-import { getListAsync } from '../../redux/home/thunks';
+// import { getListAsync } from '../../redux/home/thunks';
+import { getLikesAsync } from '../../redux/likes/thunks';
 import SearchComponent from '../../components/SearchOption/SearchComponent';
 
-function Home() {
+function Likes() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const properties = useSelector(state => state.home.list);
+  const properties = useSelector(state => state.likes.list);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getListAsync());
+    dispatch(getLikesAsync());
   }, [dispatch]);
 
   return (
@@ -42,4 +43,4 @@ const Margin = styled.div`
   text-align: center;
 `;
 
-export default Home;
+export default Likes;

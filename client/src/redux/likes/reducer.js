@@ -11,8 +11,8 @@ const INITIAL_STATE = {
   error: null,
 };
 
-const propertySlice = createSlice({
-  name: 'property',
+const likesSlice = createSlice({
+  name: 'likes',
   initialState: INITIAL_STATE,
   reducers: {},
   extraReducers: builder => {
@@ -44,16 +44,8 @@ const propertySlice = createSlice({
       .addCase(deleteLikesAsync.pending, state => {
         state.deleteLikes = REQUEST_STATE.PENDING;
         state.error = null;
-      })
-      .addCase(getLikesAsync.fulfilled, (state, action) => {
-        state.deleteLikes = REQUEST_STATE.FULFILLED;
-        state.list = action.payload;
-      })
-      .addCase(getLikesAsync.rejected, (state, action) => {
-        state.deleteLikes = REQUEST_STATE.REJECTED;
-        state.error = action.error;
       });
   },
 });
 
-export default propertySlice.reducer;
+export default likesSlice.reducer;
