@@ -17,7 +17,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import FeedOutlinedIcon from '@mui/icons-material/FeedOutlined';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { Link } from 'react-router-dom';
 import { themeColorPink } from '../../styles/theme';
@@ -32,10 +32,14 @@ const pages = [
     icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
     path: '/compare',
   },
+  {
+    name: 'Likes',
+    icon: <NotificationsNoneIcon sx={navIconStyle} />,
+    path: '/likes',
+  },
 ];
 const settings = [
   { name: 'Profile', path: '/mypage' },
-  { name: 'Likes', path: '/likes' },
   { name: 'Logout', path: '/logout' },
 ];
 
@@ -139,7 +143,6 @@ function ResponsiveAppBar() {
             variant="h3"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
