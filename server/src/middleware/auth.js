@@ -23,7 +23,7 @@ export const verifyToken = async (req, res, next) => {
       res.status(401).send('Unauthorized');
     } else {
       req.token = token;
-      req.email = email;
+      req.user = user;
       next();
     }
   } catch (error) {

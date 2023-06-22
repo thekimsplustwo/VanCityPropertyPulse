@@ -17,13 +17,14 @@ const login = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const { email } = req;
-  const user = await userService.getUserInfoByEmail(email);
+  const { user } = req;
   return res.status(201).json(user);
 };
 
 const updateUserInfo = async (req, res) => {
-  //
+  const { user } = req;
+  const updated = await userService.getUserInfoByEmail(user.email);
+  return res.status(201).json(updated);
 };
 
 export { signup, login, updateUserInfo, getUser };
