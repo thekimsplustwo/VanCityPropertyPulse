@@ -13,7 +13,7 @@ const userRouter = Router();
 
 userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
 userRouter.put('/', verifyToken, asyncWrap(userController.updateUserInfo));
-//userRouter.get('/', verifyToken, asyncWrap(userController.login));
-//userRouter.post('/', asyncWrap(userController.signup));
+userRouter.get('/', verifyToken, asyncWrap(userController.login));
+userRouter.post('/', asyncWrap(userController.signup));
 
 export default userRouter;

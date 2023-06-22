@@ -11,6 +11,7 @@ export {
   homeModel,
   userModel,
   propertyModel,
+  likesModel,
   mockHomeModel,
   mockUserModel,
   mockPropertyModel,

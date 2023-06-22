@@ -2,4 +2,4 @@ const getList = async () => {
   //
 };
 
-export { getList }
+export { getList };

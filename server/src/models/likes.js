@@ -13,4 +13,4 @@ const removeProperty = (email, zpid) => {
   //
 };
 
-export { getLikes, addLikes, removeProperty }
+export { getLikes, addLikes, removeProperty };
