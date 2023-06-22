@@ -28,7 +28,7 @@ const removeLikes = (email, zpid) => {
       likes[userIndex].properties.splice(propertyIndex, 1);
     }
   }
-  return likes;
+  return likes.find(user => user.email === email);
 };
 
 export { getLikes, addLikes, removeLikes };
