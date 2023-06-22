@@ -6,6 +6,7 @@ const signup = async email => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      Authorization: `Bearer ${email}`,
     },
     body: JSON.stringify(email),
   });
@@ -20,16 +21,27 @@ const signup = async email => {
 };
 
 const getUser = async email => {
-  const response = await fetch(`${BASE_URL}/users/${email}`, {
+  const response = await fetch(`${BASE_URL}/users`, {
     method: 'GET',
+    headers: {
+      Authorization: `token ${email}`,
+    },
   });
   return response.json();
 };
 
 const login = async email => {
-  const response = await axios.post(`${BASE_URL}/users`, {
-    email,
-  });
+  const response = await axios.post(
+    `${BASE_URL}/users`,
+    {
+      email,
+    },
+    {
+      headers: {
+        Authorization: `token ${email}`,
+      },
+    }
+  );
   return response.json();
 };
 
