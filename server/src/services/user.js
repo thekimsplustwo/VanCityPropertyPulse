@@ -5,7 +5,7 @@ import { sign } from 'crypto';
 import dotenv from 'dotenv';
 import { error } from 'console';
 import * as model from '../models/index.js';
-import { errorGenerator, errorType } from '../utils/error.js';
+import { errorGenerator, ERROR_TYPE } from '../utils/error.js';
 
 dotenv.config();
 
@@ -51,22 +51,22 @@ const createToken = async userId => {
   }
 };
 
-export const getUserInfoByEmail = async email => {
+const getUserInfoByEmail = async email => {
   // if (!validateEmail(email)) {
   //   errorGenerator({ message: errorType.INVALID_EMAIL, statusCode: 404 });
   // }
   const user = await userModel.getUserInfoByEmail(email);
   if (!user) {
-    errorGenerator({ message: errorType.USER_NOT_EXIST, statusCode: 404 });
+    errorGenerator({ message: ERROR_TYPE.USER_NOT_EXIST, statusCode: 404 });
   }
   return user;
 };
 
-export const signup = async userInfo => {
+const signup = async userInfo => {
   //
 };
 
-export const login = async userInfo => {
+const login = async userInfo => {
   const user = await getUserInfoByEmail(userInfo.email);
   if (MOCK) {
     return user;
@@ -77,3 +77,5 @@ export const login = async userInfo => {
 const terminateToken = async () => {
   //
 };
+
+export { getUserInfoByEmail, signup, login };

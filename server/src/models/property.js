@@ -1,3 +1,4 @@
-export const getPropertyDetails = async zpid => {
+const getPropertyDetails = async zpid => {
   console.log('model');
 };
+export { getPropertyDetails };

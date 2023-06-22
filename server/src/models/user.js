@@ -1,8 +1,8 @@
-const getUserInfo = emailAddress => {
+const getUserInfo = async emailAddress => {
   //
 };
 
-const login = emailAddress => {
+const login = async emailAddress => {
   //
 };
 
