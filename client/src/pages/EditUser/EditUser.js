@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
+import { tempUserProfile } from '../../data/tempUserProfile';
 
-function EditUser(user) {
+function EditUser() {
+  const user = tempUserProfile;
   return (
     <Main>
-      <UserProfileEdit />
+      <UserProfileEdit user={user} />
     </Main>
   );
 }

@@ -11,6 +11,7 @@ import UserFavourites from '../../components/User/UserFavourites';
 import UserInfo from '../../components/User/UserInfo';
 import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
+import { tempUserProfile } from '../../data/tempUserProfile';
 
 const USER_EMAIL = 'johndoe@gmail.com';
 
@@ -18,16 +19,7 @@ function MyPage() {
   const navigate = useNavigate();
   const location = useLocation();
   // const user = useSelector(state => state.users.list);
-  const user = {
-    id: 1,
-    firstName: 'Pukku',
-    lastName: 'Kim',
-    age: 7,
-    email: 'pukku@ubc.ca',
-    phoneNumber: '7787787788',
-    region: 'Point Grey',
-    photo: 'https://storage.googleapis.com/pukkukim/%E1%84%88%E1%85%AE.jpg',
-  };
+  const user = tempUserProfile;
   const dispatch = useDispatch();
 
   useEffect(() => {

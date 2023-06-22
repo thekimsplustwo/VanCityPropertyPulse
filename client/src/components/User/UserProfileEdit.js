@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { TextField } from '@mui/material';
-
-const user = {
-  id: 1,
-  firstName: 'Pukku',
-  lastName: 'Kim',
-  age: 7,
-  email: 'pukku@ubc.ca',
-  phoneNumber: '7787787788',
-  region: 'Point Grey',
-  photo: 'https://storage.googleapis.com/pukkukim/%E1%84%88%E1%85%AE.jpg',
-};
+import { TextField, Button } from '@mui/material';
 
 function UserProfileEdit(user) {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -54,6 +46,7 @@ function UserProfileEdit(user) {
       region: '',
       photo: null,
     });
+    navigate('/mypage');
   };
 
   return (
@@ -124,7 +117,9 @@ function UserProfileEdit(user) {
         onChange={handlePhotoUpload}
       />
       <br />
-      <button type="submit">Save</button>
+      <Button type="submit" variant="outlined">
+        Save
+      </Button>
     </form>
   );
 }
