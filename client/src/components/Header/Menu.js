@@ -21,6 +21,7 @@ import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { Link } from 'react-router-dom';
 import { themeColorPink } from '../../styles/theme';
+import { tempUserProfile } from '../../data/tempUserProfile';
 
 const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
@@ -38,8 +39,9 @@ const pages = [
     path: '/likes',
   },
 ];
+const user = tempUserProfile;
 const settings = [
-  { name: 'Profile', path: '/mypage' },
+  { name: 'Profile', path: `/mypage/${user.id}` },
   { name: 'Logout', path: '/logout' },
 ];
 
