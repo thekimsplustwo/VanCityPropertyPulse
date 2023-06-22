@@ -1392,18 +1392,3 @@ export const properties = [
     unit: null,
   },
 ];
-
-/*
-{
-    "zpid": 2057115039,
-    "imgSrc": "https://photos.zillowstatic.com/fp/6bf34c152c53b95c57a6eb3c4f99921a-p_d.jpg",
-    "address": "523 King Edward Ave W #412, Vancouver, BC V5Z 0J3",
-    "price": 708000,
-    "bedrooms": 1,
-    "bathrooms": 0,
-    "livingArea": 574,
-    "propertyType": "CONDO",
-    "listingStatus": "FOR_SALE",
-    "unit": "# 412"
-}
-*/

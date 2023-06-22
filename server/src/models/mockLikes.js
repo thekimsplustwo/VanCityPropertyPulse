@@ -14,7 +14,6 @@ const addLikes = async (email, property) => {
   } else {
     likes.push({ email, properties: [property] });
   }
-  console.error('likes: ', likes);
   return likes;
 };
 
