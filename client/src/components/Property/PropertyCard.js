@@ -1,24 +1,46 @@
+import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+
 import './PropertyCard.css';
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { convertPriceToCAD } from '../../utils/utils';
 
+import {
+  getLikesAsync,
+  addLikesAsync,
+  deleteLikesAsync,
+} from '../../redux/likes/thunks';
+
 function PropertyCard({ property }) {
   const navigate = useNavigate();
-  const [liked, setLiked] = useState(false);
+  const dispatch = useDispatch();
+
+  const currZpid = property.zpid;
+  const likesList = useSelector(state => state.likes.list).map(
+    property => property.zpid
+  );
 
   const navigateToPropertyPage = zpid => {
     navigate(`/properties/${zpid}`, {
       state: { zpid },
     });
   };
+  const [liked, setLiked] = useState(likesList.includes(currZpid));
 
-  const handleLike = event => {
+  const handleAddLike = event => {
     event.stopPropagation(); // prevent the click event from bubbling up to the parent
-    setLiked(!liked); // toggle the liked state
+    // toggle the liked state
+    setLiked(true);
+    dispatch(addLikesAsync(currZpid));
+  };
+
+  const handleDeleteLike = event => {
+    event.stopPropagation(); // prevent the click event from bubbling up to the parent
+    setLiked(false);
+    //dispatch(deleteLikeAsync(currZpid));
   };
 
   return (
@@ -26,9 +48,9 @@ function PropertyCard({ property }) {
       <div className="property-card">
         <img src={property.imgSrc} alt="Property" className="property-image" />
         {liked ? (
-          <StyledHeartLikedIcon onClick={handleLike} />
+          <StyledHeartLikedIcon onClick={handleDeleteLike} />
         ) : (
-          <StyledHeartBorderIcon onClick={handleLike} />
+          <StyledHeartBorderIcon onClick={handleAddLike} />
         )}
         <div className="property-info">
           <div className="property-price">
