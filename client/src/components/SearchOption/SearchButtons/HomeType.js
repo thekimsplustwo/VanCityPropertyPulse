@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
-import {
-  Button,
-  Checkbox,
-  FormControlLabel,
-  Menu,
-  MenuItem,
-  styled as muiStyled,
-} from '@mui/material';
+import { Button, Menu, styled as muiStyled } from '@mui/material';
+import HomeTypeMenuItem from './HomeTypeMenuItem';
 
 const StyledButton = muiStyled(Button)({
   backgroundColor: 'white',
@@ -21,6 +15,8 @@ const StyledButton = muiStyled(Button)({
 });
 
 export default function HomeType() {
+  const homeTypes = ['Apartment', 'House', 'Condo', 'Townhome', 'Multi-family'];
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [buttonText, setButtonText] = useState('Home Type');
@@ -62,61 +58,14 @@ export default function HomeType() {
           'aria-labelledby': 'home-type-button',
         }}
       >
-        <MenuItem>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={isSelected('Apartment')}
-                onChange={() => handleSelect('Apartment')}
-              />
-            }
-            label="Apartment"
+        {homeTypes.map(type => (
+          <HomeTypeMenuItem
+            key={type}
+            type={type}
+            isSelected={isSelected}
+            handleSelect={handleSelect}
           />
-        </MenuItem>
-        <MenuItem>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={isSelected('House')}
-                onChange={() => handleSelect('House')}
-              />
-            }
-            label="House"
-          />
-        </MenuItem>
-        <MenuItem>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={isSelected('Condo')}
-                onChange={() => handleSelect('Condo')}
-              />
-            }
-            label="Condo"
-          />
-        </MenuItem>
-        <MenuItem>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={isSelected('Townhome')}
-                onChange={() => handleSelect('Townhome')}
-              />
-            }
-            label="Townhome"
-          />
-        </MenuItem>
-        <MenuItem>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={isSelected('Multi-family')}
-                onChange={() => handleSelect('Multi-family')}
-              />
-            }
-            label="Multi-family"
-          />
-        </MenuItem>
+        ))}
       </Menu>
     </div>
   );
