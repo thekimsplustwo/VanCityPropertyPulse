@@ -2,15 +2,11 @@ import React, { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import ImageList from '@mui/material/ImageList';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import { Stack, Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import UserCard from '../../components/User/UserCard';
-import UserFavourites from '../../components/User/UserFavourites';
-import UserInfo from '../../components/User/UserInfo';
 import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
+import { themeColorPink, themeColorBlue } from '../../styles/theme';
 
 const USER_EMAIL = 'johndoe@gmail.com';
 
@@ -24,14 +20,6 @@ function MyPage() {
     dispatch(getUserAsync(USER_EMAIL));
   }, [dispatch]);
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  }));
-
   return (
     <Main>
       <Box
@@ -42,14 +30,72 @@ function MyPage() {
         }}
       >
         <Grid container spacing={4}>
-          <Grid item xs={4}>
+          <Grid item="true" xs={4}>
             <UserPageLeft user={user} />
           </Grid>
-          <Grid item xs={7.7}>
+          <Grid item="true" xs={7.7}>
             <Wrapper>
-              <ImageList cols="3">
-                <UserFavourites />
-              </ImageList>
+              <Box sx={{ width: '100%' }}>
+                <Stack justifyContent="center" alignItems="center">
+                  <CenteredGrid>
+                    <Typography
+                      variant="h5"
+                      noWrap
+                      component="a"
+                      href="/home"
+                      sx={{
+                        mr: 2,
+                        display: { xs: 'none', md: 'flex' },
+                        fontWeight: 630,
+                        letterSpacing: '.3rem',
+                        color: themeColorPink,
+                        textDecoration: 'none',
+                        fontSize: '1.1rem',
+                      }}
+                    >
+                      Search Available Properties
+                    </Typography>
+                  </CenteredGrid>
+                  <CenteredGrid>
+                    <Typography
+                      variant="h5"
+                      noWrap
+                      component="a"
+                      // href="/home"
+                      sx={{
+                        mr: 2,
+                        display: { xs: 'none', md: 'flex' },
+                        fontWeight: 630,
+                        letterSpacing: '.3rem',
+                        color: themeColorPink,
+                        textDecoration: 'none',
+                        fontSize: '1.1rem',
+                      }}
+                    >
+                      List Your Property
+                    </Typography>
+                  </CenteredGrid>
+                  <CenteredGrid>
+                    <Typography
+                      variant="h5"
+                      noWrap
+                      component="a"
+                      href="/likes"
+                      sx={{
+                        mr: 2,
+                        display: { xs: 'none', md: 'flex' },
+                        fontWeight: 630,
+                        letterSpacing: '.3rem',
+                        color: themeColorPink,
+                        textDecoration: 'none',
+                        fontSize: '1.1rem',
+                      }}
+                    >
+                      View Your Favourite Properties
+                    </Typography>
+                  </CenteredGrid>
+                </Stack>
+              </Box>
             </Wrapper>
           </Grid>
         </Grid>
@@ -76,4 +122,20 @@ const Wrapper = styled.div`
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+`;
+
+const CenteredGrid = styled(Grid)`
+  border-radius: 15px;
+  width: 80%;
+  height: 15vh;
+  --Grid-borderWidth: 2px;
+  border: var(--Grid-borderWidth) solid #80dddd;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
