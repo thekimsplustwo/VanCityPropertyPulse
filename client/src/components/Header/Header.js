@@ -18,5 +18,5 @@ const FixedNav = styled.div`
   margin: 0 auto;
   font-family: 'AirbnbCereal_W_Bk', 'Montserrat', sans-serif, Courier, monospace;
   border-bottom: 1px solid rgb(230, 230, 230);
-  z-index: 9999;
+  z-index: 99;
 `;
