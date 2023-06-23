@@ -11,4 +11,8 @@ const getPropertyDetails = async zpid => {
   return propertyModel.getPropertyDetails(zpid);
 };
 
-export { getPropertyDetails };
+const getPropertySummary = async zpid => {
+  return propertyModel.getPropertyDetails(zpid);
+};
+
+export { getPropertyDetails, getPropertySummary };

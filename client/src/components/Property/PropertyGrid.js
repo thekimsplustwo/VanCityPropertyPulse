@@ -8,8 +8,8 @@ function PropertyGrid({ properties }) {
     <Wrapper>
       <Section>
         <CardWrapper>
-          {properties.map((property, index) => (
-            <PropertyCard key={index} property={property} />
+          {properties.map(property => (
+            <PropertyCard key={property.zpid} property={property} />
           ))}
         </CardWrapper>
       </Section>

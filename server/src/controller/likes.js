@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { likesService } from '../services/index.js';
+import { likesService, propertyService } from '../services/index.js';
 
 dotenv.config();
 const { FRONT_REDIRECT_URL } = process.env;
@@ -22,6 +22,13 @@ const removeLikes = async (req, res) => {
   const { zpid } = req.params;
   const likes = await likesService.removeLikes(user.email, Number(zpid));
   return res.status(201).json(likes);
+};
+
+const getPropertySummary = async (req, res) => {
+  const { user } = req;
+  const { zpid } = req.params;
+  const propertyDetails = await propertyService.getPropertySummary(zpid);
+  return res.status(201).json(propertyDetails);
 };
 
 export { getLikes, addLikes, removeLikes };
