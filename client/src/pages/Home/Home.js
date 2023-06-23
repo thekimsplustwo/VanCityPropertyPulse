@@ -13,12 +13,12 @@ function Home() {
   const location = useLocation();
 
   const properties = useSelector(state => state.home.list);
-  const likesList = useSelector(state => state.likes.list);
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getListAsync());
-  }, [dispatch, likesList]);
+    dispatch(getLikesAsync());
+  }, [dispatch]);
 
   return (
     <Main>
