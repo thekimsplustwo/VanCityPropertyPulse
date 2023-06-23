@@ -24,11 +24,10 @@ const removeLikes = async (req, res) => {
   return res.status(201).json(likes);
 };
 
-const getPropertySummary = async (req, res) => {
+const removeAllLikes = async (req, res) => {
   const { user } = req;
-  const { zpid } = req.params;
-  const propertyDetails = await propertyService.getPropertySummary(zpid);
-  return res.status(201).json(propertyDetails);
+  const likes = await likesService.removeAllLikes(user.email);
+  return res.status(201).json(likes);
 };
 
-export { getLikes, addLikes, removeLikes };
+export { getLikes, addLikes, removeLikes, removeAllLikes };

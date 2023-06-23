@@ -2,9 +2,11 @@ import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Button } from '@mui/material';
 import PropertyGrid from '../../components/Property/PropertyGrid';
 // import { getListAsync } from '../../redux/home/thunks';
-import { getLikesAsync } from '../../redux/likes/thunks';
+import { getLikesAsync, deleteAllLikesAsync } from '../../redux/likes/thunks';
 // import SearchComponent from '../../components/SearchOption/SearchComponent';
 
 function Likes() {
@@ -19,7 +21,7 @@ function Likes() {
 
   useEffect(() => {
     dispatch(getLikesAsync());
-  }, [dispatch]);
+  }, [dispatch, likes]);
 
   // Whenever likes changes, update properties
   useEffect(() => {
@@ -29,6 +31,8 @@ function Likes() {
     <Margin>
       <Main>
         <h1>Liked Properties</h1>
+        {/* create a button to clear all likes lists when clicked */}
+        <Button onClick={dispatch(deleteAllLikesAsync())} />
         <PropertyGrid properties={properties} />
       </Main>
     </Margin>
@@ -47,6 +51,13 @@ const Margin = styled.div`
   font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
+`;
+
+const StyledHeartBorderIcon = styled(FavoriteBorderIcon)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: black;
 `;
 
 export default Likes;

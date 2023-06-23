@@ -32,3 +32,10 @@ export const deleteLikesAsync = createAsyncThunk(
     return response;
   }
 );
+
+export const deleteAllLikesAsync = createAsyncThunk(
+  actionTypes.DELETE_ALL_LIKES,
+  async () => {
+    return LikesService.deleteAllLikes();
+  }
+);
