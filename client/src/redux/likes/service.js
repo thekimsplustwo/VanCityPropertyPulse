@@ -17,7 +17,7 @@ const getLikes = async () => {
   return data;
 };
 
-const addLikes = async zpid => {
+const addLikes = async property => {
   const response = await fetch(`${BASE_URL}/likes`, {
     method: 'POST',
     headers: {
@@ -25,7 +25,7 @@ const addLikes = async zpid => {
       // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
       Authorization: 'Bearer johndoe@gmail.com',
     },
-    body: JSON.stringify({ zpid }),
+    body: JSON.stringify({ property }),
   });
   const data = await response.json();
   if (!response.ok) {
