@@ -6,17 +6,19 @@ import PropertyGrid from '../../components/Property/PropertyGrid';
 import demoHouseImage from '../../assets/images/demoHouse.jpg';
 import { getListAsync } from '../../redux/home/thunks';
 import SearchComponent from '../../components/SearchOption/SearchComponent';
+import { getLikesAsync } from '../../redux/likes/thunks';
 
 function Home() {
   const navigate = useNavigate();
   const location = useLocation();
 
   const properties = useSelector(state => state.home.list);
+  const likesList = useSelector(state => state.likes.list);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getListAsync());
-  }, [dispatch]);
+  }, [dispatch, likesList]);
 
   return (
     <Main>
