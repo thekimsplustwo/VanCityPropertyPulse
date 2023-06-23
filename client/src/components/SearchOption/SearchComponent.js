@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SearchInput from './SearchInput';
 import searchImage from '../../assets/images/searchComponent.jpg';
+import SearchOptions from './SearchOptions';
 
 const SearchContainer = styled.div`
   display: flex;
@@ -13,6 +14,7 @@ const SearchContainer = styled.div`
   background-size: cover;
   height: 500px;
   padding: 0 30px;
+  position: relative;
 `;
 
 const Title = styled.h1`
@@ -31,6 +33,7 @@ export default function SearchComponent() {
     <SearchContainer>
       <Title>Looking for a place to live?</Title>
       <SearchInput />
+      <SearchOptions />
     </SearchContainer>
   );
 }

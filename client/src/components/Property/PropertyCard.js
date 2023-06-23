@@ -8,11 +8,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { convertPriceToCAD } from '../../utils/utils';
 
-import {
-  getLikesAsync,
-  addLikesAsync,
-  deleteLikesAsync,
-} from '../../redux/likes/thunks';
+import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
 function PropertyCard({ property }) {
   const navigate = useNavigate();
@@ -22,25 +18,26 @@ function PropertyCard({ property }) {
   const likesList = useSelector(state => state.likes.list).map(
     property => property.zpid
   );
+  const liked = likesList.includes(currZpid);
 
   const navigateToPropertyPage = zpid => {
     navigate(`/properties/${zpid}`, {
       state: { zpid },
     });
   };
-  const [liked, setLiked] = useState(likesList.includes(currZpid));
 
   const handleAddLike = event => {
     event.stopPropagation(); // prevent the click event from bubbling up to the parent
     // toggle the liked state
-    setLiked(true);
-    dispatch(addLikesAsync(currZpid));
+    // console.log('handleAddLike');
+    // console.log(property);
+    dispatch(addLikesAsync(property));
+    // console.log('handleAddLike dispatched');
   };
 
   const handleDeleteLike = event => {
     event.stopPropagation(); // prevent the click event from bubbling up to the parent
-    setLiked(false);
-    //dispatch(deleteLikeAsync(currZpid));
+    dispatch(deleteLikesAsync(currZpid));
   };
 
   return (

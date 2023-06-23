@@ -1,28 +1,34 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import PropertyGrid from '../../components/Property/PropertyGrid';
-import demoHouseImage from '../../assets/images/demoHouse.jpg';
 // import { getListAsync } from '../../redux/home/thunks';
 import { getLikesAsync } from '../../redux/likes/thunks';
-import SearchComponent from '../../components/SearchOption/SearchComponent';
+// import SearchComponent from '../../components/SearchOption/SearchComponent';
 
 function Likes() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const properties = useSelector(state => state.likes.list);
+  const likes = useSelector(state => state.likes.list);
+
+  const [properties, setProperties] = useState(likes);
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getLikesAsync());
   }, [dispatch]);
 
+  // Whenever likes changes, update properties
+  useEffect(() => {
+    setProperties(likes);
+  }, [likes]);
   return (
     <Margin>
       <Main>
-        <p>Liked Properties</p>
+        <h1>Liked Properties</h1>
         <PropertyGrid properties={properties} />
       </Main>
     </Margin>
