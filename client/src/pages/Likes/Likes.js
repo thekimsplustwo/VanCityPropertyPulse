@@ -23,6 +23,10 @@ function Likes() {
     dispatch(getLikesAsync());
   }, [dispatch]);
 
+  const handleDeleteAllLike = () => {
+    dispatch(deleteAllLikesAsync());
+  };
+
   // Whenever likes changes, update properties
   useEffect(() => {
     setProperties(likes);
@@ -32,7 +36,10 @@ function Likes() {
       <Main>
         <Header>Favourite Homes</Header>
         {/* create a button to clear all likes lists when clicked */}
-        <Button />
+        <MenuContainer>
+          <StyledHeartBorderIcon />
+          <MenuOpt onClick={() => handleDeleteAllLike()}>Clear All</MenuOpt>
+        </MenuContainer>
         <PropertyGrid properties={properties} />
       </Main>
     </Margin>
@@ -62,4 +69,31 @@ const Header = styled.h1`
   margin-left: 1rem;
 `;
 
+const StyledHeartBorderIcon = styled(FavoriteBorderIcon)`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+`;
+const MenuContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  border: 2px solid gray;
+  opacity: 0.3;
+  border-radius: 10px;
+  padding: 3px 0;
+  margin: 10px;
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+`;
+
+const MenuOpt = styled.div`
+  padding: 0 0.3rem;
+  font-size: 15px;
+  font-weight: 5rem;
+`;
 export default Likes;
