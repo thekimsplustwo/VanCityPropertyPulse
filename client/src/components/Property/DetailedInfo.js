@@ -3,11 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
-import { Info, ArrowForward } from '@mui/icons-material';
+import CropFreeRoundedIcon from '@mui/icons-material/CropFreeRounded';
+import { Info, ArrowForward, Store } from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
-import { Typography } from '@mui/material';
+import { Typography, createTheme } from '@mui/material';
+import BathtubIcon from '@mui/icons-material/Bathtub';
+import EventAvailableRoundedIcon from '@mui/icons-material/EventAvailableRounded';
+import HotelIcon from '@mui/icons-material/Hotel';
+import PaidIcon from '@mui/icons-material/Paid';
+import StoreIcon from '@mui/icons-material/Store';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import Grid from '@mui/material/Grid';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Container from '@mui/material/Container';
+import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import { themeColorPink } from '../../styles/theme';
 
 function DetailedInfo({ propertyDetails }) {
@@ -16,19 +26,26 @@ function DetailedInfo({ propertyDetails }) {
     padding: '20px',
   };
 
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#80dddd', // Replace with your desired color
+      },
+    },
+  });
+
   const {
-    type,
-    style,
-    size,
-    lotSize,
-    age,
-    taxes,
-    added,
-    updated,
-    lastChecked,
-    mls,
-    source,
-    listedBy,
+    homeType,
+    yearBuilt,
+    livingArea,
+    pricePerSquareFoot,
+    monthlyHoaFee,
+    datePosted,
+    annualHomeownersInsurance,
+    homeStatus,
+    hasGarage,
+    bathrooms,
+    bedrooms,
     description,
   } = propertyDetails;
 
@@ -37,75 +54,140 @@ function DetailedInfo({ propertyDetails }) {
       maxWidth="xl"
       style={{ marginTop: '0rem', marginBottom: '7rem' }}
     >
-      <Grid container spacing={20}>
-        <Grid item xs={12} sm={6}>
-          <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
-            <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
-              <InfoRow>
-                <Bold>Type: </Bold> {type}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Style: </Bold> {style}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Size: </Bold> {size}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Lot Size: </Bold> {lotSize}
-              </InfoRow>
-              <InfoRow>
-                <Bold> House Age: </Bold> {age}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Taxes: </Bold> {taxes}
-              </InfoRow>
-            </Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
-            <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
-              <InfoRow>
-                <Bold>Added: </Bold> {added}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Updated: </Bold> {updated}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Last Checked: </Bold> {lastChecked}
-              </InfoRow>
-              <InfoRow>
-                <Bold>MLS: </Bold> {mls}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Source: </Bold> {source}
-              </InfoRow>
-              <InfoRow>
-                <Bold>Listed By: </Bold> {listedBy}
-              </InfoRow>
-            </Typography>
-          </div>
-        </Grid>
-      </Grid>
+      <Box
+        sx={{
+          width: '100vw',
+          height: '100vh',
+          paddingTop: '5em',
+        }}
+      >
+        <Wrapper>
+          <Grid container spacing={20}>
+            <Grid item xs={12} sm={6}>
+              <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
+                <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+                  <InfoRow>
+                    <HomeRoundedIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Home Type: </Bold> {homeType}
+                  </InfoRow>
+                  <InfoRow>
+                    <EventAvailableRoundedIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Year Built: </Bold> {yearBuilt}
+                  </InfoRow>
+                  <InfoRow>
+                    <AutoAwesomeIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold> House Age: </Bold>
+                    {new Date().getFullYear() - yearBuilt}
+                  </InfoRow>
+                  <InfoRow>
+                    <CropFreeRoundedIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Living Area: </Bold> {livingArea} sqft
+                  </InfoRow>
+                  <InfoRow>
+                    <PaidIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Price Per sqft: </Bold> {pricePerSquareFoot} CAD
+                  </InfoRow>
+                  <InfoRow>
+                    <PaidIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Strata Fee: </Bold> {monthlyHoaFee} CAD
+                  </InfoRow>
+                </Typography>
+              </div>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
+                <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+                  <InfoRow>
+                    <CalendarMonthIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Date Posted: </Bold> {datePosted}
+                  </InfoRow>
+                  <InfoRow>
+                    <PaidIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Home Insurance: </Bold> {annualHomeownersInsurance}{' '}
+                    CAD
+                  </InfoRow>
 
-      <Divider sx={{ borderBottomWidth: 3 }} />
-      <div
-        style={{ textAlign: 'left', marginBottom: '3rem', marginTop: '3rem' }}
-      >
-        <p>
-          <InfoRow>
-            <BoldHeader>Overview </BoldHeader> {description}
-          </InfoRow>
-        </p>
-      </div>
-      <Button
-        variant="outlined"
-        color="success"
-        size="large"
-        endIcon={<ArrowForward />}
-      >
-        See More Facts and Features
-      </Button>
+                  <InfoRow>
+                    <LocalParkingIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Garage: </Bold> {hasGarage === true ? 'Yes' : 'No'}
+                  </InfoRow>
+                  <InfoRow>
+                    <BathtubIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Bathrooms: </Bold> {bathrooms}
+                  </InfoRow>
+                  <InfoRow>
+                    <HotelIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold> Bedrooms: </Bold> {bedrooms}
+                  </InfoRow>
+                  <InfoRow>
+                    <StoreIcon
+                      style={{ marginBottom: '-5px' }}
+                      sx={{ color: '#ff385c' }}
+                    />
+                    <Bold>Home Status: </Bold> {homeStatus}
+                  </InfoRow>
+                </Typography>
+              </div>
+            </Grid>
+          </Grid>
+
+          <Divider sx={{ borderBottomWidth: 3 }} />
+          <div
+            style={{
+              textAlign: 'left',
+              marginBottom: '3rem',
+              marginTop: '3rem',
+            }}
+          >
+            <p>
+              <InfoRow>
+                <BoldHeader>Overview </BoldHeader> {description}
+              </InfoRow>
+            </p>
+          </div>
+          <Button
+            variant="outlined"
+            color="success"
+            size="large"
+            endIcon={<ArrowForward />}
+          >
+            See More Facts and Features
+          </Button>
+        </Wrapper>
+      </Box>
     </Container>
   );
 }
@@ -116,10 +198,13 @@ const InfoRow = styled.p`
 `;
 
 const Wrapper = styled.div`
-  width: 65rem;
-  display: 'flex';
-  font-size: 15px;
-  flex-direction: column;
+  border-radius: 15px;
+  padding: 16px;
+  width: 100%;
+  margin: -30px;
+  background-color: white;
+  text-align: center;
+  box-shadow: 10px 10px #fbe8e9;
 `;
 
 const Section = styled.section`
@@ -139,4 +224,17 @@ const BoldHeader = styled.h2`
   font-weight: bold;
   font-size: 25px;
   margin-bottom: 20px;
+`;
+
+const Box = styled.div`
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: "#f5f5f5"";
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 10px;
+  box-shadow: 10px 10px #fbe8e9;
 `;
