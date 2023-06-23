@@ -51,6 +51,7 @@ const HeaderWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 20px 50px;
+  justify-content: center;
 `;
 
 const ContentWrapper = styled.div`

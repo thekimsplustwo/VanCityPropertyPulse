@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Button from '@mui/material/Button';
 import CropFreeRoundedIcon from '@mui/icons-material/CropFreeRounded';
 import { Info, ArrowForward, Store } from '@mui/icons-material';
@@ -18,22 +18,12 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Container from '@mui/material/Container';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
-import { themeColorPink } from '../../styles/theme';
 
 function DetailedInfo({ propertyDetails }) {
   // decompose props
   const cssStyle = {
     padding: '20px',
   };
-
-  const theme = createTheme({
-    palette: {
-      primary: {
-        main: '#80dddd', // Replace with your desired color
-      },
-    },
-  });
-
   const {
     homeType,
     yearBuilt,
@@ -64,7 +54,13 @@ function DetailedInfo({ propertyDetails }) {
         <Wrapper>
           <Grid container spacing={20}>
             <Grid item xs={12} sm={6}>
-              <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
+              <div
+                style={{
+                  textAlign: 'left',
+                  marginBottom: '2rem',
+                  marginRight: '-5rem',
+                }}
+              >
                 <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
                   <InfoRow>
                     <HomeRoundedIcon
@@ -113,7 +109,13 @@ function DetailedInfo({ propertyDetails }) {
               </div>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
+              <div
+                style={{
+                  textAlign: 'left',
+                  marginBottom: '2rem',
+                  marginLeft: '-5em',
+                }}
+              >
                 <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
                   <InfoRow>
                     <CalendarMonthIcon
@@ -178,14 +180,17 @@ function DetailedInfo({ propertyDetails }) {
               </InfoRow>
             </p>
           </div>
+          {/* <ThemeProvider theme={theme}> */}
           <Button
             variant="outlined"
-            color="success"
+            color="primary"
             size="large"
             endIcon={<ArrowForward />}
+            sx={{ backgroundColor: '#FFFFFF' }}
           >
             See More Facts and Features
           </Button>
+          {/* </ThemeProvider> */}
         </Wrapper>
       </Box>
     </Container>
@@ -201,7 +206,7 @@ const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;
   width: 100%;
-  margin: -30px;
+  margin: -23px;
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
@@ -215,11 +220,6 @@ const Bold = styled.b`
   font-weight: bold;
   margin-top: 30px;
 `;
-
-const Column = styled.div`
-  flex: 1;
-`;
-
 const BoldHeader = styled.h2`
   font-weight: bold;
   font-size: 25px;
