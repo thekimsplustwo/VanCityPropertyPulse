@@ -6,7 +6,11 @@ import { Stack, Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
-import { themeColorPink, themeColorBlue } from '../../styles/theme';
+import {
+  themeColorPink,
+  themeColorBlue,
+  themeColorPurple,
+} from '../../styles/theme';
 
 const USER_EMAIL = 'johndoe@gmail.com';
 
@@ -48,7 +52,7 @@ function MyPage() {
                         display: { xs: 'none', md: 'flex' },
                         fontWeight: 630,
                         letterSpacing: '.3rem',
-                        color: themeColorPink,
+                        color: themeColorPurple,
                         textDecoration: 'none',
                         fontSize: '1.1rem',
                       }}
@@ -67,7 +71,7 @@ function MyPage() {
                         display: { xs: 'none', md: 'flex' },
                         fontWeight: 630,
                         letterSpacing: '.3rem',
-                        color: themeColorPink,
+                        color: themeColorPurple,
                         textDecoration: 'none',
                         fontSize: '1.1rem',
                       }}
@@ -86,7 +90,7 @@ function MyPage() {
                         display: { xs: 'none', md: 'flex' },
                         fontWeight: 630,
                         letterSpacing: '.3rem',
-                        color: themeColorPink,
+                        color: themeColorPurple,
                         textDecoration: 'none',
                         fontSize: '1.1rem',
                       }}
@@ -133,7 +137,8 @@ const CenteredGrid = styled(Grid)`
   width: 80%;
   height: 15vh;
   --Grid-borderWidth: 2px;
-  border: var(--Grid-borderWidth) solid #80dddd;
+  border: var(--Grid-borderWidth) solid #f8c9cd;
+  background-color: #feedef;
   margin-bottom: 50px;
   display: flex;
   justify-content: center;
