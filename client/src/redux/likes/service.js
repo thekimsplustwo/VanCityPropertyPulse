@@ -25,7 +25,7 @@ const addLikes = async property => {
       // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
       Authorization: 'Bearer johndoe@gmail.com',
     },
-    body: JSON.stringify({ property }),
+    body: JSON.stringify(property),
   });
   const data = await response.json();
   if (!response.ok) {
