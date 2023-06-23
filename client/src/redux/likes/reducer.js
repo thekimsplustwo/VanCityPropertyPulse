@@ -35,7 +35,7 @@ const likesSlice = createSlice({
       })
       .addCase(addLikesAsync.fulfilled, (state, action) => {
         state.addLikes = REQUEST_STATE.FULFILLED;
-        // state.list = action.payload;
+        state.list = action.payload;
       })
       .addCase(addLikesAsync.rejected, (state, action) => {
         state.addLikes = REQUEST_STATE.REJECTED;
