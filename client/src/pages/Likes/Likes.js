@@ -21,7 +21,7 @@ function Likes() {
 
   useEffect(() => {
     dispatch(getLikesAsync());
-  }, [dispatch, likes]);
+  }, [dispatch]);
 
   // Whenever likes changes, update properties
   useEffect(() => {
@@ -30,9 +30,9 @@ function Likes() {
   return (
     <Margin>
       <Main>
-        <h1>Liked Properties</h1>
+        <Header>Favourite Homes</Header>
         {/* create a button to clear all likes lists when clicked */}
-        <Button onClick={dispatch(deleteAllLikesAsync())} />
+        <Button />
         <PropertyGrid properties={properties} />
       </Main>
     </Margin>
@@ -52,12 +52,14 @@ const Margin = styled.div`
   line-height: 30pt;
   text-align: center;
 `;
-
-const StyledHeartBorderIcon = styled(FavoriteBorderIcon)`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: black;
+const Header = styled.h1`
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1rem;
+  text-align: left;
+  margin-top: 1rem;
+  margin-left: 1rem;
 `;
 
 export default Likes;
