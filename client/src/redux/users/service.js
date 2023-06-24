@@ -45,8 +45,32 @@ const login = async email => {
   return response.json();
 };
 
+const editProfile = async (email, region) => {
+  console.log('calling editProfile');
+  const url = `${BASE_URL}/users`;
+
+  console.log('user email is ', email);
+  console.log('updated region is', region);
+
+  const response = await axios.patch(
+    url,
+    {
+      region,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${email}`,
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+
+  return response.data;
+};
+
 export default {
   signup,
   login,
   getUser,
+  editProfile,
 };

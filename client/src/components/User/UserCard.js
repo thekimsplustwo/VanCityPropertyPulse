@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
 
-function UserCard({ user }) {
+function UserCard() {
+  const user = useSelector(state => state.users.list);
   return (
     <Margin>
       <div>

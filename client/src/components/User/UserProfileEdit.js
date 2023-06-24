@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TextField, Button } from '@mui/material';
 import { useUser } from './UserProvider';
+import { getUserAsync, editProfileAsync } from '../../redux/users/thunks';
 
 function UserProfileEdit() {
-  const { user, updateUser } = useUser();
-  const navigate = useNavigate();
+  const user = useSelector(state => state.users.list);
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  console.log('user in edit: ', user);
 
   const [formData, setFormData] = useState({
+    // firstName: user.firstName ?? '',
+    // lastName: user.lastName || '',
+    // age: user.age || '',
+    // email: user.email || '',
+    // phoneNumber: user.phoneNumber || '',
+    // region: user.region || '',
+    // photo: user.photo || '',
     firstName: user.firstName,
     lastName: user.lastName,
-    age: user.age.toString(),
+    age: user.age,
     email: user.email,
     phoneNumber: user.phoneNumber,
     region: user.region,
@@ -20,26 +31,22 @@ function UserProfileEdit() {
 
   const handleInputChange = e => {
     const { name, value } = e.target;
+    console.log('value :', value);
+    console.log('value :', value);
     setFormData(prevFormData => ({
       ...prevFormData,
       [name]: value !== '' ? value : user[name],
     }));
+    console.log('in handleInput formData:  ', formData);
   };
+  console.log('formData:  ', formData);
 
   const handleSubmit = e => {
+    console.log('got here');
     e.preventDefault();
-    // Reset the form
-    setFormData({
-      firstName: '',
-      lastName: '',
-      age: '',
-      email: '',
-      phoneNumber: '',
-      region: '',
-      //   photo: null,
-    });
-    updateUser(formData);
-    navigate(`/mypage/${user.id}`);
+    const { email, region } = formData;
+    dispatch(editProfileAsync(email, region));
+    // navigate('/mypage');
   };
 
   return (
@@ -51,23 +58,23 @@ function UserProfileEdit() {
             type="text"
             label="First Name"
             name="firstName"
-            value={formData.firstName}
-            onChange={handleInputChange}
+            value={user.firstName}
+            onChange={e => handleInputChange(e)}
           />
 
           <TextField
             type="text"
             label="Last Name"
             name="lastName"
-            value={formData.lastName}
-            onChange={handleInputChange}
+            value={user.lastName}
+            onChange={e => handleInputChange(e)}
           />
 
           <TextField
             type="number"
             label="Age"
             disabled
-            value={formData.age}
+            value={user.age}
             name="age"
             onChange={handleInputChange}
           />
@@ -76,15 +83,15 @@ function UserProfileEdit() {
             type="email"
             label="Email"
             name="email"
-            value={formData.email}
-            onChange={handleInputChange}
+            value={user.email}
+            onChange={e => handleInputChange(e)}
           />
 
           <TextField
             type="text"
             label="Phone Number"
             name="phoneNumber"
-            value={formData.phoneNumber}
+            value={user.phoneNumber}
             onChange={handleInputChange}
           />
 
@@ -92,7 +99,7 @@ function UserProfileEdit() {
             type="text"
             label="Region"
             name="region"
-            value={formData.region}
+            value={user.region}
             onChange={handleInputChange}
           />
         </FormContainer>

@@ -20,8 +20,8 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { themeColorPink } from '../../styles/theme';
-import { tempUserProfile } from '../../data/tempUserProfile';
 
 const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
@@ -39,9 +39,9 @@ const pages = [
     path: '/likes',
   },
 ];
-const user = tempUserProfile;
+// const user = useSelector(state => state.users.list);
 const settings = [
-  { name: 'Profile', path: `/mypage/${user.id}` },
+  { name: 'Profile', path: '/mypage' },
   { name: 'Logout', path: '/logout' },
 ];
 

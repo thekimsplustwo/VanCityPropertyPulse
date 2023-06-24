@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import UserCard from './UserCard';
 import UserInfo from './UserInfo';
 
-function UserPageLeft({ user }) {
+function UserPageLeft() {
   return (
     <div>
       <Wrapper>
-        <UserCard user={user} />
+        <UserCard />
       </Wrapper>
       <Wrapper>
-        <UserInfo user={user} />
+        <UserInfo />
       </Wrapper>
     </div>
   );

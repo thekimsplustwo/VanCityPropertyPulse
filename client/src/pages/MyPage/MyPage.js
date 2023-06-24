@@ -11,19 +11,16 @@ import UserFavourites from '../../components/User/UserFavourites';
 import UserInfo from '../../components/User/UserInfo';
 import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
-import { tempUserProfile } from '../../data/tempUserProfile';
-import { useUser } from '../../components/User/UserProvider';
+// import { useUser } from '../../components/User/UserProvider';
 
 const USER_EMAIL = 'johndoe@gmail.com';
+// const USER_EMAIL = 'pukku@ubc.ca';
 
 function MyPage() {
   const navigate = useNavigate();
   const location = useLocation();
-
-  // const user = useSelector(state => state.users.list);
-  // const user = tempUserProfile;
-  const { user } = useUser();
-
+  const user = useSelector(state => state.users.list);
+  console.log('my page user ', user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -41,7 +38,7 @@ function MyPage() {
       >
         <Grid container spacing={4}>
           <Grid item="true" xs={4}>
-            <UserPageLeft user={user} />
+            <UserPageLeft />
           </Grid>
           <Grid item="true" xs={7.7}>
             <Wrapper>

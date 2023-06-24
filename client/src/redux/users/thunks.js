@@ -9,10 +9,17 @@ export const getUserAsync = createAsyncThunk(
   }
 );
 
-export const loginAsync = createAsyncThunk(actionTypes.LOGIN, async () => {
-  return UserService.login();
+export const loginAsync = createAsyncThunk(actionTypes.LOGIN, async email => {
+  return UserService.login({ email });
 });
 
 export const signupAsync = createAsyncThunk(actionTypes.SIGNUP, async email => {
   return UserService.signup({ email });
 });
+
+export const editProfileAsync = createAsyncThunk(
+  actionTypes.EDIT_PROFILE,
+  async (email, region) => {
+    return UserService.editProfile(email, region);
+  }
+);

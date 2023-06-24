@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
+import EditUser from '../../pages/EditUser/EditUser';
 
 function formatPhoneNumber(phoneNumber) {
   const areaCode = phoneNumber.slice(0, 3);
@@ -10,7 +12,9 @@ function formatPhoneNumber(phoneNumber) {
   return `(${areaCode}) ${firstPart}-${secondPart}`;
 }
 
-function UserInfo({ user }) {
+function UserInfo() {
+  const user = useSelector(state => state.users.list);
+
   return (
     <Margin>
       <p>
@@ -26,14 +30,13 @@ function UserInfo({ user }) {
         <Bold>Email: </Bold> {user.email}
       </p>
       <p>
-        <Bold>Phone Number: </Bold> {formatPhoneNumber(user.phoneNumber)}
+        {/* <Bold>Phone Number: </Bold> {formatPhoneNumber(user.phoneNumber)} */}
+        <Bold>Phone Number: </Bold> {user.phoneNumber}
       </p>
       <p>
         <Bold>Region: </Bold> {user.region}
       </p>
-      <Link to="/edituser">
-        <Button variant="outlined">Edit Profile</Button>
-      </Link>
+      <EditUser />
     </Margin>
   );
 }

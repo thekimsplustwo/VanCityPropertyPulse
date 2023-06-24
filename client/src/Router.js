@@ -14,23 +14,23 @@ import { UserProvider } from './components/User/UserProvider';
 
 function Router() {
   return (
-    <UserProvider>
-      <BrowserRouter>
-        <ScrollTop />
-        <Header />
-        <Routes>
-          <Route path="/" element={<DummyHome />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/properties/:zpid" element={<PropertyDetail />} />
-          <Route path="/compare" element={<Compare />} />
-          {/* <Route path="/mypage" element={<MyPage />} /> */}
-          <Route path="/mypage/:userId" element={<MyPage />} />
-          <Route path="/edituser" element={<EditUser />} />
-          <Route path="/likes" element={<Likes />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
-    </UserProvider>
+    // <UserProvider>
+    <BrowserRouter>
+      <ScrollTop />
+      <Header />
+      <Routes>
+        <Route path="/" element={<DummyHome />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/properties/:zpid" element={<PropertyDetail />} />
+        <Route path="/compare" element={<Compare />} />
+        <Route path="/mypage" element={<MyPage />} />
+        {/* <Route path="/mypage/:userId" element={<MyPage />} /> */}
+        {/*<Route path="/edituser" element={<EditUser />} />*/}
+        <Route path="/likes" element={<Likes />} />
+      </Routes>
+      <Footer />
+    </BrowserRouter>
+    // </UserProvider>
   );
 }
 

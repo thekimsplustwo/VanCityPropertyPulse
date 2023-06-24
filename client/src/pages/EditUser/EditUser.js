@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
-import { tempUserProfile } from '../../data/tempUserProfile';
 
 function EditUser() {
   // const user = tempUserProfile;

@@ -1,0 +1,590 @@
+{
+  "listingProvider": null,
+  "zpid": 2058267686,
+  "buildingPermits": null,
+  "propertyTaxRate": null,
+  "contact_recipients": [
+    {
+      "agent_reason": 3,
+      "zpro": null,
+      "recent_sales": null,
+      "review_count": null,
+      "display_name": "Amy Tsao PREC*",
+      "zuid": "X1-ZUz1ci99gqj409_uwi3",
+      "rating_average": null,
+      "badge_type": "Agent",
+      "phone": {
+        "prefix": "652",
+        "areacode": "604",
+        "number": "2345"
+      },
+      "image_url": null
+    }
+  ],
+  "zipcode": "V6B1W8",
+  "openHouseSchedule": {},
+  "longitude": -123.11076,
+  "zestimateLowPercent": null,
+  "address": {
+    "city": "Vancouver",
+    "neighborhood": null,
+    "state": "BC",
+    "streetAddress": "668 Citadel Parade #503",
+    "zipcode": "V6B1W8"
+  },
+  "cityId": 791534,
+  "timeOnZillow": "76 days",
+  "url": "/homedetails/668-Citadel-Parade-503-Vancouver-BC-V6B-1W8/2058267686_zpid/",
+  "zestimate": null,
+  "imgSrc": "https://photos.zillowstatic.com/fp/4a3dfede21e5cc37f715c63e5f780691-p_d.jpg",
+  "description": "Spectrum 2 built by Concord Pacific. Open plan unit with great natural light and floor to ceiling windows. In-suite laundry. Great investment or Move in and enjoy in modern fully loaded building with 80ft indoor pool, great gym/Yoga room, sauna/hot tub ,steam room, theatre room, Club House, and 24-hour Concierge. BONUS includes PARKING AND STORAGE LOCKER. Fantastic location blocks to Costco, Skytrain, T&T Supermarket, Rogers Arena, Movie Theatre, Rexall, Dollar stores, and everything you need. Tenanted and viewing by appointments only.",
+  "price": 699000,
+  "livingAreaValue": 500,
+  "resoFacts": {
+    "hasAttachedProperty": true,
+    "frontageType": null,
+    "poolFeatures": ["Indoor"],
+    "flooring": null,
+    "foundationDetails": {},
+    "accessibilityFeatures": null,
+    "hasGarage": false,
+    "hasPetsAllowed": null,
+    "bodyType": null,
+    "topography": null,
+    "landLeaseExpirationDate": null,
+    "hasAdditionalParcels": false,
+    "waterViewYN": false,
+    "atAGlanceFacts": [
+      {
+        "factLabel": "Type",
+        "factValue": "Apartment"
+      },
+      {
+        "factLabel": "Year Built",
+        "factValue": "2007"
+      },
+      {
+        "factLabel": "Heating",
+        "factValue": "Baseboard"
+      },
+      {
+        "factLabel": "Cooling",
+        "factValue": null
+      },
+      {
+        "factLabel": "Parking",
+        "factValue": "1 Parking space"
+      },
+      {
+        "factLabel": "HOA",
+        "factValue": "C$283 monthly"
+      },
+      {
+        "factLabel": "Days on Zillow",
+        "factValue": "76 Days"
+      },
+      {
+        "factLabel": "Price/sqft",
+        "factValue": "C$1,398"
+      },
+      {
+        "factLabel": "Offer Review Date",
+        "factValue": null
+      }
+    ],
+    "offerReviewDate": null,
+    "aboveGradeFinishedArea": "500",
+    "view": ["City Tree Line"],
+    "buyerAgencyCompensationType": null,
+    "rooms": {},
+    "carportSpaces": null,
+    "cityRegion": "Vancouver",
+    "mainLevelBathrooms": null,
+    "hasPrivatePool": null,
+    "associationFeeIncludes": null,
+    "waterSource": null,
+    "exteriorFeatures": {},
+    "coveredSpaces": null,
+    "inclusions": null,
+    "hasFireplace": false,
+    "zoningDescription": null,
+    "garageSpaces": null,
+    "sewer": null,
+    "elevationUnits": null,
+    "exclusions": null,
+    "mainLevelBedrooms": null,
+    "numberOfUnitsVacant": null,
+    "hasWaterfrontView": null,
+    "listAOR": "Real Estate Board of Greater Vancouver",
+    "lotSize": null,
+    "entryLevel": null,
+    "irrigationWaterRightsAcres": null,
+    "greenWaterConservation": null,
+    "stories": 1,
+    "livingArea": "500 sqft",
+    "numberOfUnitsInCommunity": null,
+    "listingTerms": null,
+    "otherStructures": null,
+    "associationFee": "C$283 monthly",
+    "marketingType": null,
+    "greenIndoorAirQuality": null,
+    "greenSustainability": null,
+    "hasHomeWarranty": false,
+    "associationPhone": null,
+    "greenBuildingVerificationType": null,
+    "elementarySchool": null,
+    "bedrooms": 1,
+    "architecturalStyle": null,
+    "listingId": null,
+    "structureType": "Apartment/Condo",
+    "interiorFeatures": ["Bike Room", "Elevator", "Sauna/Steam Room", "Storage"],
+    "horseAmenities": null,
+    "electric": null,
+    "developmentStatus": null,
+    "lotFeatures": ["Adult Oriented", "Central Location", "Marina Nearby", "Recreation Nearby", "Shopping Nearby"],
+    "roofType": null,
+    "waterSources": null,
+    "constructionMaterials": {},
+    "fireplaceFeatures": null,
+    "doorFeatures": null,
+    "appliances": ["ClthWsh/Dryr/Frdg/Stve/DW"],
+    "daysOnZillow": 76,
+    "bathroomsPartial": null,
+    "bathroomsHalf": 0,
+    "depositsAndFees": null,
+    "canRaiseHorses": false,
+    "buildingName": null,
+    "hasAssociation": true,
+    "petsMaxWeight": null,
+    "commonWalls": "2+ Common Walls",
+    "totalActualRent": null,
+    "additionalParcelsDescription": null,
+    "associationName": null,
+    "allowedPets": null,
+    "communityFeatures": ["Clubhouse", "Exercise Centre", "Concierge"],
+    "tenantPays": null,
+    "middleOrJuniorSchool": null,
+    "lotSizeDimensions": null,
+    "roadSurfaceType": null,
+    "hasOpenParking": null,
+    "yearBuilt": 2007,
+    "livingAreaRangeUnits": null,
+    "irrigationWaterRightsYN": null,
+    "bathroomsFull": 1,
+    "horseYN": null,
+    "incomeIncludes": null,
+    "highSchool": null,
+    "leaseTerm": null,
+    "elevation": null,
+    "cropsIncludedYN": null,
+    "attic": null,
+    "subdivisionName": null,
+    "windowFeatures": ["Drapes/Window Coverings"],
+    "ownership": "Freehold Strata",
+    "woodedArea": null,
+    "middleOrJuniorSchoolDistrict": null,
+    "associationPhone2": null,
+    "buyerAgencyCompensation": null,
+    "heating": ["Baseboard"],
+    "frontageLength": null,
+    "virtualTourURLUnbranded": null,
+    "associationAmenities": null,
+    "propertySubType": ["Apartment"],
+    "hasCooling": null,
+    "belowGradeFinishedArea": null,
+    "hasElectricOnProperty": null,
+    "foundationArea": null,
+    "zoning": null,
+    "hoaFee": "C$283 monthly",
+    "livingAreaRange": null,
+    "basementYN": false,
+    "availabilityDate": null,
+    "waterBodyName": null,
+    "waterfrontFeatures": null,
+    "specialListingConditions": null,
+    "buildingAreaSource": null,
+    "taxAnnualAmount": 1348,
+    "parking": 1,
+    "hasView": true,
+    "virtualTour": null,
+    "securityFeatures": ["Smoke Detector(s)", "Fire Sprinkler System"],
+    "cooling": null,
+    "entryLocation": null,
+    "otherFacts": {},
+    "levels": null,
+    "ownershipType": null,
+    "basement": null,
+    "onMarketDate": 1680202354000,
+    "waterView": null,
+    "laundryFeatures": ["In Unit"],
+    "hasAttachedGarage": null,
+    "fencing": null,
+    "spaFeatures": null,
+    "bathrooms": 1,
+    "homeType": "Condo",
+    "isSeniorCommunity": null,
+    "municipality": null,
+    "bathroomsThreeQuarter": null,
+    "hasSpa": false,
+    "otherParking": null,
+    "associationFee2": null,
+    "parcelNumber": null,
+    "hasHeating": true,
+    "associationName2": null,
+    "hasRentControl": null,
+    "elementarySchoolDistrict": null,
+    "otherEquipment": ["Intercom"],
+    "parkingFeatures": ["Underground", "Guest", "Garage Door Opener"],
+    "buildingArea": "500",
+    "furnished": false,
+    "vegetation": null,
+    "patioAndPorchFeatures": null,
+    "buildingFeatures": null,
+    "builderName": null,
+    "highSchoolDistrict": null,
+    "propertyCondition": null,
+    "storiesTotal": null,
+    "yearBuiltEffective": null,
+    "fireplaces": 0,
+    "bathroomsOneQuarter": null,
+    "builderModel": null,
+    "gas": null,
+    "utilities": null,
+    "greenEnergyEfficient": null,
+    "landLeaseAmount": null,
+    "isNewConstruction": null,
+    "hasLandLease": false,
+    "pricePerSquareFoot": 1398,
+    "hasCarport": null,
+    "openParkingSpaces": null
+  },
+  "taxHistory": {},
+  "brokerId": null,
+  "stateId": 404365,
+  "streetAddress": "668 Citadel Parade #503",
+  "listingSubType": {
+    "is_FSBA": true,
+    "is_openHouse": false,
+    "is_newHome": false,
+    "is_pending": false,
+    "is_forAuction": false,
+    "is_foreclosure": false,
+    "is_bankOwned": false,
+    "is_FSBO": false,
+    "is_comingSoon": false
+  },
+  "solarPotential": null,
+  "dateSold": "",
+  "countyId": 404635,
+  "timeZone": "America/Los_Angeles",
+  "homeType": "CONDO",
+  "livingAreaUnits": "sqft",
+  "comingSoonOnMarketDate": null,
+  "rentZestimate": null,
+  "bathrooms": 1,
+  "annualHomeownersInsurance": 2936,
+  "state": "BC",
+  "propertyTypeDimension": "Condo",
+  "building": null,
+  "listed_by": {
+    "agent_reason": null,
+    "zpro": null,
+    "recent_sales": null,
+    "review_count": null,
+    "display_name": null,
+    "badge_type": null,
+    "business_name": null,
+    "rating_average": null,
+    "phone": null,
+    "zuid": null,
+    "image_url": null
+  },
+  "yearBuilt": 2007,
+  "brokerageName": "Heller Murch Realty",
+  "pageViewCount": 10,
+  "county": null,
+  "mortgageRates": null,
+  "attributionInfo": {
+    "lastUpdated": "2023-03-30 22:40:16",
+    "mlsName": "Vancouver / REBGV",
+    "listingAgreement": null,
+    "infoString1": "R2763982",
+    "infoString20": null,
+    "infoString14": null,
+    "infoString15": null,
+    "infoString11": "2023-06-14 16:54:06",
+    "infoString10": "The data relating to real estate on this web site comes in part from the MLS® Reciprocity program of the Real Estate Board of Greater Vancouver or the Fraser Valley Real Estate Board. Real estate listings held by participating real estate firms are marked with the MLS® Reciprocity logo and detailed information about the listing includes the name of the listing agent. This representation is based in whole or part on data generated by the Real Estate Board of Greater Vancouver or the Fraser Valley Real Estate Board which assumes no responsibility for its accuracy. The materials contained on this page may not be reproduced without the express written consent of the Real Estate Board of Greater Vancouver or the Fraser Valley Real Estate Board.",
+    "coAgentName": null,
+    "coAgentNumber": null,
+    "infoString5": "604-652-2345",
+    "providerLogo": "https://photos.zillowstatic.com/fp/87fe6c1223e943f1c5b00889395af595-zillow_web_95_35.jpg",
+    "infoString18": null,
+    "mlsDisclaimer": "The data relating to real estate on this web site comes in part from the MLS® Reciprocity program of the Real Estate Board of Greater Vancouver or the Fraser Valley Real Estate Board. Real estate listings held by participating real estate firms are marked with the MLS® Reciprocity logo and detailed information about the listing includes the name of the listing agent. This representation is based in whole or part on data generated by the Real Estate Board of Greater Vancouver or the Fraser Valley Real Estate Board which assumes no responsibility for its accuracy. The materials contained on this page may not be reproduced without the express written consent of the Real Estate Board of Greater Vancouver or the Fraser Valley Real Estate Board.",
+    "brokerPhoneNumber": "604-518-9682",
+    "lastChecked": "2023-06-14 16:54:06",
+    "buyerAgentName": null,
+    "infoString7": "604-518-9682",
+    "infoString6": "Heller Murch Realty Brokerage",
+    "infoString12": "2023-03-30 22:40:16",
+    "coAgentLicenseNumber": null,
+    "infoString13": null,
+    "listingOffices": [
+      {
+        "associatedOfficeType": "listOffice",
+        "officeName": "Heller Murch Realty"
+      }
+    ],
+    "buyerAgentMemberStateLicense": null,
+    "brokerName": "Heller Murch Realty Brokerage",
+    "trueStatus": null,
+    "attributionTitle": null,
+    "infoList2": [
+      {
+        "infoField1": "Amy Tsao PREC*",
+        "infoField2": "listAgent",
+        "infoField3": null
+      }
+    ],
+    "agentName": "Amy Tsao PREC*",
+    "mlsId": "R2763982",
+    "infoList1": [
+      {
+        "infoField1": "listOffice",
+        "infoField2": "Heller Murch Realty"
+      }
+    ],
+    "infoString4": "Amy Tsao PREC*",
+    "agentEmail": "realtoramytsao@gmail.com",
+    "listingAgents": [
+      {
+        "memberStateLicense": null,
+        "memberFullName": "Amy Tsao PREC*",
+        "associatedAgentType": "listAgent"
+      }
+    ],
+    "agentPhoneNumber": "604-652-2345",
+    "agentLicenseNumber": null,
+    "infoString17": null,
+    "infoString16": "realtoramytsao@gmail.com",
+    "buyerBrokerageName": null,
+    "infoString2": "Vancouver / REBGV",
+    "infoString3": "https://photos.zillowstatic.com/fp/87fe6c1223e943f1c5b00889395af595-zillow_web_95_35.jpg",
+    "infoString19": null
+  },
+  "monthlyHoaFee": 283,
+  "homeStatus": "FOR_SALE",
+  "homeFacts": null,
+  "latitude": 49.278397,
+  "datePosted": "2023-03-30",
+  "bedrooms": 1,
+  "nearbyHomes": [
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=139+Georgia+St+W+%2C+Vancouver%2C+BC+V6B1T9&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=iPMouf-sNAbsc29q6f_3IgfTj9c="
+        }
+      ],
+      "zpid": 314426849,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "139 Georgia St W",
+        "zipcode": "V6B1T9"
+      },
+      "price": 886000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    },
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=137+Georgia+St+W+%2C+Vancouver%2C+BC+V6B1T9&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=9E8BgQdX-QuiVg6lcKiOBv2iH8k="
+        }
+      ],
+      "zpid": 314426850,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "137 Georgia St W",
+        "zipcode": "V6B1T9"
+      },
+      "price": 861000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    },
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=133+Georgia+St+W+%2C+Vancouver%2C+BC+V6B1T9&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=DlovnFBMb5RkkCki_frnvfF7zco="
+        }
+      ],
+      "zpid": 314426851,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "133 Georgia St W",
+        "zipcode": "V6B1T9"
+      },
+      "price": 861000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    },
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=131+Georgia+St+W+%2C+Vancouver%2C+BC+V6B1T9&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=5O5RuC-O4Zfzzd3lQ5WqB8ZEDqs="
+        }
+      ],
+      "zpid": 314426852,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "131 Georgia St W",
+        "zipcode": "V6B1T9"
+      },
+      "price": 859000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    },
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=129+Georgia+St+W+%2C+Vancouver%2C+BC+V6B1T9&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=oD6tzVwrcJkznfbeFRHjU5TXIzM="
+        }
+      ],
+      "zpid": 314426853,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "129 Georgia St W",
+        "zipcode": "V6B1T9"
+      },
+      "price": 861000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    },
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=127+Georgia+St+W+%2C+Vancouver%2C+BC+V6B1T9&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=gQjNHuQVsryLuBIaq5dyxXK4jOk="
+        }
+      ],
+      "zpid": 314426854,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "127 Georgia St W",
+        "zipcode": "V6B1T9"
+      },
+      "price": 868000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    },
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=123+Georgia+St+W+%2C+Vancouver%2C+BC+V6B1T9&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=bexLKtwEOr_Z-ybd-wByhlIN2GA="
+        }
+      ],
+      "zpid": 314426855,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "123 Georgia St W",
+        "zipcode": "V6B1T9"
+      },
+      "price": 844000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    },
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=121+Georgia+St+W+%2C+Vancouver%2C+BC+V6B1T9&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=R33AnCIFzX8z_axnY4rksMbG2zs="
+        }
+      ],
+      "zpid": 314426856,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "121 Georgia St W",
+        "zipcode": "V6B1T9"
+      },
+      "price": 804000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    },
+    {
+      "miniCardPhotos": [
+        {
+          "url": "https://maps.googleapis.com/maps/api/streetview?location=122+Regiment+Sq%2C+Vancouver%2C+BC+V6B1W1&size=316x234&key=AIzaSyARFMLB1na-BBWf7_R3-5YOQQaHqEJf6RQ&source=outdoor&&signature=L0fZGwUGJ7SRvVJlO6KYawlRvFE="
+        }
+      ],
+      "zpid": 314426857,
+      "longitude": -123.11076,
+      "address": {
+        "city": "Vancouver",
+        "state": "BC",
+        "streetAddress": "122 Regiment Sq",
+        "zipcode": "V6B1W1"
+      },
+      "price": 981000,
+      "homeType": "CONDO",
+      "homeStatus": "OTHER",
+      "currency": "CAD",
+      "latitude": 49.278397
+    }
+  ],
+  "livingArea": 500,
+  "priceHistory": null,
+  "favoriteCount": 0,
+  "schools": [
+    {
+      "link": "https://www.greatschools.org/school?id=00206&state=WA",
+      "rating": null,
+      "totalCount": null,
+      "distance": 20.2,
+      "assigned": null,
+      "name": "Point Roberts Primary School",
+      "studentsPerTeacher": null,
+      "isAssigned": null,
+      "size": null,
+      "level": "Elementary",
+      "grades": "K-3",
+      "type": "Public"
+    }
+  ],
+  "zestimateHighPercent": null,
+  "mlsid": "R2763982",
+  "countyFIPS": null,
+  "city": "Vancouver",
+  "providerListingID": null,
+  "country": "CAN",
+  "currency": "CAD",
+  "isListedByOwner": false,
+  "contingentListingType": null
+}
