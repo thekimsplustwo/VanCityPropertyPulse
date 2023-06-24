@@ -1,23 +1,18 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { Stack, Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
-import {
-  themeColorPink,
-  themeColorBlue,
-  themeColorPurple,
-} from '../../styles/theme';
+import MoreOptions from '../../components/User/MoreOptions';
+import UserProfileEdit from '../../components/User/UserProfileEdit';
 
 const USER_EMAIL = 'johndoe@gmail.com';
 
 function MyPage() {
-  const navigate = useNavigate();
-  const location = useLocation();
   const user = useSelector(state => state.users.list);
+  const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,6 +21,8 @@ function MyPage() {
 
   return (
     <Main>
+      {modal && <UserProfileEdit setModal={setModal} />}
+
       <Box
         sx={{
           width: '100vw',
@@ -35,72 +32,10 @@ function MyPage() {
       >
         <Grid container spacing={4}>
           <Grid item="true" xs={4}>
-            <UserPageLeft user={user} />
+            <UserPageLeft modal={modal} setModal={setModal} />
           </Grid>
           <Grid item="true" xs={7.7}>
-            <Wrapper>
-              <Box sx={{ width: '100%' }}>
-                <Stack justifyContent="center" alignItems="center">
-                  <CenteredGrid>
-                    <Typography
-                      variant="h5"
-                      noWrap
-                      component="a"
-                      href="/home"
-                      sx={{
-                        mr: 2,
-                        display: { xs: 'none', md: 'flex' },
-                        fontWeight: 630,
-                        letterSpacing: '.3rem',
-                        color: themeColorPurple,
-                        textDecoration: 'none',
-                        fontSize: '1.1rem',
-                      }}
-                    >
-                      Search Available Properties
-                    </Typography>
-                  </CenteredGrid>
-                  <CenteredGrid>
-                    <Typography
-                      variant="h5"
-                      noWrap
-                      component="a"
-                      // href="/home"
-                      sx={{
-                        mr: 2,
-                        display: { xs: 'none', md: 'flex' },
-                        fontWeight: 630,
-                        letterSpacing: '.3rem',
-                        color: themeColorPurple,
-                        textDecoration: 'none',
-                        fontSize: '1.1rem',
-                      }}
-                    >
-                      List Your Property
-                    </Typography>
-                  </CenteredGrid>
-                  <CenteredGrid>
-                    <Typography
-                      variant="h5"
-                      noWrap
-                      component="a"
-                      href="/likes"
-                      sx={{
-                        mr: 2,
-                        display: { xs: 'none', md: 'flex' },
-                        fontWeight: 630,
-                        letterSpacing: '.3rem',
-                        color: themeColorPurple,
-                        textDecoration: 'none',
-                        fontSize: '1.1rem',
-                      }}
-                    >
-                      View Your Favourite Properties
-                    </Typography>
-                  </CenteredGrid>
-                </Stack>
-              </Box>
-            </Wrapper>
+            <MoreOptions />
           </Grid>
         </Grid>
       </Box>

@@ -1,13 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
-import { loginAsync, signupAsync, getUserAsync } from './thunks';
+import {
+  loginAsync,
+  signupAsync,
+  getUserAsync,
+  editProfileAsync,
+} from './thunks';
 
 const INITIAL_STATE = {
-  list: [],
+  list: {},
   getUser: REQUEST_STATE.IDLE,
   login: REQUEST_STATE.IDLE,
   signup: REQUEST_STATE.IDLE,
+  editProfile: REQUEST_STATE.IDLE,
   error: null,
 };
 
@@ -51,6 +57,22 @@ const usersSlice = createSlice({
       })
       .addCase(signupAsync.rejected, (state, action) => {
         state.addUser = REQUEST_STATE.REJECTED;
+        state.error = action.error;
+      })
+      .addCase(editProfileAsync.pending, state => {
+        state.editProfile = REQUEST_STATE.PENDING;
+        state.error = null;
+      })
+      .addCase(editProfileAsync.fulfilled, (state, action) => {
+        state.editProfile = REQUEST_STATE.FULFILLED;
+        state.list = action.payload;
+        // state.list.push(action.payload);
+        // state.list = state.list.map(user =>
+        //   user.email === action.payload.email ? action.payload : user
+        // );
+      })
+      .addCase(editProfileAsync.rejected, (state, action) => {
+        state.editProfile = REQUEST_STATE.REJECTED;
         state.error = action.error;
       });
   },

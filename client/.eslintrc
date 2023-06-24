@@ -55,6 +55,7 @@
     "dot-notation": "warn",
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
+    "import/no-relative-packages": "off",
     "no-await-in-loop": "error",
     "no-console": [
       "warn",
