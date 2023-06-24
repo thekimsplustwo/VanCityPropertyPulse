@@ -44,7 +44,6 @@ const pages = [
     path: '/likes',
   },
 ];
-// const user = useSelector(state => state.users.list);
 const settings = [
   { name: 'Profile', path: '/mypage' },
   { name: 'Logout', path: '/logout' },

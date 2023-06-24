@@ -11,7 +11,6 @@ import UserProfileEdit from '../../components/User/UserProfileEdit';
 const USER_EMAIL = 'johndoe@gmail.com';
 
 function MyPage() {
-  const user = useSelector(state => state.users.list);
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
 

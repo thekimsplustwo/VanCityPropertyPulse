@@ -4,7 +4,7 @@ import { REQUEST_STATE } from '../utils';
 import { getPropertyAsync } from './thunks';
 
 const INITIAL_STATE = {
-  list: [],
+  property: {},
   getProperty: REQUEST_STATE.IDLE,
   error: null,
 };
@@ -21,7 +21,7 @@ const propertySlice = createSlice({
       })
       .addCase(getPropertyAsync.fulfilled, (state, action) => {
         state.getProperty = REQUEST_STATE.FULFILLED;
-        state.list = action.payload;
+        state.property = action.payload;
       })
       .addCase(getPropertyAsync.rejected, (state, action) => {
         state.getProperty = REQUEST_STATE.REJECTED;
