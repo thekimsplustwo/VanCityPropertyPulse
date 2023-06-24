@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DummyHome from './pages/Home/DummyHome';
 import Home from './pages/Home/Home';
@@ -9,8 +9,6 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import ScrollTop from './components/ScrollTop/ScrollTop';
 import Compare from './pages/Compare/Compare';
-import EditUser from './pages/EditUser/EditUser';
-import { UserProvider } from './components/User/UserProvider';
 
 function Router() {
   return (
@@ -24,8 +22,6 @@ function Router() {
         <Route path="/properties/:zpid" element={<PropertyDetail />} />
         <Route path="/compare" element={<Compare />} />
         <Route path="/mypage" element={<MyPage />} />
-        {/* <Route path="/mypage/:userId" element={<MyPage />} /> */}
-        {/*<Route path="/edituser" element={<EditUser />} />*/}
         <Route path="/likes" element={<Likes />} />
       </Routes>
       <Footer />
