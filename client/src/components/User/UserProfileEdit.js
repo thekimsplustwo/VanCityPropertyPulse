@@ -5,7 +5,7 @@ import { TextField, Button } from '@mui/material';
 import { editProfileAsync } from '../../redux/users/thunks';
 
 function UserProfileEdit({ setModal }) {
-  const user = useSelector(state => state.users.list);
+  const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
@@ -176,42 +176,9 @@ const EditInput = styled.input`
   }
 `;
 
-const EditProfileButton = styled.div`
-  padding: 30px;
-  font-size: 20px;
-  font-weight: 600px;
-  color: lightblue;
-  opacity: 0.6;
-  padding: 2px;
-  &:hover {
-    opacity: 1;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 800px;
-  }
-  z-index: 99;
-`;
-
-const Section = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  alingn-content: center;
-  z-index: 99;
-`;
-
 const Title = styled.p`
   font-size: 28px;
   margin-bottom: 10px;
 `;
 
-const EditContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-  padding: 0 10px;
-  z-index: 99;
-`;
 export default UserProfileEdit;

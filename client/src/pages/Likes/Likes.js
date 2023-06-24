@@ -50,6 +50,7 @@ function Likes() {
 const Main = styled.div`
   padding-top: 5em;
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 `;

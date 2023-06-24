@@ -9,7 +9,8 @@ import {
 } from './thunks';
 
 const INITIAL_STATE = {
-  list: {},
+  list: [],
+  user: {},
   getUser: REQUEST_STATE.IDLE,
   login: REQUEST_STATE.IDLE,
   signup: REQUEST_STATE.IDLE,
@@ -29,7 +30,7 @@ const usersSlice = createSlice({
       })
       .addCase(getUserAsync.fulfilled, (state, action) => {
         state.getUser = REQUEST_STATE.FULFILLED;
-        state.list = action.payload;
+        state.user = action.payload;
       })
       .addCase(getUserAsync.rejected, (state, action) => {
         state.getUser = REQUEST_STATE.REJECTED;
@@ -41,7 +42,7 @@ const usersSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.login = REQUEST_STATE.FULFILLED;
-        state.list = action.payload;
+        state.user = action.payload;
       })
       .addCase(loginAsync.rejected, (state, action) => {
         state.login = REQUEST_STATE.REJECTED;
@@ -65,7 +66,7 @@ const usersSlice = createSlice({
       })
       .addCase(editProfileAsync.fulfilled, (state, action) => {
         state.editProfile = REQUEST_STATE.FULFILLED;
-        state.list = action.payload;
+        state.user = action.payload;
         // state.list.push(action.payload);
         // state.list = state.list.map(user =>
         //   user.email === action.payload.email ? action.payload : user
