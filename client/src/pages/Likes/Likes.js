@@ -24,6 +24,7 @@ function Likes() {
   }, [dispatch]);
 
   const handleDeleteAllLike = () => {
+    alert('All likes will be deleted');
     dispatch(deleteAllLikesAsync());
   };
 
@@ -37,8 +38,8 @@ function Likes() {
         <Header>Favourite Homes</Header>
         {/* create a button to clear all likes lists when clicked */}
         <MenuContainer>
-          <StyledHeartBorderIcon />
-          <MenuOpt onClick={() => handleDeleteAllLike()}>Clear All</MenuOpt>
+          <StyledHeartBorderIcon onClick={handleDeleteAllLike} />
+          <MenuOpt onClick={handleDeleteAllLike}>Clear All</MenuOpt>
         </MenuContainer>
         <PropertyGrid properties={properties} />
       </Main>

@@ -65,7 +65,7 @@ const likesSlice = createSlice({
       })
       .addCase(deleteAllLikesAsync.fulfilled, (state, action) => {
         state.deleteAllLikes = REQUEST_STATE.FULFILLED;
-        state.list = state.list.filter(item => item.zpid !== action.payload);
+        state.list = [];
       })
       .addCase(deleteAllLikesAsync.rejected, (state, action) => {
         state.deleteAllLikes = REQUEST_STATE.REJECTED;
