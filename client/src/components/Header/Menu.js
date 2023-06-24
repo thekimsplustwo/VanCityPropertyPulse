@@ -12,15 +12,20 @@ import {
   Tooltip,
   MenuItem,
   ListItemIcon,
+  styled as muiStyled,
 } from '@mui/material';
 
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { Link } from 'react-router-dom';
 import { themeColorPink } from '../../styles/theme';
+
+const StyledMenu = muiStyled(Menu)`
+  z-index: 100
+`;
 
 const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
@@ -34,7 +39,7 @@ const pages = [
   },
   {
     name: 'Likes',
-    icon: <NotificationsNoneIcon sx={navIconStyle} />,
+    icon: <FavoriteBorderIcon sx={navIconStyle} />,
     path: '/likes',
   },
 ];
@@ -103,7 +108,7 @@ function ResponsiveAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
+            <StyledMenu
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -129,7 +134,7 @@ function ResponsiveAppBar() {
                   </Link>
                 </MenuItem>
               ))}
-            </Menu>
+            </StyledMenu>
           </Box>
           <HomeIcon
             sx={{
@@ -182,12 +187,12 @@ function ResponsiveAppBar() {
                 <Avatar alt="User" src="/static/images/avatar/2.jpg" />
               </IconButton>
             </Tooltip>
-            <Menu
+            <StyledMenu
               sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: 'top',
+                vertical: 'bottom',
                 horizontal: 'right',
               }}
               keepMounted
@@ -205,7 +210,7 @@ function ResponsiveAppBar() {
                   </Link>
                 </MenuItem>
               ))}
-            </Menu>
+            </StyledMenu>
           </Box>
         </Toolbar>
       </Container>
