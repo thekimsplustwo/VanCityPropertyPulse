@@ -1,26 +1,18 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import ImageList from '@mui/material/ImageList';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import UserCard from '../../components/User/UserCard';
-import UserFavourites from '../../components/User/UserFavourites';
-import UserInfo from '../../components/User/UserInfo';
 import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
-// import { useUser } from '../../components/User/UserProvider';
+import MoreOptions from '../../components/User/MoreOptions';
+import UserProfileEdit from '../../components/User/UserProfileEdit';
 
 const USER_EMAIL = 'johndoe@gmail.com';
-// const USER_EMAIL = 'pukku@ubc.ca';
 
 function MyPage() {
-  const navigate = useNavigate();
-  const location = useLocation();
   const user = useSelector(state => state.users.list);
-  console.log('my page user ', user);
+  const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -29,6 +21,8 @@ function MyPage() {
 
   return (
     <Main>
+      {modal && <UserProfileEdit setModal={setModal} />}
+
       <Box
         sx={{
           width: '100vw',
@@ -38,14 +32,10 @@ function MyPage() {
       >
         <Grid container spacing={4}>
           <Grid item="true" xs={4}>
-            <UserPageLeft />
+            <UserPageLeft modal={modal} setModal={setModal} />
           </Grid>
           <Grid item="true" xs={7.7}>
-            <Wrapper>
-              <ImageList cols={3}>
-                <UserFavourites />
-              </ImageList>
-            </Wrapper>
+            <MoreOptions />
           </Grid>
         </Grid>
       </Box>
@@ -71,4 +61,21 @@ const Wrapper = styled.div`
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+`;
+
+const CenteredGrid = styled(Grid)`
+  border-radius: 15px;
+  width: 80%;
+  height: 15vh;
+  --Grid-borderWidth: 2px;
+  border: var(--Grid-borderWidth) solid #f8c9cd;
+  background-color: #feedef;
+  margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

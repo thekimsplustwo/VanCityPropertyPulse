@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import UserCard from './UserCard';
 import UserInfo from './UserInfo';
 
-function UserPageLeft() {
+function UserPageLeft({ setModal }) {
   return (
     <div>
       <Wrapper>
         <UserCard />
       </Wrapper>
       <Wrapper>
-        <UserInfo />
+        <UserInfo setModal={setModal} />
       </Wrapper>
     </div>
   );

@@ -19,7 +19,7 @@ export const signupAsync = createAsyncThunk(actionTypes.SIGNUP, async email => {
 
 export const editProfileAsync = createAsyncThunk(
   actionTypes.EDIT_PROFILE,
-  async (email, region) => {
-    return UserService.editProfile(email, region);
+  async formData => {
+    return UserService.editProfile(formData);
   }
 );

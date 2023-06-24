@@ -45,27 +45,21 @@ const login = async email => {
   return response.json();
 };
 
-const editProfile = async (email, region) => {
-  console.log('calling editProfile');
+const editProfile = async formData => {
   const url = `${BASE_URL}/users`;
+  const { email } = formData;
 
-  console.log('user email is ', email);
-  console.log('updated region is', region);
-
-  const response = await axios.patch(
-    url,
-    {
-      region,
-    },
-    {
+  try {
+    const response = await axios.patch(url, formData, {
       headers: {
         Authorization: `Bearer ${email}`,
         'Content-Type': 'application/json',
       },
-    }
-  );
-
-  return response.data;
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 export default {
