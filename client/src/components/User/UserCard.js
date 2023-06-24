@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import styled from 'styled-components';
 
 function UserCard() {
-  const user = useSelector(state => state.users.list);
+  const user = useSelector(state => state.users.user);
   return (
     <Margin>
       <div>
