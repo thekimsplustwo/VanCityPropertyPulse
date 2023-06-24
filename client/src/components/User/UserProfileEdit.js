@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { TextField, Button } from '@mui/material';
 import { editProfileAsync } from '../../redux/users/thunks';
 
 function UserProfileEdit({ setModal }) {
@@ -25,17 +26,8 @@ function UserProfileEdit({ setModal }) {
     }));
   };
 
-  // const handleSubmit = e => {
-  //   console.log('got here');
-  //   e.preventDefault();
-  //   const { email, region } = formData;
-  //   dispatch(editProfileAsync(email, region));
-  //   // navigate('/mypage');
-  // };
-
   const handleSaveBtn = () => {
     setModal(false);
-    console.log('dispatch ', formData);
     dispatch(editProfileAsync(formData));
   };
 
@@ -50,33 +42,71 @@ function UserProfileEdit({ setModal }) {
         <Main>
           <form onSubmit={handleSaveBtn}>
             <FormContainer>
-              <h1>Edit Profile</h1>
-              <Section>
-                <Title>phone number</Title>
-                <EditContainer>
-                  <EditInput
-                    type="text"
-                    value={formData.phoneNumber}
-                    label="phoneNumber"
-                    name="phoneNumber"
-                    onChange={e => handleInputChange(e.currentTarget)}
-                  />
-                </EditContainer>
-              </Section>
-              <Section>
-                <Title>region</Title>
-                <EditContainer>
-                  <EditInput
-                    type="text"
-                    value={formData.region}
-                    label="Region"
-                    name="region"
-                    onChange={e => handleInputChange(e.currentTarget)}
-                  />
-                </EditContainer>
-              </Section>
+              <Title>Edit Profile</Title>
+              <TextField
+                type="text"
+                label="First Name"
+                disabled
+                name="firstName"
+                value={formData.firstName}
+              />
+
+              <TextField
+                type="text"
+                label="Last Name"
+                disabled
+                name="lastName"
+                value={formData.lastName}
+              />
+
+              <TextField
+                type="number"
+                label="Age"
+                disabled
+                value={formData.age}
+                name="age"
+              />
+
+              <TextField
+                type="email"
+                label="Email"
+                disabled
+                name="email"
+                value={formData.email}
+              />
+
+              <TextField
+                type="text"
+                label="Phone Number"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                inputProps={{ maxLength: 10 }}
+                onChange={e => handleInputChange(e.currentTarget)}
+              />
+
+              <TextField
+                type="text"
+                label="Region"
+                name="region"
+                value={formData.region}
+                onChange={e => handleInputChange(e.currentTarget)}
+              />
             </FormContainer>
-            <EditProfileButton onClick={handleSaveBtn}>Save</EditProfileButton>
+            <Button
+              sx={{ margin: '8px' }}
+              variant="outlined"
+              color="error"
+              onClick={handleSaveBtn}
+            >
+              Save
+            </Button>
+            <Button
+              sx={{ margin: '8px' }}
+              variant="outlined"
+              onClick={() => setModal(false)}
+            >
+              Cancel
+            </Button>
           </form>
         </Main>
       </ModalWrapper>
@@ -105,7 +135,9 @@ const ModalWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
-  padding: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -169,17 +201,9 @@ const Section = styled.div`
   z-index: 99;
 `;
 
-const Title = styled.span`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  alingn-content: center;
-  margin-bottom: 12px;
-  padding: 0 13px;
-  font-size: 22px;
-  letter-spacing: 4px;
-  font-weight: 670px;
-  line-height: 1.6;
+const Title = styled.p`
+  font-size: 28px;
+  margin-bottom: 10px;
 `;
 
 const EditContainer = styled.div`

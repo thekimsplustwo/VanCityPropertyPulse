@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-// import Grid from '@mui/material/Unstable_Grid2';
 import UserCard from './UserCard';
 import UserInfo from './UserInfo';
 

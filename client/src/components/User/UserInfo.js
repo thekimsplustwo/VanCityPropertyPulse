@@ -40,9 +40,13 @@ export default UserInfo;
 
 const Margin = styled.div`
   margin: 20px;
+  height: 25vh;
   font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Bold = styled.b`

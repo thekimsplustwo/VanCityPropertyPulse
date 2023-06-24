@@ -1,10 +1,7 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
 import styled from 'styled-components';
 import { Stack, Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { getUserAsync } from '../../redux/users/thunks';
 import { themeColorPurple } from '../../styles/theme';
 
 function MoreOptions() {
@@ -20,9 +17,8 @@ function MoreOptions() {
               href="/home"
               sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontWeight: 630,
-                letterSpacing: '.3rem',
+                fontWeight: 600,
+                letterSpacing: '.2rem',
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
@@ -36,12 +32,10 @@ function MoreOptions() {
               variant="h5"
               noWrap
               component="a"
-              // href="/home"
               sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontWeight: 630,
-                letterSpacing: '.3rem',
+                fontWeight: 600,
+                letterSpacing: '.2rem',
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
@@ -58,9 +52,8 @@ function MoreOptions() {
               href="/likes"
               sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
-                fontWeight: 630,
-                letterSpacing: '.3rem',
+                fontWeight: 600,
+                letterSpacing: '.2rem',
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
@@ -77,13 +70,13 @@ function MoreOptions() {
 
 export default MoreOptions;
 
-const Main = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 30px;
-`;
+// const Main = styled.div`
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   padding: 30px;
+// `;
 
 const Wrapper = styled.div`
   border-radius: 15px;
@@ -96,17 +89,18 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  height: 61vh;
 `;
 
 const CenteredGrid = styled(Grid)`
   border-radius: 15px;
   width: 80%;
-  height: 15vh;
+  height: 10vh;
   --Grid-borderWidth: 2px;
   border: var(--Grid-borderWidth) solid #f8c9cd;
   background-color: #feedef;
-  margin-bottom: 50px;
+  margin-top: 35px;
+  margin-bottom: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
