@@ -20,12 +20,20 @@ function Footer() {
           </div>
           <FooterRight>
             <FooterIcon>
-              <a href="https://github.com/czhaoca/TheKimsPlusTwo">
+              <a
+                href="https://github.com/czhaoca/TheKimsPlusTwo"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <GitHubIcon style={{ fontSize: '40px' }} />
               </a>
             </FooterIcon>
             <FooterIcon>
-              <a href="https://blogs.ubc.ca/cpsc4552023s">
+              <a
+                href="https://blogs.ubc.ca/cpsc4552023s"
+                target="_blank"
+                rel="noreferrer"
+              >
                 <CoPresentIcon style={{ fontSize: '40px' }} />
               </a>
             </FooterIcon>
