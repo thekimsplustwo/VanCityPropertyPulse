@@ -4,10 +4,13 @@ import Button from '@mui/material/Button';
 import styled from 'styled-components';
 
 function formatPhoneNumber(phoneNumber) {
-  const areaCode = phoneNumber.slice(0, 3);
-  const firstPart = phoneNumber.slice(3, 6);
-  const secondPart = phoneNumber.slice(6);
-  return `(${areaCode}) ${firstPart}-${secondPart}`;
+  if (phoneNumber !== undefined) {
+    const areaCode = phoneNumber.slice(0, 3);
+    const firstPart = phoneNumber.slice(3, 6);
+    const secondPart = phoneNumber.slice(6);
+    return `(${areaCode}) ${firstPart}-${secondPart}`;
+  }
+  return phoneNumber;
 }
 
 function UserInfo({ setModal }) {
@@ -15,14 +18,20 @@ function UserInfo({ setModal }) {
   return (
     <Margin>
       <Bold>First Name: </Bold> {user.firstName}
+      <br />
       <Bold>Last Name: </Bold> {user.lastName}
+      <br />
       <Bold>Age: </Bold> {user.age}
+      <br />
       <Bold>Email: </Bold> {user.email}
-      <Bold>Phone Number: </Bold> {user.phoneNumber}
+      <br />
+      <Bold>Phone Number: </Bold> {formatPhoneNumber(user.phoneNumber)}
+      <br />
       <Bold>Region: </Bold> {user.region}
-      <EditProfileButton onClick={() => setModal(true)}>
+      <br />
+      <Button variant="outlined" onClick={() => setModal(true)}>
         Edit Profile
-      </EditProfileButton>
+      </Button>
     </Margin>
   );
 }
