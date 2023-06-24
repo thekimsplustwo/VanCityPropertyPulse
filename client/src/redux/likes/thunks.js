@@ -17,7 +17,7 @@ export const addLikesAsync = createAsyncThunk(
     // Fetch likes again after successfully adding a like
     thunkAPI.dispatch(getLikesAsync());
 
-    return response;
+    return response.properties;
   }
 );
 
@@ -30,5 +30,17 @@ export const deleteLikesAsync = createAsyncThunk(
     thunkAPI.dispatch(getLikesAsync());
 
     return response;
+  }
+);
+
+export const deleteAllLikesAsync = createAsyncThunk(
+  actionTypes.DELETE_ALL_LIKES,
+  async thunkAPI => {
+    const response = await LikesService.deleteAllLikes();
+
+    // This might not be necessary
+    // thunkAPI.dispatch(getLikesAsync());
+
+    return response; // if your backend returns the updated list of likes
   }
 );

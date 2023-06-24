@@ -11,5 +11,6 @@ likesRouter.delete(
   verifyToken,
   asyncWrap(likesController.removeLikes)
 );
+likesRouter.delete('/', verifyToken, asyncWrap(likesController.removeAllLikes));
 
 export default likesRouter;

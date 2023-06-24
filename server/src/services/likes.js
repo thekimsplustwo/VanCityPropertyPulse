@@ -19,4 +19,8 @@ const removeLikes = async (email, zpid) => {
   return likesModel.removeLikes(email, zpid);
 };
 
-export { getLikes, addLikes, removeLikes };
+const removeAllLikes = async email => {
+  return likesModel.removeAllLikes(email);
+};
+
+export { getLikes, addLikes, removeLikes, removeAllLikes };

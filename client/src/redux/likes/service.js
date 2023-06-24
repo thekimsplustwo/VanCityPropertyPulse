@@ -17,6 +17,24 @@ const getLikes = async () => {
   return data;
 };
 
+const deleteAllLikes = async () => {
+  const response = await fetch(`${BASE_URL}/likes`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
+      Authorization: 'Bearer johndoe@gmail.com',
+    },
+  });
+  // console.log('deleteAllLikes is clicked, processing in service.js ');
+  const data = await response.json();
+  if (!response.ok) {
+    const errorMsg = data?.message;
+    throw new Error(errorMsg);
+  }
+  return data;
+};
+
 const addLikes = async property => {
   const response = await fetch(`${BASE_URL}/likes`, {
     method: 'POST',
@@ -56,4 +74,5 @@ export default {
   getLikes,
   addLikes,
   deleteLikes,
+  deleteAllLikes,
 };
