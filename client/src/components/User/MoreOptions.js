@@ -89,7 +89,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 61vh;
+  height: 62vh;
 `;
 
 const CenteredGrid = styled(Grid)`
