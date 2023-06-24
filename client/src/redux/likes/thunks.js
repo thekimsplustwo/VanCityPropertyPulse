@@ -17,7 +17,7 @@ export const addLikesAsync = createAsyncThunk(
     // Fetch likes again after successfully adding a like
     thunkAPI.dispatch(getLikesAsync());
 
-    return response;
+    return response.properties;
   }
 );
 
