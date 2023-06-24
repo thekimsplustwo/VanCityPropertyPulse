@@ -174,11 +174,11 @@ function DetailedInfo({ propertyDetails }) {
               marginTop: '3rem',
             }}
           >
-            <p>
+            <StyledText>
               <InfoRow>
                 <BoldHeader>Overview </BoldHeader> {description}
               </InfoRow>
-            </p>
+            </StyledText>
           </div>
           {/* <ThemeProvider theme={theme}> */}
           <Button
@@ -202,6 +202,10 @@ const InfoRow = styled.p`
   margin-bottom: 10px;
 `;
 
+const StyledText = styled.p`
+  font-size: 17px;
+  line-height: 1.5;
+`;
 const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;
