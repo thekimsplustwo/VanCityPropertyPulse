@@ -1,13 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
-import { addLikesAsync, deleteLikesAsync, getLikesAsync } from './thunks';
+import {
+  addLikesAsync,
+  deleteLikesAsync,
+  getLikesAsync,
+  deleteAllLikesAsync,
+} from './thunks';
 
 const INITIAL_STATE = {
   list: [],
   getLikes: REQUEST_STATE.IDLE,
   addLikes: REQUEST_STATE.IDLE,
   deleteLikes: REQUEST_STATE.IDLE,
+  deleteAllLikes: REQUEST_STATE.IDLE,
   error: null,
 };
 
@@ -51,6 +57,18 @@ const likesSlice = createSlice({
       })
       .addCase(deleteLikesAsync.rejected, (state, action) => {
         state.deleteLikes = REQUEST_STATE.REJECTED;
+        state.error = action.error;
+      })
+      .addCase(deleteAllLikesAsync.pending, state => {
+        state.deleteAllLikes = REQUEST_STATE.PENDING;
+        state.error = null;
+      })
+      .addCase(deleteAllLikesAsync.fulfilled, (state, action) => {
+        state.deleteAllLikes = REQUEST_STATE.FULFILLED;
+        state.list = [];
+      })
+      .addCase(deleteAllLikesAsync.rejected, (state, action) => {
+        state.deleteAllLikes = REQUEST_STATE.REJECTED;
         state.error = action.error;
       });
   },

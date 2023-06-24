@@ -28,7 +28,17 @@ const removeLikes = (email, zpid) => {
       likes[userIndex].properties.splice(propertyIndex, 1);
     }
   }
+  console.log(`delete success ${Date.now().toString()}`);
   return likes.find(user => user.email === email);
 };
 
-export { getLikes, addLikes, removeLikes };
+const removeAllLikes = email => {
+  const userIndex = likes.findIndex(userLikes => userLikes.email === email);
+  if (userIndex !== -1) {
+    likes[userIndex].properties.splice(0, likes[userIndex].properties.length);
+  }
+  console.log(`delete all success`);
+  return likes.find(user => user.email === email);
+};
+
+export { getLikes, addLikes, removeLikes, removeAllLikes };
