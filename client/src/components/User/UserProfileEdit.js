@@ -95,17 +95,16 @@ function UserProfileEdit({ setModal }) {
             <Button
               sx={{ margin: '8px' }}
               variant="outlined"
-              color="error"
-              onClick={handleSaveBtn}
-            >
-              Save
-            </Button>
-            <Button
-              sx={{ margin: '8px' }}
-              variant="outlined"
               onClick={() => setModal(false)}
             >
               Cancel
+            </Button>
+            <Button
+              sx={{ margin: '8px' }}
+              variant="contained"
+              onClick={handleSaveBtn}
+            >
+              Save
             </Button>
           </form>
         </Main>
