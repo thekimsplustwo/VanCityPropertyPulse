@@ -3,7 +3,11 @@ import { useDispatch } from 'react-redux';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import styled from 'styled-components';
-import { getUserAsync } from '../../redux/users/thunks';
+import {
+  getUserAsync,
+  loginAsync,
+  signupAsync,
+} from '../../redux/users/thunks';
 
 function Login() {
   const [user, setUser] = useState([]);
@@ -29,7 +33,13 @@ function Login() {
         )
         .then(res => {
           const USER_EMAIL = res.data.email;
-          dispatch(getUserAsync(USER_EMAIL));
+          if (!dispatch(getUserAsync(USER_EMAIL))) {
+            dispatch(signupAsync(USER_EMAIL));
+            console.log('Signup successful!');
+          } else {
+            dispatch(loginAsync(USER_EMAIL));
+            console.log('Login successful!');
+          }
         })
         .catch(err => console.error(err));
     }

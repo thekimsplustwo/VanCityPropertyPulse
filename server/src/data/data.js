@@ -11,6 +11,7 @@ export const users = [
     lastName: 'Kim',
     age: 7,
     email: JY_EMAIL,
+    // email: 'pukku@gmail.com',
     phoneNumber: '7787787788',
     region: 'Point Grey',
     photo: 'https://storage.googleapis.com/pukkukim/%E1%84%88%E1%85%AE.jpg',
