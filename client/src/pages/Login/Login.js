@@ -11,8 +11,8 @@ import {
 } from '../../redux/users/thunks';
 import {
   saveAccessToken,
-  getAccessToken,
   removeAccessToken,
+  removeLoggedEmail,
 } from '../../utils/storage';
 
 function Login() {
@@ -22,11 +22,12 @@ function Login() {
 
   const login = useGoogleLogin({
     onSuccess: setUser,
-    onError: console.error('Unable to login via Google'),
+    // onError: console.error('Unable to login via Google'),
   });
 
   useEffect(() => {
     removeAccessToken();
+    removeLoggedEmail();
     if (user) {
       axios
         .get(
@@ -39,9 +40,7 @@ function Login() {
           }
         )
         .then(res => {
-          console.log('before saving token: ', getAccessToken());
           saveAccessToken(user.access_token);
-          console.log('after saving token: ', getAccessToken());
           const USER_EMAIL = res.data.email;
           if (!dispatch(getUserAsync(USER_EMAIL))) {
             dispatch(signupAsync(USER_EMAIL));

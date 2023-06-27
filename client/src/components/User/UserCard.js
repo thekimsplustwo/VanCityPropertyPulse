@@ -11,7 +11,7 @@ function UserCard() {
   const user = useSelector(state => state.users.user);
   const navigate = useNavigate();
 
-  const logOut = () => {
+  const logout = () => {
     const token = getAccessToken();
     googleLogout();
     logoutAsync(token);
@@ -27,7 +27,7 @@ function UserCard() {
           Welcome, <Bold>{user.firstName}</Bold>!❤️
         </p>
       </div>
-      <Button variant="outlined" color="error" onClick={logOut}>
+      <Button variant="outlined" color="error" onClick={logout}>
         LogOut
       </Button>
     </Margin>

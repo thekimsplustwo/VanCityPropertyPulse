@@ -8,5 +8,16 @@ export const getAccessToken = () => {
 
 export const removeAccessToken = () => {
   localStorage.removeItem('accessToken');
-  // localStorage.clear();
+};
+
+export const saveLoggedEmail = loggedEmail => {
+  localStorage.setItem('loggedEmail', loggedEmail);
+};
+
+export const getLoggedEmail = () => {
+  return localStorage.getItem('loggedEmail');
+};
+
+export const removeLoggedEmail = () => {
+  localStorage.removeItem('loggedEmail');
 };

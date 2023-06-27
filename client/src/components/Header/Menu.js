@@ -14,7 +14,6 @@ import {
   ListItemIcon,
   styled as muiStyled,
 } from '@mui/material';
-
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -23,6 +22,7 @@ import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { themeColorPink } from '../../styles/theme';
+import { getAccessToken } from '../../utils/storage';
 
 const StyledMenu = muiStyled(Menu)`
   z-index: 100
@@ -46,8 +46,10 @@ const pages = [
 ];
 const settings = [
   { name: 'Profile', path: '/mypage' },
-  // TODO(JY): Toggle between login/logout
-  { name: 'Login', path: '/login' },
+  // TODO(JY): Incomplete; currently, need to refresh once.
+  getAccessToken() === null
+    ? { name: 'Login', path: '/login' }
+    : { name: 'Logout', path: '/logout' },
 ];
 
 function ResponsiveAppBar() {
