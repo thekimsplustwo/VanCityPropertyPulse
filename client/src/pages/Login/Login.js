@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import {
   getUserAsync,
   loginAsync,
@@ -12,11 +13,11 @@ import {
 function Login() {
   const [user, setUser] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const login = useGoogleLogin({
-    onSuccess: codeResponse => {
-      setUser(codeResponse);
-    },
+    onSuccess: setUser,
+    // onError: console.error('Unable to login via Google'),
   });
 
   useEffect(() => {
@@ -39,6 +40,7 @@ function Login() {
           } else {
             dispatch(loginAsync(USER_EMAIL));
             console.log('Login successful!');
+            navigate('/mypage');
           }
         })
         .catch(err => console.error(err));
