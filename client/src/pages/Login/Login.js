@@ -9,7 +9,11 @@ import {
   loginAsync,
   signupAsync,
 } from '../../redux/users/thunks';
-import { saveAccessToken, getAccessToken } from '../../utils/storage';
+import {
+  saveAccessToken,
+  getAccessToken,
+  removeAccessToken,
+} from '../../utils/storage';
 
 function Login() {
   const [user, setUser] = useState(false);
@@ -18,10 +22,11 @@ function Login() {
 
   const login = useGoogleLogin({
     onSuccess: setUser,
-    // onError: console.error('Unable to login via Google'),
+    onError: console.error('Unable to login via Google'),
   });
 
   useEffect(() => {
+    removeAccessToken();
     if (user) {
       axios
         .get(
@@ -53,13 +58,9 @@ function Login() {
 
   return (
     <Main>
-      <GoogleLogin
-        shape="pill"
-        width="250px"
-        context="signin"
-        text="signin_with"
-        onSuccess={login}
-      />
+      <LoginButton type="button" onClick={() => login()}>
+        Sign in with Google 🚀
+      </LoginButton>
     </Main>
   );
 }
@@ -73,4 +74,11 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
   padding: 30px;
+`;
+
+const LoginButton = styled.button`
+  width: 250px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
 `;
