@@ -25,10 +25,6 @@ function MenuItems(props) {
         <ReplyIcon />
         <MenuOpt>Share</MenuOpt>
       </MenuContainer>
-      <MenuContainer>
-        <MapIcon />
-        <MenuOpt>Map</MenuOpt>
-      </MenuContainer>
     </Wrapper>
   );
 }
