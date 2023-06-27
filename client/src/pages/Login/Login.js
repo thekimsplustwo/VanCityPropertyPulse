@@ -9,9 +9,10 @@ import {
   loginAsync,
   signupAsync,
 } from '../../redux/users/thunks';
+import { saveAccessToken } from '../../utils/storage';
 
 function Login() {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -33,6 +34,7 @@ function Login() {
           }
         )
         .then(res => {
+          saveAccessToken(user.access_token);
           const USER_EMAIL = res.data.email;
           if (!dispatch(getUserAsync(USER_EMAIL))) {
             dispatch(signupAsync(USER_EMAIL));

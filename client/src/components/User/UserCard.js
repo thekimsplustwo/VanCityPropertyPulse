@@ -3,13 +3,18 @@ import { useSelector } from 'react-redux';
 import { googleLogout } from '@react-oauth/google';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { logoutAsync } from '../../redux/users/thunks';
+import { getAccessToken } from '../../utils/storage';
 
 function UserCard() {
   const user = useSelector(state => state.users.user);
+  const navigate = useNavigate();
 
-  // TODO(JY): Logout locally, as well
   const logOut = () => {
     googleLogout();
+    logoutAsync();
+    navigate('/login');
   };
 
   return (
@@ -20,7 +25,6 @@ function UserCard() {
           Welcome, <Bold>{user.firstName}</Bold>!❤️
         </p>
       </div>
-      {/* TODO(JY): The user will be logged out when clicking this button */}
       <Button variant="outlined" color="error" onClick={logOut}>
         LogOut
       </Button>

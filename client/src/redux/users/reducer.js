@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
 import {
   loginAsync,
+  logoutAsync,
   signupAsync,
   getUserAsync,
   editProfileAsync,
@@ -13,6 +14,7 @@ const INITIAL_STATE = {
   user: {},
   getUser: REQUEST_STATE.IDLE,
   login: REQUEST_STATE.IDLE,
+  logout: REQUEST_STATE.IDLE,
   signup: REQUEST_STATE.IDLE,
   editProfile: REQUEST_STATE.IDLE,
   error: null,
@@ -48,6 +50,18 @@ const usersSlice = createSlice({
         state.login = REQUEST_STATE.REJECTED;
         state.error = action.error;
       })
+      .addCase(logoutAsync.pending, state => {
+        state.logout = REQUEST_STATE.PENDING;
+        state.error = null;
+      })
+      .addCase(logoutAsync.fulfilled, (state, action) => {
+        state.logout = REQUEST_STATE.FULFILLED;
+        state.user = action.payload;
+      })
+      .addCase(logoutAsync.rejected, (state, action) => {
+        state.logout = REQUEST_STATE.REJECTED;
+        state.error = action.error;
+      })
       .addCase(signupAsync.pending, state => {
         state.addUser = REQUEST_STATE.PENDING;
         state.error = null;
@@ -67,10 +81,6 @@ const usersSlice = createSlice({
       .addCase(editProfileAsync.fulfilled, (state, action) => {
         state.editProfile = REQUEST_STATE.FULFILLED;
         state.user = action.payload;
-        // state.list.push(action.payload);
-        // state.list = state.list.map(user =>
-        //   user.email === action.payload.email ? action.payload : user
-        // );
       })
       .addCase(editProfileAsync.rejected, (state, action) => {
         state.editProfile = REQUEST_STATE.REJECTED;

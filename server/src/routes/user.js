@@ -15,5 +15,6 @@ userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
 userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
 userRouter.get('/', verifyToken, asyncWrap(userController.login));
 userRouter.post('/', asyncWrap(userController.signup));
+userRouter.post('/logout', verifyToken, asyncWrap(userController.logout));
 
 export default userRouter;

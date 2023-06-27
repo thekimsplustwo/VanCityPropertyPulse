@@ -13,6 +13,10 @@ export const loginAsync = createAsyncThunk(actionTypes.LOGIN, async email => {
   return UserService.login({ email });
 });
 
+export const logoutAsync = createAsyncThunk(actionTypes.LOGOUT, async () => {
+  return UserService.logout();
+});
+
 export const signupAsync = createAsyncThunk(actionTypes.SIGNUP, async email => {
   return UserService.signup({ email });
 });

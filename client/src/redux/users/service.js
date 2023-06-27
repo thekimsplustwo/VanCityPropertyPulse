@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { BASE_URL } from '../../config';
+import { getAccessToken, removeAccessToken } from '../../utils/storage';
 
 const signup = async email => {
   const response = await fetch(`${BASE_URL}/users`, {
@@ -45,6 +46,18 @@ const login = async email => {
   return response.json();
 };
 
+const logout = async () => {
+  const accessToken = getAccessToken();
+
+  await axios.post(`${BASE_URL}/users/logout`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+
+  removeAccessToken();
+};
+
 const editProfile = async formData => {
   const url = `${BASE_URL}/users`;
   const { email } = formData;
@@ -65,6 +78,7 @@ const editProfile = async formData => {
 export default {
   signup,
   login,
+  logout,
   getUser,
   editProfile,
 };

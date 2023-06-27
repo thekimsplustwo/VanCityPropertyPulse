@@ -10,8 +10,12 @@ const login = async emailAddress => {
   //
 };
 
+const logout = async () => {
+  //
+};
+
 const findByEmail = async email => {
   return users.find(user => user.email === email);
 };
 
-export { getUserInfo, login, findByEmail };
+export { getUserInfo, login, logout, findByEmail };

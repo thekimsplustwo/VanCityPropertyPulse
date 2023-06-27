@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { getUserAsync } from '../../redux/users/thunks';
+import { getUserAsync, logoutAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
 import MoreOptions from '../../components/User/MoreOptions';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
