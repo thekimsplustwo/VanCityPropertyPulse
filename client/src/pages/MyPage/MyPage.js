@@ -24,7 +24,7 @@ function MyPage() {
 
       <Box
         sx={{
-          width: '100vw',
+          width: '100%',
           height: '100vh',
           paddingTop: '5em',
         }}
