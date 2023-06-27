@@ -9,7 +9,7 @@ import {
   loginAsync,
   signupAsync,
 } from '../../redux/users/thunks';
-import { saveAccessToken } from '../../utils/storage';
+import { saveAccessToken, getAccessToken } from '../../utils/storage';
 
 function Login() {
   const [user, setUser] = useState(false);
@@ -34,7 +34,9 @@ function Login() {
           }
         )
         .then(res => {
+          console.log('before saving token: ', getAccessToken());
           saveAccessToken(user.access_token);
+          console.log('after saving token: ', getAccessToken());
           const USER_EMAIL = res.data.email;
           if (!dispatch(getUserAsync(USER_EMAIL))) {
             dispatch(signupAsync(USER_EMAIL));

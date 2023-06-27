@@ -13,8 +13,8 @@ export const loginAsync = createAsyncThunk(actionTypes.LOGIN, async email => {
   return UserService.login({ email });
 });
 
-export const logoutAsync = createAsyncThunk(actionTypes.LOGOUT, async () => {
-  return UserService.logout();
+export const logoutAsync = createAsyncThunk(actionTypes.LOGOUT, async token => {
+  UserService.logout(token);
 });
 
 export const signupAsync = createAsyncThunk(actionTypes.SIGNUP, async email => {

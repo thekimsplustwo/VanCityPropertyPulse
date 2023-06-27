@@ -5,15 +5,17 @@ import Button from '@mui/material/Button';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { logoutAsync } from '../../redux/users/thunks';
-import { getAccessToken } from '../../utils/storage';
+import { getAccessToken, removeAccessToken } from '../../utils/storage';
 
 function UserCard() {
   const user = useSelector(state => state.users.user);
   const navigate = useNavigate();
 
   const logOut = () => {
+    const token = getAccessToken();
     googleLogout();
-    logoutAsync();
+    logoutAsync(token);
+    removeAccessToken();
     navigate('/login');
   };
 

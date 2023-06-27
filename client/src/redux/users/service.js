@@ -46,16 +46,12 @@ const login = async email => {
   return response.json();
 };
 
-const logout = async () => {
-  const accessToken = getAccessToken();
-
+const logout = async accessToken => {
   await axios.post(`${BASE_URL}/users/logout`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
-
-  removeAccessToken();
 };
 
 const editProfile = async formData => {
