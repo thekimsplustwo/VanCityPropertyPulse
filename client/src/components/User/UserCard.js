@@ -1,10 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { googleLogout } from '@react-oauth/google';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
 
 function UserCard() {
   const user = useSelector(state => state.users.user);
+
+  // TODO(JY): Logout locally, as well
+  const logOut = () => {
+    googleLogout();
+  };
+
   return (
     <Margin>
       <div>
@@ -14,7 +21,7 @@ function UserCard() {
         </p>
       </div>
       {/* TODO(JY): The user will be logged out when clicking this button */}
-      <Button variant="outlined" color="error">
+      <Button variant="outlined" color="error" onClick={logOut}>
         LogOut
       </Button>
     </Margin>

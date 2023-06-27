@@ -1,10 +1,16 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const { JY_EMAIL } = process.env;
+
 export const users = [
   {
     id: 1,
     firstName: 'Pukku',
     lastName: 'Kim',
     age: 7,
-    email: 'pukku@gmail.com',
+    email: JY_EMAIL,
     phoneNumber: '7787787788',
     region: 'Point Grey',
     photo: 'https://storage.googleapis.com/pukkukim/%E1%84%88%E1%85%AE.jpg',

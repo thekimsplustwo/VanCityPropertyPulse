@@ -11,12 +11,6 @@ const login = async emailAddress => {
 };
 
 const findByEmail = async email => {
-  // for (let i = 0; i < users.length; i += 1) {
-  //   if (users[i].email === email) {
-  //     return users[i];
-  //   }
-  // }
-  // return null;
   return users.find(user => user.email === email);
 };
 

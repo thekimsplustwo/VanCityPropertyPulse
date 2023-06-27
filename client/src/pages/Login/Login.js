@@ -1,23 +1,48 @@
-import React from 'react';
-import { GoogleLogin } from '@react-oauth/google';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 import styled from 'styled-components';
+import { getUserAsync } from '../../redux/users/thunks';
 
 function Login() {
-  const responseMessage = response => {
-    console.log(response);
-  };
-  const errorMessage = error => {
-    console.log(error);
-  };
+  const [user, setUser] = useState([]);
+  const dispatch = useDispatch();
+
+  const login = useGoogleLogin({
+    onSuccess: codeResponse => {
+      setUser(codeResponse);
+    },
+  });
+
+  useEffect(() => {
+    if (user) {
+      axios
+        .get(
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
+          {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: 'application/json',
+            },
+          }
+        )
+        .then(res => {
+          const USER_EMAIL = res.data.email;
+          dispatch(getUserAsync(USER_EMAIL));
+        })
+        .catch(err => console.error(err));
+    }
+  }, [user]);
+
   return (
     <Main>
       <GoogleLogin
-        theme="filled_blue"
         shape="pill"
         width="250px"
         context="signin"
-        onSuccess={responseMessage}
-        onError={errorMessage}
+        text="signin_with"
+        onSuccess={login}
       />
     </Main>
   );
