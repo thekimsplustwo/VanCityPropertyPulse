@@ -46,7 +46,8 @@ const pages = [
 ];
 const settings = [
   { name: 'Profile', path: '/mypage' },
-  { name: 'Logout', path: '/logout' },
+  // TODO(JY): Toggle between login/logout
+  { name: 'Logout', path: '/login' },
 ];
 
 function ResponsiveAppBar() {

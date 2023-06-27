@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import PropertyDetail from './pages/PropertyDetail/PropertyDetail';
 import MyPage from './pages/MyPage/MyPage';
 import Likes from './pages/Likes/Likes';
+import Login from './pages/Login/Login';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import ScrollTop from './components/ScrollTop/ScrollTop';
@@ -23,6 +24,7 @@ function Router() {
         <Route path="/compare" element={<Compare />} />
         <Route path="/mypage" element={<MyPage />} />
         <Route path="/likes" element={<Likes />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </BrowserRouter>

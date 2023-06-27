@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -24,7 +24,7 @@ function MyPage() {
 
       <Box
         sx={{
-          width: '100vw',
+          width: '100%',
           height: '100vh',
           paddingTop: '5em',
         }}

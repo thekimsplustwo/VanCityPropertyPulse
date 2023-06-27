@@ -13,6 +13,7 @@ function UserCard() {
           Welcome, <Bold>{user.firstName}</Bold>!❤️
         </p>
       </div>
+      {/* TODO(JY): The user will be logged out when clicking this button */}
       <Button variant="outlined" color="error">
         LogOut
       </Button>
