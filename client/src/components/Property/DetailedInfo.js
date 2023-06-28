@@ -46,7 +46,7 @@ function DetailedInfo({ propertyDetails }) {
     >
       <Box
         sx={{
-          width: '100vw',
+          width: '100%',
           height: '100vh',
           paddingTop: '5em',
         }}
@@ -168,10 +168,13 @@ function DetailedInfo({ propertyDetails }) {
 
           <Divider sx={{ borderBottomWidth: 3 }} />
           <div
+            id="bodydesc"
             style={{
               textAlign: 'left',
               marginBottom: '3rem',
               marginTop: '3rem',
+              overflow: 'auto',
+              maxHeight: '300px',
             }}
           >
             <StyledText>
@@ -181,7 +184,7 @@ function DetailedInfo({ propertyDetails }) {
             </StyledText>
           </div>
           {/* <ThemeProvider theme={theme}> */}
-          <Button
+          {/* <Button
             variant="outlined"
             color="primary"
             size="large"
@@ -189,7 +192,7 @@ function DetailedInfo({ propertyDetails }) {
             sx={{ backgroundColor: '#FFFFFF' }}
           >
             See More Facts and Features
-          </Button>
+          </Button> */}
           {/* </ThemeProvider> */}
         </Wrapper>
       </Box>
@@ -205,6 +208,7 @@ const InfoRow = styled.p`
 const StyledText = styled.p`
   font-size: 17px;
   line-height: 1.5;
+  overflow-y: scroll;
 `;
 const Wrapper = styled.div`
   border-radius: 15px;
