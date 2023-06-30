@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Menu, styled as muiStyled } from '@mui/material';
+import { useDispatch } from 'react-redux';
 import HomeTypeMenuItem from './HomeTypeMenuItem';
+import { setHomeType } from '../../../redux/search/reducer';
 
 const StyledButton = muiStyled(Button)({
   backgroundColor: 'white',
@@ -20,6 +22,7 @@ export default function HomeType() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [buttonText, setButtonText] = useState('Home Type');
+  const dispatch = useDispatch();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -34,10 +37,15 @@ export default function HomeType() {
 
   const handleSelect = type => {
     setSelectedTypes(prevSelectedTypes => {
+      let newSelectedTypes;
       if (prevSelectedTypes.includes(type)) {
-        return prevSelectedTypes.filter(t => t !== type);
+        newSelectedTypes = prevSelectedTypes.filter(t => t !== type);
+      } else {
+        newSelectedTypes = [...prevSelectedTypes, type];
       }
-      return [...prevSelectedTypes, type];
+
+      dispatch(setHomeType(newSelectedTypes));
+      return newSelectedTypes;
     });
   };
 
