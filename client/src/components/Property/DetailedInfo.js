@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
-import Button from '@mui/material/Button';
 import CropFreeRoundedIcon from '@mui/icons-material/CropFreeRounded';
-import { Info, ArrowForward, Store } from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
 import { Typography, createTheme } from '@mui/material';
 import BathtubIcon from '@mui/icons-material/Bathtub';
@@ -218,10 +216,6 @@ const Wrapper = styled.div`
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
-`;
-
-const Section = styled.section`
-  display: flex;
 `;
 
 const Bold = styled.b`
