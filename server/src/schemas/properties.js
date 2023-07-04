@@ -9,6 +9,7 @@ const propertySchema = new BaseSchema(
     zpid: {
       type: Number,
       required: true,
+      unique: true,
     },
     imgSrc: {
       type: String,

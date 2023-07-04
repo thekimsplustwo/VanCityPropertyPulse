@@ -38,6 +38,7 @@ const rawPropertySchema = new BaseSchema(
     },
     zpid: {
       type: String,
+      unique: true,
     },
     listingSubType: {
       type: Object,

@@ -9,6 +9,7 @@ const propertyDetailSchema = new BaseSchema(
     zpid: {
       type: Number,
       required: true,
+      unique: true,
     },
     price: {
       type: Number,
