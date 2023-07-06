@@ -4,10 +4,11 @@ import { REQUEST_STATE } from '../utils';
 
 const INITIAL_STATE = {
   location: '',
-  min: '',
-  max: '',
-  bed: '',
-  homeType: [],
+  minPrice: '',
+  maxPrice: '',
+  bedsMin: '',
+  home_type: [],
+  page: 1,
 };
 
 const searchSlice = createSlice({
@@ -18,16 +19,16 @@ const searchSlice = createSlice({
       state.location = action.payload;
     },
     setMin: (state, action) => {
-      state.min = action.payload;
+      state.minPrice = action.payload;
     },
     setMax: (state, action) => {
-      state.max = action.payload;
+      state.maxPrice = action.payload;
     },
     setBed: (state, action) => {
-      state.bed = action.payload;
+      state.bedsMin = action.payload;
     },
     setHomeType: (state, action) => {
-      state.homeType = action.payload;
+      state.home_type = action.payload;
     },
   },
 });
