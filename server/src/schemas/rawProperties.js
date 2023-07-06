@@ -1,8 +1,5 @@
 import mongoose from 'mongoose';
 import { BaseSchema } from './BaseSchema.js';
-import { rawProperties } from '../data/data.js';
-
-const { Schema } = mongoose;
 
 const rawPropertySchema = new BaseSchema(
   {
@@ -79,5 +76,5 @@ const rawPropertySchema = new BaseSchema(
 const RawProperty =
   mongoose.model.RawProperty ||
   mongoose.model('RawProperty', rawPropertySchema, 'rawProperties');
-//RawProperty.insertMany(rawProperties);
+
 export default RawProperty;

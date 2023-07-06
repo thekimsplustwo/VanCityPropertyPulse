@@ -1,8 +1,5 @@
 import mongoose from 'mongoose';
 import { BaseSchema } from './BaseSchema.js';
-import { properties } from '../data/data.js';
-
-const { Schema } = mongoose;
 
 const propertySchema = new BaseSchema(
   {
@@ -62,5 +59,4 @@ const propertySchema = new BaseSchema(
 const Property =
   mongoose.model.Property ||
   mongoose.model('Property', propertySchema, 'properties');
-//Property.insertMany(properties);
 export default Property;
