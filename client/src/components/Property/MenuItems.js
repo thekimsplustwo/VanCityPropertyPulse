@@ -32,6 +32,13 @@ function MenuItems({ zpid }) {
     dispatch(deleteLikesAsync(currZpid));
   };
 
+  const handleShare = () => {
+    // navigator.clipboard.writeText(window.location.href); // after deployment
+    const url = window.location.href;
+    console.log('URL copied to clipboard:', url);
+    alert('URL copied to clipboard');
+  };
+
   return (
     <Wrapper>
       <MenuContainer>
@@ -42,7 +49,7 @@ function MenuItems({ zpid }) {
         )}
         <MenuOpt>Save</MenuOpt>
       </MenuContainer>
-      <MenuContainer>
+      <MenuContainer onClick={handleShare}>
         <ReplyIcon />
         <MenuOpt>Share</MenuOpt>
       </MenuContainer>
