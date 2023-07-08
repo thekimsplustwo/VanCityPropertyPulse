@@ -13,12 +13,16 @@ function Home() {
   const location = useLocation();
 
   const properties = useSelector(state => state.home.list);
+  const searchParams = useSelector(state => state.search);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getListAsync());
+    dispatch(getListAsync(searchParams));
     dispatch(getLikesAsync());
-  }, [dispatch]);
+
+    const searchQuery = new URLSearchParams(searchParams).toString();
+    navigate(`${location.pathname}?${searchQuery}`);
+  }, [dispatch, navigate, location.pathname, searchParams]);
 
   return (
     <Main>

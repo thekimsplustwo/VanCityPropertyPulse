@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Menu, MenuItem, styled as muiStyled } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { setBed } from '../../../redux/search/reducer';
 
 const StyledButton = muiStyled(Button)({
   backgroundColor: 'white',
@@ -17,6 +19,7 @@ const StyledButton = muiStyled(Button)({
 export default function BedSelect() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedOption, setSelectedOption] = useState('0+');
+  const dispatch = useDispatch();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -25,6 +28,7 @@ export default function BedSelect() {
   const handleClose = value => () => {
     setAnchorEl(null);
     setSelectedOption(value);
+    dispatch(setBed(value));
   };
 
   return (

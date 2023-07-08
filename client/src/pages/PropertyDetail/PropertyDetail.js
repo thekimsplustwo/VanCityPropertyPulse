@@ -16,7 +16,7 @@ function Property() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPropertyAsync(zpid));
-  }, [dispatch, property]);
+  }, [dispatch]);
   const images = Array.isArray(property.imgSrc)
     ? property.imgSrc
     : [property.imgSrc];
@@ -24,7 +24,7 @@ function Property() {
     <Wrapper>
       <HeaderWrapper>
         <PropertyHeader propertyDetails={property} />
-        <MenuItems />
+        <MenuItems zpid={zpid} />
       </HeaderWrapper>
       <ContentWrapper>
         <ImageCarousel propertyImages={images} />

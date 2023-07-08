@@ -51,7 +51,9 @@
     "object-curly-newline": "off",
     "prefer-destructuring": ["error", {"object": true, "array": false}],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
-    "spaced-comment": "off"
+    "spaced-comment": "off",
+    "no-param-reassign": ["error", { "props": false }],
+    "no-underscore-dangle": "off"
   },
   "ignorePatterns": ["dist/", "node_modules/"]
 }

@@ -13,36 +13,6 @@ function AdditionalInfo() {
     <Wrapper>
       <Divider sx={{ borderBottomWidth: 3 }} />
       <InfoRow>
-        <Bold>Sold History</Bold>
-        <ButtonWrapper>
-          <Button
-            variant="outlined"
-            color="success"
-            size="medium"
-            endIcon={<Add />}
-          />
-        </ButtonWrapper>
-      </InfoRow>
-      <MarginBottom>
-        <Description>Listing records and last sold date.</Description>
-      </MarginBottom>
-      <Divider sx={{ borderBottomWidth: 3 }} />
-      <InfoRow>
-        <Bold>Home Value</Bold>
-        <ButtonWrapper>
-          <Button
-            variant="outlined"
-            color="success"
-            size="medium"
-            endIcon={<Add />}
-          />
-        </ButtonWrapper>
-      </InfoRow>
-      <MarginBottom>
-        <Description>Price estimate and comparables.</Description>
-      </MarginBottom>
-      <Divider sx={{ borderBottomWidth: 3 }} />
-      <InfoRow>
         <Bold>Neighbourhood</Bold>
         <ButtonWrapper>
           <Button
