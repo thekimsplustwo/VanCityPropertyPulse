@@ -13,11 +13,11 @@ const userModel = MOCK ? model.mockUserModel : model.userModel;
 
 export const verifyToken = async (req, res, next) => {
   try {
-    const token = req.headers.authorization.split(' ')[1]; //bearer
-    const email = token;
-    //const token = req.headers.authorization;
-    //const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-    //const { email } = decodedToken;
+    // const token = req.headers.authorization.split(' ')[1]; //bearer
+    // const email = token;
+    const token = req.headers.authorization;
+    const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+    const { email } = decodedToken;
     const user = await userModel.getUserInfoByEmail(email);
     if (!user) {
       res.status(401).send('Unauthorized');

@@ -4,4 +4,5 @@ export const actionTypes = {
   GET_USER: 'users/getUser',
   SIGNUP: 'users/signup',
   EDIT_PROFILE: 'users/editProfile',
+  GOOGLE_LOGIN: 'users/google',
 };

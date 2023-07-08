@@ -63,7 +63,7 @@ const getUserInfoByEmail = async email => {
 };
 
 const signup = async userInfo => {
-  //
+  return userModel.signup(userInfo);
 };
 
 const login = async userInfo => {

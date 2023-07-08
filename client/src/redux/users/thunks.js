@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 import { actionTypes } from './actionTypes';
 import UserService from './service';
 
@@ -12,6 +13,13 @@ export const getUserAsync = createAsyncThunk(
 export const loginAsync = createAsyncThunk(actionTypes.LOGIN, async email => {
   return UserService.login({ email });
 });
+
+export const googleLoginAsync = createAsyncThunk(
+  actionTypes.GOOGLE_LOGIN,
+  async () => {
+    return UserService.googleLogin();
+  }
+);
 
 export const logoutAsync = createAsyncThunk(actionTypes.LOGOUT, async token => {
   UserService.logout(token);

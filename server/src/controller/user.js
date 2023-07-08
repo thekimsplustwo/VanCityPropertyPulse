@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 import * as userService from '../services/user.js';
-import { users } from '../data/data.js';
+// import { users } from '../data/data.js';
 
 dotenv.config();
-const { FRONT_REDIRECT_URL } = process.env;
+// const { FRONT_REDIRECT_URL } = process.env;
 
 const signup = async (req, res) => {
   const userInfo = req.body;
-  await userService.signup(userInfo, false);
+  await userService.signup(userInfo);
   return res.status(201).json({ message: 'SIGNUP_SUCCEEDED' });
 };
 
@@ -46,4 +46,11 @@ const updateUserInfo = async (req, res) => {
   }
 };
 
-export { signup, login, logout, updateUserInfo, getUser };
+const userLoggedIn = async (req, res) => {
+  if (req.user) {
+    return req.user.email;
+  }
+  return null;
+};
+
+export { signup, login, logout, updateUserInfo, getUser, userLoggedIn };

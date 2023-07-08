@@ -7,6 +7,7 @@ import {
   signupAsync,
   getUserAsync,
   editProfileAsync,
+  googleLoginAsync,
 } from './thunks';
 
 const INITIAL_STATE = {
@@ -17,6 +18,7 @@ const INITIAL_STATE = {
   logout: REQUEST_STATE.IDLE,
   signup: REQUEST_STATE.IDLE,
   editProfile: REQUEST_STATE.IDLE,
+  loggedIn: false,
   error: null,
 };
 
@@ -84,6 +86,19 @@ const usersSlice = createSlice({
       })
       .addCase(editProfileAsync.rejected, (state, action) => {
         state.editProfile = REQUEST_STATE.REJECTED;
+        state.error = action.error;
+      })
+      .addCase(googleLoginAsync.pending, state => {
+        state.login = REQUEST_STATE.PENDING;
+        state.error = null;
+      })
+      .addCase(googleLoginAsync.fulfilled, (state, action) => {
+        state.login = REQUEST_STATE.FULFILLED;
+        state.loggedIn = true;
+        state.user = action.payload;
+      })
+      .addCase(googleLoginAsync.rejected, (state, action) => {
+        state.login = REQUEST_STATE.REJECTED;
         state.error = action.error;
       });
   },
