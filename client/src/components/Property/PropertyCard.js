@@ -27,7 +27,7 @@ function PropertyCard({ property }) {
 
   const handleCompare = event => {
     event.stopPropagation();
-    navigate('/compare', { state: { property } });
+    navigate(`/compare?item=${property.zpid}`);
   };
 
   const handleAddLike = event => {
