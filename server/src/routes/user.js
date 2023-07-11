@@ -38,36 +38,14 @@ userRouter.get(
   }
 );
 
-// userRouter.post('/logout', function (req, res, next) {
-//   req.logout(next);
-//   console.log(req.session);
-
-//   req.session.destroy(err => {
-//     if (err) {
-//       console.error('Error destroying session: ', err);
-//       return next(err);
-//     }
-//     res.redirect(FRONT_REDIRECT_URL);
-//   });
-// });
 userRouter.post('/logout', (req, res) => {
   req.logout();
   req.session.destroy();
   // res.redirect('http://localhost:3000/login');
-  // res.redirect('/');
-  // console.log(req.session);
 });
 
 userRouter.get('/profile', (req, res) => {
-  // console.log(req.session);
-  // const { email } = req.session.passport.user;
-  // console.log(email);
-  // const user = getUserInfoByEmail(email);
-
   console.log('session: ', req.session.passport);
-  // console.log('user: ', req.user);
-  // const { user } = req;
-  // res.status(200).json(user);
 
   if (req.session.passport) {
     res.status(200).json(req.user);

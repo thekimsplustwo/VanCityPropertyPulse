@@ -47,7 +47,7 @@ const updateUserInfo = async (req, res) => {
 };
 
 const userLoggedIn = async (req, res) => {
-  if (req.user) {
+  if (req.session.passport) {
     return req.user.email;
   }
   return null;

@@ -25,8 +25,6 @@ function google() {
               lastName: profile.name.familyName,
               photo: profile.photos[0].value,
               source: 'google',
-              accessToken,
-              refreshToken,
             });
 
             done(null, newUser);

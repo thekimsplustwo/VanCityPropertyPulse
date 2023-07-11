@@ -54,7 +54,6 @@ app.use(
     saveUninitialized: false,
     store: new MongoDBStore({
       uri: `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`,
-      // uri: `mongodb+srv://mockUser:${MONGODB_PW}@mongo.checkexpect.com/mock?retryWrites=true&w=majority`,
       collection: 'sessions',
     }),
   })
@@ -70,21 +69,6 @@ app.use(cors(corsOption));
 app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });
 });
-
-// app.get('/auth', function (req, res, next) {
-//   if (req.user) {
-//     console.log(req.user);
-//     res.status(200).json({ loggedIn: true, user: req.user });
-//   } else {
-//     console.log('No one is logged in.');
-//     res.status(200).json({ loggedIn: false });
-//   }
-// });
-
-// app.use((err, req, res, next) => {
-//   console.error(err);
-//   res.status(500).json({ error: 'Internal Server Error' });
-// });
 
 const server = http.createServer(app);
 

@@ -13,8 +13,6 @@ const UserSchema = new BaseSchema(
     region: { type: String, required: false },
     photo: { type: String, required: false },
     source: { type: String, required: false },
-    accessToken: { type: String },
-    refreshToken: { type: String },
   },
   { timestamps: true }
 );
