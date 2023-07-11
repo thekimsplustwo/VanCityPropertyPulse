@@ -8,7 +8,6 @@ function passportIndex() {
   });
 
   passport.deserializeUser((email, done) => {
-    console.log('deserializeUser: ', email);
     User.findOne({ email })
       .then(user => done(null, user))
       .catch(err => done(err));

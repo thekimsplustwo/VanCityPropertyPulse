@@ -15,15 +15,15 @@ const userRouter = Router();
 
 userRouter.use(cors());
 
-// userRouter.put('/', asyncWrap(userController.updateUserInfo));
+userRouter.put('/', asyncWrap(userController.updateUserInfo));
 // userRouter.get('/', asyncWrap(userController.login));
-// userRouter.get('/:email', asyncWrap(userController.getUser));
-// userRouter.post('/', asyncWrap(userController.signup));
-
-userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
-userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
-// userRouter.get('/', verifyToken, asyncWrap(userController.login));
+userRouter.get('/', asyncWrap(userController.getUser));
 userRouter.post('/', asyncWrap(userController.signup));
+
+// userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
+// userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
+// userRouter.get('/', verifyToken, asyncWrap(userController.login));
+// userRouter.post('/', asyncWrap(userController.signup));
 
 userRouter.get(
   '/google',
@@ -38,14 +38,20 @@ userRouter.get(
   }
 );
 
-userRouter.post('/logout', (req, res) => {
-  req.logout();
-  req.session.destroy();
-  // res.redirect('http://localhost:3000/login');
+userRouter.post('/logout', (req, res, next) => {
+  req.session.destroy(err => {
+    if (err) {
+      console.error('Error destroying session:', err);
+      return next(err);
+    }
+    console.log('No error destroying session:');
+    res.redirect(`${FRONT_REDIRECT_URL}`);
+  });
 });
 
 userRouter.get('/profile', (req, res) => {
-  console.log('session: ', req.session.passport);
+  console.log('session: ', req.session);
+  console.log('session.passport: ', req.session.passport);
 
   if (req.session.passport) {
     res.status(200).json(req.user);
