@@ -22,14 +22,16 @@ const signup = async email => {
   return data;
 };
 
-const getUser = async email => {
-  const response = await fetch(`${BASE_URL}/users`, {
+const getUser = async () => {
+  const response = await fetch(`${BASE_URL}/users/profile`, {
     method: 'GET',
-    headers: {
-      Authorization: `Bearer ${email}`,
-    },
+    // headers: {
+    //   Authorization: `Bearer ${email}`,
+    // },
   });
+  // console.log(response);
   return response.json();
+  // return response;
 };
 
 const login = async email => {
@@ -60,18 +62,19 @@ export const googleLogin = async () => {
     // const response = await fetch(`${BASE_URL}/users/google`, {
     //   credentials: 'include',
     // });
-    return response.data.user;
+    // return response.data.user;
+    return response;
   } catch (error) {
-    console.error('Google login failed:', error);
+    // console.error('Google login failed:', error);
   }
   return null;
 };
 
-const logout = async accessToken => {
+const logout = async () => {
   await axios.post(`${BASE_URL}/users/logout`, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
+    // headers: {
+    //   Authorization: `Bearer ${accessToken}`,
+    // },
   });
 };
 

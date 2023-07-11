@@ -58,6 +58,7 @@ const usersSlice = createSlice({
       })
       .addCase(logoutAsync.fulfilled, (state, action) => {
         state.logout = REQUEST_STATE.FULFILLED;
+        state.loggedIn = false;
         state.user = action.payload;
       })
       .addCase(logoutAsync.rejected, (state, action) => {

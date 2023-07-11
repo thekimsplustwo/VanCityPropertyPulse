@@ -1,23 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-// import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
-// import axios from 'axios';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { googleLoginAsync } from '../../redux/users/thunks';
-// import {
-//   saveAccessToken,
-//   removeAccessToken,
-//   removeLoggedEmail,
-// } from '../../utils/storage';
 
 function Login() {
-  // const [user, setUser] = useState(false);
-  const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
   const handleGoogleLogin = () => {
-    dispatch(googleLoginAsync());
+    window.location.href = 'http://localhost:10010/users/google';
   };
 
   // const login = useGoogleLogin({

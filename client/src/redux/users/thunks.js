@@ -3,12 +3,9 @@ import axios from 'axios';
 import { actionTypes } from './actionTypes';
 import UserService from './service';
 
-export const getUserAsync = createAsyncThunk(
-  actionTypes.GET_USER,
-  async email => {
-    return UserService.getUser(email);
-  }
-);
+export const getUserAsync = createAsyncThunk(actionTypes.GET_USER, async () => {
+  return UserService.getUser();
+});
 
 export const loginAsync = createAsyncThunk(actionTypes.LOGIN, async email => {
   return UserService.login({ email });
@@ -21,8 +18,8 @@ export const googleLoginAsync = createAsyncThunk(
   }
 );
 
-export const logoutAsync = createAsyncThunk(actionTypes.LOGOUT, async token => {
-  UserService.logout(token);
+export const logoutAsync = createAsyncThunk(actionTypes.LOGOUT, async () => {
+  UserService.logout();
 });
 
 export const signupAsync = createAsyncThunk(actionTypes.SIGNUP, async email => {

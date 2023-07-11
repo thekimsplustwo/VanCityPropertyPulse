@@ -13,6 +13,7 @@ const connect = () => {
     mongoose
       .connect(
         `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`,
+        // `mongodb+srv://mockUser:${MONGODB_PW}@mongo.checkexpect.com/mock?retryWrites=true&w=majority`,
         { useNewUrlParser: true, useUnifiedTopology: true }
       )
       .then(conn => {

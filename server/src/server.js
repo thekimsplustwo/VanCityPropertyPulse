@@ -18,25 +18,26 @@ const PORT = process.env.PORT || 10010;
 
 // const allowedOrigins = [`http://localhost:${PORT}`];
 
+const corsOption = {
+  // origin: '*',
+  origin: 'http://localhost:3000',
+};
+
+// const whitelist = process.env.WHITELISTED_DOMAINS
+//   ? process.env.WHITELISTED_DOMAINS.split(',')
+//   : [];
+
 // const corsOption = {
-//   origin: 'http://localhost:3000',
+//   origin(origin, callback) {
+//     if (!origin || whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+
 //   credentials: true,
 // };
-const whitelist = process.env.WHITELISTED_DOMAINS
-  ? process.env.WHITELISTED_DOMAINS.split(',')
-  : [];
-
-const corsOption = {
-  origin(origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-
-  credentials: true,
-};
 
 const MongoDBStore = connectMongoDBSession(session);
 
@@ -53,6 +54,7 @@ app.use(
     saveUninitialized: false,
     store: new MongoDBStore({
       uri: `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`,
+      // uri: `mongodb+srv://mockUser:${MONGODB_PW}@mongo.checkexpect.com/mock?retryWrites=true&w=majority`,
       collection: 'sessions',
     }),
   })
