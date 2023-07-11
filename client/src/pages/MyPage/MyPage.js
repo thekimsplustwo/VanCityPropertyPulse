@@ -10,15 +10,16 @@ import UserProfileEdit from '../../components/User/UserProfileEdit';
 import { getLoggedEmail } from '../../utils/storage';
 
 // const USER_EMAIL = 'johndoe@gmail.com';
-const USER_EMAIL = getLoggedEmail();
+// const USER_EMAIL = getLoggedEmail();
 
 function MyPage() {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserAsync(USER_EMAIL));
+    dispatch(getUserAsync());
   }, [dispatch]);
+  // const user = dispatch(getUserAsync());
 
   return (
     <Main>

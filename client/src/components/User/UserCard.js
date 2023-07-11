@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { googleLogout } from '@react-oauth/google';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
@@ -9,14 +9,16 @@ import { getAccessToken, removeAccessToken } from '../../utils/storage';
 
 function UserCard() {
   const user = useSelector(state => state.users.user);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const logout = () => {
-    const token = getAccessToken();
-    googleLogout();
-    logoutAsync(token);
-    removeAccessToken();
-    navigate('/login');
+    // const token = getAccessToken();
+    // googleLogout();
+    // logoutAsync(token);
+    // removeAccessToken();
+    // navigate('/login');
+    dispatch(logoutAsync());
   };
 
   return (

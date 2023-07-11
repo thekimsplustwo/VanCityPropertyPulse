@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { resolvePath } from 'react-router-dom';
 import { BASE_URL } from '../../config';
 import { actionTypes } from './actionTypes';
 // import { getAccessToken, removeAccessToken } from '../../utils/storage';
@@ -65,17 +66,24 @@ export const googleLogin = async () => {
     // return response.data.user;
     return response;
   } catch (error) {
-    // console.error('Google login failed:', error);
+    console.error('Google login failed:', error);
   }
   return null;
 };
 
 const logout = async () => {
-  await axios.post(`${BASE_URL}/users/logout`, {
-    // headers: {
-    //   Authorization: `Bearer ${accessToken}`,
-    // },
-  });
+  await axios
+    .post(`${BASE_URL}/users/logout`, {
+      // headers: {
+      //   Authorization: `Bearer ${accessToken}`,
+      // },
+    })
+    .then(() => {
+      window.location.href = 'http://localhost:3000/login';
+    })
+    .catch(error => {
+      console.error('Logout failed:', error);
+    });
 };
 
 const editProfile = async formData => {
