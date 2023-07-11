@@ -15,15 +15,17 @@ const userRouter = Router();
 
 userRouter.use(cors());
 
-userRouter.put('/', asyncWrap(userController.updateUserInfo));
+// userRouter.put('/', asyncWrap(userController.updateUserInfo));
+// userRouter.get('/', asyncWrap(userController.getUser));
+// userRouter.post('/', asyncWrap(userController.signup));
+
 // userRouter.get('/', asyncWrap(userController.login));
-userRouter.get('/', asyncWrap(userController.getUser));
+
+userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
+userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
 userRouter.post('/', asyncWrap(userController.signup));
 
-// userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
-// userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
 // userRouter.get('/', verifyToken, asyncWrap(userController.login));
-// userRouter.post('/', asyncWrap(userController.signup));
 
 userRouter.get(
   '/google',
@@ -49,12 +51,14 @@ userRouter.post('/logout', (req, res, next) => {
   });
 });
 
-userRouter.get('/profile', (req, res) => {
+userRouter.get('/profile', verifyToken, (req, res) => {
   console.log('session: ', req.session);
   console.log('session.passport: ', req.session.passport);
 
   if (req.session.passport) {
-    res.status(200).json(req.user);
+    // res.status(200).json(req.user);
+    const user = req.session.passport;
+    res.status(200).json(user);
   } else {
     req.status(400).json();
   }
