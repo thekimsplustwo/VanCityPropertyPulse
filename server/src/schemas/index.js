@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
+import resetDatabase from './resetDatabase.js';
 
 dotenv.config();
 
@@ -32,5 +33,5 @@ mongoose.connection.on('disconnected', () => {
   console.error('disconnected. re-connect');
   connect();
 });
-
+//resetDatabase();
 export default connect;

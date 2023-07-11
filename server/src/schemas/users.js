@@ -6,6 +6,7 @@ const UserSchema = new BaseSchema(
     email: {
       type: String,
       required: true,
+      unique: true,
     },
     firstName: { type: String, required: true },
     lastName: { type: String, required: false },
