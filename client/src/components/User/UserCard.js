@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
 
-function UserCard({ user }) {
+function UserCard() {
+  const user = useSelector(state => state.users.user);
   return (
     <Margin>
       <div>
@@ -22,6 +24,7 @@ export default UserCard;
 
 const Margin = styled.div`
   margin: 20px;
+  height: 21vh;
   font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;

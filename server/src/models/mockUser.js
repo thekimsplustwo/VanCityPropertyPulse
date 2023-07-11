@@ -9,4 +9,13 @@ const readUserByEmail = email => {
   return users.find(user => user.email === email);
 };
 
-export { getUserInfoByEmail };
+const updateItem = (email, updateInfo) => {
+  const userIndex = users.findIndex(user => user.email === email);
+  if (userIndex !== -1) {
+    users[userIndex] = { ...users[userIndex], ...updateInfo };
+    return users[userIndex];
+  }
+  return null;
+};
+
+export { getUserInfoByEmail, updateItem };

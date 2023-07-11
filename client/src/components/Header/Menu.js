@@ -21,6 +21,7 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { themeColorPink } from '../../styles/theme';
 
 const StyledMenu = muiStyled(Menu)`

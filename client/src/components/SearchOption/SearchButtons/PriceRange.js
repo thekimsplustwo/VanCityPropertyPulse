@@ -7,6 +7,8 @@ import {
   styled as muiStyled,
 } from '@mui/material';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setMin, setMax } from '../../../redux/search/reducer';
 
 const StyledButton = muiStyled(Button)({
   backgroundColor: 'white',
@@ -36,6 +38,9 @@ export default function PriceRange() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [minMaxPrice, setMinMaxPrice] = useState(0);
+  const [maxMinPrice, setMaxMinPrice] = useState(9999999);
+  const dispatch = useDispatch();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -50,11 +55,29 @@ export default function PriceRange() {
   };
 
   const handleMinPriceChange = event => {
-    setMinPrice(event.target.value);
+    const newValue = parseInt(event.target.value, 10);
+
+    if (newValue > maxPrice) {
+      setMinPrice(maxPrice);
+      setMinMaxPrice(maxPrice);
+    } else {
+      setMinPrice(newValue);
+      setMinMaxPrice(newValue);
+      dispatch(setMin(newValue));
+    }
   };
 
   const handleMaxPriceChange = event => {
-    setMaxPrice(event.target.value);
+    const newValue = parseInt(event.target.value, 10);
+
+    if (newValue < minPrice) {
+      setMaxPrice(minPrice);
+      setMaxMinPrice(minPrice);
+    } else {
+      setMaxPrice(newValue);
+      setMaxMinPrice(newValue);
+      dispatch(setMax(newValue));
+    }
   };
 
   return (
@@ -71,7 +94,7 @@ export default function PriceRange() {
             type="number"
             inputProps={{
               min: 0,
-              max: 9999999,
+              max: maxMinPrice,
               step: 1000,
             }}
           />
@@ -83,7 +106,7 @@ export default function PriceRange() {
             onChange={handleMaxPriceChange}
             type="number"
             inputProps={{
-              min: 0,
+              min: minMaxPrice,
               max: 9999999,
               step: 1000,
             }}

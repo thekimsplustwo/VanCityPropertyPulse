@@ -1,17 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-// import Grid from '@mui/material/Unstable_Grid2';
 import UserCard from './UserCard';
 import UserInfo from './UserInfo';
 
-function UserPageLeft({ user }) {
+function UserPageLeft({ setModal }) {
   return (
     <div>
       <Wrapper>
-        <UserCard user={user} />
+        <UserCard />
       </Wrapper>
       <Wrapper>
-        <UserInfo user={user} />
+        <UserInfo setModal={setModal} />
       </Wrapper>
     </div>
   );
