@@ -63,8 +63,22 @@ app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportIndex();
 
+// const whitelist = ['http://localhost:4200', 'http://localhost:80'];
+const whitelist = 'http://localhost:3000';
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
 app.use(routes);
-app.use(cors(corsOption));
+// app.use(cors(corsOption));
 // app.use(cors());
 
 app.get('/ping', (req, res) => {
