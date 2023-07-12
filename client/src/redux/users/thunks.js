@@ -18,9 +18,13 @@ export const googleLoginAsync = createAsyncThunk(
   }
 );
 
-export const logoutAsync = createAsyncThunk(actionTypes.LOGOUT, async () => {
-  UserService.logout();
-});
+export const logoutAsync = createAsyncThunk(
+  actionTypes.LOGOUT,
+  async accessToken => {
+    UserService.revokeToken(accessToken);
+    UserService.logout();
+  }
+);
 
 export const signupAsync = createAsyncThunk(actionTypes.SIGNUP, async email => {
   return UserService.signup({ email });

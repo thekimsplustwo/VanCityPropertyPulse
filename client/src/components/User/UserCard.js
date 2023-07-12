@@ -9,15 +9,10 @@ import { getAccessToken, removeAccessToken } from '../../utils/storage';
 
 function UserCard() {
   const user = useSelector(state => state.users.user);
-  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const logout = () => {
-    // const token = getAccessToken();
-    // googleLogout();
-    // logoutAsync(token);
-    // removeAccessToken();
-    // navigate('/login');
+    //TODO(JY): 구글에 remove token 요청하기
     dispatch(logoutAsync());
   };
 

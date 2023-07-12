@@ -12,7 +12,8 @@ import passportIndex from './middleware/index.js';
 
 dotenv.config();
 
-const { MONGODB_HOST, MONGODB_USER, MONGODB_PW, DATABASE } = process.env;
+const { MONGODB_HOST, MONGODB_USER, MONGODB_PW, DATABASE, SECRET_KEY } =
+  process.env;
 
 const PORT = process.env.PORT || 10010;
 
@@ -49,7 +50,7 @@ app.use(logger('dev'));
 
 app.use(
   session({
-    secret: '455',
+    secret: `${SECRET_KEY}`,
     resave: false,
     saveUninitialized: false,
     store: new MongoDBStore({
