@@ -40,14 +40,13 @@ userRouter.get(
   }
 );
 
-userRouter.post('/logout', (req, res, next) => {
-  req.session.destroy(err => {
+userRouter.post('/logout', verifyToken, (req, res, next) => {
+  req.session.destroy(async err => {
     if (err) {
       console.error('Error destroying session:', err);
       return next(err);
     }
-    console.log('No error destroying session:');
-    res.redirect(`${FRONT_REDIRECT_URL}`);
+    await res.json({ message: 'Logout successful' });
   });
 });
 
@@ -60,7 +59,7 @@ userRouter.get('/profile', verifyToken, (req, res) => {
     const user = req.session.passport;
     res.status(200).json(user);
   } else {
-    req.status(400).json();
+    res.status(400).json();
   }
 });
 

@@ -22,6 +22,7 @@ export const verifyToken = async (req, res, next) => {
     console.log('req.session: ', req.session);
     console.log('req.user: ', req.user);
     const email = req.session.passport.user;
+    // const token = req.user.accessToken;
     console.log('email: ', email);
     const user = await findByEmail(email);
     console.log('user: ', user);
