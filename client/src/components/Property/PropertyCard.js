@@ -11,7 +11,7 @@ import { convertPriceToCAD } from '../../utils/utils';
 
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
-function PropertyCard({ property }) {
+function PropertyCard({ property, showCompareButton }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currZpid = property.zpid;
@@ -57,7 +57,9 @@ function PropertyCard({ property }) {
           <StyledStatusIcon />
           <StatusText>{property.listingStatus}</StatusText>
         </StatusWrapper>
-        <CompareButton onClick={handleCompare}>Compare</CompareButton>
+        {showCompareButton && (
+          <CompareButton onClick={handleCompare}>Compare</CompareButton>
+        )}
 
         <div className="property-info">
           <div className="property-price">
@@ -65,7 +67,7 @@ function PropertyCard({ property }) {
           </div>
           <div>
             <span className="property-bed">Bed {property.bedrooms}, </span>
-            <span className="property-bath">Bed {property.bathrooms}, </span>
+            <span className="property-bath">Bath {property.bathrooms}, </span>
             <span className="property-area">{property.livingArea} sqft, </span>
           </div>
           <PropertyLocation>{property.address}</PropertyLocation>

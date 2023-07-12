@@ -41,7 +41,7 @@ function Likes() {
           <StyledHeartBorderIcon onClick={handleDeleteAllLike} />
           <MenuOpt onClick={handleDeleteAllLike}>Clear All</MenuOpt>
         </MenuContainer>
-        <PropertyGrid properties={properties} />
+        <PropertyGrid properties={properties} showCompareButton />
       </Main>
     </Margin>
   );
