@@ -22,7 +22,7 @@ const ExtenedSearchOptions = (filter, sort) => {
 };
 
 const getList = async (filter, sort) => {
-  //console.log('filter : ', filter);
+  console.log('filter : ', filter);
   const trimedFilter = {
     ...filter,
     location: filter.location || 'vancouver, bc',

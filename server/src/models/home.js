@@ -13,22 +13,20 @@ const generateQuery = filter => {
     query.price = { ...query.price, $lte: filter.maxPrice };
   }
 
-  if (filter.home_type && Array.isArray(filter.home_type)) {
+  if (filter.home_type) {
+    const homeTypes = Array.isArray(filter.home_type)
+      ? filter.home_type
+      : filter.home_type.split(',');
     query.propertyType = {
-      $in: filter.home_type.map(type => new RegExp(`^${type}$`, 'i')),
+      $in: homeTypes.map(type => new RegExp(`^${type}$`, 'i')),
     };
-  } else if (filter.home_type) {
-    query.propertyType = new RegExp(`^${filter.home_type}$`, 'i');
   }
-
   if (filter.location) {
     query.address = { $regex: new RegExp(filter.location, 'i') };
   }
-
-  //query.propertyType = filter.status_type || 'FOR_SALE';
-
   return query;
 };
+
 const getList = async (filter, sort) => {
   const query = generateQuery(filter);
   const defaultSort = { createdAt: 'asc' };

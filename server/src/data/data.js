@@ -86,6 +86,41 @@ export const likes = [
       },
     ],
   },
+  {
+    email: 'johndoe@gmail.com',
+    properties: [
+      {
+        zpid: 2062513896,
+        imgSrc:
+          'https://photos.zillowstatic.com/fp/06517fb6f997410348e1ab3732d65032-p_e.jpg',
+        address: '3639 W 16th Ave #305, Vancouver, BC V6R 3B7',
+        price: 2399000,
+        bedrooms: 2,
+        bathrooms: 3,
+        livingArea: 1257,
+        propertyType: 'CONDO',
+        listingStatus: 'FOR_SALE',
+        unit: '# 305',
+        longitude: -123.17864,
+        latitude: 49.25818,
+      },
+      {
+        zpid: 2057514562,
+        imgSrc:
+          'https://photos.zillowstatic.com/fp/bfc924a3bf887976461e066756b222ef-p_e.jpg',
+        address: '2080 Broadway W #865, Vancouver, BC V6J 0C7',
+        price: 1328000,
+        bedrooms: 2,
+        bathrooms: 2,
+        livingArea: 1075,
+        propertyType: 'CONDO',
+        listingStatus: 'FOR_SALE',
+        unit: '# 865',
+        longitude: -123.15108,
+        latitude: 49.263416,
+      },
+    ],
+  },
 ];
 export const propertyDetails = [
   {
