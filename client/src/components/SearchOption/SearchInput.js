@@ -39,6 +39,7 @@ export default function Search() {
         freeSolo
         disableClearable
         options={neighborhoods.map(option => option.title)}
+        value={location}
         renderInput={params => (
           <TextField
             // eslint-disable-next-line react/jsx-props-no-spreading
