@@ -25,10 +25,8 @@ const signup = async email => {
 
 const getUser = async () => {
   const response = await fetch(`${BASE_URL}/users/profile`, {
+    credentials: 'include',
     method: 'GET',
-    // headers: {
-    //   Authorization: `Bearer ${email}`,
-    // },
   });
   // console.log(response);
   return response.json();
@@ -59,7 +57,9 @@ const login = async email => {
 
 export const googleLogin = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/users/google`);
+    const response = await axios.get(`${BASE_URL}/users/google`, {
+      credentials: 'include',
+    });
     // const response = await fetch(`${BASE_URL}/users/google`, {
     //   credentials: 'include',
     // });
@@ -74,12 +74,14 @@ export const googleLogin = async () => {
 const logout = async () => {
   await axios
     .post(`${BASE_URL}/users/logout`, {
+      credentials: 'include',
       // headers: {
       //   Authorization: `Bearer ${accessToken}`,
       // },
     })
-    .then(() => {
-      window.location.href = 'http://localhost:3000/login';
+    .then(response => {
+      console.log(response.data.message);
+      window.location.href = 'http://localhost:3000';
     })
     .catch(error => {
       console.error('Logout failed:', error);
