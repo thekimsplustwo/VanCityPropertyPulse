@@ -1,5 +1,6 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import fs from 'fs';
 import User from '../schemas/users.js';
 
 function google() {
@@ -16,8 +17,9 @@ function google() {
             email: profile.emails[0].value,
             source: 'google',
           });
+
           if (userLoggingIn) {
-            done(null, userLoggingIn);
+            done(null, userLoggingIn, { accessToken });
           } else {
             const newUser = await User.create({
               email: profile.emails[0].value,
@@ -27,7 +29,8 @@ function google() {
               source: 'google',
             });
 
-            done(null, newUser);
+            done(null, newUser, { accessToken });
+            // done(null, accessToken);
           }
         } catch (error) {
           console.error(error);

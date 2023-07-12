@@ -28,9 +28,8 @@ const getUser = async () => {
     credentials: 'include',
     method: 'GET',
   });
-  // console.log(response);
+  console.log('getUser response: ', response);
   return response.json();
-  // return response;
 };
 
 const login = async email => {
@@ -107,6 +106,25 @@ const editProfile = async formData => {
   }
 };
 
+const revokeToken = async accessToken => {
+  try {
+    const response = await axios.post(
+      'https://accounts.google.com/o/oauth2/revoke',
+      null,
+      {
+        params: {
+          token: accessToken,
+        },
+      }
+    );
+    // Handle the response as needed
+    console.log(response.data);
+  } catch (error) {
+    console.error('Token revocation failed:', error);
+    // Handle the error scenario
+  }
+};
+
 export default {
   signup,
   login,
@@ -114,4 +132,5 @@ export default {
   getUser,
   editProfile,
   googleLogin,
+  revokeToken,
 };

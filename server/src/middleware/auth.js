@@ -19,13 +19,9 @@ export const verifyToken = async (req, res, next) => {
     // const token = req.headers.authorization;
     // const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
     // const { email } = decodedToken;
-    console.log('req.session: ', req.session);
-    console.log('req.user: ', req.user);
     const email = req.session.passport.user;
     // const token = req.user.accessToken;
-    console.log('email: ', email);
     const user = await findByEmail(email);
-    console.log('user: ', user);
     if (!user) {
       res.status(401).send('Unauthorized');
     } else {
