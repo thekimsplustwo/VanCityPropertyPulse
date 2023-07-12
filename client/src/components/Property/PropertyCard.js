@@ -16,7 +16,7 @@ function PropertyCard({ property }) {
   const currZpid = property.zpid;
 
   const likes = useSelector(state => state.likes.list);
-  const liked = likes.some(property => property.zpid === currZpid);
+  const liked = likes && likes.some(like => like.zpid === currZpid);
 
   const navigateToPropertyPage = zpid => {
     navigate(`/properties/${zpid}`, {

@@ -14,4 +14,8 @@ export const ERROR_TYPE = {
     statusCode: 404,
   },
   DB_NETWORK_ERROR: { message: 'DATABASE_NETWORK_ERROR', statusCode: 400 },
+  ZILLOW_API_NETWORK_ERROR: {
+    message: 'ZILLOW_API_NETWORK_ERROR',
+    statusCode: 400,
+  },
 };

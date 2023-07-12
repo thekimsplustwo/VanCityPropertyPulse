@@ -6,7 +6,7 @@ dotenv.config();
 
 const { MOCK } = process.env;
 
-//const homeModel = MOCK ? model.mockHomeModel : model.homeModel;
+//const homeModel = MOCK === true ? model.mockHomeModel : model.homeModel;
 const { homeModel } = model;
 
 const ExtenedSearchOptions = (filter, sort) => {
@@ -29,7 +29,7 @@ const getList = async (filter, sort) => {
     listingStatus: 'FOR_SALE',
   };
   const options = ExtenedSearchOptions(trimedFilter);
-  console.error('option ', options);
+  //console.error('option ', options);
   //const response = await axios.request(options);
   //console.log('response : ', response.data);
   return homeModel.getList(trimedFilter, sort);

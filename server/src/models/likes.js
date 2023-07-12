@@ -23,7 +23,8 @@ const addLikes = async (email, newLike) => {
       upsert: true,
     }
   );
-  return res || errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
+  console.log('add res properties', res.properties);
+  return res.properties || errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
 };
 
 const removeLikes = async (email, zpid) => {
@@ -31,19 +32,22 @@ const removeLikes = async (email, zpid) => {
     { email: email },
     { $pull: { properties: { zpid: zpid } } }
   ).exec();
-  console.log('res ', res);
+  console.log('remove res ', res);
   if (!res.modifiedCount) {
     throw errorGenerator(ERROR_TYPE.PROPERTY_NOT_FOUND);
   }
 
-  return res;
+  return getLikes(email);
 };
 
 const removeAllLikes = async email => {
-  const res = await Like.findOneAndDelete({ email: email });
+  const res = await Like.updateOne(
+    { email: email },
+    { $set: { properties: [] } }
+  );
   console.log('res ', res);
   return res.acknowledged
-    ? res.deletedCount
+    ? getLikes(email)
     : errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
 };
 
