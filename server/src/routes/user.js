@@ -40,7 +40,7 @@ userRouter.get(
   }
 );
 
-userRouter.post('/logout', verifyToken, (req, res, next) => {
+userRouter.post('/logout', (req, res, next) => {
   req.session.destroy(async err => {
     if (err) {
       console.error('Error destroying session:', err);
