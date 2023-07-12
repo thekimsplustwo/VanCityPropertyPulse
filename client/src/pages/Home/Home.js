@@ -27,7 +27,7 @@ function Home() {
   return (
     <Main>
       <SearchComponent />
-      <PropertyGrid properties={properties} />
+      <PropertyGrid properties={properties} showCompareButton={false} />
     </Main>
   );
 }
