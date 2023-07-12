@@ -4,7 +4,6 @@ import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 const getLikes = async email => {
   const defaultSort = { createdAt: 'asc' };
   const res = await Like.findOne({ email: email }).sort(defaultSort).exec();
-  console.log('list ', res);
   return res.properties;
 };
 const addLikes = async (email, newLike) => {
@@ -23,7 +22,6 @@ const addLikes = async (email, newLike) => {
       upsert: true,
     }
   );
-  console.log('add res properties', res.properties);
   return res.properties || errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
 };
 
@@ -32,7 +30,6 @@ const removeLikes = async (email, zpid) => {
     { email: email },
     { $pull: { properties: { zpid: zpid } } }
   ).exec();
-  console.log('remove res ', res);
   if (!res.modifiedCount) {
     throw errorGenerator(ERROR_TYPE.PROPERTY_NOT_FOUND);
   }
@@ -45,7 +42,6 @@ const removeAllLikes = async email => {
     { email: email },
     { $set: { properties: [] } }
   );
-  console.log('res ', res);
   return res.acknowledged
     ? getLikes(email)
     : errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);

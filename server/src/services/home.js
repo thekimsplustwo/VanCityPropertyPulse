@@ -22,16 +22,12 @@ const ExtenedSearchOptions = (filter, sort) => {
 };
 
 const getList = async (filter, sort) => {
-  console.log('filter : ', filter);
   const trimedFilter = {
     ...filter,
     location: filter.location || 'vancouver, bc',
     listingStatus: 'FOR_SALE',
   };
   const options = ExtenedSearchOptions(trimedFilter);
-  //console.error('option ', options);
-  //const response = await axios.request(options);
-  //console.log('response : ', response.data);
   return homeModel.getList(trimedFilter, sort);
 };
 

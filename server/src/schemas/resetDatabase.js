@@ -39,13 +39,13 @@ const insertDataset = async collectionsToReset => {
   await Promise.all(insertPromises);
 };
 const resetDatabase = async (...collectionsToReset) => {
+  let collectionsToResetUpdated = collectionsToReset;
   if (collectionsToReset.includes('all')) {
-    collectionsToReset = Object.keys(collections);
+    collectionsToResetUpdated = Object.keys(collections);
   }
-
   try {
-    await deleteDataset(collectionsToReset);
-    await insertDataset(collectionsToReset);
+    await deleteDataset(collectionsToResetUpdated);
+    await insertDataset(collectionsToResetUpdated);
   } catch (err) {
     console.error(err);
   }
