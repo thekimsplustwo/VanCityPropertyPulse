@@ -3,11 +3,10 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { getUserAsync, logoutAsync } from '../../redux/users/thunks';
+import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
 import MoreOptions from '../../components/User/MoreOptions';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
-import { getLoggedEmail } from '../../utils/storage';
 import { saveAccessToken } from '../../utils/storage';
 
 // const USER_EMAIL = 'johndoe@gmail.com';
@@ -22,8 +21,6 @@ function MyPage() {
   useEffect(() => {
     dispatch(getUserAsync());
   }, [dispatch]);
-
-  // console.log('accessToken: ', accessToken);
 
   return (
     <Main>

@@ -1,19 +1,16 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { googleLogout } from '@react-oauth/google';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { logoutAsync } from '../../redux/users/thunks';
-import { getAccessToken, removeAccessToken } from '../../utils/storage';
+import { getAccessToken } from '../../utils/storage';
 
 function UserCard() {
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
+  const token = getAccessToken();
 
-  const logout = () => {
-    //TODO(JY): 구글에 remove token 요청하기
-    dispatch(logoutAsync());
+  const logout = token => {
+    dispatch(logoutAsync(token));
   };
 
   return (
@@ -24,7 +21,7 @@ function UserCard() {
           Welcome, <Bold>{user.firstName}</Bold>!❤️
         </p>
       </div>
-      <Button variant="outlined" color="error" onClick={logout}>
+      <Button variant="outlined" color="error" onClick={() => logout(token)}>
         LogOut
       </Button>
     </Margin>

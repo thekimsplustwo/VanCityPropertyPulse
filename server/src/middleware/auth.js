@@ -22,6 +22,7 @@ export const verifyToken = async (req, res, next) => {
     const email = req.session.passport.user;
     // const token = req.user.accessToken;
     const user = await findByEmail(email);
+    console.log('got here, with user: ', user);
     if (!user) {
       res.status(401).send('Unauthorized');
     } else {

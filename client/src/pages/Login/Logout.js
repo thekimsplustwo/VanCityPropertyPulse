@@ -1,26 +1,24 @@
-import { googleLogout } from '@react-oauth/google';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { removeAccessToken, removeLoggedEmail } from '../../utils/storage';
+import { getAccessToken } from '../../utils/storage';
 import { logoutAsync } from '../../redux/users/thunks';
 
 function Logout() {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const token = getAccessToken();
 
-  const logout = () => {
+  const logout = token => {
     // googleLogout();
     // removeAccessToken();
     // removeLoggedEmail();
     // navigate('/home');
     // window.location.href = 'https://accounts.google.com/logout';
-    dispatch(logoutAsync());
+    dispatch(logoutAsync(token));
   };
 
   return (
     <Main>
-      <LogoutButton type="button" onClick={() => logout()}>
+      <LogoutButton type="button" onClick={() => logout(token)}>
         Sign out 👋
       </LogoutButton>
     </Main>

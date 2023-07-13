@@ -67,7 +67,6 @@ const logout = async () => {
       method: 'POST',
     })
     .then(response => {
-      console.log(response.data.message);
       window.location.href = 'http://localhost:3000/home';
     })
     .catch(error => {
@@ -104,7 +103,7 @@ const revokeToken = async accessToken => {
       }
     );
     // Handle the response as needed
-    console.log(response.data);
+    console.log('Token is successfully revoked: ', response.data);
   } catch (error) {
     console.error('Token revocation failed:', error);
     // Handle the error scenario

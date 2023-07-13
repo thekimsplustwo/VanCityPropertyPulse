@@ -17,29 +17,6 @@ const { MONGODB_HOST, MONGODB_USER, MONGODB_PW, DATABASE, SECRET_KEY } =
 
 const PORT = process.env.PORT || 10010;
 
-// const allowedOrigins = [`http://localhost:${PORT}`];
-
-const corsOption = {
-  // origin: '*',
-  origin: 'http://localhost:3000',
-};
-
-// const whitelist = process.env.WHITELISTED_DOMAINS
-//   ? process.env.WHITELISTED_DOMAINS.split(',')
-//   : [];
-
-// const corsOption = {
-//   origin(origin, callback) {
-//     if (!origin || whitelist.indexOf(origin) !== -1) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-
-//   credentials: true,
-// };
-
 const MongoDBStore = connectMongoDBSession(session);
 
 connect();
@@ -63,23 +40,21 @@ app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportIndex();
 
-// const whitelist = ['http://localhost:4200', 'http://localhost:80'];
-const whitelist = 'http://localhost:3000';
+// const whitelist = 'http://localhost:3000';
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+  // origin: (origin, callback) => {
+  //   if (whitelist.indexOf(origin) !== -1) {
+  //     callback(null, true);
+  //   } else {
+  //     callback(new Error('Not allowed by CORS'));
+  //   }
+  // },
+  origin: 'http://localhost:3000',
   credentials: true,
 };
 app.use(cors(corsOptions));
 
 app.use(routes);
-// app.use(cors(corsOption));
-// app.use(cors());
 
 app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });
