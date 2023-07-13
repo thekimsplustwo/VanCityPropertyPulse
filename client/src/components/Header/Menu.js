@@ -34,11 +34,11 @@ const navIconStyle = { fontSize: '2rem', color: themeColor };
 
 const pages = [
   { name: 'Home', icon: <HomeOutlinedIcon sx={navIconStyle} />, path: '/home' },
-  {
-    name: 'Compare',
-    icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
-    path: '/compare',
-  },
+  // { <Delete Compare btn>
+  //   name: 'Compare',
+  //   icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
+  //   path: '/compare',
+  // },
   {
     name: 'Likes',
     icon: <FavoriteBorderIcon sx={navIconStyle} />,

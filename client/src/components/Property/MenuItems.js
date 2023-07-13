@@ -21,7 +21,7 @@ function MenuItems({ zpid }) {
   const likes = useSelector(state => state.likes.list);
   const properties = useSelector(state => state.home.list);
 
-  const liked = likes.some(prop => prop.zpid === currZpid);
+  const liked = likes && likes.some(prop => prop.zpid === currZpid);
   const housing = properties.find(prop => prop.zpid === currZpid);
 
   const handleAddLike = () => {
@@ -30,6 +30,13 @@ function MenuItems({ zpid }) {
 
   const handleDeleteLike = () => {
     dispatch(deleteLikesAsync(currZpid));
+  };
+
+  const handleShare = () => {
+    // navigator.clipboard.writeText(window.location.href); // after deployment
+    const url = window.location.href;
+    console.log('URL copied to clipboard:', url);
+    alert('URL copied to clipboard');
   };
 
   return (
@@ -42,7 +49,7 @@ function MenuItems({ zpid }) {
         )}
         <MenuOpt>Save</MenuOpt>
       </MenuContainer>
-      <MenuContainer>
+      <MenuContainer onClick={handleShare}>
         <ReplyIcon />
         <MenuOpt>Share</MenuOpt>
       </MenuContainer>
