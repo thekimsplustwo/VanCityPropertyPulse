@@ -33,7 +33,7 @@
   "rules": {
     "eqeqeq": "warn",
     "default-param-last": "off",
-    "dot-notation": "warn",
+    "dot-notation": "off",
     "import/no-extraneous-dependencies": "off",
     "import/prefer-default-export": "off",
     "import/extensions": "off",
@@ -49,6 +49,7 @@
     "no-var": "warn",
     "no-unused-vars": "warn",
     "object-curly-newline": "off",
+    "object-shorthand": "off",
     "prefer-destructuring": ["error", {"object": true, "array": false}],
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "spaced-comment": "off",

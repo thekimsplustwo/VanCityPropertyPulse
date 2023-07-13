@@ -8,12 +8,13 @@ function PropertyGrid({ properties, showCompareButton }) {
     <Wrapper>
       <Section>
         <CardWrapper>
-          {properties.map(property => (
-            <PropertyCard
-              key={property.zpid}
-              property={property}
-              showCompareButton={showCompareButton}
-            />
+          {properties &&
+            properties.map(property => (
+              <PropertyCard
+                key={property.zpid}
+                property={property}
+                showCompareButton={showCompareButton}
+              />
           ))}
         </CardWrapper>
       </Section>

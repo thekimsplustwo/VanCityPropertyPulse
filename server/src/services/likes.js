@@ -5,7 +5,7 @@ dotenv.config();
 
 const { MOCK } = process.env;
 
-const likesModel = MOCK ? model.mockLikesModel : model.likesModel;
+const likesModel = MOCK === true ? model.mockLikesModel : model.likesModel;
 
 const getLikes = async email => {
   return likesModel.getLikes(email);
