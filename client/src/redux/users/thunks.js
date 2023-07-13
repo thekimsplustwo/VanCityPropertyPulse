@@ -22,7 +22,7 @@ export const logoutAsync = createAsyncThunk(
   actionTypes.LOGOUT,
   async accessToken => {
     localStorage.removeItem('accessToken');
-    UserService.revokeToken(accessToken);
+    // UserService.revokeToken(accessToken);
     UserService.logout();
   }
 );

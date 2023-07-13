@@ -14,6 +14,7 @@ function Logout() {
     // navigate('/home');
     // window.location.href = 'https://accounts.google.com/logout';
     dispatch(logoutAsync(token));
+    window.location.href = 'http://localhost:3000/home';
   };
 
   return (

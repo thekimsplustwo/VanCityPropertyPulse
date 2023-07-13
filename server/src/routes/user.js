@@ -26,7 +26,10 @@ userRouter.post('/', asyncWrap(userController.signup));
 
 userRouter.get(
   '/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    prompt: 'select_account',
+  })
 );
 
 userRouter.get(
@@ -34,25 +37,26 @@ userRouter.get(
   passport.authenticate('google', { failureRedirect: '/google' }),
   (req, res) => {
     const { accessToken } = req.authInfo;
-    console.log('Access Token: ', accessToken);
-    console.log('req.session after logging in: ', req.session);
-    // next();
-    // res.redirect(`${FRONT_REDIRECT_URL}/mypage?access_token=${accessToken}`);
-    res.cookie('accessToken', accessToken, { httpOnly: true, secure: true });
+    console.log('acessToken: ', accessToken);
+    res.cookie('accessToken', accessToken, {
+      httpOnly: true,
+      secure: true,
+      path: '/users',
+    });
     res.redirect(`${FRONT_REDIRECT_URL}/mypage`);
+    // res.json({ accessToken });
   }
 );
 
 userRouter.post('/logout', (req, res, next) => {
-  console.log('req.session before destroying: ', req.session);
-  req.session.destroy(async err => {
-    if (err) {
-      console.error('Error destroying session:', err);
-      return next(err);
-    }
-    console.log('req.session after destroying: ', req.session);
-    await res.json({ message: 'Logout successful' });
-  });
+  // res.clearCookie('accessToken', {
+  //   httpOnly: true,
+  //   secure: true,
+  //   path: '/users',
+  // });
+  req.session.destroy();
+  res.clearCookie('connect.sid');
+  // res.redirect(`${FRONT_REDIRECT_URL}/home`);
 });
 
 userRouter.get('/profile', async (req, res) => {
@@ -64,5 +68,11 @@ userRouter.get('/profile', async (req, res) => {
     res.status(400).json();
   }
 });
+
+// userRouter.get('/token', (req, res) => {
+//   const { accessToken } = req.cookies;
+//   console.log('accessToken: ', accessToken);
+//   res.json({ accessToken });
+// });
 
 export default userRouter;

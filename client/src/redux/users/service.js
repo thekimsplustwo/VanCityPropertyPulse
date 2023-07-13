@@ -62,13 +62,14 @@ export const googleLogin = async () => {
 
 const logout = async () => {
   await axios
-    .post(`${BASE_URL}/users/logout`, {
-      credentials: 'include',
-      method: 'POST',
+    .post(`${BASE_URL}/users/logout`, null, {
+      // credentials: 'include',
+      // method: 'POST',
+      withCredentials: true,
     })
-    .then(response => {
-      window.location.href = 'http://localhost:3000/home';
-    })
+    // .then(() => {
+    //   window.location.href = 'http://localhost:3000/home';
+    // })
     .catch(error => {
       console.error('Logout failed:', error);
     });

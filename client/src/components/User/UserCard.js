@@ -11,6 +11,7 @@ function UserCard() {
 
   const logout = token => {
     dispatch(logoutAsync(token));
+    window.location.href = 'http://localhost:3000/home';
   };
 
   return (
