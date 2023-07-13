@@ -21,8 +21,9 @@ function PropertyHeader({ propertyDetails }) {
         <HeaderSubTitle>
           <h1>{convertPriceToCAD(propertyDetails.price)}</h1>
           <h3>
-            {convertPriceToCAD(propertyDetails.pricePerSquareFoot)}
-            /unit
+            {convertPriceToCAD(propertyDetails.resoFacts?.pricePerSquareFoot) ??
+              ''}
+            /sqft
           </h3>
         </HeaderSubTitle>
       </HeaderWrapper>

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DummyHome from './pages/Home/DummyHome';
 import Home from './pages/Home/Home';
@@ -12,6 +12,7 @@ import Compare from './pages/Compare/Compare';
 
 function Router() {
   return (
+    // <UserProvider>
     <BrowserRouter>
       <ScrollTop />
       <Header />
@@ -25,6 +26,7 @@ function Router() {
       </Routes>
       <Footer />
     </BrowserRouter>
+    // </UserProvider>
   );
 }
 

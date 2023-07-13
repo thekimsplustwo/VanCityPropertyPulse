@@ -12,7 +12,7 @@ const userRouter = Router();
 // userRouter.post('/', asyncWrap(userController.signup));
 
 userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
-userRouter.put('/', verifyToken, asyncWrap(userController.updateUserInfo));
+userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
 userRouter.get('/', verifyToken, asyncWrap(userController.login));
 userRouter.post('/', asyncWrap(userController.signup));
 

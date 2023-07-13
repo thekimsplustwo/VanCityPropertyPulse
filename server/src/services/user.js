@@ -55,9 +55,9 @@ const getUserInfoByEmail = async email => {
   // if (!validateEmail(email)) {
   //   errorGenerator({ message: errorType.INVALID_EMAIL, statusCode: 404 });
   // }
-  const user = await userModel.getUserInfoByEmail(email);
+  const user = await userModel.findByEmail(email);
   if (!user) {
-    errorGenerator({ message: ERROR_TYPE.USER_NOT_EXIST, statusCode: 404 });
+    errorGenerator(ERROR_TYPE.USER_NOT_EXIST);
   }
   return user;
 };
@@ -78,4 +78,8 @@ const terminateToken = async () => {
   //
 };
 
-export { getUserInfoByEmail, signup, login };
+const findByEmailAndUpdate = async (email, updatedInfo) => {
+  return userModel.updateItem(email, updatedInfo);
+};
+
+export { getUserInfoByEmail, signup, login, findByEmailAndUpdate };

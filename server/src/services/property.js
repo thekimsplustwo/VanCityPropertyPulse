@@ -1,14 +1,33 @@
 import dotenv from 'dotenv';
+import axios from 'axios';
 import * as model from '../models/index.js';
+import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 
 dotenv.config();
 
 const { MOCK } = process.env;
 
-const propertyModel = MOCK ? model.mockPropertyModel : model.propertyModel;
+const propertyModel = MOCK === true ? model.mockPropertyModel : model.propertyModel;
+
+const propertyDetailsOptions = zpid => {
+  return {
+    method: 'GET',
+    url: 'https://zillow-com1.p.rapidapi.com/property',
+    params: { zpid: zpid },
+    headers: {
+      'X-RapidAPI-Key': process.env.ZILLOW_API_KEY,
+      'X-RapidAPI-Host': process.env.ZILLOW_API_HOST,
+    },
+  };
+};
 
 const getPropertyDetails = async zpid => {
-  return propertyModel.getPropertyDetails(zpid);
+  const options = propertyDetailsOptions(zpid);
+  const response = await axios.request(options);
+  if (response.status !== 200) {
+    errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
+  }
+  return response.data;
 };
 
 const getPropertySummary = async zpid => {

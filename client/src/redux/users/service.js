@@ -45,8 +45,26 @@ const login = async email => {
   return response.json();
 };
 
+const editProfile = async formData => {
+  const url = `${BASE_URL}/users`;
+  const { email } = formData;
+
+  try {
+    const response = await axios.patch(url, formData, {
+      headers: {
+        Authorization: `Bearer ${email}`,
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export default {
   signup,
   login,
   getUser,
+  editProfile,
 };

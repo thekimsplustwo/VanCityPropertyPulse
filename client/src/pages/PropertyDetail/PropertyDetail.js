@@ -12,11 +12,11 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 
 function Property() {
   const { zpid } = useParams();
-  const property = useSelector(state => state.property.list);
+  const property = useSelector(state => state.property.property);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPropertyAsync(zpid));
-  }, [dispatch, property]);
+  }, [dispatch]);
   const images = Array.isArray(property.imgSrc)
     ? property.imgSrc
     : [property.imgSrc];
@@ -24,7 +24,7 @@ function Property() {
     <Wrapper>
       <HeaderWrapper>
         <PropertyHeader propertyDetails={property} />
-        <MenuItems />
+        <MenuItems zpid={zpid} />
       </HeaderWrapper>
       <ContentWrapper>
         <ImageCarousel propertyImages={images} />

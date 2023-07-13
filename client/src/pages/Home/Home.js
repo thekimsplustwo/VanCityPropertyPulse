@@ -13,17 +13,34 @@ function Home() {
   const location = useLocation();
 
   const properties = useSelector(state => state.home.list);
+  const searchParams = useSelector(state => state.search);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getListAsync());
+    dispatch(getListAsync(searchParams));
     dispatch(getLikesAsync());
-  }, [dispatch]);
+
+    const filteredParams = Object.fromEntries(
+      Object.entries(searchParams).filter(
+        ([key, value]) =>
+          (typeof value === 'string' && value.length > 0) ||
+          (Array.isArray(value) && value.length > 0) ||
+          (typeof value === 'number' && value >= 0)
+      )
+    );
+
+    const searchQuery = new URLSearchParams(filteredParams).toString();
+    if (searchQuery) {
+      navigate(`${location.pathname}?${searchQuery}`);
+    } else {
+      navigate(`${location.pathname}`);
+    }
+  }, [dispatch, navigate, location.pathname, searchParams]);
 
   return (
     <Main>
       <SearchComponent />
-      <PropertyGrid properties={properties} />
+      <PropertyGrid properties={properties} showCompareButton={false} />
     </Main>
   );
 }

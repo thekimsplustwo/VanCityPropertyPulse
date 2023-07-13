@@ -2,6 +2,8 @@ import dotenv from 'dotenv';
 import http from 'http';
 import cors from 'cors';
 import express from 'express';
+import morgan from 'morgan';
+import connect from './schemas/index.js';
 import routes from './routes/index.js';
 
 dotenv.config();
@@ -13,6 +15,8 @@ const allowedOrigins = [`http://localhost:${PORT}`];
 const corsOption = {
   origin: '*',
 };
+
+connect();
 
 const app = express();
 app.use(cors(corsOption));
@@ -27,7 +31,9 @@ const server = http.createServer(app);
 
 const start = async () => {
   try {
-    server.listen(PORT, () => console.log(`Server is listening on ${PORT}`));
+    server.listen(PORT, () =>
+      console.log(`Server is listening on ${PORT} | MOCK ${process.env.MOCK}`)
+    );
   } catch (err) {
     console.error(err);
   }

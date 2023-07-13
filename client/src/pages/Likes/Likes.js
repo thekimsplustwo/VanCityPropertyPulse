@@ -41,7 +41,7 @@ function Likes() {
           <StyledHeartBorderIcon onClick={handleDeleteAllLike} />
           <MenuOpt onClick={handleDeleteAllLike}>Clear All</MenuOpt>
         </MenuContainer>
-        <PropertyGrid properties={properties} />
+        <PropertyGrid properties={properties} showCompareButton />
       </Main>
     </Margin>
   );
@@ -50,6 +50,7 @@ function Likes() {
 const Main = styled.div`
   padding-top: 5em;
   width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
 `;

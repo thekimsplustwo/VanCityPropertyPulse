@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Button, Menu, styled as muiStyled } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import HomeTypeMenuItem from './HomeTypeMenuItem';
+import { setHomeType } from '../../../redux/search/reducer';
 
 const StyledButton = muiStyled(Button)({
   backgroundColor: 'white',
@@ -16,10 +18,14 @@ const StyledButton = muiStyled(Button)({
 
 export default function HomeType() {
   const homeTypes = ['Apartment', 'House', 'Condo', 'Townhome', 'Multi-family'];
+  const searchParams = useSelector(state => state.search);
 
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState(
+    [...searchParams.home_type] || []
+  );
   const [buttonText, setButtonText] = useState('Home Type');
+  const dispatch = useDispatch();
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -30,14 +36,19 @@ export default function HomeType() {
     if (selectedTypes.length === 0) {
       setButtonText('Home Type');
     }
+
+    dispatch(setHomeType(selectedTypes));
   };
 
   const handleSelect = type => {
     setSelectedTypes(prevSelectedTypes => {
+      let newSelectedTypes;
       if (prevSelectedTypes.includes(type)) {
-        return prevSelectedTypes.filter(t => t !== type);
+        newSelectedTypes = prevSelectedTypes.filter(t => t !== type);
+      } else {
+        newSelectedTypes = [...prevSelectedTypes, type];
       }
-      return [...prevSelectedTypes, type];
+      return newSelectedTypes;
     });
   };
 
