@@ -31,6 +31,7 @@ const StyledMenu = muiStyled(Menu)`
 const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
 const navIconStyle = { fontSize: '2rem', color: themeColor };
+
 const pages = [
   { name: 'Home', icon: <HomeOutlinedIcon sx={navIconStyle} />, path: '/home' },
   // { <Delete Compare btn>
@@ -52,6 +53,7 @@ const settings = [
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const searchParams = useSelector(state => state.search);
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
@@ -69,6 +71,25 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
+  const generateURL = page => {
+    if (page.name === 'Home') {
+      const filteredParams = Object.fromEntries(
+        Object.entries(searchParams).filter(
+          ([key, value]) =>
+            (typeof value === 'string' && value.length > 0) ||
+            (Array.isArray(value) && value.length > 0) ||
+            (typeof value === 'number' && value >= 0)
+        )
+      );
+
+      const searchQuery = new URLSearchParams(filteredParams).toString();
+      if (searchQuery) {
+        return `${page.path}?${searchQuery}`;
+      }
+    }
+    return page.path;
+  };
+
   return (
     <AppBar position="static" sx={{ backgroundColor: 'white' }}>
       <Container maxWidth={false}>
@@ -84,8 +105,8 @@ function ResponsiveAppBar() {
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href="/home"
+            component={Link}
+            to={generateURL(pages[0])}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -129,7 +150,7 @@ function ResponsiveAppBar() {
             >
               {pages.map(page => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Link to={page.path}>
+                  <Link to={generateURL(page)}>
                     <ListItemIcon>{page.icon}</ListItemIcon>
                     <Typography textAlign="center">{page.name}</Typography>
                   </Link>
@@ -175,7 +196,7 @@ function ResponsiveAppBar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, display: 'block' }}
                 component={Link}
-                to={page.path}
+                to={generateURL(page)}
               >
                 {page.icon}
               </Button>
