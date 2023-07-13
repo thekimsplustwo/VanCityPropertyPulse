@@ -14,7 +14,7 @@ const { FRONT_REDIRECT_URL } = process.env;
 const userRouter = Router();
 
 userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
-userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
+userRouter.patch('/', asyncWrap(userController.updateUserInfo));
 userRouter.post('/', asyncWrap(userController.signup));
 
 userRouter.get(

@@ -10,6 +10,7 @@ const UserSchema = new BaseSchema(
     },
     firstName: { type: String, required: true },
     lastName: { type: String, required: false },
+    age: { type: Number, required: false },
     phoneNumber: { type: String, required: false },
     region: { type: String, required: false },
     photo: { type: String, required: false },

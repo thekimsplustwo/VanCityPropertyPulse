@@ -29,17 +29,13 @@ const getUser = async (req, res) => {
 };
 
 const updateUserInfo = async (req, res) => {
-  // const { user } = req;
-  // const updated = await userService.getUserInfoByEmail(user.email);
-  // return res.status(201).json(updated);
   try {
-    const { user } = req;
+    const { email } = req.body;
     const updatedInfo = req.body;
     const updatedUser = await userService.findByEmailAndUpdate(
-      user.email,
+      email,
       updatedInfo
     );
-
     return res.status(200).json(updatedUser);
   } catch (error) {
     return res.status(500).json({ message: 'Failed to update user info.' });

@@ -29,6 +29,7 @@ function UserProfileEdit({ setModal }) {
   const handleSaveBtn = () => {
     setModal(false);
     dispatch(editProfileAsync(formData));
+    window.location.href = 'http://localhost:3000/mypage';
   };
 
   return (
@@ -62,9 +63,9 @@ function UserProfileEdit({ setModal }) {
               <TextField
                 type="number"
                 label="Age"
-                disabled
-                value={formData.age}
                 name="age"
+                value={formData.age}
+                onChange={e => handleInputChange(e.currentTarget)}
               />
 
               <TextField

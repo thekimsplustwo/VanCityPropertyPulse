@@ -72,10 +72,10 @@ const editProfile = async formData => {
 
   try {
     const response = await axios.patch(url, formData, {
-      headers: {
-        Authorization: `Bearer ${email}`,
-        'Content-Type': 'application/json',
-      },
+      // headers: {
+      //   Authorization: `Bearer ${email}`,
+      //   'Content-Type': 'application/json',
+      // },
     });
     return response.data;
   } catch (error) {

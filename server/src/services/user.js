@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import { error } from 'console';
 import * as model from '../models/index.js';
 import { errorGenerator, ERROR_TYPE } from '../utils/error.js';
+import User from '../schemas/users.js';
 
 dotenv.config();
 
@@ -83,7 +84,9 @@ const terminateToken = async () => {
 };
 
 const findByEmailAndUpdate = async (email, updatedInfo) => {
-  return userModel.updateItem(email, updatedInfo);
+  // return userModel.updateUser(email, updatedInfo);
+  const updatedUser = await User.findOneAndUpdate({ email }, updatedInfo);
+  return updatedUser;
 };
 
 export { getUserInfoByEmail, signup, login, logout, findByEmailAndUpdate };

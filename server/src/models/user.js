@@ -25,4 +25,8 @@ const findByEmail = async email => {
   return User.findOne({ email });
 };
 
-export { getUserInfo, login, logout, findByEmail };
+const updateUser = async (email, updatedInfo) => {
+  //
+};
+
+export { getUserInfo, login, logout, findByEmail, updateUser };
