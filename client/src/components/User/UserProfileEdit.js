@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TextField, Button } from '@mui/material';
@@ -158,21 +158,6 @@ const Main = styled.div`
   margin: 20px;
   background-color: white;
   text-align: center;
-`;
-
-const EditInput = styled.input`
-  flex: 1;
-  width: 50%;
-  height: 50px;
-  padding: 13px 12px;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  outline: none;
-  border: 1px solid black;
-  border-radius: 15px;
-  background-color: white;
-  :focus {
-  }
 `;
 
 const Title = styled.p`

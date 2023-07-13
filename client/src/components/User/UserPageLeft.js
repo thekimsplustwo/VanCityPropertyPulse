@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import UserCard from './UserCard';
 import UserInfo from './UserInfo';

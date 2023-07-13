@@ -5,21 +5,15 @@ import { logoutAsync } from '../../redux/users/thunks';
 
 function Logout() {
   const dispatch = useDispatch();
-  const token = getAccessToken();
 
-  const logout = token => {
-    // googleLogout();
-    // removeAccessToken();
-    // removeLoggedEmail();
-    // navigate('/home');
-    // window.location.href = 'https://accounts.google.com/logout';
-    dispatch(logoutAsync(token));
+  const logout = () => {
+    dispatch(logoutAsync());
     window.location.href = 'http://localhost:3000/home';
   };
 
   return (
     <Main>
-      <LogoutButton type="button" onClick={() => logout(token)}>
+      <LogoutButton type="button" onClick={() => logout()}>
         Sign out 👋
       </LogoutButton>
     </Main>

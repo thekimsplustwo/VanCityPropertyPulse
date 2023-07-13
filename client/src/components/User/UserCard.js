@@ -2,15 +2,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
 import { logoutAsync } from '../../redux/users/thunks';
-import { getAccessToken } from '../../utils/storage';
 
 function UserCard() {
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
-  const token = getAccessToken();
 
-  const logout = token => {
-    dispatch(logoutAsync(token));
+  const logout = () => {
+    dispatch(logoutAsync());
     window.location.href = 'http://localhost:3000/home';
   };
 
@@ -22,7 +20,7 @@ function UserCard() {
           Welcome, <Bold>{user.firstName}</Bold>!❤️
         </p>
       </div>
-      <Button variant="outlined" color="error" onClick={() => logout(token)}>
+      <Button variant="outlined" color="error" onClick={() => logout()}>
         LogOut
       </Button>
     </Margin>

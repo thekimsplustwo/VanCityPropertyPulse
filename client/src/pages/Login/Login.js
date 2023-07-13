@@ -5,41 +5,6 @@ function Login() {
     window.location.href = 'http://localhost:10010/users/google';
   };
 
-  // const login = useGoogleLogin({
-  //   onSuccess: setUser,
-  //   // onError: console.error('Unable to login via Google'),
-  // });
-
-  // useEffect(() => {
-  //   removeAccessToken();
-  //   removeLoggedEmail();
-  //   if (user) {
-  //     axios
-  //       .get(
-  //         `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
-  //         {
-  //           headers: {
-  //             Authorization: `Bearer ${user.access_token}`,
-  //             Accept: 'application/json',
-  //           },
-  //         }
-  //       )
-  //       .then(res => {
-  //         saveAccessToken(user.access_token);
-  //         const USER_EMAIL = res.data.email;
-  //         if (!dispatch(getUserAsync(USER_EMAIL))) {
-  //           dispatch(signupAsync(USER_EMAIL));
-  //           console.log('Signup successful!');
-  //         } else {
-  //           dispatch(loginAsync(USER_EMAIL));
-  //           console.log('Login successful!');
-  //           navigate('/mypage');
-  //         }
-  //       })
-  //       .catch(err => console.error(err));
-  //   }
-  // }, [user]);
-
   return (
     <Main>
       <LoginButton type="button" onClick={handleGoogleLogin}>
