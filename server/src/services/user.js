@@ -57,7 +57,7 @@ const getUserInfoByEmail = async email => {
   // }
   const user = await userModel.findByEmail(email);
   if (!user) {
-    errorGenerator({ message: ERROR_TYPE.USER_NOT_EXIST, statusCode: 404 });
+    errorGenerator(ERROR_TYPE.USER_NOT_EXIST);
   }
   return user;
 };

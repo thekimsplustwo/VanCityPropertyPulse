@@ -3,13 +3,18 @@ import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 import './PropertyGrid.css';
 
-function PropertyGrid({ properties }) {
+function PropertyGrid({ properties, showCompareButton }) {
   return (
     <Wrapper>
       <Section>
         <CardWrapper>
-          {properties.map(property => (
-            <PropertyCard key={property.zpid} property={property} />
+          {properties &&
+            properties.map(property => (
+              <PropertyCard
+                key={property.zpid}
+                property={property}
+                showCompareButton={showCompareButton}
+              />
           ))}
         </CardWrapper>
       </Section>
