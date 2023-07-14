@@ -19,9 +19,6 @@ import LocalParkingIcon from '@mui/icons-material/LocalParking';
 
 function DetailedInfo({ propertyDetails }) {
   // decompose props
-  const cssStyle = {
-    padding: '20px',
-  };
   const {
     homeType,
     yearBuilt,
