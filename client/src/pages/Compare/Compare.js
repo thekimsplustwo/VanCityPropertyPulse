@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -12,28 +12,21 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 //   const navigate = useNavigate();
 //   const location = useLocation();
 
-const demoPropertyDetails = {
-  homeType: 'House',
-  yearBuilt: 2013,
-  livingArea: '5000+ sqft',
-  pricePerSquareFoot: '1,099',
-  monthlyHoaFee: '500',
-  hasGarage: true,
-  bathrooms: 3,
-  bedrooms: 4,
-};
-
 function Compare() {
-  const location = useLocation();
-  const { zpid } = useParams();
-  const property = useSelector(state => state.property.list);
+  const params = new URL(document.location).searchParams;
+  const zpid = params.get('item');
+  // const zpid2 = params.get('zpid2');
+  const property = useSelector(state => state.property.property);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPropertyAsync(zpid));
-  }, [dispatch, property]);
-  // const images = Array.isArray(property.imgSrc)
-  //   ? property.imgSrc
-  //   : [property.imgSrc];
+    // dispatch(getPropertyAsync(zpid2));
+  }, [dispatch]);
+
+  const images = Array.isArray(property.imgSrc)
+    ? property.imgSrc
+    : [property.imgSrc];
 
   return (
     <Wrapper>
@@ -43,13 +36,13 @@ function Compare() {
           <ContentWrapper>
             <Grid container spacing={2}>
               <Grid item="true" xs={4}>
-                {/* <ImageCarousel propertyImages={images} /> */}
-                <CompareProps propertyDetails={demoPropertyDetails} />
+                <ImageCarousel propertyImages={images} />
+                <CompareProps propertyDetails={property} />
               </Grid>
 
               <Grid item="true" xs={4}>
-                {/* <ImageCarousel propertyImages={images} /> */}
-                <CompareProps propertyDetails={demoPropertyDetails} />
+                <ImageCarousel propertyImages={images} />
+                <CompareProps propertyDetails={property} />
               </Grid>
             </Grid>
           </ContentWrapper>

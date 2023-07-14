@@ -27,12 +27,14 @@ function CompareProps({ propertyDetails }) {
   } = propertyDetails;
 
   const rows = [
-    createData('Home Type', homeType),
+    createData('Home Type', propertyDetails.homeType),
     createData('Year Built', yearBuilt),
     createData('Living Area', livingArea),
     createData('Price per sqft', pricePerSquareFoot),
     createData('Monthly Strata Fee', monthlyHoaFee),
-    createData('Garage', hasGarage),
+    hasGarage
+      ? createData('Garage', 'Has Garage')
+      : createData('Garage', 'No Garage'),
     createData('Bathrooms', bathrooms),
     createData('Bedrooms', bedrooms),
   ];
