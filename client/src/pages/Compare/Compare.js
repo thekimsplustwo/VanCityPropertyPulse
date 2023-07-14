@@ -53,7 +53,7 @@ function Compare() {
               height="mix-content"
               onClick={() => setIsModalOpen(true)}
             >
-              Compare
+              Add Property
             </Button>
             <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
               TODO: Insert Like properties here
