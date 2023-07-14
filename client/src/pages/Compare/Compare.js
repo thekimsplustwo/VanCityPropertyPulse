@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Button } from '@mui/material';
+import { Button, Div } from '@mui/material';
 import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
@@ -44,24 +44,28 @@ function Compare() {
     <Wrapper>
       <Margin>
         <Main>
-          <Header> Compare properties</Header>
+          <Header>Compare properties</Header>
           <ButtonWrapper>
             <Button
               variant="contained"
               size="small"
               position="fixed"
-              height="mix-content
-          "
+              height="mix-content"
               onClick={() => setIsModalOpen(true)}
             >
               Compare
             </Button>
             <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-              Fancy Modal
+              TODO: Insert Like properties here
             </Modal>
           </ButtonWrapper>
           <ContentWrapper>
             <Grid container spacing={2}>
+              <Grid item="true" xs={4}>
+                <ImageCarousel propertyImages={images} />
+                <CompareProps propertyDetails={property} />
+              </Grid>
+
               <Grid item="true" xs={4}>
                 <ImageCarousel propertyImages={images} />
                 <CompareProps propertyDetails={property} />
@@ -80,9 +84,13 @@ function Compare() {
 }
 const Main = styled.div`
   padding-top: 5em;
+  min-height: 100vh;
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const ContentWrapper = styled.div`
   padding: 10px 50px;
@@ -91,13 +99,15 @@ const ContentWrapper = styled.div`
   align-items: stretch;
   margin: 0;
   margin-top: 2rem;
+  justify-content: center;
+  width: 100%;
 `;
 const Wrapper = styled.div`
   padding-top: 6em;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-item: space-around;
+  align-items: space-around;
 `;
 const Margin = styled.div`
   margin: 20px;
@@ -112,7 +122,7 @@ const Header = styled.h1`
   color: #000;
   margin-bottom: 2rem;
   text-align: left;
-  margin-top: -4rem;
+  margin-top: 12rem;
   margin-left: 1rem;
   margin-right: 1rem;
 `;
@@ -127,9 +137,9 @@ const ButtonWrapper = styled.div`
   & button {
     padding: 8px 16px;
   }
-  position: 'fixed';
-  zindex: 1;
-  height="mix-content"
+  // position: 'fixed';
+  // zindex: 1;
+  // height="mix-content"
 `;
 
 // const Button = styled.button`

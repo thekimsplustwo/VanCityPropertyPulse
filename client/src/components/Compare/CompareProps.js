@@ -194,7 +194,11 @@ const StyledContainer = styled.div`
 
 const StyledTableContainer = styled(TableContainer)`
   overflow: hidden;
-  max-width: 100%;
+  max-width: {
+     {
+      width: '100%';
+    }
+  }
 `;
 // const Wrapper = styled.div`
 //   border-radius: 15px;
