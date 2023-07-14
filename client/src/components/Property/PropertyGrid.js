@@ -15,7 +15,7 @@ function PropertyGrid({ properties, showCompareButton }) {
                 property={property}
                 showCompareButton={showCompareButton}
               />
-          ))}
+            ))}
         </CardWrapper>
       </Section>
     </Wrapper>
