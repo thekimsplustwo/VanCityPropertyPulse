@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { Button } from '@mui/material';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
@@ -34,12 +35,20 @@ function Compare() {
   // const images = Array.isArray(property.imgSrc)
   //   ? property.imgSrc
   //   : [property.imgSrc];
+  const handleOpen = () => {
+    return false;
+  };
 
   return (
     <Wrapper>
       <Margin>
         <Main>
           <Header> Compare properties</Header>
+          <ButtonWrapper>
+            <Button variant="contained" onClick={handleOpen} size="small">
+              Click me
+            </Button>
+          </ButtonWrapper>
           <ContentWrapper>
             <Grid container spacing={2}>
               <Grid item="true" xs={4}>
@@ -94,6 +103,20 @@ const Header = styled.h1`
   text-align: left;
   margin-top: -4rem;
   margin-left: 1rem;
+`;
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  & button {
+    padding: 8px 16px;
+  }
+  position: 'relative';
+  zindex: 1;
 `;
 
 export default Compare;
