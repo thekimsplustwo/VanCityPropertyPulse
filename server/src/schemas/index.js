@@ -33,5 +33,5 @@ mongoose.connection.on('disconnected', () => {
   console.error('disconnected. re-connect');
   connect();
 });
-//resetDatabase();
+//resetDatabase('all');
 export default connect;

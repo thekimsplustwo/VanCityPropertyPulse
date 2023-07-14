@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Menu, styled as muiStyled } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import HomeTypeMenuItem from './HomeTypeMenuItem';
 import { setHomeType } from '../../../redux/search/reducer';
 
@@ -18,9 +18,12 @@ const StyledButton = muiStyled(Button)({
 
 export default function HomeType() {
   const homeTypes = ['Apartment', 'House', 'Condo', 'Townhome', 'Multi-family'];
+  const searchParams = useSelector(state => state.search);
 
   const [anchorEl, setAnchorEl] = useState(null);
-  const [selectedTypes, setSelectedTypes] = useState([]);
+  const [selectedTypes, setSelectedTypes] = useState(
+    [...searchParams.home_type] || []
+  );
   const [buttonText, setButtonText] = useState('Home Type');
   const dispatch = useDispatch();
 
@@ -33,6 +36,8 @@ export default function HomeType() {
     if (selectedTypes.length === 0) {
       setButtonText('Home Type');
     }
+
+    dispatch(setHomeType(selectedTypes));
   };
 
   const handleSelect = type => {
@@ -43,8 +48,6 @@ export default function HomeType() {
       } else {
         newSelectedTypes = [...prevSelectedTypes, type];
       }
-
-      dispatch(setHomeType(newSelectedTypes));
       return newSelectedTypes;
     });
   };

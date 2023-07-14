@@ -53,7 +53,7 @@ const likesSlice = createSlice({
       })
       .addCase(deleteLikesAsync.fulfilled, (state, action) => {
         state.deleteLikes = REQUEST_STATE.FULFILLED;
-        state.list = state.list.filter(item => item.zpid !== action.payload);
+        state.list = action.payload;
       })
       .addCase(deleteLikesAsync.rejected, (state, action) => {
         state.deleteLikes = REQUEST_STATE.REJECTED;
@@ -65,7 +65,7 @@ const likesSlice = createSlice({
       })
       .addCase(deleteAllLikesAsync.fulfilled, (state, action) => {
         state.deleteAllLikes = REQUEST_STATE.FULFILLED;
-        state.list = [];
+        state.list = action.payload;
       })
       .addCase(deleteAllLikesAsync.rejected, (state, action) => {
         state.deleteAllLikes = REQUEST_STATE.REJECTED;

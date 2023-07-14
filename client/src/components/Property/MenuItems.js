@@ -21,7 +21,7 @@ function MenuItems({ zpid }) {
   const likes = useSelector(state => state.likes.list);
   const properties = useSelector(state => state.home.list);
 
-  const liked = likes.some(prop => prop.zpid === currZpid);
+  const liked = likes && likes.some(prop => prop.zpid === currZpid);
   const housing = properties.find(prop => prop.zpid === currZpid);
 
   const handleAddLike = () => {
