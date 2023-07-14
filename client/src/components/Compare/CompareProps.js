@@ -156,40 +156,31 @@ function CompareProps({ propertyDetails }) {
 
   return (
     <StyledContainer>
-      <TableContainer
+      <StyledTableContainer
         component={Paper}
+        style={{ width: 500 }}
         // style={({ maxHeight: '280px' }, { maxWidth: '400px' })}
       >
         <Table sx={{ minWidth: 100 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell colSpan={5} style={{ textAlign: 'left' }}>
+              <TableCell colSpan={5} style={{ textAlign: 'left' }} width="100%">
                 Home Address
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {rows.map(row => (
-              <TableRow
-                key={row.name}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
+              <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{propertyDetails.homeType}</TableCell>
-                <TableCell align="right">{row.yearBuilt}</TableCell>
-                <TableCell align="right">{row.livingArea}</TableCell>
-                <TableCell align="right">{row.pricePerSquareFoot}</TableCell>
-                <TableCell align="right">{row.monthlyHoaFee}</TableCell>
-                <TableCell align="right">{row.hasGarage}</TableCell>
-                <TableCell align="right">{row.bathrooms}</TableCell>
-                <TableCell align="right">{row.bedrooms}</TableCell>
+                <TableCell align="right">{row.value}</TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
-      </TableContainer>
+      </StyledTableContainer>
     </StyledContainer>
   );
 }
@@ -197,33 +188,36 @@ const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 20px;
-  overflow-x: auto;
 `;
 
-const Wrapper = styled.div`
-  border-radius: 15px;
-  padding: 16px;
-  min-width: 100%;
-  width: fit-content;
-  margin: -23px;
-  background-color: white;
-  text-align: center;
-  box-shadow: 10px 10px #fbe8e9;
-  display: inline-flex;
-  flex-direction: row;
+const StyledTableContainer = styled(TableContainer)`
+  overflow: hidden;
+  max-width: 100%;
 `;
+// const Wrapper = styled.div`
+//   border-radius: 15px;
+//   padding: 16px;
+//   min-width: 100%;
+//   width: fit-content;
+//   margin: -23px;
+//   background-color: white;
+//   text-align: center;
+//   box-shadow: 10px 10px #fbe8e9;
+//   display: inline-flex;
+//   flex-direction: row;
+// `;
 
-const Box = styled.div`
-  padding: 20px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  background-color: "#f5f5f5"";
-  color: white;
-  font-size: 20px;
-  font-weight: bold;
-  border-radius: 10px;
-  box-shadow: 10px 10px #fbe8e9;
-`;
+// const Box = styled.div`
+//   padding: 20px;
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   background-color: "#f5f5f5"";
+//   color: white;
+//   font-size: 20px;
+//   font-weight: bold;
+//   border-radius: 10px;
+//   box-shadow: 10px 10px #fbe8e9;
+// `;
 
 export default CompareProps;

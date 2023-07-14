@@ -3,6 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
@@ -10,6 +11,17 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 // function Compare() {
 //   const navigate = useNavigate();
 //   const location = useLocation();
+
+const demoPropertyDetails = {
+  homeType: 'House',
+  yearBuilt: 2013,
+  livingArea: '5000+ sqft',
+  pricePerSquareFoot: '1,099',
+  monthlyHoaFee: '500',
+  hasGarage: true,
+  bathrooms: 3,
+  bedrooms: 4,
+};
 
 function Compare() {
   const location = useLocation();
@@ -19,9 +31,10 @@ function Compare() {
   useEffect(() => {
     dispatch(getPropertyAsync(zpid));
   }, [dispatch, property]);
-  const images = Array.isArray(property.imgSrc)
-    ? property.imgSrc
-    : [property.imgSrc];
+  // const images = Array.isArray(property.imgSrc)
+  //   ? property.imgSrc
+  //   : [property.imgSrc];
+
   return (
     <Wrapper>
       <Margin>
@@ -30,13 +43,13 @@ function Compare() {
           <ContentWrapper>
             <Grid container spacing={2}>
               <Grid item="true" xs={4}>
-                <ImageCarousel propertyImages={images} />
-                <CompareProps propertyDetails={property} />
+                {/* <ImageCarousel propertyImages={images} /> */}
+                <CompareProps propertyDetails={demoPropertyDetails} />
               </Grid>
 
               <Grid item="true" xs={4}>
-                <ImageCarousel propertyImages={images} />
-                <CompareProps propertyDetails={property} />
+                {/* <ImageCarousel propertyImages={images} /> */}
+                <CompareProps propertyDetails={demoPropertyDetails} />
               </Grid>
             </Grid>
           </ContentWrapper>
