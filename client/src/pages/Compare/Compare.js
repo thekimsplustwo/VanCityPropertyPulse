@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import ReactDOM from 'react-dom';
+
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Button } from '@mui/material';
+import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
@@ -13,30 +16,28 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 //   const navigate = useNavigate();
 //   const location = useLocation();
 
-const demoPropertyDetails = {
-  homeType: 'House',
-  yearBuilt: 2013,
-  livingArea: '5000+ sqft',
-  pricePerSquareFoot: '1,099',
-  monthlyHoaFee: '500',
-  hasGarage: true,
-  bathrooms: 3,
-  bedrooms: 4,
-};
-
 function Compare() {
-  const location = useLocation();
-  const { zpid } = useParams();
-  const property = useSelector(state => state.property.list);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const params = new URL(document.location).searchParams;
+  const zpid = params.get('item');
+  // const zpid2 = params.get('zpid2');
+  const property = useSelector(state => state.property.property);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPropertyAsync(zpid));
-  }, [dispatch, property]);
-  // const images = Array.isArray(property.imgSrc)
-  //   ? property.imgSrc
-  //   : [property.imgSrc];
-  const handleOpen = () => {
-    return false;
+    // dispatch(getPropertyAsync(zpid2));
+  }, [dispatch]);
+
+  const images = Array.isArray(property.imgSrc)
+    ? property.imgSrc
+    : [property.imgSrc];
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -45,20 +46,30 @@ function Compare() {
         <Main>
           <Header> Compare properties</Header>
           <ButtonWrapper>
-            <Button variant="contained" onClick={handleOpen} size="small">
-              Click me
+            <Button
+              variant="contained"
+              size="small"
+              position="fixed"
+              height="mix-content
+          "
+              onClick={() => setIsModalOpen(true)}
+            >
+              Compare
             </Button>
+            <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+              Fancy Modal
+            </Modal>
           </ButtonWrapper>
           <ContentWrapper>
             <Grid container spacing={2}>
               <Grid item="true" xs={4}>
-                {/* <ImageCarousel propertyImages={images} /> */}
-                <CompareProps propertyDetails={demoPropertyDetails} />
+                <ImageCarousel propertyImages={images} />
+                <CompareProps propertyDetails={property} />
               </Grid>
 
               <Grid item="true" xs={4}>
-                {/* <ImageCarousel propertyImages={images} /> */}
-                <CompareProps propertyDetails={demoPropertyDetails} />
+                <ImageCarousel propertyImages={images} />
+                <CompareProps propertyDetails={property} />
               </Grid>
             </Grid>
           </ContentWrapper>
@@ -103,6 +114,7 @@ const Header = styled.h1`
   text-align: left;
   margin-top: -4rem;
   margin-left: 1rem;
+  margin-right: 1rem;
 `;
 
 const ButtonWrapper = styled.div`
@@ -115,8 +127,18 @@ const ButtonWrapper = styled.div`
   & button {
     padding: 8px 16px;
   }
-  position: 'relative';
+  position: 'fixed';
   zindex: 1;
+  height="mix-content"
 `;
 
+// const Button = styled.button`
+// height="mix-content";
+//  width: 100;
+//  position: fixed;
+//  margin-left: -200px;
+//   margin-top: 50px;
+//  `;
+// height: min-content;
+//     position: fixed;
 export default Compare;
