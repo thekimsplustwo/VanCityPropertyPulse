@@ -18,15 +18,19 @@ const { MONGODB_HOST, MONGODB_USER, MONGODB_PW, DATABASE, SECRET_KEY } =
 
 const PORT = process.env.PORT || 10010;
 
-const MongoDBStore = connectMongoDBSession(session);
-const sessionStore = new MongoDBStore({
-  uri: `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`,
-  collection: 'sessions',
+const app = express();
+
+app.all('/*', function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With, Content-Type, Accept, Authorization'
+  );
+  res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH');
+  next();
 });
 
-connect();
-
-const app = express();
 app.use(express.json());
 app.use(logger('dev'));
 app.use(cookieParser());
@@ -59,6 +63,7 @@ const server = http.createServer(app);
 
 const start = async () => {
   try {
+    await connect();
     server.listen(PORT, () =>
       console.log(`Server is listening on ${PORT} | MOCK ${process.env.MOCK}`)
     );
