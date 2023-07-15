@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import { Router } from 'express';
 import passport from 'passport';
 import { addSeconds } from 'date-fns';
+import jwt from 'jsonwebtoken';
 import asyncWrap from '../async-wrap.js';
 import * as userController from '../controller/user.js';
 import { verifyToken } from '../middleware/auth.js';
@@ -16,6 +17,8 @@ const userRouter = Router();
 userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
 userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
 userRouter.post('/', asyncWrap(userController.signup));
+
+//userRouter.get('/google', passport.authenticate('oauth2'));
 
 userRouter.get(
   '/google',
@@ -37,6 +40,7 @@ userRouter.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/google' }),
   (req, res) => {
+    //console.log('req ', req);
     res.redirect(`${FRONT_REDIRECT_URL}`);
   }
 );
@@ -67,15 +71,32 @@ userRouter.post('/logout', (req, res, next) => {
     secure: true,
   });
 });
-
 userRouter.get('/profile', async (req, res) => {
+  console.log('profile called');
   if (req.session.passport) {
-    const email = req.session.passport.user;
+    console.log('req.session  :: ', req.session);
+    console.log('req.session.passport  :: ', req.session.passport);
+    const token = req.session.passport.user;
+    const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+    console.log('decodedToken ', decodedToken);
+    const { email } = decodedToken;
     const user = await User.findOne({ email });
     res.status(200).json(user);
   } else {
     res.status(400).json();
   }
 });
+
+// userRouter.get('/profile', async (req, res) => {
+//   if (req.session.passport) {
+//     console.log('req.session  :: ', req.session);
+//     console.log('req.session.passport  :: ', req.session.passport);
+//     const email = req.session.passport.user;
+//     const user = await User.findOne({ email });
+//     res.status(200).json(user);
+//   } else {
+//     res.status(400).json();
+//   }
+// });
 
 export default userRouter;
