@@ -14,7 +14,7 @@ const { SECRET_KEY } = process.env;
 
 dotenv.config();
 
-const userModel = MOCK ? model.mockUserModel : model.userModel;
+const { userModel } = model;
 
 const salt = bcrypt.genSaltSync();
 const tokenObj = {
@@ -79,7 +79,8 @@ const terminateToken = async () => {
 };
 
 const findByEmailAndUpdate = async (email, updatedInfo) => {
-  return userModel.updateItem(email, updatedInfo);
+  const updatedUser = await userModel.findByEmailAndUpdate(email, updatedInfo);
+  return updatedUser;
 };
 
 export { getUserInfoByEmail, signup, login, findByEmailAndUpdate };

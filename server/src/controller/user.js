@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
 import * as userService from '../services/user.js';
-import { users } from '../data/data.js';
+// import { users } from '../data/data.js';
 
 dotenv.config();
-const { FRONT_REDIRECT_URL } = process.env;
+// const { FRONT_REDIRECT_URL } = process.env;
 
 const signup = async (req, res) => {
   const userInfo = req.body;
-  await userService.signup(userInfo, false);
+  await userService.signup(userInfo);
   return res.status(201).json({ message: 'SIGNUP_SUCCEEDED' });
 };
 
@@ -18,27 +18,30 @@ const login = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const { user } = req;
+  const email = req.token;
+  const user = await userService.getUserInfoByEmail(email);
   return res.status(201).json(user);
 };
 
 const updateUserInfo = async (req, res) => {
-  // const { user } = req;
-  // const updated = await userService.getUserInfoByEmail(user.email);
-  // return res.status(201).json(updated);
   try {
-    const { user } = req;
+    const { email } = req.body;
     const updatedInfo = req.body;
-    // Update the user's region in the database
     const updatedUser = await userService.findByEmailAndUpdate(
-      user.email,
+      email,
       updatedInfo
     );
-
     return res.status(200).json(updatedUser);
   } catch (error) {
     return res.status(500).json({ message: 'Failed to update user info.' });
   }
 };
 
-export { signup, login, updateUserInfo, getUser };
+const userLoggedIn = async (req, res) => {
+  if (req.session.passport) {
+    return req.user.email;
+  }
+  return null;
+};
+
+export { signup, login, updateUserInfo, getUser, userLoggedIn };
