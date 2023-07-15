@@ -40,7 +40,6 @@ userRouter.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/google' }),
   (req, res) => {
-    //console.log('req ', req);
     res.redirect(`${FRONT_REDIRECT_URL}`);
   }
 );
@@ -72,13 +71,9 @@ userRouter.post('/logout', (req, res, next) => {
   });
 });
 userRouter.get('/profile', async (req, res) => {
-  console.log('profile called');
   if (req.session.passport) {
-    console.log('req.session  :: ', req.session);
-    console.log('req.session.passport  :: ', req.session.passport);
     const token = req.session.passport.user;
     const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-    console.log('decodedToken ', decodedToken);
     const { email } = decodedToken;
     const user = await User.findOne({ email });
     res.status(200).json(user);
@@ -86,17 +81,5 @@ userRouter.get('/profile', async (req, res) => {
     res.status(400).json();
   }
 });
-
-// userRouter.get('/profile', async (req, res) => {
-//   if (req.session.passport) {
-//     console.log('req.session  :: ', req.session);
-//     console.log('req.session.passport  :: ', req.session.passport);
-//     const email = req.session.passport.user;
-//     const user = await User.findOne({ email });
-//     res.status(200).json(user);
-//   } else {
-//     res.status(400).json();
-//   }
-// });
 
 export default userRouter;

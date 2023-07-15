@@ -25,9 +25,7 @@ const getUser = async () => {
     credentials: 'include',
     method: 'GET',
   });
-  console.log('========== getUser called ===========');
   const res = response.json();
-  console.log('res ==== ', res);
   return res;
 };
 

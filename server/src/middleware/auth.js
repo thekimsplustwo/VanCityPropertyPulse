@@ -3,8 +3,6 @@ import { findByEmail } from '../models/user.js';
 
 export const verifyToken = async (req, res, next) => {
   try {
-    console.log('req.session ', req.session);
-    console.log('req.session.passpoart ', req.session.passport);
     if (!req.session.passport) {
       return res.status(401).send('Unauthorized');
     }

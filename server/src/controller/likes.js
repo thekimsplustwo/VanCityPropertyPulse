@@ -6,14 +6,12 @@ const { FRONT_REDIRECT_URL } = process.env;
 
 const getLikes = async (req, res) => {
   const { user } = req;
-  console.log('user ', user.email);
   const likes = await likesService.getLikes(user.email);
   return res.status(201).json(likes);
 };
 
 const addLikes = async (req, res) => {
   const { user } = req;
-  console.log('user ====', user);
   const property = req.body;
   const likes = await likesService.addLikes(user.email, property);
   return res.status(201).json(likes);
