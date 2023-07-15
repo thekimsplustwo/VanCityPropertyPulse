@@ -29,7 +29,8 @@
     "morgan": "^1.10.0",
     "parse5": "^7.1.2",
     "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "passport-oauth2": "github:adirshab/passport-oauth2"
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",
