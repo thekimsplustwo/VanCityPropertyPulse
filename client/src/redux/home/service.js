@@ -28,6 +28,20 @@ const getList = async params => {
 
   return data;
 };
+
+const getPage = async pageNumber => {
+  const response = await fetch(`${BASE_URL}/home/${pageNumber}`, {
+    method: 'GET',
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    const errorMsg = data?.message;
+    throw new Error(errorMsg);
+  }
+  return data;
+};
+
 export default {
   getList,
+  getPage,
 };

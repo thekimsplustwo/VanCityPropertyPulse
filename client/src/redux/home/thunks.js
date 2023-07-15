@@ -8,3 +8,10 @@ export const getListAsync = createAsyncThunk(
     return HomeService.getList(params);
   }
 );
+
+export const getPageAsync = createAsyncThunk(
+  actionTypes.GET_PAGE,
+  async pageNumber => {
+    return HomeService.getPage(pageNumber);
+  }
+);

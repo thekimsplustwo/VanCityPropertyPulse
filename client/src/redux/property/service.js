@@ -12,6 +12,7 @@ const getProperty = async zpid => {
   }
   return data;
 };
+
 export default {
   getProperty,
 };

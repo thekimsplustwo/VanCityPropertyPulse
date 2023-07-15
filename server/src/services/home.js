@@ -31,4 +31,17 @@ const getList = async (filter, sort) => {
   return homeModel.getList(trimedFilter, sort);
 };
 
-export { getList };
+const getTotalPages = async () => {
+  const totalProperties = await homeModel.getTotalProperties();
+  return Math.ceil(totalProperties / 9);
+};
+
+const getPaginatedProperties = async (page, filter, sort) => {
+  const propertiesPerPage = 9;
+  const startIndex = (page - 1) * propertiesPerPage;
+  const endIndex = page * propertiesPerPage;
+  const filteredProperties = await homeModel.getList(filter, sort);
+  return filteredProperties.slice(startIndex, endIndex);
+};
+
+export { getList, getTotalPages, getPaginatedProperties };

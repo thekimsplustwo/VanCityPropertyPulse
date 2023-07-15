@@ -5,7 +5,8 @@ import * as homeController from '../controller/home.js';
 import { verifyToken } from '../middleware/auth.js';
 
 const homeRouter = Router();
-homeRouter.get('/', asyncWrap(homeController.getList));
+// homeRouter.get('/', asyncWrap(homeController.getList));
+homeRouter.get('/:pageNumber', asyncWrap(homeController.getListPaginated));
 //homeRouter.get('/', verifyToken, asyncWrap(homeController.getList));
 
 export default homeRouter;
