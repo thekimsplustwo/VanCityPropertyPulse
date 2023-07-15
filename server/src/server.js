@@ -57,6 +57,7 @@ app.use(
     store: sessionStore,
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportIndex();
