@@ -1,6 +1,16 @@
 import RawProperty from '../schemas/rawProperties.js';
+import Neighborhood from '../schemas/neighborhood.js';
+import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 
-const generateQuery = filter => {
+const findZipcodeByNeighborhoodTitle = async title => {
+  const neighborhood = await Neighborhood.findOne({ title: title });
+  if (!neighborhood) {
+    errorGenerator(ERROR_TYPE.INVALID_REQUEST);
+  }
+  return neighborhood.zipcode.trim();
+};
+
+const generateQuery = async filter => {
   const query = {};
 
   if (filter.minPrice) {
@@ -13,6 +23,16 @@ const generateQuery = filter => {
     query.price = { ...query.price, $lte: filter.maxPrice };
   }
 
+  if (filter.bedsMin) {
+    filter.bedsMin = parseInt(filter.bedsMin, 10);
+    query.bedrooms = { ...query.bedrooms, $gte: filter.bedsMin };
+  }
+
+  if (filter.bedsMax) {
+    filter.bedsMin = parseInt(filter.bedsMax, 10);
+    query.bedrooms = { ...query.bedrooms, $lte: filter.bedsMax };
+  }
+
   if (filter.home_type) {
     const homeTypes = Array.isArray(filter.home_type)
       ? filter.home_type
@@ -22,13 +42,14 @@ const generateQuery = filter => {
     };
   }
   if (filter.location) {
-    query.address = { $regex: new RegExp(filter.location, 'i') };
+    const zipcode = await findZipcodeByNeighborhoodTitle(filter.location);
+    query.address = { $regex: new RegExp(zipcode, 'i') };
   }
   return query;
 };
 
 const getList = async (filter, sort) => {
-  const query = generateQuery(filter);
+  const query = await generateQuery(filter);
   const defaultSort = { createdAt: 'asc' };
   const res = await RawProperty.find(query)
     .sort(sort || defaultSort)
@@ -36,4 +57,4 @@ const getList = async (filter, sort) => {
   return res;
 };
 
-export { getList };
+export { findZipcodeByNeighborhoodTitle, getList };
