@@ -5,23 +5,25 @@ import resetDatabase from './resetDatabase.js';
 dotenv.config();
 
 const { MONGODB_HOST, MONGODB_USER, MONGODB_PW, DATABASE } = process.env;
+const mongoDBURL = `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`;
+const mongooseOptions = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  maxPoolSize: 5,
+};
 
-const connect = () => {
+const connect = async () => {
   if (!MONGODB_USER || !MONGODB_PW || !MONGODB_HOST || !DATABASE) {
     console.error('MongoDB Connection Credential Missing');
   } else {
-    mongoose.set('debug', true);
-    mongoose
-      .connect(
-        `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`,
-        { useNewUrlParser: true, useUnifiedTopology: true }
-      )
-      .then(conn => {
-        console.log(`connected@${conn.connection.host}`);
-      })
-      .catch(err => {
-        console.error(`connection error: ${err.message}`);
-      });
+    try {
+      mongoose.set('debug', true);
+      const conn = await mongoose.connect(mongoDBURL, mongooseOptions);
+      console.log(`connected@${conn.connection.host}`);
+    } catch (err) {
+      console.error(`connection error: ${err.message}`);
+      throw err;
+    }
   }
 };
 
@@ -32,5 +34,5 @@ mongoose.connection.on('disconnected', () => {
   console.error('disconnected. re-connect');
   connect();
 });
-//resetDatabase('all');
+//resetDatabase('neighborhoods');
 export default connect;

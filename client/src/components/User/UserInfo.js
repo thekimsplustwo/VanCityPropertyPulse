@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
@@ -40,7 +39,6 @@ export default UserInfo;
 
 const Margin = styled.div`
   margin: 20px;
-  height: 26vh;
   font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
@@ -51,27 +49,4 @@ const Margin = styled.div`
 
 const Bold = styled.b`
   font-weight: bold;
-`;
-
-const ModalBox = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  z-index: 99;
-`;
-
-const EditProfileButton = styled.div`
-  border: solid 1px lightblue;
-  font-size: 15px;
-  font-weight: 600px;
-  color: lightblue;
-  opacity: 0.6;
-  padding: 2px;
-  &:hover {
-    opacity: 1;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 800px;
-  }
-  z-index: 99;
 `;

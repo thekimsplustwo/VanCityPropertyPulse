@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Stack, Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -70,26 +69,17 @@ function MoreOptions() {
 
 export default MoreOptions;
 
-// const Main = styled.div`
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   padding: 30px;
-// `;
-
 const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;
   width: 100%;
-  margin: 20px;
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 62vh;
+  height: 100%;
 `;
 
 const CenteredGrid = styled(Grid)`

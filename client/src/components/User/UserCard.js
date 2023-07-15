@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
@@ -24,7 +23,6 @@ export default UserCard;
 
 const Margin = styled.div`
   margin: 20px;
-  height: 21vh;
   font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
