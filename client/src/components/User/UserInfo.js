@@ -14,6 +14,7 @@ function formatPhoneNumber(phoneNumber) {
 
 function UserInfo({ setModal }) {
   const user = useSelector(state => state.users.user);
+  console.log('userInfo ', user);
   return (
     <Margin>
       <Bold>First Name: </Bold> {user.firstName}

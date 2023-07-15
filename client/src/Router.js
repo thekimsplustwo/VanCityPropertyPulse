@@ -19,7 +19,7 @@ function Router() {
       <ScrollTop />
       <Header />
       <Routes>
-        <Route path="/" element={<DummyHome />} />
+        <Route path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/properties/:zpid" element={<PropertyDetail />} />
         <Route path="/compare" element={<Compare />} />

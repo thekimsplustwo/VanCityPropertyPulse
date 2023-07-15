@@ -25,7 +25,10 @@ const getUser = async () => {
     credentials: 'include',
     method: 'GET',
   });
-  return response.json();
+  console.log('========== getUser called ===========');
+  const res = response.json();
+  console.log('res ==== ', res);
+  return res;
 };
 
 const login = async email => {

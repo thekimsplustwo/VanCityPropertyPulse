@@ -3,11 +3,8 @@ import { BASE_URL } from '../../config';
 
 const getLikes = async () => {
   const response = await fetch(`${BASE_URL}/likes`, {
+    credentials: 'include',
     method: 'GET',
-    headers: {
-      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
-      Authorization: 'Bearer johndoe@gmail.com',
-    },
   });
   const data = await response.json();
   if (!response.ok) {
@@ -19,11 +16,10 @@ const getLikes = async () => {
 
 const deleteAllLikes = async () => {
   const response = await fetch(`${BASE_URL}/likes`, {
+    credentials: 'include',
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
-      Authorization: 'Bearer johndoe@gmail.com',
     },
   });
   // console.log('deleteAllLikes is clicked, processing in service.js ');
@@ -37,11 +33,10 @@ const deleteAllLikes = async () => {
 
 const addLikes = async property => {
   const response = await fetch(`${BASE_URL}/likes`, {
+    credentials: 'include',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
-      Authorization: 'Bearer johndoe@gmail.com',
     },
     body: JSON.stringify(property),
   });
@@ -56,11 +51,10 @@ const addLikes = async property => {
 
 const deleteLikes = async zpid => {
   const response = await fetch(`${BASE_URL}/likes/${zpid}`, {
+    credentials: 'include',
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
-      Authorization: 'Bearer johndoe@gmail.com',
     },
   });
 
