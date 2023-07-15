@@ -27,7 +27,8 @@ const getUser = async email => {
       Authorization: `Bearer ${email}`,
     },
   });
-  return response.json();
+  const data = await response.json();
+  return data;
 };
 
 const login = async email => {
