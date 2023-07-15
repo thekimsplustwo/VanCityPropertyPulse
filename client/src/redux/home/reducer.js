@@ -1,13 +1,11 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
-import { getListAsync, getPaginatedListAsync } from './thunks';
+import { getListAsync } from './thunks';
 
 const INITIAL_STATE = {
   list: [],
-  paginatedList: [],
   getList: REQUEST_STATE.IDLE,
-  getPaginatedList: REQUEST_STATE.IDLE,
   error: null,
 };
 
@@ -26,18 +24,6 @@ const homeSlice = createSlice({
       })
       .addCase(getListAsync.rejected, (state, action) => {
         state.getList = REQUEST_STATE.REJECTED;
-        state.error = action.error;
-      })
-      .addCase(getPaginatedListAsync.pending, state => {
-        state.getPaginatedList = REQUEST_STATE.PENDING;
-        state.error = null;
-      })
-      .addCase(getPaginatedListAsync.fulfilled, (state, action) => {
-        state.getPaginatedList = REQUEST_STATE.FULFILLED;
-        state.paginatedList = action.payload;
-      })
-      .addCase(getPaginatedListAsync.rejected, (state, action) => {
-        state.getPaginatedList = REQUEST_STATE.REJECTED;
         state.error = action.error;
       });
   },

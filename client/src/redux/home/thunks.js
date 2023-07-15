@@ -8,10 +8,3 @@ export const getListAsync = createAsyncThunk(
     return HomeService.getList(params);
   }
 );
-
-export const getPaginatedListAsync = createAsyncThunk(
-  actionTypes.GET_PAGINATED_LIST,
-  async page => {
-    return HomeService.getPaginatedList(page);
-  }
-);

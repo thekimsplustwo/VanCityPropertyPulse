@@ -12,24 +12,4 @@ const getList = async (req, res) => {
   return res.status(201).json(list);
 };
 
-const getPaginatedList = async (req, res) => {
-  const filter = req.query;
-  const page = parseInt(req.params.pageNumber, 10);
-
-  try {
-    const totalPages = await homeService.getTotalPages();
-    const properties = await homeService.getPaginatedProperties(page, filter);
-
-    res.status(200).json({
-      properties,
-      totalPages,
-    });
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json({ message: 'Error occurred while fetching properties' });
-  }
-};
-
-export { getList, getPaginatedList };
+export { getList };

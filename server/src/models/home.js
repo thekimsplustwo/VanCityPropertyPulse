@@ -36,16 +36,4 @@ const getList = async (filter, sort) => {
   return res;
 };
 
-const getTotalProperties = async () => {
-  try {
-    const totalProperties = await RawProperty.countDocuments();
-
-    return totalProperties;
-  } catch (error) {
-    throw new Error(
-      'Error occurred while fetching the total number of properties'
-    );
-  }
-};
-
-export { getList, getTotalProperties };
+export { getList };

@@ -31,22 +31,4 @@ const getList = async (filter, sort) => {
   return homeModel.getList(trimedFilter, sort);
 };
 
-const getTotalPages = async () => {
-  const totalProperties = await homeModel.getTotalProperties();
-  return Math.ceil(totalProperties / 9);
-};
-
-const getPaginatedProperties = async (page, filter, sort) => {
-  const trimedFilter = {
-    ...filter,
-    location: filter.location || 'vancouver, bc',
-    listingStatus: 'FOR_SALE',
-  };
-  const propertiesPerPage = 9;
-  const startIndex = (page - 1) * propertiesPerPage;
-  const endIndex = page * propertiesPerPage;
-  const filteredProperties = await homeModel.getList(trimedFilter, sort);
-  return filteredProperties.slice(startIndex, endIndex);
-};
-
-export { getList, getTotalPages, getPaginatedProperties };
+export { getList };

@@ -4,21 +4,23 @@ import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 import './PropertyGrid.css';
 import { setPage } from '../../redux/search/reducer';
-import { getPaginatedListAsync } from '../../redux/home/thunks';
+import { getListAsync } from '../../redux/home/thunks';
 
 function PropertyGrid({ showCompareButton }) {
   const [properties, setProperties] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const propertiesPerPage = 9;
   const pageGroupSize = 5;
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getPaginatedListAsync(currentPage))
+    dispatch(getListAsync({ page: currentPage }))
       .then(data => {
-        setProperties(data.payload.properties);
-        setTotalPages(data.payload.totalPages);
+        const numOfProperties = data.payload.length;
+        setProperties(data.payload);
+        setTotalPages(Math.ceil(numOfProperties / propertiesPerPage));
       })
       .catch(error => console.error(error));
   }, [currentPage]);
@@ -29,17 +31,19 @@ function PropertyGrid({ showCompareButton }) {
   };
 
   const handlePrevGroup = () => {
-    setCurrentPage(prevPage =>
-      prevPage - pageGroupSize >= 1 ? prevPage - pageGroupSize : 1
-    );
+    const prevPage =
+      currentPage - pageGroupSize >= 1 ? currentPage - pageGroupSize : 1;
+    setCurrentPage(prevPage);
+    dispatch(setPage(prevPage));
   };
 
   const handleNextGroup = () => {
-    setCurrentPage(prevPage =>
-      prevPage + pageGroupSize <= totalPages
-        ? prevPage + pageGroupSize
-        : totalPages
-    );
+    const nextPage =
+      currentPage + pageGroupSize <= totalPages
+        ? currentPage + pageGroupSize
+        : totalPages;
+    setCurrentPage(nextPage);
+    dispatch(setPage(nextPage));
   };
 
   const renderPageNumbers = () => {
@@ -61,12 +65,19 @@ function PropertyGrid({ showCompareButton }) {
     });
   };
 
+  const indexOfLastProperty = currentPage * propertiesPerPage;
+  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+  const currentProperties = properties.slice(
+    indexOfFirstProperty,
+    indexOfLastProperty
+  );
+
   return (
     <Wrapper>
       <Section>
         <CardWrapper>
-          {properties &&
-            properties.map(property => (
+          {currentProperties &&
+            currentProperties.map(property => (
               <PropertyCard
                 key={property.zpid}
                 property={property}
