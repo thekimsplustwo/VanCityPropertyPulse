@@ -10,7 +10,7 @@ const likeSchema = new BaseSchema({
   properties: [
     {
       zpid: {
-        type: Number,
+        type: String,
         required: true,
       },
       imgSrc: {
