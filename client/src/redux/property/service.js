@@ -3,6 +3,7 @@ import { BASE_URL } from '../../config';
 
 const getProperty = async zpid => {
   const response = await fetch(`${BASE_URL}/properties/${zpid}`, {
+    credentials: 'include',
     method: 'GET',
   });
   const data = await response.json();
