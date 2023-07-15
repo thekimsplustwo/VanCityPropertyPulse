@@ -20,8 +20,9 @@ userRouter.post('/', asyncWrap(userController.signup));
 userRouter.get(
   '/google',
   passport.authenticate('google', {
-    scope: ['profile', 'email'],
-    prompt: 'select_account',
+    scope: ['profile', 'email', 'openid'],
+    accessType: 'offline',
+    prompt: 'consent',
   })
 );
 

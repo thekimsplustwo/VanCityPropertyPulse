@@ -1,6 +1,9 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import dotenv from 'dotenv';
 import User from '../schemas/users.js';
+
+dotenv.config();
 
 function google() {
   passport.use(
@@ -8,9 +11,12 @@ function google() {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: 'http://localhost:10010/users/google/callback',
+        callbackURL: '/users/google/callback',
       },
       async (accessToken, refreshToken, profile, done) => {
+        console.log('token : ', accessToken);
+        console.log('refreshToken : ', refreshToken);
+        console.log('profile : ', profile);
         try {
           const userLoggingIn = await User.findOne({
             email: profile.emails[0].value,

@@ -17,7 +17,11 @@ const { MONGODB_HOST, MONGODB_USER, MONGODB_PW, DATABASE, SECRET_KEY } =
   process.env;
 
 const PORT = process.env.PORT || 10010;
-
+const MongoDBStore = connectMongoDBSession(session);
+const sessionStore = new MongoDBStore({
+  uri: `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`,
+  collection: 'sessions',
+});
 const app = express();
 
 app.all('/*', function (req, res, next) {
@@ -46,13 +50,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportIndex();
-
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true,
-};
-app.use(cors(corsOptions));
-
 app.use(routes);
 
 app.get('/ping', (req, res) => {
