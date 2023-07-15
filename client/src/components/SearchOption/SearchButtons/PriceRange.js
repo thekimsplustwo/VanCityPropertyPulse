@@ -60,7 +60,7 @@ export default function PriceRange() {
   };
 
   const handleMinPriceChange = event => {
-    const newValue = parseInt(event.target.value, 10);
+    const newValue = event.target.value ? parseInt(event.target.value, 10) : 0;
 
     if (newValue > maxPrice) {
       setMinPrice(maxPrice);
@@ -72,7 +72,7 @@ export default function PriceRange() {
   };
 
   const handleMaxPriceChange = event => {
-    const newValue = parseInt(event.target.value, 10);
+    const newValue = event.target.value ? parseInt(event.target.value, 10) : 0;
 
     if (newValue < minPrice) {
       setMaxPrice(minPrice);
