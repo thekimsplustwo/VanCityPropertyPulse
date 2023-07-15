@@ -1,29 +1,18 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 import './PropertyGrid.css';
 import { setPage } from '../../redux/search/reducer';
-import { getListAsync } from '../../redux/home/thunks';
 
-function PropertyGrid({ showCompareButton }) {
-  const [properties, setProperties] = useState([]);
-  const [totalPages, setTotalPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+function PropertyGrid({ properties, showCompareButton }) {
+  const numOfProperties = properties.length;
   const propertiesPerPage = 9;
+  const totalPages = Math.ceil(numOfProperties / propertiesPerPage);
+  const [currentPage, setCurrentPage] = useState(1);
   const pageGroupSize = 5;
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getListAsync({ page: currentPage }))
-      .then(data => {
-        const numOfProperties = data.payload.length;
-        setProperties(data.payload);
-        setTotalPages(Math.ceil(numOfProperties / propertiesPerPage));
-      })
-      .catch(error => console.error(error));
-  }, [currentPage]);
 
   const handlePagination = page => {
     setCurrentPage(page);
