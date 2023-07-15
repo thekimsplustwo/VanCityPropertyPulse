@@ -4,6 +4,7 @@ import PropertyDetail from './propertyDetails.js';
 import Like from './likes.js';
 import User from './users.js';
 import RawProperty from './rawProperties.js';
+import Neighborhood from './neighborhood.js';
 import * as mock from '../data/data.js';
 
 const collections = {
@@ -12,6 +13,7 @@ const collections = {
   users: User,
   likes: Like,
   rawProperties: RawProperty,
+  neighborhoods: Neighborhood,
 };
 
 const deleteDataset = async collectionsToReset => {
@@ -25,12 +27,22 @@ const deleteDataset = async collectionsToReset => {
   await Promise.all(deletePromises);
 };
 
+const dropDataset = async collectionsToReset => {
+  const dropPromises = collectionsToReset
+    .map(collectionName => {
+      const myModel = collections[collectionName];
+      return myModel ? myModel.collection.drop() : undefined;
+    })
+    .filter(promise => promise !== undefined);
+
+  await Promise.all(dropPromises);
+};
+
 const insertDataset = async collectionsToReset => {
   const insertPromises = collectionsToReset
     .map(collectionName => {
       const collection = collections[collectionName];
       const data = mock[collectionName];
-      console.log('data ', data);
 
       return collection && data ? collection.insertMany(data) : undefined;
     })
@@ -45,6 +57,7 @@ const resetDatabase = async (...collectionsToReset) => {
   }
   try {
     await deleteDataset(collectionsToResetUpdated);
+    await dropDataset(collectionsToResetUpdated);
     await insertDataset(collectionsToResetUpdated);
   } catch (err) {
     console.error(err);
