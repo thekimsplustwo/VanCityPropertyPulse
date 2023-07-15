@@ -48,9 +48,8 @@ const pages = [
 const settings = [
   { name: 'Profile', path: '/mypage' },
   // TODO(JY): Incomplete; currently, need to refresh once.
-  getAccessToken() === null
-    ? { name: 'Login', path: '/login' }
-    : { name: 'Logout', path: '/logout' },
+  { name: 'Login', path: '/login' },
+  { name: 'Logout', path: '/logout' },
 ];
 
 function ResponsiveAppBar() {
