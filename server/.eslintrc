@@ -41,7 +41,7 @@
     "no-console": [
       "warn",
       {
-        "allow": ["warn", "error"]
+        "allow": ["log", "warn", "error"]
       }
     ],
     "no-multiple-empty-lines": "warn",
@@ -54,7 +54,9 @@
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "spaced-comment": "off",
     "no-param-reassign": ["error", { "props": false }],
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": "off",
+    "consistent-return": "off",
+    "func-names": "off"
   },
   "ignorePatterns": ["dist/", "node_modules/"]
 }

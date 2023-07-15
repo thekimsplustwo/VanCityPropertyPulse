@@ -34,5 +34,5 @@ mongoose.connection.on('disconnected', () => {
   console.error('disconnected. re-connect');
   connect();
 });
-//resetDatabase('neighborhoods');
+//resetDatabase('likes');
 export default connect;

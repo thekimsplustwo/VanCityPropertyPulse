@@ -20,7 +20,7 @@ const ExtendedSearchOptions = (filter, sort) => {
 const requestZillowAPIExtendedSearch = async options => {
   try {
     const response = await axios.request(options);
-    return response.data.props;
+    return response.data.props || [];
   } catch (error) {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
   }

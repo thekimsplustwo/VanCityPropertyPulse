@@ -15,6 +15,7 @@ const getList = async params => {
   });
 
   const response = await fetch(`${BASE_URL}/home?${queryParams.toString()}`, {
+    credentials: 'include',
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

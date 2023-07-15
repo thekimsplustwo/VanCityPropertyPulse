@@ -83,10 +83,8 @@ function Compare() {
   );
 }
 const Main = styled.div`
-  padding-top: 1em;
-  min-height: 100vh;
+  padding-top: 23em;
   width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

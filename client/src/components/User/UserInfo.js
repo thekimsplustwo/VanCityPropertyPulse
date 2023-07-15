@@ -20,8 +20,6 @@ function UserInfo({ setModal }) {
       <br />
       <Bold>Last Name: </Bold> {user.lastName}
       <br />
-      <Bold>Age: </Bold> {user.age}
-      <br />
       <Bold>Email: </Bold> {user.email}
       <br />
       <Bold>Phone Number: </Bold> {formatPhoneNumber(user.phoneNumber)}

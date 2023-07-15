@@ -17,6 +17,12 @@ const login = async (req, res) => {
   return res.status(201).json(token);
 };
 
+const logout = async (req, res) => {
+  // const userInfo = req.body;
+  await userService.logout();
+  return res.status(200).json({ message: 'Logout successful' });
+};
+
 const getUser = async (req, res) => {
   const email = req.token;
   const user = await userService.getUserInfoByEmail(email);
@@ -44,4 +50,4 @@ const userLoggedIn = async (req, res) => {
   return null;
 };
 
-export { signup, login, updateUserInfo, getUser, userLoggedIn };
+export { signup, login, logout, updateUserInfo, getUser, userLoggedIn };

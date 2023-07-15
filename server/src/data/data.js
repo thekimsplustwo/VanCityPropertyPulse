@@ -1,3 +1,9 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const { JY_EMAIL } = process.env;
+
 export const users = [
   {
     firstName: 'thekimsplustwo',
