@@ -7,7 +7,6 @@ const trimSortOpt = rawSort => {
 };
 
 const getList = async (req, res) => {
-  const { user } = req;
   const filter = req.query;
   const list = await homeService.getList(filter);
   return res.status(201).json(list);

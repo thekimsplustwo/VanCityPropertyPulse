@@ -17,8 +17,7 @@ function PropertyCard({ property, showCompareButton }) {
   const currZpid = property.zpid;
 
   const likes = useSelector(state => state.likes.list);
-  const liked =
-    likes && likes.some(like => like.zpid === parseInt(currZpid, 10));
+  const liked = likes && likes.some(like => like.zpid === currZpid, 10);
 
   const navigateToPropertyPage = zpid => {
     navigate(`/properties/${zpid}`, {

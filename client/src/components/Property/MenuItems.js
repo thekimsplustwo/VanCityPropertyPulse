@@ -16,20 +16,20 @@ import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
 function MenuItems({ zpid }) {
   const dispatch = useDispatch();
-  const currZpid = parseInt(zpid, 10);
+  // const currZpid = parseInt(zpid, 10);
 
   const likes = useSelector(state => state.likes.list);
   const properties = useSelector(state => state.home.list);
 
-  const liked = likes && likes.some(prop => prop.zpid === currZpid);
-  const housing = properties.find(prop => prop.zpid === currZpid);
+  const liked = likes && likes.some(prop => prop.zpid === zpid);
+  const housing = properties.find(prop => prop.zpid === zpid);
 
   const handleAddLike = () => {
     dispatch(addLikesAsync(housing));
   };
 
   const handleDeleteLike = () => {
-    dispatch(deleteLikesAsync(currZpid));
+    dispatch(deleteLikesAsync(zpid));
   };
 
   const handleShare = () => {

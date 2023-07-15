@@ -29,6 +29,7 @@ const getList = async params => {
 
   return data;
 };
+
 export default {
   getList,
 };

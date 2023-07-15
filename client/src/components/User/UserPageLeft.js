@@ -4,25 +4,44 @@ import UserInfo from './UserInfo';
 
 function UserPageLeft({ setModal }) {
   return (
-    <div>
-      <Wrapper>
+    <Outer>
+      <WrapperOne>
         <UserCard />
-      </Wrapper>
-      <Wrapper>
+      </WrapperOne>
+      <Spacer />
+      <WrapperTwo>
         <UserInfo setModal={setModal} />
-      </Wrapper>
-    </div>
+      </WrapperTwo>
+    </Outer>
   );
 }
 
 export default UserPageLeft;
 
-const Wrapper = styled.div`
+const WrapperOne = styled.div`
   border-radius: 15px;
   padding: 16px;
   width: 100%;
-  margin: 20px;
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
+  height: 45%;
+`;
+
+const WrapperTwo = styled.div`
+  border-radius: 15px;
+  padding: 16px;
+  width: 100%;
+  background-color: white;
+  text-align: center;
+  box-shadow: 10px 10px #fbe8e9;
+  height: 50%;
+`;
+
+const Outer = styled.div`
+  height: 100%;
+`;
+
+const Spacer = styled.div`
+  height: 5%;
 `;
