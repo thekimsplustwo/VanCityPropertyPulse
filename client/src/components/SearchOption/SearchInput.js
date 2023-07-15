@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import { useSelector, useDispatch } from 'react-redux';
-import { neighborhoods } from './neighborhoods';
+import { neighborhoodsVancouver } from './neighborhoods';
 import { setLocation } from '../../redux/search/reducer';
 
 const StyledPaper = styled(Paper)`
@@ -38,7 +38,8 @@ export default function Search() {
       <StyledAutocomplete
         freeSolo
         disableClearable
-        options={neighborhoods.map(option => option.title)}
+        options={neighborhoodsVancouver.map(option => option.title)}
+        value={location}
         renderInput={params => (
           <TextField
             // eslint-disable-next-line react/jsx-props-no-spreading

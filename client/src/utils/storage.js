@@ -1,5 +1,6 @@
 export const saveAccessToken = accessToken => {
   localStorage.setItem('accessToken', accessToken);
+  console.log(`accessToken ${accessToken} has been saved.`);
 };
 
 export const getAccessToken = () => {
@@ -8,6 +9,7 @@ export const getAccessToken = () => {
 
 export const removeAccessToken = () => {
   localStorage.removeItem('accessToken');
+  console.log(`accessToken has been removed.`);
 };
 
 export const saveLoggedEmail = loggedEmail => {

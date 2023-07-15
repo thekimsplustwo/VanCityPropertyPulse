@@ -1,12 +1,10 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
 import passport from 'passport';
-import cors from 'cors';
-// import pkg from 'jsonwebtoken';
+import { addSeconds } from 'date-fns';
 import asyncWrap from '../async-wrap.js';
 import * as userController from '../controller/user.js';
 import { verifyToken } from '../middleware/auth.js';
-// import { getUserInfoByEmail } from '../services/user.js';
 import User from '../schemas/users.js';
 
 dotenv.config();
@@ -15,51 +13,51 @@ const { FRONT_REDIRECT_URL } = process.env;
 
 const userRouter = Router();
 
-userRouter.use(cors());
-
-// const { Jwt } = pkg;
-
-// userRouter.put('/', asyncWrap(userController.updateUserInfo));
-// userRouter.get('/', asyncWrap(userController.getUser));
-// userRouter.post('/', asyncWrap(userController.signup));
-
-// userRouter.get('/', asyncWrap(userController.login));
-
 userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
 userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
 userRouter.post('/', asyncWrap(userController.signup));
 
-// userRouter.get('/', verifyToken, asyncWrap(userController.login));
-
 userRouter.get(
   '/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    prompt: 'select_account',
+  })
 );
 
 userRouter.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/google' }),
   (req, res) => {
-    const { accessToken } = req.authInfo;
-    console.log(accessToken);
-    // next();
-    // res.redirect(`${FRONT_REDIRECT_URL}/mypage?access_token=${accessToken}`);
-    res.cookie('accessToken', accessToken, { httpOnly: true, secure: true });
+    res.cookie('accessToken', req.cookies.accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    });
     res.redirect(`${FRONT_REDIRECT_URL}/mypage`);
   }
 );
 
 userRouter.post('/logout', (req, res, next) => {
-  req.session.destroy(async err => {
-    if (err) {
-      console.error('Error destroying session:', err);
-      return next(err);
-    }
-    await res.json({ message: 'Logout successful' });
+  req.session.destroy();
+
+  const expirationDate = addSeconds(new Date(), 1);
+
+  res.clearCookie('accessToken');
+  res.clearCookie('connect.sid');
+  res.cookie('accessToken', '', {
+    expires: expirationDate,
+    httpOnly: true,
+    secure: true,
+  });
+  res.cookie('connect.sid', '', {
+    expires: expirationDate,
+    httpOnly: true,
+    secure: true,
   });
 });
 
-userRouter.get('/profile', verifyToken, async (req, res) => {
+userRouter.get('/profile', async (req, res) => {
   if (req.session.passport) {
     const email = req.session.passport.user;
     const user = await User.findOne({ email });

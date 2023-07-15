@@ -7,7 +7,7 @@ import {
   styled as muiStyled,
 } from '@mui/material';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setMin, setMax } from '../../../redux/search/reducer';
 
 const StyledButton = muiStyled(Button)({
@@ -35,9 +35,10 @@ const StyledMenuItem = muiStyled(MenuItem)`
 `;
 
 export default function PriceRange() {
+  const searchParams = useSelector(state => state.search);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const [minPrice, setMinPrice] = useState(searchParams.minPrice || 0);
+  const [maxPrice, setMaxPrice] = useState(searchParams.maxPrice || 0);
   const [minMaxPrice, setMinMaxPrice] = useState(0);
   const [maxMinPrice, setMaxMinPrice] = useState(9999999);
   const dispatch = useDispatch();
@@ -48,10 +49,14 @@ export default function PriceRange() {
 
   const handleClose = () => {
     setAnchorEl(null);
+    dispatch(setMin(minPrice));
+    dispatch(setMax(maxPrice));
   };
 
   const handleApply = () => {
     setAnchorEl(null);
+    dispatch(setMin(minPrice));
+    dispatch(setMax(maxPrice));
   };
 
   const handleMinPriceChange = event => {
@@ -63,7 +68,6 @@ export default function PriceRange() {
     } else {
       setMinPrice(newValue);
       setMinMaxPrice(newValue);
-      dispatch(setMin(newValue));
     }
   };
 
@@ -76,14 +80,14 @@ export default function PriceRange() {
     } else {
       setMaxPrice(newValue);
       setMaxMinPrice(newValue);
-      dispatch(setMax(newValue));
     }
   };
 
   return (
     <div>
       <StyledButton onClick={handleClick}>
-        ${minPrice || 'Min'} - ${maxPrice || 'Max'}
+        ${searchParams.minPrice !== '' ? searchParams.minPrice : 'Min'} - $
+        {searchParams.maxPrice !== '' ? searchParams.maxPrice : 'Max'}
       </StyledButton>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem>

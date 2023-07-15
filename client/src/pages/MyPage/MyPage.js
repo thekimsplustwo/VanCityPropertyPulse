@@ -1,29 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { getUserAsync, logoutAsync } from '../../redux/users/thunks';
+import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
 import MoreOptions from '../../components/User/MoreOptions';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
-import { getLoggedEmail } from '../../utils/storage';
-import { saveAccessToken } from '../../utils/storage';
-
-// const USER_EMAIL = 'johndoe@gmail.com';
 
 function MyPage() {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
 
-  const token = window.document.cookie;
-  saveAccessToken(token);
-
   useEffect(() => {
     dispatch(getUserAsync());
   }, [dispatch]);
-
-  // console.log('accessToken: ', accessToken);
 
   return (
     <Main>
@@ -57,31 +48,4 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 30px;
-`;
-
-const Wrapper = styled.div`
-  border-radius: 15px;
-  padding: 16px;
-  width: 100%;
-  margin: 20px;
-  background-color: white;
-  text-align: center;
-  box-shadow: 10px 10px #fbe8e9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70vh;
-`;
-
-const CenteredGrid = styled(Grid)`
-  border-radius: 15px;
-  width: 80%;
-  height: 15vh;
-  --Grid-borderWidth: 2px;
-  border: var(--Grid-borderWidth) solid #f8c9cd;
-  background-color: #feedef;
-  margin-bottom: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

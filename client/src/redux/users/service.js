@@ -1,8 +1,5 @@
 import axios from 'axios';
-import { resolvePath } from 'react-router-dom';
 import { BASE_URL } from '../../config';
-import { actionTypes } from './actionTypes';
-// import { getAccessToken, removeAccessToken } from '../../utils/storage';
 
 const signup = async email => {
   const response = await fetch(`${BASE_URL}/users`, {
@@ -28,7 +25,6 @@ const getUser = async () => {
     credentials: 'include',
     method: 'GET',
   });
-  console.log('getUser response: ', response);
   return response.json();
 };
 
@@ -47,23 +43,12 @@ const login = async email => {
   return response.json();
 };
 
-// const userGoogleLogin = userData => {
-//   return {
-//     type: actionTypes.GOOGLE_LOGIN,
-//     payload: userData,
-//   };
-// };
-
 export const googleLogin = async () => {
   try {
     const response = await axios.get(`${BASE_URL}/users/google`, {
       credentials: 'include',
       method: 'GET',
     });
-    // const response = await fetch(`${BASE_URL}/users/google`, {
-    //   credentials: 'include',
-    // });
-    // return response.data.user;
     return response;
   } catch (error) {
     console.error('Google login failed:', error);
@@ -73,16 +58,8 @@ export const googleLogin = async () => {
 
 const logout = async () => {
   await axios
-    .post(`${BASE_URL}/users/logout`, {
-      credentials: 'include',
-      method: 'POST',
-      // headers: {
-      //   Authorization: `Bearer ${accessToken}`,
-      // },
-    })
-    .then(response => {
-      console.log(response.data.message);
-      window.location.href = 'http://localhost:3000/home';
+    .post(`${BASE_URL}/users/logout`, null, {
+      withCredentials: true,
     })
     .catch(error => {
       console.error('Logout failed:', error);
@@ -106,25 +83,6 @@ const editProfile = async formData => {
   }
 };
 
-const revokeToken = async accessToken => {
-  try {
-    const response = await axios.post(
-      'https://accounts.google.com/o/oauth2/revoke',
-      null,
-      {
-        params: {
-          token: accessToken,
-        },
-      }
-    );
-    // Handle the response as needed
-    console.log(response.data);
-  } catch (error) {
-    console.error('Token revocation failed:', error);
-    // Handle the error scenario
-  }
-};
-
 export default {
   signup,
   login,
@@ -132,5 +90,4 @@ export default {
   getUser,
   editProfile,
   googleLogin,
-  revokeToken,
 };

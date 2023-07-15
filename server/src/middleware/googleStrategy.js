@@ -1,6 +1,5 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import fs from 'fs';
 import User from '../schemas/users.js';
 
 function google() {
@@ -30,7 +29,6 @@ function google() {
             });
 
             done(null, newUser, { accessToken });
-            // done(null, accessToken);
           }
         } catch (error) {
           console.error(error);

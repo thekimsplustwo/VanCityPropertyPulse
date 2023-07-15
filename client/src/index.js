@@ -7,10 +7,11 @@ import { store } from './redux/store';
 import './index.css';
 import App from './App';
 import GlobalStyle from './global';
+import { CLIENT_ID } from './config';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <GoogleOAuthProvider clientId="536529309790-aa4765f91fm6bebhp1jfhqhs9agj56b6.apps.googleusercontent.com">
+  <GoogleOAuthProvider clientId={CLIENT_ID}>
     <React.StrictMode>
       <Provider store={store}>
         <GlobalStyle />
