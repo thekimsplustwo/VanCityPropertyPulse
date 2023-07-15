@@ -83,7 +83,7 @@ function Compare() {
   );
 }
 const Main = styled.div`
-  padding-top: 5em;
+  padding-top: 1em;
   min-height: 100vh;
   width: 100vw;
   height: 100vh;
@@ -117,12 +117,12 @@ const Margin = styled.div`
 `;
 
 const Header = styled.h1`
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: 700;
   color: #000;
   margin-bottom: 2rem;
   text-align: left;
-  margin-top: 12rem;
+  margin-top: -20rem;
   margin-left: 1rem;
   margin-right: 1rem;
 `;
