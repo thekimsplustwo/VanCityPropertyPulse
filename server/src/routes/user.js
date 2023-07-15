@@ -20,24 +20,34 @@ userRouter.post('/', asyncWrap(userController.signup));
 userRouter.get(
   '/google',
   passport.authenticate('google', {
-    scope: ['profile', 'email', 'openid'],
+    authType: 'request',
+    scope: [
+      'https://www.googleapis.com/auth/plus.login',
+      'https://www.googleapis.com/auth/userinfo.email',
+      'https://www.googleapis.com/auth/userinfo.profile',
+      'openid',
+    ],
     accessType: 'offline',
     prompt: 'consent',
   })
 );
 
+// google login success or fail
 userRouter.get(
   '/google/callback',
   passport.authenticate('google', { failureRedirect: '/google' }),
   (req, res) => {
-    res.cookie('accessToken', req.cookies.accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'none',
-    });
-    res.redirect(`${FRONT_REDIRECT_URL}/mypage`);
+    res.redirect(`${FRONT_REDIRECT_URL}`);
   }
 );
+
+// userRouter.get(
+//   '/google/callback',
+//   passport.authenticate('google', {
+//     successReturnToOrRedirect: `${FRONT_REDIRECT_URL}`,
+//     failureRedirect: '/google',
+//   })
+// );
 
 userRouter.post('/logout', (req, res, next) => {
   req.session.destroy();

@@ -11,7 +11,7 @@ function google() {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: '/users/google/callback',
+        callbackURL: 'http://localhost:10010/users/google/callback',
       },
       async (accessToken, refreshToken, profile, done) => {
         console.log('token : ', accessToken);
@@ -22,9 +22,10 @@ function google() {
             email: profile.emails[0].value,
             source: 'google',
           });
-
+          console.log('before');
           if (userLoggingIn) {
-            done(null, userLoggingIn, { accessToken });
+            console.log('userLoggingIn ', userLoggingIn);
+            done(null, userLoggingIn);
           } else {
             const newUser = await User.create({
               email: profile.emails[0].value,
@@ -33,8 +34,8 @@ function google() {
               photo: profile.photos[0].value,
               source: 'google',
             });
-
-            done(null, newUser, { accessToken });
+            console.log('newUser ', newUser);
+            done(null, newUser);
           }
         } catch (error) {
           console.error(error);
