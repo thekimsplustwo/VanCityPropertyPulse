@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import PropertyGrid from '../../components/Property/PropertyGrid';
 import demoHouseImage from '../../assets/images/demoHouse.jpg';
-import { getListAsync } from '../../redux/home/thunks';
+import { getPaginatedListAsync } from '../../redux/home/thunks';
 import SearchComponent from '../../components/SearchOption/SearchComponent';
 import { getLikesAsync } from '../../redux/likes/thunks';
 
@@ -17,7 +17,7 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getListAsync(searchParams));
+    dispatch(getPaginatedListAsync(searchParams));
     dispatch(getLikesAsync());
 
     const filteredParams = Object.fromEntries(

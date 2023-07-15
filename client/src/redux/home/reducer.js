@@ -1,20 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
-import { getListAsync, getPageAsync } from './thunks';
+import { getListAsync, getPaginatedListAsync } from './thunks';
 
 const INITIAL_STATE = {
   list: [],
-  page: 1,
+  paginatedList: [],
   getList: REQUEST_STATE.IDLE,
-  getPage: REQUEST_STATE.IDLE,
+  getPaginatedList: REQUEST_STATE.IDLE,
   error: null,
 };
 
 const homeSlice = createSlice({
   name: 'home',
   initialState: INITIAL_STATE,
-  reducers: {},
   extraReducers: builder => {
     builder
       .addCase(getListAsync.pending, state => {
@@ -29,19 +28,21 @@ const homeSlice = createSlice({
         state.getList = REQUEST_STATE.REJECTED;
         state.error = action.error;
       })
-      .addCase(getPageAsync.pending, state => {
-        state.getPage = REQUEST_STATE.PENDING;
+      .addCase(getPaginatedListAsync.pending, state => {
+        state.getPaginatedList = REQUEST_STATE.PENDING;
         state.error = null;
       })
-      .addCase(getPageAsync.fulfilled, (state, action) => {
-        state.getPage = REQUEST_STATE.FULFILLED;
-        state.page = action.payload;
+      .addCase(getPaginatedListAsync.fulfilled, (state, action) => {
+        state.getPaginatedList = REQUEST_STATE.FULFILLED;
+        state.paginatedList = action.payload;
       })
-      .addCase(getPageAsync.rejected, (state, action) => {
-        state.getPage = REQUEST_STATE.REJECTED;
+      .addCase(getPaginatedListAsync.rejected, (state, action) => {
+        state.getPaginatedList = REQUEST_STATE.REJECTED;
         state.error = action.error;
       });
   },
 });
+
+export const { setPage } = homeSlice.actions;
 
 export default homeSlice.reducer;

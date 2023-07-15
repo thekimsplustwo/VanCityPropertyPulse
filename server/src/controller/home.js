@@ -12,14 +12,13 @@ const getList = async (req, res) => {
   return res.status(201).json(list);
 };
 
-const getListPaginated = async (req, res) => {
-  console.log('GOT HERE');
-  const { filter } = req.query;
+const getPaginatedList = async (req, res) => {
+  const filter = req.query;
   const page = parseInt(req.params.pageNumber, 10);
 
   try {
     const totalPages = await homeService.getTotalPages();
-    const properties = await homeService.getList(page, filter);
+    const properties = await homeService.getPaginatedProperties(page, filter);
 
     res.status(200).json({
       properties,
@@ -33,4 +32,4 @@ const getListPaginated = async (req, res) => {
   }
 };
 
-export { getList, getListPaginated };
+export { getList, getPaginatedList };

@@ -9,9 +9,9 @@ export const getListAsync = createAsyncThunk(
   }
 );
 
-export const getPageAsync = createAsyncThunk(
-  actionTypes.GET_PAGE,
-  async pageNumber => {
-    return HomeService.getPage(pageNumber);
+export const getPaginatedListAsync = createAsyncThunk(
+  actionTypes.GET_PAGINATED_LIST,
+  async page => {
+    return HomeService.getPaginatedList(page);
   }
 );
