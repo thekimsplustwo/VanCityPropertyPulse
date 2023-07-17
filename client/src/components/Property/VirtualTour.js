@@ -9,7 +9,6 @@ function VirtualTour(props) {
 
   const generateYoutubeURL = url => {
     const params = new URLSearchParams(url.search);
-    const pathParams = url.pathParam;
     const videoId = params.get('v') || url.pathname;
     return `https://www.youtube.com/embed/${videoId}?autoplay=0` || url.href;
   };
