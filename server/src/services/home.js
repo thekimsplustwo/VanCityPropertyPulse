@@ -5,6 +5,9 @@ import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 import { neighborhoodsVancouver } from '../data/locationData.js';
 
 dotenv.config();
+
+const ZILLOW_API_LISTING_FLAG_ON = process.env.ZILLOW_API_LISTING === 'on';
+
 const ExtendedSearchOptions = (filter, sort) => {
   return {
     method: 'GET',
@@ -17,9 +20,13 @@ const ExtendedSearchOptions = (filter, sort) => {
   };
 };
 
-const requestZillowAPIExtendedSearch = async options => {
+const requestZillowAPIExtendedSearch = async trimmedFilter => {
+  const options = ExtendedSearchOptions(trimmedFilter);
   try {
     const response = await axios.request(options);
+    if (response.status !== 200 || response.data.status === 'error') {
+      errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
+    }
     return response.data.props || [];
   } catch (error) {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
@@ -37,18 +44,21 @@ const getZipcodeByTitle = title => {
     : errorGenerator(ERROR_TYPE.INVALID_REQUEST);
 };
 
-const getList = async (filter, sort) => {
-  const trimedFilter = {
+const trimFilter = async filter => {
+  return {
     ...filter,
     location: filter.location
       ? `${await getZipcodeByTitleFromDB(filter.location)} bc`
       : 'vancouver, bc',
     listingStatus: 'FOR_SALE',
   };
-  const options = ExtendedSearchOptions(trimedFilter);
-  const res = requestZillowAPIExtendedSearch(options);
-  return res;
-  //return homeModel.getList(trimedFilter, sort);
+};
+
+const getList = async (filter, sort) => {
+  const trimmedFilter = await trimFilter(filter);
+  return ZILLOW_API_LISTING_FLAG_ON
+    ? requestZillowAPIExtendedSearch(trimmedFilter)
+    : homeModel.getList(trimmedFilter, sort);
 };
 
 export { getList };

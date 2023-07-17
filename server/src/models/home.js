@@ -42,8 +42,7 @@ const generateQuery = async filter => {
     };
   }
   if (filter.location) {
-    const zipcode = await findZipcodeByNeighborhoodTitle(filter.location);
-    query.address = { $regex: new RegExp(zipcode, 'i') };
+    query.address = { $regex: new RegExp(filter.location, 'i') };
   }
   return query;
 };
