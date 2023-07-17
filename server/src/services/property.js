@@ -8,7 +8,7 @@ dotenv.config();
 const { MOCK } = process.env;
 
 const ZILLOW_API_PROPERTY_DETAIL_FLAG_ON =
-  process.env.ZILLOW_API_LISTING === 'on';
+  process.env.ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on';
 
 const propertyModel =
   MOCK === true ? model.mockPropertyModel : model.propertyModel;
