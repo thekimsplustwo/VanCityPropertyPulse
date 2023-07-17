@@ -11,6 +11,7 @@ function VirtualTour(props) {
     const params = new URLSearchParams(url.search);
     const pathParams = url.pathParam;
     const videoId = params.get('v') || url.pathname;
+    console.log('videoID');
     return `https://www.youtube.com/embed/${videoId}` || url.href;
   };
 
@@ -28,6 +29,7 @@ function VirtualTour(props) {
     let sourceURL;
     switch (true) {
       case url.host.includes('youtu.be'):
+      case url.host.includes('youtube'):
         sourceURL = { url: generateYoutubeURL(url), label: 'youtube' };
         break;
       case url.host.includes('dropbox'):
@@ -45,6 +47,7 @@ function VirtualTour(props) {
     url = new URL(virtualTour);
     sourceURL = sourceURLMapper(url);
   }
+
   return (
     <Wrapper>
       <Section>
