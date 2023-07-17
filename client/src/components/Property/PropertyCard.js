@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-
 import './PropertyCard.css';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import PropertyImage from './PropertyImage';
 import { convertPriceToCAD } from '../../utils/utils';
 
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
@@ -47,7 +47,11 @@ function PropertyCard({ property, showCompareButton }) {
   return (
     <Img onClick={() => navigateToPropertyPage(property.zpid)}>
       <div className="property-card">
-        <img src={property?.imgSrc} alt="Property" className="property-image" />
+        <PropertyImage
+          src={property?.imgSrc}
+          alt="Property"
+          // className="property-image"
+        />
         {liked ? (
           <StyledHeartLikedIcon onClick={handleDeleteLike} />
         ) : (
