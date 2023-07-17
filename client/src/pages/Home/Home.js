@@ -17,7 +17,6 @@ function Home() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getListAsync(searchParams));
     dispatch(getLikesAsync());
 
     const filteredParams = Object.fromEntries(
@@ -25,11 +24,12 @@ function Home() {
         ([key, value]) =>
           (typeof value === 'string' && value.length > 0) ||
           (Array.isArray(value) && value.length > 0) ||
-          (typeof value === 'number' && value >= 0)
+          (typeof value === 'number' && value > 0)
       )
     );
 
     const searchQuery = new URLSearchParams(filteredParams).toString();
+    dispatch(getListAsync(filteredParams));
     if (searchQuery) {
       navigate(`${location.pathname}?${searchQuery}`);
     } else {

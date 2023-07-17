@@ -62,32 +62,36 @@ export default function PriceRange() {
   const handleMinPriceChange = event => {
     const newValue = event.target.value ? parseInt(event.target.value, 10) : 0;
 
-    if (newValue > maxPrice) {
+    if (newValue > maxPrice && maxPrice !== 0) {
       setMinPrice(maxPrice);
       setMinMaxPrice(maxPrice);
     } else {
       setMinPrice(newValue);
       setMinMaxPrice(newValue);
     }
+
+    console.log(minPrice, maxPrice);
   };
 
   const handleMaxPriceChange = event => {
     const newValue = event.target.value ? parseInt(event.target.value, 10) : 0;
 
-    if (newValue < minPrice) {
+    if (newValue < minPrice && newValue !== 0) {
       setMaxPrice(minPrice);
       setMaxMinPrice(minPrice);
     } else {
       setMaxPrice(newValue);
       setMaxMinPrice(newValue);
     }
+
+    console.log(minPrice, maxPrice);
   };
 
   return (
     <div>
       <StyledButton onClick={handleClick}>
-        ${searchParams.minPrice !== '' ? searchParams.minPrice : 'Min'} - $
-        {searchParams.maxPrice !== '' ? searchParams.maxPrice : 'Max'}
+        ${searchParams.minPrice ? searchParams.minPrice : 'Min'} - $
+        {searchParams.maxPrice ? searchParams.maxPrice : 'Max'}
       </StyledButton>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem>
@@ -98,7 +102,7 @@ export default function PriceRange() {
             type="number"
             inputProps={{
               min: 0,
-              max: maxMinPrice,
+              max: maxPrice !== 0 ? maxMinPrice : undefined,
               step: 1000,
             }}
           />
