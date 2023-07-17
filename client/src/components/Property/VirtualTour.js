@@ -14,6 +14,16 @@ function VirtualTour(props) {
     return `https://www.youtube.com/embed/${videoId}` || url.href;
   };
 
+  const generateDropBoxURL = url => {
+    const newURL = url;
+    newURL.hostname = 'dl.dropboxusercontent.com';
+
+    // Remove any search parameters
+    newURL.search = '';
+    return `https://docs.google.com/viewer?url=${encodeURIComponent(
+      newURL.toString()
+    )}&embedded=true`;
+  };
   const sourceURLMapper = url => {
     let sourceURL;
     switch (true) {
@@ -21,7 +31,7 @@ function VirtualTour(props) {
         sourceURL = { url: generateYoutubeURL(url), label: 'youtube' };
         break;
       case url.host.includes('dropbox'):
-        sourceURL = { url: url.href, label: 'dropbox' };
+        sourceURL = { url: generateDropBoxURL(url), label: 'dropbox' };
         break;
       case url.host.includes('matterport'):
         sourceURL = { url: url.href, label: 'matterport' };
