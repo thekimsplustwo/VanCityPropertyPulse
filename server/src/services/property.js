@@ -7,6 +7,9 @@ dotenv.config();
 
 const { MOCK } = process.env;
 
+const ZILLOW_API_PROPERTY_DETAIL_FLAG_ON =
+  process.env.ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on';
+
 const propertyModel =
   MOCK === true ? model.mockPropertyModel : model.propertyModel;
 
@@ -22,10 +25,10 @@ const propertyDetailsOptions = zpid => {
   };
 };
 
-const getPropertyDetails = async zpid => {
+const getPropertyDetailFromZillowAPI = async zpid => {
   const options = propertyDetailsOptions(zpid);
   const response = await axios.request(options);
-  if (response.status !== 200) {
+  if (response.status !== 200 || response.data.status === 'error') {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
   }
   if (!response.data.zpid) {
@@ -34,8 +37,15 @@ const getPropertyDetails = async zpid => {
   return response.data;
 };
 
-const getPropertySummary = async zpid => {
-  return propertyModel.getPropertyDetails(zpid);
+const getPropertyDetailFromDatabase = async zpid => {
+  const response = propertyModel.getPropertyDetails(zpid);
+  return response || [];
 };
 
-export { getPropertyDetails, getPropertySummary };
+const getPropertyDetails = async zpid => {
+  return ZILLOW_API_PROPERTY_DETAIL_FLAG_ON
+    ? getPropertyDetailFromZillowAPI(zpid)
+    : getPropertyDetailFromDatabase(zpid);
+};
+
+export { getPropertyDetails };
