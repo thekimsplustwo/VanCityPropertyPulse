@@ -7,7 +7,8 @@ dotenv.config();
 
 const { MOCK } = process.env;
 
-const propertyModel = MOCK === true ? model.mockPropertyModel : model.propertyModel;
+const propertyModel =
+  MOCK === true ? model.mockPropertyModel : model.propertyModel;
 
 const propertyDetailsOptions = zpid => {
   return {
@@ -26,6 +27,9 @@ const getPropertyDetails = async zpid => {
   const response = await axios.request(options);
   if (response.status !== 200) {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
+  }
+  if (!response.data.zpid) {
+    errorGenerator(ERROR_TYPE.PROPERTY_NOT_FOUND);
   }
   return response.data;
 };

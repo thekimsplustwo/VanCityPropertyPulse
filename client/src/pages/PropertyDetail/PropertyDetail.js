@@ -9,6 +9,8 @@ import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
 import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
+import PropertyNotFound from '../../components/Property/PropertyNotFound';
+import { isObjectValid } from '../../utils/utils';
 
 function Property() {
   const { zpid } = useParams();
@@ -17,23 +19,27 @@ function Property() {
   useEffect(() => {
     dispatch(getPropertyAsync(zpid));
   }, [dispatch]);
-  const images = Array.isArray(property.imgSrc)
-    ? property.imgSrc
-    : [property.imgSrc];
-  return (
-    <Wrapper>
-      <HeaderWrapper>
-        <PropertyHeader propertyDetails={property} />
-        <MenuItems zpid={zpid} />
-      </HeaderWrapper>
-      <ContentWrapper>
-        <ImageCarousel propertyImages={images} />
-        <DetailedInfo propertyDetails={property} />
-      </ContentWrapper>
-      <Divider sx={{ borderBottomWidth: 1 }} />
-      <AdditionalInfo />
-    </Wrapper>
-  );
+
+  if (isObjectValid(property)) {
+    const images = Array.isArray(property.imgSrc)
+      ? property.imgSrc
+      : [property.imgSrc];
+    return (
+      <Wrapper>
+        <HeaderWrapper>
+          <PropertyHeader propertyDetails={property} />
+          <MenuItems zpid={zpid} />
+        </HeaderWrapper>
+        <ContentWrapper>
+          <ImageCarousel propertyImages={images} />
+          <DetailedInfo propertyDetails={property} />
+        </ContentWrapper>
+        <Divider sx={{ borderBottomWidth: 1 }} />
+        <AdditionalInfo />
+      </Wrapper>
+    );
+  }
+  return <PropertyNotFound />;
 }
 
 export default Property;

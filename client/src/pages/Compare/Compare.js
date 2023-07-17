@@ -11,6 +11,8 @@ import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
+import PropertyNotFound from '../../components/Property/PropertyNotFound';
+import { isObjectValid } from '../../utils/utils';
 
 // function Compare() {
 //   const navigate = useNavigate();
@@ -28,11 +30,6 @@ function Compare() {
     dispatch(getPropertyAsync(zpid));
     // dispatch(getPropertyAsync(zpid2));
   }, [dispatch]);
-
-  const images = Array.isArray(property.imgSrc)
-    ? property.imgSrc
-    : [property.imgSrc];
-
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -40,47 +37,53 @@ function Compare() {
     setIsModalOpen(false);
   };
 
-  return (
-    <Wrapper>
-      <Margin>
-        <Main>
-          <Header>Compare properties</Header>
-          <ButtonWrapper>
-            <Button
-              variant="contained"
-              size="small"
-              position="fixed"
-              height="mix-content"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Add Property
-            </Button>
-            <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-              TODO: Insert Like properties here
-            </Modal>
-          </ButtonWrapper>
-          <ContentWrapper>
-            <Grid container spacing={2}>
-              <Grid item="true" xs={4}>
-                <ImageCarousel propertyImages={images} />
-                <CompareProps propertyDetails={property} />
-              </Grid>
+  if (isObjectValid(property)) {
+    const images = Array.isArray(property.imgSrc)
+      ? property.imgSrc
+      : [property.imgSrc];
+    return (
+      <Wrapper>
+        <Margin>
+          <Main>
+            <Header>Compare properties</Header>
+            <ButtonWrapper>
+              <Button
+                variant="contained"
+                size="small"
+                position="fixed"
+                height="mix-content"
+                onClick={() => setIsModalOpen(true)}
+              >
+                Add Property
+              </Button>
+              <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                TODO: Insert Like properties here
+              </Modal>
+            </ButtonWrapper>
+            <ContentWrapper>
+              <Grid container spacing={2}>
+                <Grid item="true" xs={4}>
+                  <ImageCarousel propertyImages={images} />
+                  <CompareProps propertyDetails={property} />
+                </Grid>
 
-              <Grid item="true" xs={4}>
-                <ImageCarousel propertyImages={images} />
-                <CompareProps propertyDetails={property} />
-              </Grid>
+                <Grid item="true" xs={4}>
+                  <ImageCarousel propertyImages={images} />
+                  <CompareProps propertyDetails={property} />
+                </Grid>
 
-              <Grid item="true" xs={4}>
-                <ImageCarousel propertyImages={images} />
-                <CompareProps propertyDetails={property} />
+                <Grid item="true" xs={4}>
+                  <ImageCarousel propertyImages={images} />
+                  <CompareProps propertyDetails={property} />
+                </Grid>
               </Grid>
-            </Grid>
-          </ContentWrapper>
-        </Main>
-      </Margin>
-    </Wrapper>
-  );
+            </ContentWrapper>
+          </Main>
+        </Margin>
+      </Wrapper>
+    );
+  }
+  return <PropertyNotFound />;
 }
 const Main = styled.div`
   padding-top: 23em;
