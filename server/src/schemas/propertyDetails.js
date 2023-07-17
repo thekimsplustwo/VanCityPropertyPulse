@@ -7,7 +7,7 @@ const { Schema } = mongoose;
 const propertyDetailSchema = new BaseSchema(
   {
     zpid: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },
