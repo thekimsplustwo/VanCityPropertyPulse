@@ -9,6 +9,7 @@ import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
 import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
+import VirtualTour from '../../components/Property/VirtualTour';
 
 function Property() {
   const { zpid } = useParams();
@@ -30,6 +31,9 @@ function Property() {
         <ImageCarousel propertyImages={images} />
         <DetailedInfo propertyDetails={property} />
       </ContentWrapper>
+      {property.resoFacts && (
+        <VirtualTour virtualTour={property.resoFacts.virtualTour} />
+      )}
       <Divider sx={{ borderBottomWidth: 1 }} />
       <AdditionalInfo />
     </Wrapper>
