@@ -31,7 +31,10 @@ const getPropertyDetailFromZillowAPI = async zpid => {
   if (response.status !== 200 || response.data.status === 'error') {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
   }
-  return response.data || [];
+  if (!response.data.zpid) {
+    errorGenerator(ERROR_TYPE.PROPERTY_NOT_FOUND);
+  }
+  return response.data;
 };
 
 const getPropertyDetailFromDatabase = async zpid => {

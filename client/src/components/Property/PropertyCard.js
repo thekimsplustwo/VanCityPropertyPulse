@@ -47,7 +47,7 @@ function PropertyCard({ property, showCompareButton }) {
   return (
     <Img onClick={() => navigateToPropertyPage(property.zpid)}>
       <div className="property-card">
-        <img src={property.imgSrc} alt="Property" className="property-image" />
+        <img src={property?.imgSrc} alt="Property" className="property-image" />
         {liked ? (
           <StyledHeartLikedIcon onClick={handleDeleteLike} />
         ) : (
