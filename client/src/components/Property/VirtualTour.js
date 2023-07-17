@@ -45,7 +45,11 @@ function VirtualTour(props) {
               width="500"
               height="315"
               src={sourceURL}
-              style={{ border: 0 }}
+              style={{
+                border: '1px solid #ececec',
+                transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+                boxShadow: '0px 2px 4px -1px rgba(0, 1, 1, 0.3)',
+              }}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
