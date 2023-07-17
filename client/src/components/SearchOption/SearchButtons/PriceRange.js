@@ -69,8 +69,6 @@ export default function PriceRange() {
       setMinPrice(newValue);
       setMinMaxPrice(newValue);
     }
-
-    console.log(minPrice, maxPrice);
   };
 
   const handleMaxPriceChange = event => {
