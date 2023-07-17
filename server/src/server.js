@@ -78,9 +78,24 @@ const server = http.createServer(app);
 const start = async () => {
   try {
     await connect();
-    server.listen(PORT, () =>
-      console.log(`Server is listening on ${PORT} | MOCK ${process.env.MOCK}`)
-    );
+    server.listen(PORT, () => {
+      console.log(`Server is listening on ${PORT} | MOCK ${process.env.MOCK}`);
+      console.log('============ Feature Flags ============');
+      console.log(
+        'Zillow API flag: Listing =',
+        process.env.ZILLOW_API_LISTING.toLowerCase() === 'on' ? 'ON' : 'OFF'
+      );
+      console.log(
+        'Zillow API flag: Detail  =',
+        process.env.ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on'
+          ? 'ON'
+          : 'OFF'
+      );
+      console.log(
+        'AUTH flag: verifyToken   =',
+        process.env.AUTH.toLowerCase() === 'on' ? 'ON' : 'OFF'
+      );
+    });
 
     try {
       await new Promise((resolve, reject) => {

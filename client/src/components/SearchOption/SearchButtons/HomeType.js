@@ -17,7 +17,13 @@ const StyledButton = muiStyled(Button)({
 });
 
 export default function HomeType() {
-  const homeTypes = ['Apartment', 'House', 'Condo', 'Townhome', 'Multi-family'];
+  const homeTypes = [
+    'Apartments',
+    'Condos',
+    'Houses',
+    'Multi-family',
+    'Townhomes',
+  ];
   const searchParams = useSelector(state => state.search);
 
   const [anchorEl, setAnchorEl] = useState(null);

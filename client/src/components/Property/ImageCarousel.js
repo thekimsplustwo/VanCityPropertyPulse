@@ -7,7 +7,6 @@ import { Box } from '@mui/material';
 import Image from './Image';
 
 function ImageCarousel(props) {
-  const { property } = props;
   const { propertyImages } = props;
   return (
     <Wrapper>
