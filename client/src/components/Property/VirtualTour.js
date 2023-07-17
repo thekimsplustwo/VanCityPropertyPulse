@@ -11,16 +11,19 @@ function VirtualTour(props) {
     const params = new URLSearchParams(url.search);
     const pathParams = url.pathParam;
     const videoId = params.get('v') || url.pathname;
-    return `https://www.youtube.com/embed/${videoId}` || url.href;
+    return `https://www.youtube.com/embed/${videoId}?autoplay=0` || url.href;
   };
 
   const generateDropBoxURL = url => {
     const newURL = url;
     newURL.hostname = 'dl.dropboxusercontent.com';
     newURL.search = '';
-    return `https://docs.google.com/viewer?url=${encodeURIComponent(
-      newURL.toString()
-    )}&embedded=true`;
+    if (newURL.href.includes('pdf')) {
+      return `https://docs.google.com/viewer?url=${encodeURIComponent(
+        newURL.toString()
+      )}&embedded=true`;
+    }
+    return newURL.toString();
   };
   const sourceURLMapper = url => {
     let sourceURL;
