@@ -18,8 +18,6 @@ function VirtualTour(props) {
   const generateDropBoxURL = url => {
     const newURL = url;
     newURL.hostname = 'dl.dropboxusercontent.com';
-
-    // Remove any search parameters
     newURL.search = '';
     return `https://docs.google.com/viewer?url=${encodeURIComponent(
       newURL.toString()
