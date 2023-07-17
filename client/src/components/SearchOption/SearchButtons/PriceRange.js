@@ -60,7 +60,11 @@ export default function PriceRange() {
   };
 
   const handleMinPriceChange = event => {
-    const newValue = event.target.value ? parseInt(event.target.value, 10) : 0;
+    const newValue = parseInt(event.target.value, 10);
+
+    if (Number.isNaN(newValue)) {
+      return;
+    }
 
     if (newValue > maxPrice && maxPrice !== 0) {
       setMinPrice(maxPrice);
@@ -72,7 +76,11 @@ export default function PriceRange() {
   };
 
   const handleMaxPriceChange = event => {
-    const newValue = event.target.value ? parseInt(event.target.value, 10) : 0;
+    const newValue = parseInt(event.target.value, 10);
+
+    if (Number.isNaN(newValue)) {
+      return;
+    }
 
     if (newValue < minPrice && newValue !== 0) {
       setMaxPrice(minPrice);
