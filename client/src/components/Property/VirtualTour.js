@@ -12,29 +12,35 @@ function VirtualTour(props) {
 
   const generateYoutubeURL = url => {
     const params = new URLSearchParams(url.search);
-    const videoId = params.get('v');
-    return `https://www.youtube.com/embed/${videoId}`;
+    const pathParams = url.pathParam;
+    const videoId = params.get('v') || url.pathname;
+    return `https://www.youtube.com/embed/${videoId}` || url.href;
   };
 
   const sourceURLMapper = url => {
     let sourceURL;
     switch (true) {
       case url.host.includes('youtu.be'):
-        sourceURL = generateYoutubeURL(url);
+        sourceURL = { url: generateYoutubeURL(url), label: 'youtube' };
         break;
       case url.host.includes('dropbox'):
-        sourceURL = url.href;
+        sourceURL = { url: url.href, label: 'dropbox' };
+        break;
+      case url.host.includes('matterport'):
+        sourceURL = { url: url.href, label: 'matterport' };
         break;
       default:
-        sourceURL = url.href;
+        sourceURL = { url: url.href, label: 'unknonw' };
     }
     return sourceURL;
   };
   if (virtualTour) {
     url = new URL(virtualTour);
+    console.log('url ', virtualTour);
+    console.log('url ', url);
     sourceURL = sourceURLMapper(url);
   }
-
+  console.log('sourceURL ', sourceURL);
   return (
     <Wrapper>
       <Section>
@@ -44,13 +50,14 @@ function VirtualTour(props) {
               title="VirtualTour video player"
               width="500"
               height="315"
-              src={sourceURL}
+              src={sourceURL.url}
+              label={sourceURL.label}
               style={{
                 border: '1px solid #ececec',
                 transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
                 boxShadow: '0px 2px 4px -1px rgba(0, 1, 1, 0.3)',
               }}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </Box>
