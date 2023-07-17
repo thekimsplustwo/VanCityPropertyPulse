@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
+import { Button, Stack, styled as muiStyled } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +10,8 @@ import SearchComponent from '../../components/SearchOption/SearchComponent';
 import { getLikesAsync } from '../../redux/likes/thunks';
 
 function Home() {
+  const [sortOrder, setSortOrder] = useState(null);
+
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -37,10 +40,38 @@ function Home() {
     }
   }, [dispatch, navigate, location.pathname, searchParams]);
 
+  const sortedProperties = useMemo(() => {
+    if (sortOrder === 'asc') {
+      return [...properties].sort((a, b) => a.price - b.price);
+    }
+
+    if (sortOrder === 'desc') {
+      return [...properties].sort((a, b) => b.price - a.price);
+    }
+
+    return properties;
+  }, [sortOrder, properties]);
+
+  const handleSortAscending = () => {
+    setSortOrder('asc');
+  };
+
+  const handleSortDescending = () => {
+    setSortOrder('desc');
+  };
+
   return (
     <Main>
       <SearchComponent />
-      <PropertyGrid properties={properties} showCompareButton={false} />
+      <ButtonContainer direction="row" spacing={2}>
+        <StyledButton variant="contained" onClick={handleSortAscending}>
+          Sort by Price (Ascending)
+        </StyledButton>
+        <StyledButton variant="contained" onClick={handleSortDescending}>
+          Sort by Price (Descending)
+        </StyledButton>
+      </ButtonContainer>
+      <PropertyGrid properties={sortedProperties} showCompareButton={false} />
     </Main>
   );
 }
@@ -51,4 +82,20 @@ const Main = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const StyledButton = muiStyled(Button)({
+  color: 'black',
+  fontWeight: 'bold',
+  fontSize: '1rem',
+  backgroundColor: 'white',
+  '&:hover': {
+    backgroundColor: 'pink',
+  },
+});
+
+const ButtonContainer = muiStyled(Stack)({
+  justifyContent: 'center',
+  marginTop: '2rem',
+});
+
 export default Home;
