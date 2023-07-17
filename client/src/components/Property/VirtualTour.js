@@ -25,6 +25,7 @@ function VirtualTour(props) {
     }
     return newURL.toString();
   };
+
   const sourceURLMapper = url => {
     let sourceURL;
     switch (true) {
@@ -38,11 +39,15 @@ function VirtualTour(props) {
       case url.host.includes('matterport'):
         sourceURL = { url: url.href, label: 'matterport' };
         break;
+      case url.origin.includes('http://explore'):
+        sourceURL = undefined;
+        break;
       default:
         sourceURL = { url: url.href, label: 'unknown' };
     }
     return sourceURL;
   };
+
   if (virtualTour) {
     url = new URL(virtualTour);
     sourceURL = sourceURLMapper(url);
