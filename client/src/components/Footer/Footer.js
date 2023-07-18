@@ -1,8 +1,17 @@
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import ChatWindow from '../ChatBot/ChatWindow';
 
 function Footer() {
+  const [isChatOpen, setIsChatOpen] = useState(false);
+
+  const handleChatButtonClick = () => {
+    setIsChatOpen(prevIsChatOpen => !prevIsChatOpen);
+  };
+
   return (
     <FooterContainer>
       <FooterWrapper>
@@ -36,6 +45,13 @@ function Footer() {
               >
                 <CoPresentIcon style={{ fontSize: '40px' }} />
               </a>
+            </FooterIcon>
+            <FooterIcon>
+              <SmartToyIcon
+                onClick={handleChatButtonClick}
+                style={{ fontSize: '40px' }}
+              />
+              {isChatOpen && <ChatWindow />}
             </FooterIcon>
           </FooterRight>
         </FooterContent>
