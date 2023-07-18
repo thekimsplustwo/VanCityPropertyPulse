@@ -8,21 +8,18 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import session from 'express-session';
 import connectMongoDBSession from 'connect-mongodb-session';
-import cookieParser from 'cookie-parser';
-import helmet from 'helmet';
-import connect from './schemas/index.js';
+import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportIndex from './middleware/passportIndex.js';
 
 dotenv.config();
 
-const { MONGODB_HOST, MONGODB_USER, MONGODB_PW, DATABASE, SECRET_KEY } =
-  process.env;
+const { SECRET_KEY } = process.env;
 
 const PORT = process.env.PORT || 10010;
 const MongoDBStore = connectMongoDBSession(session);
 const sessionStore = new MongoDBStore({
-  uri: `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`,
+  uri: mongoDBURL,
   collection: 'sessions',
 });
 const sessionOptions = {
@@ -33,9 +30,9 @@ const sessionOptions = {
   cookie: { maxAge: 1000 * 60 * 60 },
 };
 
-const origins = [process.env.FRONT_URL]
+const origins = [process.env.FRONT_URL];
 const corsOptions = {
-  origin: process.env.FRONT_URL,
+  origin: origins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,

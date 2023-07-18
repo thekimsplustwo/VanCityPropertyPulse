@@ -15,17 +15,14 @@ function google() {
         passReqToCallback: true,
       },
       async (request, accessToken, refreshToken, profile, done) => {
-        console.log('GoogleStrategy ', profile);
         try {
           const userLoggingIn = await User.findOne({
             email: profile.emails[0].value,
             source: 'google',
           });
           if (userLoggingIn) {
-            //const token = await generateToken(userLoggingIn.email);
             done(null, userLoggingIn);
           } else {
-            //const token = await generateToken(profile.emails[0].value);
             const newUser = await User.create({
               email: profile.emails[0].value,
               firstName: profile.name.givenName,

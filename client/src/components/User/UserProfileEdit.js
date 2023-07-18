@@ -7,7 +7,6 @@ import { editProfileAsync } from '../../redux/users/thunks';
 function UserProfileEdit({ setModal }) {
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
-  console.log('user ', user);
   const [formData, setFormData] = useState({
     firstName: user.firstName ?? '',
     lastName: user.lastName || '',
@@ -29,7 +28,6 @@ function UserProfileEdit({ setModal }) {
   const handleSaveBtn = () => {
     setModal(false);
     dispatch(editProfileAsync(formData));
-    window.location.href = 'http://localhost:3000/mypage';
   };
 
   return (

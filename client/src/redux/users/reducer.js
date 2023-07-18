@@ -2,9 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
 import {
-  loginAsync,
-  logoutAsync,
-  signupAsync,
+  googleLogoutAsync,
   getUserAsync,
   editProfileAsync,
   googleLoginAsync,
@@ -13,13 +11,13 @@ import {
 const INITIAL_STATE = {
   list: [],
   user: {},
+  isLogin: false,
   getUser: REQUEST_STATE.IDLE,
   login: REQUEST_STATE.IDLE,
   logout: REQUEST_STATE.IDLE,
   signup: REQUEST_STATE.IDLE,
   editProfile: REQUEST_STATE.IDLE,
   google: REQUEST_STATE.IDLE,
-  loggedIn: false,
   error: null,
 };
 
@@ -44,41 +42,30 @@ const usersSlice = createSlice({
         state.getUser = REQUEST_STATE.REJECTED;
         state.error = action.error;
       })
-      .addCase(loginAsync.pending, state => {
-        state.login = REQUEST_STATE.PENDING;
+      .addCase(googleLoginAsync.pending, state => {
+        state.google = REQUEST_STATE.PENDING;
         state.error = null;
       })
-      .addCase(loginAsync.fulfilled, (state, action) => {
-        state.login = REQUEST_STATE.FULFILLED;
+      .addCase(googleLoginAsync.fulfilled, (state, action) => {
+        state.google = REQUEST_STATE.FULFILLED;
+        state.isLogin = true;
         state.user = action.payload;
       })
-      .addCase(loginAsync.rejected, (state, action) => {
-        state.login = REQUEST_STATE.REJECTED;
+      .addCase(googleLoginAsync.rejected, (state, action) => {
+        state.google = REQUEST_STATE.REJECTED;
         state.error = action.error;
       })
-      .addCase(logoutAsync.pending, state => {
+      .addCase(googleLogoutAsync.pending, state => {
         state.logout = REQUEST_STATE.PENDING;
         state.error = null;
       })
-      .addCase(logoutAsync.fulfilled, (state, action) => {
+      .addCase(googleLogoutAsync.fulfilled, (state, action) => {
         state.logout = REQUEST_STATE.FULFILLED;
-        state.loggedIn = false;
+        state.isLogin = false;
         state.user = {};
       })
-      .addCase(logoutAsync.rejected, (state, action) => {
+      .addCase(googleLogoutAsync.rejected, (state, action) => {
         state.logout = REQUEST_STATE.REJECTED;
-        state.error = action.error;
-      })
-      .addCase(signupAsync.pending, state => {
-        state.addUser = REQUEST_STATE.PENDING;
-        state.error = null;
-      })
-      .addCase(signupAsync.fulfilled, (state, action) => {
-        state.addUser = REQUEST_STATE.FULFILLED;
-        state.list.push(action.payload);
-      })
-      .addCase(signupAsync.rejected, (state, action) => {
-        state.addUser = REQUEST_STATE.REJECTED;
         state.error = action.error;
       })
       .addCase(editProfileAsync.pending, state => {
@@ -91,19 +78,6 @@ const usersSlice = createSlice({
       })
       .addCase(editProfileAsync.rejected, (state, action) => {
         state.editProfile = REQUEST_STATE.REJECTED;
-        state.error = action.error;
-      })
-      .addCase(googleLoginAsync.pending, state => {
-        state.google = REQUEST_STATE.PENDING;
-        state.error = null;
-      })
-      .addCase(googleLoginAsync.fulfilled, (state, action) => {
-        state.google = REQUEST_STATE.FULFILLED;
-        state.loggedIn = true;
-        state.user = action.payload;
-      })
-      .addCase(googleLoginAsync.rejected, (state, action) => {
-        state.google = REQUEST_STATE.REJECTED;
         state.error = action.error;
       });
   },

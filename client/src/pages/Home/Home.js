@@ -1,23 +1,19 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import PropertyGrid from '../../components/Property/PropertyGrid';
-import demoHouseImage from '../../assets/images/demoHouse.jpg';
 import { getListAsync } from '../../redux/home/thunks';
 import SearchComponent from '../../components/SearchOption/SearchComponent';
 import { getLikesAsync } from '../../redux/likes/thunks';
 
 function Home() {
-  const user = useSelector(state => state.users.user);
-  console.log('user ', user);
   const navigate = useNavigate();
   const location = useLocation();
 
   const properties = useSelector(state => state.home.list);
   const searchParams = useSelector(state => state.search);
   const dispatch = useDispatch();
-  console.log('properties ', properties);
   useEffect(() => {
     dispatch(getListAsync(searchParams));
     dispatch(getLikesAsync());

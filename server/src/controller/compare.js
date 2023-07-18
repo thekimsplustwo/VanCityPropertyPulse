@@ -8,7 +8,7 @@ const getCompareProperties = async (req, res) => {
     errorGenerator(ERROR_TYPE.INVALID_REQUEST);
   }
   const list = await compareService.getCompareProperties(email, item);
-  return res.status(201).json(list);
+  return res.status(200).json(list);
 };
 
 export { getCompareProperties };

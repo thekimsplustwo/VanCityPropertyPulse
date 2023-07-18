@@ -1,5 +1,4 @@
-import axios from 'axios';
-import { BASE_URL } from '../../config';
+import { BASE_URL, LOGIN_URI } from '../../config';
 
 const getList = async params => {
   const queryParams = new URLSearchParams();
@@ -22,6 +21,9 @@ const getList = async params => {
     },
   });
   const data = await response.json();
+  if (response.status === 401) {
+    window.location.replace(LOGIN_URI);
+  }
   if (!response.ok) {
     const errorMsg = data?.message;
     throw new Error(errorMsg);

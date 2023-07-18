@@ -2,22 +2,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
-import { logoutAsync } from '../../redux/users/thunks';
+import { googleLogoutAsync } from '../../redux/users/thunks';
 import { resetUserState } from '../../redux/users/reducer';
 import { resetListState } from '../../redux/home/reducer';
+import { resetLikesState } from '../../redux/likes/reducer';
 
 function UserCard() {
   const navigate = useNavigate();
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
-  const navigateToHome = () => {
+  const navigateToLogin = () => {
     navigate('/');
   };
   const logout = () => {
-    dispatch(logoutAsync());
+    dispatch(googleLogoutAsync());
     dispatch(resetUserState());
     dispatch(resetListState());
-    navigateToHome();
+    dispatch(resetLikesState());
+    navigateToLogin();
   };
 
   return (

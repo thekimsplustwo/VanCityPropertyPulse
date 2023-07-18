@@ -8,9 +8,11 @@ dotenv.config();
 
 const userRouter = Router();
 
-userRouter.get('/', verifyToken, asyncWrap(userController.getUser));
 userRouter.patch('/', verifyToken, asyncWrap(userController.updateUserInfo));
-userRouter.post('/', asyncWrap(userController.signup));
-userRouter.get('/profile', verifyToken, asyncWrap(userController.getUser));
+userRouter.get(
+  '/profile',
+  verifyToken,
+  asyncWrap(userController.getUserInfoByEmail)
+);
 
 export default userRouter;

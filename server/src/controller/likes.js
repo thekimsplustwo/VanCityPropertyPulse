@@ -1,13 +1,13 @@
 import dotenv from 'dotenv';
-import { likesService, propertyService } from '../services/index.js';
+import { likesService } from '../services/index.js';
+import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 
 dotenv.config();
-const { FRONT_REDIRECT_URL } = process.env;
 
 const getLikes = async (req, res) => {
   const { user } = req;
   const likes = await likesService.getLikes(user.email);
-  return res.status(201).json(likes);
+  return res.status(200).json(likes);
 };
 
 const addLikes = async (req, res) => {
@@ -20,14 +20,17 @@ const addLikes = async (req, res) => {
 const removeLikes = async (req, res) => {
   const { user } = req;
   const { zpid } = req.params;
+  if (!zpid) {
+    errorGenerator(ERROR_TYPE.INVALID_REQUEST);
+  }
   const likes = await likesService.removeLikes(user.email, Number(zpid));
-  return res.status(201).json(likes);
+  return res.status(200).json(likes);
 };
 
 const removeAllLikes = async (req, res) => {
   const { user } = req;
   const likes = await likesService.removeAllLikes(user.email);
-  return res.status(201).json(likes);
+  return res.status(200).json(likes);
 };
 
 export { getLikes, addLikes, removeLikes, removeAllLikes };

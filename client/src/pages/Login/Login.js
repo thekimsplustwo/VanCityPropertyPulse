@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 import searchImage from '../../assets/images/searchComponent.jpg';
-import { BASE_URL } from '../../config';
-import { themeColorPink } from '../../styles/theme';
+import { GOOGLE_LOGIN_REQUEST_URL } from '../../config';
 
-const loginURL = `${BASE_URL}/auth/login/google`;
+const loginURL = GOOGLE_LOGIN_REQUEST_URL;
 function Login() {
-  console.log('loginURL ', loginURL);
   const handleGoogleLogin = () => {
-    window.location.assign(loginURL);
+    window.location.href = loginURL;
   };
 
   return (
@@ -22,18 +20,16 @@ function Login() {
 export default Login;
 
 const sizes = {
-  desktop: 992,
+  desktop: 1080,
   tablet: 768,
 };
 
-// Iterate through the sizes and create a media template
 const media = Object.keys(sizes).reduce((acc, label) => {
   acc[label] = `@media (max-width: ${sizes[label]}px)`;
 
   return acc;
 }, {});
 
-//const Main = styled.div``;
 const Main = styled.div`
   width: 100vw;
   height: 100vh;
@@ -78,7 +74,7 @@ const LoginButton = styled.button`
   height: 50px;
   font-size: 20px;
   font-weight: bold;
-  background: url('/images/btn_google_signin_dark_normal_web@2x.png');
+  background: url('/images/google/btn_google_signin_dark_normal_web@2x.png');
   background-size: 100% 100%;
   border: none;
   position: absolute;
@@ -86,5 +82,5 @@ const LoginButton = styled.button`
   &:hover {
     cursor: pointer;
   }
-  z-index: 99;
+  z-index: 2;
 `;

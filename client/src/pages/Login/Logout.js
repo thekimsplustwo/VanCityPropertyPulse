@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getAccessToken } from '../../utils/storage';
-import { logoutAsync } from '../../redux/users/thunks';
+import { googleLogoutAsync } from '../../redux/users/thunks';
 import { resetUserState } from '../../redux/users/reducer';
 import { resetListState } from '../../redux/home/reducer';
+import { resetLikesState } from '../../redux/likes/reducer';
 
 function Logout() {
   const navigate = useNavigate();
@@ -15,9 +15,10 @@ function Logout() {
   };
 
   const logout = () => {
-    dispatch(logoutAsync());
+    dispatch(googleLogoutAsync());
     dispatch(resetUserState());
     dispatch(resetListState());
+    dispatch(resetLikesState());
     navigateToHome();
   };
 
