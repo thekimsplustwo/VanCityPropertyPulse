@@ -5,12 +5,14 @@ import express from 'express';
 import logger from 'morgan';
 import passport from 'passport';
 import bodyParser from 'body-parser';
+import compression from 'compression';
 import session from 'express-session';
 import connectMongoDBSession from 'connect-mongodb-session';
 import cookieParser from 'cookie-parser';
+import helmet from 'helmet';
 import connect from './schemas/index.js';
 import routes from './routes/index.js';
-import passportIndex from './middleware/index.js';
+import passportIndex from './middleware/passportIndex.js';
 
 dotenv.config();
 
@@ -23,49 +25,38 @@ const sessionStore = new MongoDBStore({
   uri: `mongodb+srv://${MONGODB_USER}:${MONGODB_PW}@${MONGODB_HOST}/${DATABASE}?retryWrites=true&w=majority`,
   collection: 'sessions',
 });
+const sessionOptions = {
+  secret: `${SECRET_KEY}`,
+  resave: false,
+  saveUninitialized: false,
+  store: sessionStore,
+  cookie: { maxAge: 1000 * 60 * 60 },
+};
+
+const origins = [process.env.FRONT_URL]
+const corsOptions = {
+  origin: process.env.FRONT_URL,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
 const app = express();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: true,
-//   })
-// );
-app.use(express.static('public'));
+connect();
 
-// app.all('/*', function (req, res, next) {
-//   res.header('Access-Control-Allow-Origin', req.headers.origin);
-//   res.header('Access-Control-Allow-Credentials', 'true');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'X-Requested-With, Content-Type, Accept, Authorization'
-//   );
-//   res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, PATCH');
-//   next();
-// });
-
-//app.use(express.json());
 app.use(logger('dev'));
-app.use(cookieParser());
+app.use(cors(corsOptions));
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(compression());
 
-app.use(
-  session({
-    secret: `${SECRET_KEY}`,
-    cookie: { maxAge: 3600000 },
-    resave: false,
-    saveUninitialized: false,
-    store: sessionStore,
-  })
-);
+app.use(session(sessionOptions));
+
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportIndex();
-
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true,
-};
-app.use(cors(corsOptions));
 
 app.use(routes);
 
@@ -75,26 +66,27 @@ app.get('/ping', (req, res) => {
 
 const server = http.createServer(app);
 
+const checkFeatureFlag = () => {
+  console.log('============ Feature Flags ============');
+  console.log(
+    'Zillow API flag: Listing =',
+    process.env.ZILLOW_API_LISTING.toLowerCase() === 'on' ? 'ON' : 'OFF'
+  );
+  console.log(
+    'Zillow API flag: Detail  =',
+    process.env.ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on' ? 'ON' : 'OFF'
+  );
+  console.log(
+    'AUTH flag: verifyToken   =',
+    process.env.AUTH.toLowerCase() === 'on' ? 'ON' : 'OFF'
+  );
+};
+
 const start = async () => {
   try {
-    await connect();
     server.listen(PORT, () => {
       console.log(`Server is listening on ${PORT} | MOCK ${process.env.MOCK}`);
-      console.log('============ Feature Flags ============');
-      console.log(
-        'Zillow API flag: Listing =',
-        process.env.ZILLOW_API_LISTING.toLowerCase() === 'on' ? 'ON' : 'OFF'
-      );
-      console.log(
-        'Zillow API flag: Detail  =',
-        process.env.ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on'
-          ? 'ON'
-          : 'OFF'
-      );
-      console.log(
-        'AUTH flag: verifyToken   =',
-        process.env.AUTH.toLowerCase() === 'on' ? 'ON' : 'OFF'
-      );
+      checkFeatureFlag();
     });
 
     try {

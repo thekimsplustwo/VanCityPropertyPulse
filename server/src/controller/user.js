@@ -24,7 +24,7 @@ const logout = async (req, res) => {
 };
 
 const getUser = async (req, res) => {
-  const email = req.token;
+  const { email } = req.user;
   const user = await userService.getUserInfoByEmail(email);
   return res.status(201).json(user);
 };

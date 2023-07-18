@@ -1,14 +1,24 @@
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { getAccessToken } from '../../utils/storage';
 import { logoutAsync } from '../../redux/users/thunks';
+import { resetUserState } from '../../redux/users/reducer';
+import { resetListState } from '../../redux/home/reducer';
 
 function Logout() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const navigateToHome = () => {
+    navigate('/');
+  };
 
   const logout = () => {
     dispatch(logoutAsync());
-    window.location.href = 'http://localhost:3000/home';
+    dispatch(resetUserState());
+    dispatch(resetListState());
+    navigateToHome();
   };
 
   return (

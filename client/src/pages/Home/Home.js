@@ -9,13 +9,15 @@ import SearchComponent from '../../components/SearchOption/SearchComponent';
 import { getLikesAsync } from '../../redux/likes/thunks';
 
 function Home() {
+  const user = useSelector(state => state.users.user);
+  console.log('user ', user);
   const navigate = useNavigate();
   const location = useLocation();
 
   const properties = useSelector(state => state.home.list);
   const searchParams = useSelector(state => state.search);
   const dispatch = useDispatch();
-
+  console.log('properties ', properties);
   useEffect(() => {
     dispatch(getListAsync(searchParams));
     dispatch(getLikesAsync());

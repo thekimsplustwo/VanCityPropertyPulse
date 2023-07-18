@@ -21,7 +21,6 @@ const logout = async () => {
 };
 
 const findByEmail = async email => {
-  // return users.find(user => user.email === email);
   return User.findOne({ email });
 };
 

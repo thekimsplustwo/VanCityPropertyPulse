@@ -26,7 +26,9 @@ const INITIAL_STATE = {
 const usersSlice = createSlice({
   name: 'users',
   initialState: INITIAL_STATE,
-  reducers: {},
+  reducers: {
+    resetUserState: () => INITIAL_STATE,
+  },
   extraReducers: builder => {
     builder
       .addCase(getUserAsync.pending, state => {
@@ -61,7 +63,7 @@ const usersSlice = createSlice({
       .addCase(logoutAsync.fulfilled, (state, action) => {
         state.logout = REQUEST_STATE.FULFILLED;
         state.loggedIn = false;
-        state.user = action.payload;
+        state.user = {};
       })
       .addCase(logoutAsync.rejected, (state, action) => {
         state.logout = REQUEST_STATE.REJECTED;
@@ -107,4 +109,5 @@ const usersSlice = createSlice({
   },
 });
 
+export const { resetUserState } = usersSlice.actions;
 export default usersSlice.reducer;

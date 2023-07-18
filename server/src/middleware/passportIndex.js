@@ -1,16 +1,13 @@
 import passport from 'passport';
-import jwt from 'jsonwebtoken';
 import google from './googleStrategy.js';
 import User from '../schemas/users.js';
 
 function passportIndex() {
   passport.serializeUser((user, done) => {
-    done(null, user.token);
+    done(null, user.email);
   });
 
-  passport.deserializeUser((token, done) => {
-    const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-    const { email } = decodedToken;
+  passport.deserializeUser((email, done) => {
     User.findOne({ email })
       .then(user => {
         done(null, user);

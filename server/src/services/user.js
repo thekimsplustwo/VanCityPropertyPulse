@@ -10,51 +10,10 @@ import { errorGenerator, ERROR_TYPE } from '../utils/error.js';
 dotenv.config();
 
 const { MOCK } = process.env;
-const { SECRET_KEY } = process.env;
-
-dotenv.config();
 
 const { userModel } = model;
 
-const salt = bcrypt.genSaltSync();
-const tokenObj = {
-  token: '',
-};
-
-const doesUserExist = async email => {
-  const user = await userModel.getUserInfoByEmail(email);
-  return user;
-};
-
-const validateEmail = email => {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-};
-
-const isInputValid = () => {
-  //
-};
-
-const createToken = async userId => {
-  try {
-    const token = jwt.sign({ id: userId }, SECRET_KEY, {
-      expiresIn: '24h',
-    });
-    return token;
-  } catch (err) {
-    const msg = 'CREATE_TOKEN_FAILED';
-    const error = new Error(msg, 400);
-    throw error;
-  }
-};
-
 const getUserInfoByEmail = async email => {
-  // if (!validateEmail(email)) {
-  //   errorGenerator({ message: errorType.INVALID_EMAIL, statusCode: 404 });
-  // }
   const user = await userModel.findByEmail(email);
   if (!user) {
     errorGenerator(ERROR_TYPE.USER_NOT_EXIST);
@@ -76,10 +35,6 @@ const login = async userInfo => {
 
 const logout = async () => {
   await userModel.logout();
-};
-
-const terminateToken = async () => {
-  //
 };
 
 const findByEmailAndUpdate = async (email, updatedInfo) => {

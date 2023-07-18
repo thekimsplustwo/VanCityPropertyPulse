@@ -1,7 +1,12 @@
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import Nav from './Nav';
 
 function Header() {
+  const location = useLocation();
+  if (location.pathname === '/') {
+    return null;
+  }
   return (
     <FixedNav>
       <Nav />

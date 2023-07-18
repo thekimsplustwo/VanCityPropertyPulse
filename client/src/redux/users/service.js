@@ -46,25 +46,28 @@ const login = async email => {
 
 export const googleLogin = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/users/google`, {
+    const response = await axios.get(`${BASE_URL}/auth/login/google`, {
       credentials: 'include',
       method: 'GET',
     });
+    console.log('google login suceedd ', response);
     return response;
   } catch (error) {
-    console.error('Google login failed:', error);
+    throw new Error(error.message);
   }
-  return null;
 };
 
 const logout = async () => {
-  await axios
-    .post(`${BASE_URL}/users/logout`, null, {
+  console.log('logout called');
+  try {
+    const response = await axios.post(`${BASE_URL}/auth/logout/google`, null, {
       withCredentials: true,
-    })
-    .catch(error => {
-      console.error('Logout failed:', error);
     });
+    console.log('logout res ', response);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
 };
 
 const editProfile = async formData => {
