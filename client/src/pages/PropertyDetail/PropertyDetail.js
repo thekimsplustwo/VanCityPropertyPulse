@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
@@ -14,14 +14,21 @@ import { isObjectValid } from '../../utils/utils';
 import { LOGIN_URI } from '../../config';
 
 function Property() {
+  const navigate = useNavigate();
+
   const { zpid } = useParams();
   const property = useSelector(state => state.property.property);
   const isLogin = useSelector(state => state.users.isLogin);
 
   const dispatch = useDispatch();
+
+  const navigateToLogin = () => {
+    navigate('/');
+  };
+
   useEffect(() => {
     if (!isLogin) {
-      window.location.replace(LOGIN_URI);
+      navigateToLogin();
     } else {
       dispatch(getPropertyAsync(zpid));
     }

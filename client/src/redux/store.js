@@ -1,4 +1,3 @@
-import { createStore, applyMiddleware } from 'redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistReducer, persistStore } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -10,8 +9,8 @@ import likesReducer from './likes/reducer';
 import searchReducer from './search/reducer';
 
 const persistConfig = {
-  key: 'root', // localStorage key
-  storage, // localStorage
+  key: 'root',
+  storage,
   whitelist: ['users', 'home', 'likes', 'property'], // target (reducer name)
 };
 
@@ -26,7 +25,7 @@ const rootReducer = combineReducers({
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
 export const getStore = () => {
   const store = configureStore({
-    reducer: persistedReducer, // used persistedReducer here
+    reducer: persistedReducer,
     middleware: [thunk],
   });
   const persistor = persistStore(store);

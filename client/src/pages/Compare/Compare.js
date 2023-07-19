@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -11,13 +11,13 @@ import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
-import { LOGIN_URI } from '../../config';
 
 // function Compare() {
 //   const navigate = useNavigate();
 //   const location = useLocation();
 
 function Compare() {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const params = new URL(document.location).searchParams;
   const zpid = params.get('item');
@@ -28,11 +28,13 @@ function Compare() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!isLogin) {
-      window.location.replace(LOGIN_URI);
+      navigate('/');
+    } else {
+      dispatch(getPropertyAsync(zpid));
+      // dispatch(getPropertyAsync(zpid2));
     }
-    dispatch(getPropertyAsync(zpid));
-    // dispatch(getPropertyAsync(zpid2));
-  }, [dispatch]);
+  }, [dispatch, isLogin]);
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };

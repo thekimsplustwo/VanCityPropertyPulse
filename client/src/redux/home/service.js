@@ -21,7 +21,6 @@ const getList = async (params, isLogin) => {
       'Content-Type': 'application/json',
     },
   });
-  console.log('response === ', response);
   const data = await response.json();
   if (response.status === 401) {
     await googleLogout();

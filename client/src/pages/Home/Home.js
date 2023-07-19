@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,12 +17,10 @@ function Home() {
   const isLogin = useSelector(state => state.users.isLogin);
   const dispatch = useDispatch();
 
-  console.log('isLogin === ', isLogin);
   useEffect(() => {
     if (!isLogin) {
       window.location.replace(LOGIN_URI);
     } else {
-      console.log('get LIST');
       dispatch(getListAsync(searchParams, isLogin));
       dispatch(getLikesAsync());
       const filteredParams = Object.fromEntries(

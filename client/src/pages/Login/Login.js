@@ -1,25 +1,28 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import searchImage from '../../assets/images/searchComponent.jpg';
 import { GOOGLE_LOGIN_REQUEST_URL, REDIRECT_URI } from '../../config';
-import { setLoginStatus } from '../../redux/users/reducer';
+import { setLoginStatus, resetUserState } from '../../redux/users/reducer';
+import { googleLogoutAsync } from '../../redux/users/thunks';
+import { resetListState } from '../../redux/home/reducer';
+import { resetLikesState } from '../../redux/likes/reducer';
 
-const loginURL = GOOGLE_LOGIN_REQUEST_URL;
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const searchQuery = new URLSearchParams(useLocation().search);
   const token = searchQuery.get('token');
-  const isLogin = useSelector(state => state.users.isLogin);
   const handleGoogleLogin = () => {
-    window.location.assign(loginURL);
+    dispatch(resetUserState());
+    dispatch(resetListState());
+    dispatch(resetLikesState());
+    dispatch(googleLogoutAsync());
+    window.location.href = GOOGLE_LOGIN_REQUEST_URL;
   };
-  console.log('islogin??? ', isLogin);
   useEffect(() => {
-    if (token || isLogin) {
-      console.log('login succeed ==== ');
+    if (token) {
       dispatch(setLoginStatus(true));
       navigate('/home');
     }

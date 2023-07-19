@@ -10,7 +10,7 @@ function Logout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const navigateToHome = () => {
+  const navigateToLogin = () => {
     navigate('/');
   };
 
@@ -19,7 +19,7 @@ function Logout() {
     dispatch(resetUserState());
     dispatch(resetListState());
     dispatch(resetLikesState());
-    navigateToHome();
+    navigateToLogin();
     alert('You have successfully logged out.');
   };
 

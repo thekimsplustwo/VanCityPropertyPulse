@@ -22,7 +22,6 @@ import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { themeColorPink } from '../../styles/theme';
-import { getAccessToken } from '../../utils/storage';
 
 const StyledMenu = muiStyled(Menu)`
   z-index: 100
