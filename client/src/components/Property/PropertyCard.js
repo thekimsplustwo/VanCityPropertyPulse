@@ -11,7 +11,7 @@ import { convertPriceToCAD } from '../../utils/utils';
 
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
-function PropertyCard({ property, showCompareButton }) {
+function PropertyCard({ property, showCompareButton, showHeartIcon }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currZpid = property.zpid;
@@ -31,16 +31,12 @@ function PropertyCard({ property, showCompareButton }) {
   };
 
   const handleAddLike = event => {
-    event.stopPropagation(); // prevent the click event from bubbling up to the parent
-    // toggle the liked state
-    // console.log('handleAddLike');
-    // console.log(property);
+    event.stopPropagation();
     dispatch(addLikesAsync(property));
-    // console.log('handleAddLike dispatched');
   };
 
   const handleDeleteLike = event => {
-    event.stopPropagation(); // prevent the click event from bubbling up to the parent
+    event.stopPropagation();
     dispatch(deleteLikesAsync(currZpid));
   };
 
@@ -48,11 +44,12 @@ function PropertyCard({ property, showCompareButton }) {
     <Img onClick={() => navigateToPropertyPage(property.zpid)}>
       <div className="property-card">
         <img src={property?.imgSrc} alt="Property" className="property-image" />
-        {liked ? (
-          <StyledHeartLikedIcon onClick={handleDeleteLike} />
-        ) : (
-          <StyledHeartBorderIcon onClick={handleAddLike} />
-        )}
+        {showHeartIcon &&
+          (liked ? (
+            <StyledHeartLikedIcon onClick={handleDeleteLike} />
+          ) : (
+            <StyledHeartBorderIcon onClick={handleAddLike} />
+          ))}
         <StatusWrapper>
           <StyledStatusIcon />
           <StatusText>{property.listingStatus}</StatusText>
@@ -65,11 +62,15 @@ function PropertyCard({ property, showCompareButton }) {
           <div className="property-price">
             {convertPriceToCAD(property.price)}
           </div>
-          <div>
-            <span className="property-bed">Bed {property.bedrooms}, </span>
-            <span className="property-bath">Bath {property.bathrooms}, </span>
-            <span className="property-area">{property.livingArea} sqft, </span>
-          </div>
+          {property.bedrooms && (
+            <div>
+              <span className="property-bed">Bed {property.bedrooms}, </span>
+              <span className="property-bath">Bath {property.bathrooms}, </span>
+              <span className="property-area">
+                {property.livingArea} sqft,{' '}
+              </span>
+            </div>
+          )}
           <PropertyLocation>{property.address}</PropertyLocation>
         </div>
       </div>
