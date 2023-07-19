@@ -71,7 +71,11 @@ function Home() {
           Sort by Price (Descending)
         </StyledButton>
       </ButtonContainer>
-      <PropertyGrid properties={sortedProperties} showCompareButton={false} showHeartIcon />
+      <PropertyGrid
+        properties={sortedProperties}
+        showCompareButton={false}
+        showHeartIcon
+      />
     </Main>
   );
 }

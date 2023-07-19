@@ -67,14 +67,16 @@ function PropertyCard({ property, showCompareButton, showHeartIcon }) {
           <PropertyPrice>{convertPriceToCAD(property.price)}</PropertyPrice>
           <PropertySpec>
             {property.bedrooms && (
-            <div>
-              <span className="property-bed">Bed {property.bedrooms}, </span>
-              <span className="property-bath">Bath {property.bathrooms}, </span>
-              <span className="property-area">
-                {property.livingArea} sqft,{' '}
-              </span>
-            </div>
-          )}
+              <div>
+                <span className="property-bed">Bed {property.bedrooms}, </span>
+                <span className="property-bath">
+                  Bath {property.bathrooms},{' '}
+                </span>
+                <span className="property-area">
+                  {property.livingArea} sqft,{' '}
+                </span>
+              </div>
+            )}
           </PropertySpec>
           <PropertyLocation>
             <p>{streetAddress}</p>
@@ -92,12 +94,6 @@ export default PropertyCard;
 
 const Container = styled.div`
   margin: 23px;
-`;
-
-const PropertyImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const PropertyCardContent = styled.section`
