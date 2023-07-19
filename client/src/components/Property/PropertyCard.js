@@ -10,7 +10,7 @@ import { convertPriceToCAD } from '../../utils/utils';
 import { baseInfoRowStyles } from '../../styles/theme';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
-function PropertyCard({ property, showCompareButton }) {
+function PropertyCard({ property, showCompareButton, showHeartIcon }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currZpid = property.zpid;
@@ -30,16 +30,12 @@ function PropertyCard({ property, showCompareButton }) {
   };
 
   const handleAddLike = event => {
-    event.stopPropagation(); // prevent the click event from bubbling up to the parent
-    // toggle the liked state
-    // console.log('handleAddLike');
-    // console.log(property);
+    event.stopPropagation();
     dispatch(addLikesAsync(property));
-    // console.log('handleAddLike dispatched');
   };
 
   const handleDeleteLike = event => {
-    event.stopPropagation(); // prevent the click event from bubbling up to the parent
+    event.stopPropagation();
     dispatch(deleteLikesAsync(currZpid));
   };
   const streetAddress = property.address.split(',')[0];
@@ -53,11 +49,13 @@ function PropertyCard({ property, showCompareButton }) {
           alt="Property"
           className="property-image"
         />
-        {liked ? (
-          <StyledHeartLikedIcon onClick={handleDeleteLike} />
-        ) : (
-          <StyledHeartBorderIcon onClick={handleAddLike} />
-        )}
+        {showHeartIcon &&
+          (liked ? (
+            <StyledHeartLikedIcon onClick={handleDeleteLike} />
+          ) : (
+            <StyledHeartBorderIcon onClick={handleAddLike} />
+          ))}
+
         <StatusWrapper>
           <StyledStatusIcon />
           <StatusText>{property.listingStatus}</StatusText>
@@ -65,13 +63,18 @@ function PropertyCard({ property, showCompareButton }) {
         {showCompareButton && (
           <CompareButton onClick={handleCompare}>Compare</CompareButton>
         )}
-
         <PropertyInfo>
           <PropertyPrice>{convertPriceToCAD(property.price)}</PropertyPrice>
           <PropertySpec>
-            <span className="property-bed">Bed {property.bedrooms}, </span>
-            <span className="property-bath">Bath {property.bathrooms}, </span>
-            <span className="property-area">{property.livingArea} sqft, </span>
+            {property.bedrooms && (
+            <div>
+              <span className="property-bed">Bed {property.bedrooms}, </span>
+              <span className="property-bath">Bath {property.bathrooms}, </span>
+              <span className="property-area">
+                {property.livingArea} sqft,{' '}
+              </span>
+            </div>
+          )}
           </PropertySpec>
           <PropertyLocation>
             <p>{streetAddress}</p>

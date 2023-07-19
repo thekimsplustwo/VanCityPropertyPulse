@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 import { setPage } from '../../redux/search/reducer';
 
-function PropertyGrid({ properties, showCompareButton }) {
+function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
   const numOfProperties = properties.length;
   const propertiesPerPage = 9;
   const totalPages = Math.ceil(numOfProperties / propertiesPerPage);
@@ -70,6 +70,7 @@ function PropertyGrid({ properties, showCompareButton }) {
                 key={property.zpid}
                 property={property}
                 showCompareButton={showCompareButton}
+                showHeartIcon={showHeartIcon}
               />
             ))}
         </CardWrapper>
