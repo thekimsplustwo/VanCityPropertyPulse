@@ -7,7 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
 import { convertPriceToCAD } from '../../utils/utils';
-
+import { baseInfoRowStyles } from '../../styles/theme';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
 function PropertyCard({ property, showCompareButton }) {
@@ -112,17 +112,8 @@ const PropertyInfo = styled.section`
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
-
-  font-weight: 400;
-  letter-spacing: normal;
+  ${baseInfoRowStyles}
   line-height: 20px;
-  text-decoration: none solid rgb(34, 34, 34);
-  text-align: start;
-  text-indent: 0px;
-  text-transform: none;
-  vertical-align: baseline;
-  white-space: normal;
-  word-spacing: 0px;
 `;
 
 const PropertyPrice = styled.div`
