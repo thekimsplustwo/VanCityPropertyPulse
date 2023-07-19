@@ -19,20 +19,28 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 function Compare() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const params = new URL(document.location).searchParams;
-  const zpid = params.get('item');
-  // const zpid2 = params.get('zpid2');
-  const property = useSelector(state => state.property.property);
+  let zpidList = params.getAll('item');
+  if (zpidList.length > 3) {
+    alert(
+      'Only 3 properties can be compared at a time. Showing the last three properties.'
+    );
+    zpidList = zpidList.slice(-3); // Get the last three items
+  }
+
+  const [propertyList, setPropertyList] = useState(new Array(3).fill(null));
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPropertyAsync(zpid));
-    // dispatch(getPropertyAsync(zpid2));
+    zpidList.forEach((zpid, index) => {
+      dispatch(getPropertyAsync(zpid)).then(property => {
+        setPropertyList(prevPropertyList => {
+          const newPropertyList = [...prevPropertyList];
+          newPropertyList[index] = property;
+          return newPropertyList;
+        });
+      });
+    });
   }, [dispatch]);
-
-  const images = Array.isArray(property.imgSrc)
-    ? property.imgSrc
-    : [property.imgSrc];
-
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -61,20 +69,20 @@ function Compare() {
           </ButtonWrapper>
           <ContentWrapper>
             <Grid container spacing={2}>
-              <Grid item="true" xs={4}>
-                <ImageCarousel propertyImages={images} />
-                <CompareProps propertyDetails={property} />
-              </Grid>
-
-              <Grid item="true" xs={4}>
-                <ImageCarousel propertyImages={images} />
-                <CompareProps propertyDetails={property} />
-              </Grid>
-
-              <Grid item="true" xs={4}>
-                <ImageCarousel propertyImages={images} />
-                <CompareProps propertyDetails={property} />
-              </Grid>
+              {propertyList.map((property, index) => (
+                <Grid
+                  item="true"
+                  xs={4}
+                  key={property ? property.zpid : `property-${index}`}
+                >
+                  {property && (
+                    <>
+                      <ImageCarousel propertyImages={property.imgSrc} />
+                      <CompareProps propertyDetails={property} />
+                    </>
+                  )}
+                </Grid>
+              ))}
             </Grid>
           </ContentWrapper>
         </Main>
@@ -120,9 +128,9 @@ const Header = styled.h1`
   font-size: 3rem;
   font-weight: 700;
   color: #000;
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
   text-align: left;
-  margin-top: -20rem;
+  // margin-top: -20rem;
   margin-left: 1rem;
   margin-right: 1rem;
 `;

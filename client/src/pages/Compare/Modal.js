@@ -3,39 +3,12 @@ import Button from '@mui/material/Button';
 import ReactDom from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createTheme } from '@mui/material/styles';
+import styled from 'styled-components';
 import PropertyGrid from '../../components/Property/PropertyGrid';
-
-const MODAL_STYLES = {
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%,-50%)',
-  backgroundColor: 'rgba(0,0,0,0.5)',
-  padding: '50px',
-  zIndex: 1000,
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'center',
-};
-
-const OVERLAY_STYLES = {
-  positon: 'fixed',
-  top: 0,
-  left: 0,
-  right: 0,
-  bottom: 0,
-  backgroundColor: 'rgba(0, 0, 0, 0.7)',
-  zIndex: 1000,
-  backdropFilter: 'blur(100%)',
-};
 
 export const theme = createTheme({
   typography: {
     button: {
-      // Here is where you can customise the button
       fontSize: 20,
       fontWeight: 700,
     },
@@ -52,11 +25,17 @@ export default function Modal({ open, children, onClose }) {
     setProperties(likes);
   }, [likes]);
 
+  const handleOverlayClick = e => {
+    if (e.target.id === 'overlay') {
+      onClose();
+    }
+  };
+
   return ReactDom.createPortal(
     <>
-      <div style={OVERLAY_STYLES} />
+      <OverlayStyle id="overlay" onClick={handleOverlayClick} />
 
-      <div style={MODAL_STYLES}>
+      <ModalStyle>
         {children}
         <Button
           size="large"
@@ -67,8 +46,35 @@ export default function Modal({ open, children, onClose }) {
           Close
         </Button>
         <PropertyGrid properties={properties} showCompareButton />
-      </div>
+      </ModalStyle>
     </>,
     document.getElementById('portal')
   );
 }
+
+const ModalStyle = styled.div`
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 50px;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const OverlayStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  backdrop-filter: blur(100%);
+`;
