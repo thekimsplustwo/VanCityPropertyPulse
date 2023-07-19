@@ -20,6 +20,8 @@ function Compare() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const params = new URL(document.location).searchParams;
   let zpidList = params.getAll('item');
+  const navigate = useNavigate(); // add this line
+
   if (zpidList.length > 3) {
     alert(
       'Only 3 properties can be compared at a time. Showing the last three properties.'
@@ -47,7 +49,11 @@ function Compare() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
+  // add this function
+  const handleClear = () => {
+    navigate('/compare', { replace: true });
+    window.location.reload();
+  };
   return (
     <Wrapper>
       <Margin>
@@ -59,11 +65,20 @@ function Compare() {
               size="small"
               position="fixed"
               height="mix-content"
-              onClick={() => setIsModalOpen(true)}
+              onClick={handleOpenModal}
             >
               Add Property
             </Button>
-            <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
+            <Button
+              variant="contained"
+              size="small"
+              position="fixed"
+              height="mix-content"
+              onClick={handleClear}
+            >
+              Clear
+            </Button>
+            <Modal open={isModalOpen} onClose={handleCloseModal}>
               {/* TODO: Insert Like properties here */}
             </Modal>
           </ButtonWrapper>
@@ -144,10 +159,15 @@ const ButtonWrapper = styled.div`
   margin-right: auto;
   & button {
     padding: 8px 16px;
+    margin-right: 10px;
   }
   // position: 'fixed';
   // zindex: 1;
   // height="mix-content"
+
+  & button:last-child {
+    margin-right: 0;
+  }
 `;
 
 // const Button = styled.button`
