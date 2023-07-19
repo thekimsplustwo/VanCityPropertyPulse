@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import ReactDom from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { createTheme } from '@mui/material/styles';
 import PropertyGrid from '../../components/Property/PropertyGrid';
 
 const MODAL_STYLES = {
@@ -28,7 +29,19 @@ const OVERLAY_STYLES = {
   bottom: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.7)',
   zIndex: 1000,
+  backdropFilter: 'blur(100%)',
 };
+
+export const theme = createTheme({
+  typography: {
+    button: {
+      // Here is where you can customise the button
+      fontSize: 20,
+      fontWeight: 700,
+    },
+  },
+});
+
 export default function Modal({ open, children, onClose }) {
   if (!open) return null;
 
@@ -45,7 +58,14 @@ export default function Modal({ open, children, onClose }) {
 
       <div style={MODAL_STYLES}>
         {children}
-        <Button onClick={onClose}>Close</Button>
+        <Button
+          size="large"
+          onClick={onClose}
+          variant="outlined"
+          color="inherit"
+        >
+          Close
+        </Button>
         <PropertyGrid properties={properties} showCompareButton />
       </div>
     </>,
