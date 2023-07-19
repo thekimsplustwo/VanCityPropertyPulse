@@ -9,6 +9,7 @@ import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
 import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
+import VirtualTour from '../../components/Property/VirtualTour';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
 import { LOGIN_URI } from '../../config';
@@ -39,20 +40,21 @@ function Property() {
       ? property.imgSrc
       : [property.imgSrc];
     return (
-      isLogin && (
-        <Wrapper>
-          <HeaderWrapper>
-            <PropertyHeader propertyDetails={property} />
-            <MenuItems zpid={zpid} />
-          </HeaderWrapper>
-          <ContentWrapper>
-            <ImageCarousel propertyImages={images} />
-            <DetailedInfo propertyDetails={property} />
-          </ContentWrapper>
-          <Divider sx={{ borderBottomWidth: 1 }} />
-          <AdditionalInfo />
-        </Wrapper>
-      )
+      <Wrapper>
+        <HeaderWrapper>
+          <PropertyHeader propertyDetails={property} />
+          <MenuItems zpid={zpid} />
+        </HeaderWrapper>
+        <ContentWrapper>
+          <ImageCarousel propertyImages={images} />
+          <DetailedInfo propertyDetails={property} />
+        </ContentWrapper>
+        {property.resoFacts && (
+          <VirtualTour virtualTour={property.resoFacts.virtualTour} />
+        )}
+        <Divider sx={{ borderBottomWidth: 1 }} />
+        <AdditionalInfo />
+      </Wrapper>
     );
   }
   return <PropertyNotFound />;
