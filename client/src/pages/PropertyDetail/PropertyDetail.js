@@ -9,6 +9,7 @@ import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
 import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
+import VirtualTour from '../../components/Property/VirtualTour';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
 import NearByHomes from '../../components/Property/NearByHomes';
@@ -35,6 +36,9 @@ function Property() {
           <ImageCarousel propertyImages={images} />
           <DetailedInfo propertyDetails={property} />
         </ContentWrapper>
+        {property.resoFacts && (
+          <VirtualTour virtualTour={property.resoFacts.virtualTour} />
+        )}
         <Divider sx={{ borderBottomWidth: 1 }} />
         <AdditionalInfo />
         <Divider sx={{ borderBottomWidth: 1 }} />

@@ -1,8 +1,26 @@
 import styled from 'styled-components';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 function Footer() {
+  const isLogin = useSelector(state => state.users.isLogin);
+
+  useEffect(() => {
+    const footer = document.querySelector('.FooterContainer');
+
+    if (footer) {
+      const scrollHeight = window.innerHeight + window.scrollY;
+      const fullHeight = document.body.offsetHeight;
+
+      if (scrollHeight >= fullHeight) {
+        footer.style.display = 'block';
+      } else {
+        footer.style.display = 'none';
+      }
+    }
+  }, []);
   return (
     <FooterContainer>
       <FooterWrapper>
