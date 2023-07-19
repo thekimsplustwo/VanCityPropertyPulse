@@ -42,7 +42,6 @@ const Wrapper = styled.div`
   display: 'flex';
   font-size: 20px;
   flex-direction: column;
-  font-family: arial, sans-serif;
 `;
 
 const InfoRow = styled.p`
@@ -51,6 +50,17 @@ const InfoRow = styled.p`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 20px;
+
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 24px;
+  text-decoration: none solid rgb(34, 34, 34);
+  text-align: start;
+  text-indent: 0px;
+  text-transform: none;
+  vertical-align: baseline;
+  white-space: normal;
+  word-spacing: 0px;
 `;
 
 const Bold = styled.b`

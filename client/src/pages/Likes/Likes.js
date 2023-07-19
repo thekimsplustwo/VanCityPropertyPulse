@@ -56,7 +56,6 @@ const Main = styled.div`
 
 const Margin = styled.div`
   margin: 20px;
-  font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
 `;

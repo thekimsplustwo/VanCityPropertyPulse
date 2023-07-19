@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
-import './PropertyGrid.css';
 import { setPage } from '../../redux/search/reducer';
 
 function PropertyGrid({ properties, showCompareButton }) {
