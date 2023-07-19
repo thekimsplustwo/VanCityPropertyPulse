@@ -1,14 +1,5 @@
 import axios from 'axios';
-import { BASE_URL } from '../../config';
-
-const getUser = async () => {
-  const response = await fetch(`${BASE_URL}/users/profile`, {
-    credentials: 'include',
-    method: 'GET',
-  });
-  const res = response.json();
-  return res;
-};
+import { BASE_URL, LOGIN_URI } from '../../config';
 
 const googleLogin = async () => {
   try {
@@ -30,6 +21,24 @@ const googleLogout = async () => {
   } catch (error) {
     throw new Error(error.message);
   }
+};
+
+const getUser = async () => {
+  const response = await fetch(`${BASE_URL}/users/profile`, {
+    credentials: 'include',
+    method: 'GET',
+  });
+  const data = response.json();
+  if (response.status === 401) {
+    await googleLogout();
+    window.location.replace(LOGIN_URI);
+    return null;
+  }
+  if (!response.ok) {
+    const errorMsg = data?.message;
+    throw new Error(errorMsg);
+  }
+  return data;
 };
 
 const editProfile = async formData => {

@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { useEffect, useState } from 'react';
 
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -13,6 +11,7 @@ import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
+import { LOGIN_URI } from '../../config';
 
 // function Compare() {
 //   const navigate = useNavigate();
@@ -24,9 +23,13 @@ function Compare() {
   const zpid = params.get('item');
   // const zpid2 = params.get('zpid2');
   const property = useSelector(state => state.property.property);
+  const isLogin = useSelector(state => state.users.isLogin);
 
   const dispatch = useDispatch();
   useEffect(() => {
+    if (!isLogin) {
+      window.location.replace(LOGIN_URI);
+    }
     dispatch(getPropertyAsync(zpid));
     // dispatch(getPropertyAsync(zpid2));
   }, [dispatch]);
@@ -37,7 +40,7 @@ function Compare() {
     setIsModalOpen(false);
   };
 
-  if (isObjectValid(property)) {
+  if (isLogin && isObjectValid(property)) {
     const images = Array.isArray(property.imgSrc)
       ? property.imgSrc
       : [property.imgSrc];

@@ -10,7 +10,7 @@ import session from 'express-session';
 import connectMongoDBSession from 'connect-mongodb-session';
 import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
-import passportIndex from './middleware/passportIndex.js';
+import passportConfig from './middleware/passportConfig.js';
 
 dotenv.config();
 
@@ -53,7 +53,7 @@ app.use(session(sessionOptions));
 
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
-passportIndex();
+passportConfig();
 
 app.use(routes);
 

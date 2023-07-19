@@ -1,4 +1,5 @@
 import { BASE_URL, LOGIN_URI } from '../../config';
+import googleLogout from '../users/service';
 
 const getLikes = async () => {
   const response = await fetch(`${BASE_URL}/likes`, {
@@ -7,7 +8,9 @@ const getLikes = async () => {
   });
   const data = await response.json();
   if (response.status === 401) {
+    await googleLogout();
     window.location.replace(LOGIN_URI);
+    return null;
   }
   if (!response.ok) {
     const errorMsg = data?.message;

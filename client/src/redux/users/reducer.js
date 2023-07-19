@@ -26,6 +26,9 @@ const usersSlice = createSlice({
   initialState: INITIAL_STATE,
   reducers: {
     resetUserState: () => INITIAL_STATE,
+    setLoginStatus: (state, action) => {
+      state.isLogin = action.payload;
+    },
   },
   extraReducers: builder => {
     builder
@@ -83,5 +86,5 @@ const usersSlice = createSlice({
   },
 });
 
-export const { resetUserState } = usersSlice.actions;
+export const { resetUserState, setLoginStatus } = usersSlice.actions;
 export default usersSlice.reducer;

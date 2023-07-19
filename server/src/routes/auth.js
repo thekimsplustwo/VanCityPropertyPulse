@@ -24,10 +24,6 @@ authRouter.get(
 );
 
 authRouter.get('/google/callback', googleCallback);
-authRouter.post(
-  '/logout/google',
-  isLoggedIn,
-  asyncWrap(authController.googleLogout)
-);
+authRouter.post('/logout/google', asyncWrap(authController.googleLogout));
 
 export default authRouter;

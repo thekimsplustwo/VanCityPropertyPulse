@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 function DummyHome() {
   const navigate = useNavigate();
-  const location = useLocation();
 
   return <Main />;
 }

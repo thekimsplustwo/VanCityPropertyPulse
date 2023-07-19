@@ -8,8 +8,11 @@ const { MOCK } = process.env;
 
 const userModel = MOCK === true ? model.mockUserModel : model.userModel;
 
-const getUserInfoByEmail = async email => {
-  const user = await userModel.findUserByEmail(email);
+const getUserInfoByEmail = async (email, _source) => {
+  if (!email) {
+    errorGenerator(ERROR_TYPE.INVALID_REQUEST);
+  }
+  const user = await userModel.getUserInfoByEmail(email, _source);
   if (!user) {
     errorGenerator(ERROR_TYPE.USER_NOT_EXIST);
   }
@@ -24,4 +27,9 @@ const findUserByEmailAndUpdate = async (email, updatedInfo) => {
   return updatedUser;
 };
 
-export { getUserInfoByEmail, findUserByEmailAndUpdate };
+const signup = async userInfo => {
+  if (!userInfo.email) errorGenerator(ERROR_TYPE.INVALID_REQUEST);
+  const res = await userModel.signup(userInfo);
+  return res;
+};
+export { getUserInfoByEmail, findUserByEmailAndUpdate, signup };

@@ -20,6 +20,7 @@ function Logout() {
     dispatch(resetListState());
     dispatch(resetLikesState());
     navigateToHome();
+    alert('You have successfully logged out.');
   };
 
   return (

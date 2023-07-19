@@ -7,6 +7,8 @@ import { Button } from '@mui/material';
 import PropertyGrid from '../../components/Property/PropertyGrid';
 // import { getListAsync } from '../../redux/home/thunks';
 import { getLikesAsync, deleteAllLikesAsync } from '../../redux/likes/thunks';
+import { LOGIN_URI } from '../../config';
+
 // import SearchComponent from '../../components/SearchOption/SearchComponent';
 
 function Likes() {
@@ -14,14 +16,19 @@ function Likes() {
   const location = useLocation();
 
   const likes = useSelector(state => state.likes.list);
+  const isLogin = useSelector(state => state.users.isLogin);
 
   const [properties, setProperties] = useState(likes);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getLikesAsync());
-  }, [dispatch]);
+    if (!isLogin) {
+      window.location.replace(LOGIN_URI);
+    } else {
+      dispatch(getLikesAsync());
+    }
+  }, [dispatch, isLogin]);
 
   const handleDeleteAllLike = () => {
     alert('All likes will be deleted');
@@ -33,17 +40,19 @@ function Likes() {
     setProperties(likes);
   }, [likes]);
   return (
-    <Margin>
-      <Main>
-        <Header>Favourite Homes</Header>
-        {/* create a button to clear all likes lists when clicked */}
-        <MenuContainer>
-          <StyledHeartBorderIcon onClick={handleDeleteAllLike} />
-          <MenuOpt onClick={handleDeleteAllLike}>Clear All</MenuOpt>
-        </MenuContainer>
-        <PropertyGrid properties={properties} showCompareButton />
-      </Main>
-    </Margin>
+    isLogin && (
+      <Margin>
+        <Main>
+          <Header>Favourite Homes</Header>
+          {/* create a button to clear all likes lists when clicked */}
+          <MenuContainer>
+            <StyledHeartBorderIcon onClick={handleDeleteAllLike} />
+            <MenuOpt onClick={handleDeleteAllLike}>Clear All</MenuOpt>
+          </MenuContainer>
+          <PropertyGrid properties={properties} showCompareButton />
+        </Main>
+      </Margin>
+    )
   );
 }
 

@@ -1,12 +1,29 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { useLocation, useNavigate } from 'react-router-dom';
 import searchImage from '../../assets/images/searchComponent.jpg';
-import { GOOGLE_LOGIN_REQUEST_URL } from '../../config';
+import { GOOGLE_LOGIN_REQUEST_URL, REDIRECT_URI } from '../../config';
+import { setLoginStatus } from '../../redux/users/reducer';
 
 const loginURL = GOOGLE_LOGIN_REQUEST_URL;
 function Login() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const searchQuery = new URLSearchParams(useLocation().search);
+  const token = searchQuery.get('token');
+  const isLogin = useSelector(state => state.users.isLogin);
   const handleGoogleLogin = () => {
-    window.location.href = loginURL;
+    window.location.assign(loginURL);
   };
+  console.log('islogin??? ', isLogin);
+  useEffect(() => {
+    if (token || isLogin) {
+      console.log('login succeed ==== ');
+      dispatch(setLoginStatus(true));
+      navigate('/home');
+    }
+  }, [token]);
 
   return (
     <Main>
@@ -22,6 +39,7 @@ export default Login;
 const sizes = {
   desktop: 1080,
   tablet: 768,
+  phone: 365,
 };
 
 const media = Object.keys(sizes).reduce((acc, label) => {
@@ -39,14 +57,17 @@ const Main = styled.div`
   align-items: center;
   padding: 30px;
   background: url(${searchImage}) no-repeat center center;
-  background-size: 80% 65%;
+  background-size: 100% 90%;
   position: relative;
 
   ${media.desktop} {
-    background-size: 70% 50%;
+    background-size: 100% 75%;
   }
   ${media.tablet} {
-    background-size: 60% 40%;
+    background-size: 100% 60%;
+  }
+  ${media.phone} {
+    background-size: 100% 40%;
   }
 `;
 

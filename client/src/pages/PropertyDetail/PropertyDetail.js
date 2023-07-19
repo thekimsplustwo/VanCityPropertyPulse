@@ -11,13 +11,20 @@ import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
+import { LOGIN_URI } from '../../config';
 
 function Property() {
   const { zpid } = useParams();
   const property = useSelector(state => state.property.property);
+  const isLogin = useSelector(state => state.users.isLogin);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPropertyAsync(zpid));
+    if (!isLogin) {
+      window.location.replace(LOGIN_URI);
+    } else {
+      dispatch(getPropertyAsync(zpid));
+    }
   }, [dispatch]);
 
   if (isObjectValid(property)) {
@@ -25,18 +32,20 @@ function Property() {
       ? property.imgSrc
       : [property.imgSrc];
     return (
-      <Wrapper>
-        <HeaderWrapper>
-          <PropertyHeader propertyDetails={property} />
-          <MenuItems zpid={zpid} />
-        </HeaderWrapper>
-        <ContentWrapper>
-          <ImageCarousel propertyImages={images} />
-          <DetailedInfo propertyDetails={property} />
-        </ContentWrapper>
-        <Divider sx={{ borderBottomWidth: 1 }} />
-        <AdditionalInfo />
-      </Wrapper>
+      isLogin && (
+        <Wrapper>
+          <HeaderWrapper>
+            <PropertyHeader propertyDetails={property} />
+            <MenuItems zpid={zpid} />
+          </HeaderWrapper>
+          <ContentWrapper>
+            <ImageCarousel propertyImages={images} />
+            <DetailedInfo propertyDetails={property} />
+          </ContentWrapper>
+          <Divider sx={{ borderBottomWidth: 1 }} />
+          <AdditionalInfo />
+        </Wrapper>
+      )
     );
   }
   return <PropertyNotFound />;

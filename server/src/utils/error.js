@@ -19,4 +19,5 @@ export const ERROR_TYPE = {
     statusCode: 500,
   },
   NETWORK_ERROR: { message: 'NETWORK_ERROR', statusCode: 500 },
+  UNAUTHORIZED: { message: 'UNAUTHORIZED', statusCode: 401 },
 };
