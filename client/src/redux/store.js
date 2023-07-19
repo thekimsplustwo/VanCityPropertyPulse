@@ -11,7 +11,7 @@ import searchReducer from './search/reducer';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['users', 'home', 'likes', 'property'], // target (reducer name)
+  whitelist: ['users', 'home', 'likes', 'property'],
 };
 
 const rootReducer = combineReducers({

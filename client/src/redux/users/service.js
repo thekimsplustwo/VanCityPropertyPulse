@@ -17,7 +17,7 @@ const googleLogout = async () => {
     const response = await axios.post(`${BASE_URL}/auth/logout/google`, null, {
       withCredentials: true,
     });
-    return response.data;
+    return response;
   } catch (error) {
     throw new Error(error.message);
   }

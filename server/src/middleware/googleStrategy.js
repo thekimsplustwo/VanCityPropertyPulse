@@ -1,36 +1,22 @@
 import passport from 'passport';
-import jwt from 'jsonwebtoken';
 import GoogleStrategy from 'passport-google-oauth2';
 import dotenv from 'dotenv';
-import User from '../schemas/users.js';
-import { userService } from '../services/index.js';
 import { userModel } from '../models/index.js';
-import { users } from '../data/data.js';
+import generateToken from '../utils/token.js';
 
 dotenv.config();
 
-const generateToken = async email => {
-  try {
-    const token = jwt.sign({ email: email }, process.env.SECRET_KEY, {
-      expiresIn: '1h',
-    });
-    return token;
-  } catch (error) {
-    error.statusCode = 400;
-    error.message = 'CREATE_TOKEN_FAILED';
-    throw error;
-  }
+const GOOGLE_OAUTH_OPTION = {
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.SERVER_REDIRECT_URL,
+  passReqToCallback: true,
 };
 
 function google() {
   passport.use(
     new GoogleStrategy(
-      {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.SERVER_REDIRECT_URL,
-        passReqToCallback: true,
-      },
+      GOOGLE_OAUTH_OPTION,
       async (request, accessToken, refreshToken, profile, done) => {
         try {
           console.log('google strategy ==== ');

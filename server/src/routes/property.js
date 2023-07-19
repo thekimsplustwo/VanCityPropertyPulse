@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import asyncWrap from '../async-wrap.js';
+import asyncWrap from '../utils/async-wrap.js';
 import { propertyController } from '../controller/index.js';
 import { verifyToken } from '../middleware/auth.js';
 

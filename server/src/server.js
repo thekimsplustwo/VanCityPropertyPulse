@@ -11,10 +11,11 @@ import connectMongoDBSession from 'connect-mongodb-session';
 import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportConfig from './middleware/passportConfig.js';
+import checkFeatureFlag from './utils/featureFlags.js';
 
 dotenv.config();
 
-const { SECRET_KEY } = process.env;
+const { FRONT_URL, SECRET_KEY } = process.env;
 
 const PORT = process.env.PORT || 10010;
 const MongoDBStore = connectMongoDBSession(session);
@@ -22,6 +23,7 @@ const sessionStore = new MongoDBStore({
   uri: mongoDBURL,
   collection: 'sessions',
 });
+
 const sessionOptions = {
   secret: `${SECRET_KEY}`,
   resave: false,
@@ -30,7 +32,7 @@ const sessionOptions = {
   cookie: { maxAge: 1000 * 60 * 60 },
 };
 
-const origins = [process.env.FRONT_URL];
+const origins = [FRONT_URL];
 const corsOptions = {
   origin: origins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
@@ -63,26 +65,10 @@ app.get('/ping', (req, res) => {
 
 const server = http.createServer(app);
 
-const checkFeatureFlag = () => {
-  console.log('============ Feature Flags ============');
-  console.log(
-    'Zillow API flag: Listing =',
-    process.env.ZILLOW_API_LISTING.toLowerCase() === 'on' ? 'ON' : 'OFF'
-  );
-  console.log(
-    'Zillow API flag: Detail  =',
-    process.env.ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on' ? 'ON' : 'OFF'
-  );
-  console.log(
-    'AUTH flag: verifyToken   =',
-    process.env.AUTH.toLowerCase() === 'on' ? 'ON' : 'OFF'
-  );
-};
-
 const start = async () => {
   try {
     server.listen(PORT, () => {
-      console.log(`Server is listening on ${PORT} | MOCK ${process.env.MOCK}`);
+      console.log(`Server is listening on ${PORT}`);
       checkFeatureFlag();
     });
 

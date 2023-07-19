@@ -6,7 +6,8 @@ dotenv.config();
 
 const { MOCK } = process.env;
 
-const userModel = MOCK === true ? model.mockUserModel : model.userModel;
+const userModel =
+  MOCK.toLowerCase() === 'on' ? model.mockUserModel : model.userModel;
 
 const getUserInfoByEmail = async (email, _source) => {
   if (!email) {

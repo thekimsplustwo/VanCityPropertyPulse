@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import { Router } from 'express';
-import asyncWrap from '../async-wrap.js';
+import asyncWrap from '../utils/async-wrap.js';
 import * as userController from '../controller/user.js';
 import { verifyToken } from '../middleware/auth.js';
 

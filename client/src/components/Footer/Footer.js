@@ -1,46 +1,51 @@
 import styled from 'styled-components';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
+import { useSelector } from 'react-redux';
 
 function Footer() {
+  const isLogin = useSelector(state => state.users.isLogin);
+
   return (
-    <FooterContainer>
-      <FooterWrapper>
-        <FooterContent>
-          <div>
-            <FooterInfoTop>VanCity Property Pulse</FooterInfoTop>
-            <FooterInfoBottom>
-              <InfoBottom>
-                <p>by TheKimsPlusTwo</p>
-              </InfoBottom>
-              <InfoBottom>
-                <p>UBC CPSC455</p>
-              </InfoBottom>
-            </FooterInfoBottom>
-          </div>
-          <FooterRight>
-            <FooterIcon>
-              <a
-                href="https://github.com/czhaoca/TheKimsPlusTwo"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <GitHubIcon style={{ fontSize: '40px' }} />
-              </a>
-            </FooterIcon>
-            <FooterIcon>
-              <a
-                href="https://blogs.ubc.ca/cpsc4552023s"
-                target="_blank"
-                rel="noreferrer"
-              >
-                <CoPresentIcon style={{ fontSize: '40px' }} />
-              </a>
-            </FooterIcon>
-          </FooterRight>
-        </FooterContent>
-      </FooterWrapper>
-    </FooterContainer>
+    isLogin && (
+      <FooterContainer>
+        <FooterWrapper>
+          <FooterContent>
+            <div>
+              <FooterInfoTop>VanCity Property Pulse</FooterInfoTop>
+              <FooterInfoBottom>
+                <InfoBottom>
+                  <p>by TheKimsPlusTwo</p>
+                </InfoBottom>
+                <InfoBottom>
+                  <p>UBC CPSC455</p>
+                </InfoBottom>
+              </FooterInfoBottom>
+            </div>
+            <FooterRight>
+              <FooterIcon>
+                <a
+                  href="https://github.com/czhaoca/TheKimsPlusTwo"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <GitHubIcon style={{ fontSize: '40px' }} />
+                </a>
+              </FooterIcon>
+              <FooterIcon>
+                <a
+                  href="https://blogs.ubc.ca/cpsc4552023s"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <CoPresentIcon style={{ fontSize: '40px' }} />
+                </a>
+              </FooterIcon>
+            </FooterRight>
+          </FooterContent>
+        </FooterWrapper>
+      </FooterContainer>
+    )
   );
 }
 

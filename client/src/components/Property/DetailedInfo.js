@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import styled, { ThemeProvider } from 'styled-components';
 import CropFreeRoundedIcon from '@mui/icons-material/CropFreeRounded';
 import Divider from '@mui/material/Divider';

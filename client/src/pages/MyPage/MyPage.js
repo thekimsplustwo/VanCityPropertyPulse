@@ -14,9 +14,12 @@ function MyPage() {
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
   const isLogin = useSelector(state => state.users.isLogin);
+  const navigateToLogin = () => {
+    navigate('/');
+  };
   useEffect(() => {
     if (!isLogin) {
-      navigate('/');
+      navigateToLogin();
     } else {
       dispatch(getUserAsync());
     }

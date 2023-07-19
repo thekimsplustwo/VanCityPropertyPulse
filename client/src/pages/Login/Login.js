@@ -14,12 +14,16 @@ function Login() {
   const navigate = useNavigate();
   const searchQuery = new URLSearchParams(useLocation().search);
   const token = searchQuery.get('token');
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     dispatch(resetUserState());
     dispatch(resetListState());
     dispatch(resetLikesState());
-    dispatch(googleLogoutAsync());
-    window.location.href = GOOGLE_LOGIN_REQUEST_URL;
+    try {
+      await dispatch(googleLogoutAsync());
+      window.location.href = GOOGLE_LOGIN_REQUEST_URL;
+    } catch (error) {
+      console.error(error);
+    }
   };
   useEffect(() => {
     if (token) {

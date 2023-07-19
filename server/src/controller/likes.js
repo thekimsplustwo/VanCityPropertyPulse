@@ -13,6 +13,9 @@ const getLikes = async (req, res) => {
 const addLikes = async (req, res) => {
   const { user } = req;
   const property = req.body;
+  if (!property) {
+    errorGenerator(ERROR_TYPE.INVALID_REQUEST);
+  }
   const likes = await likesService.addLikes(user.email, property);
   return res.status(201).json(likes);
 };

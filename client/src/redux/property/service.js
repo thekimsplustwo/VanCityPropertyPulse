@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { BASE_URL, LOGIN_URI } from '../../config';
 import googleLogout from '../users/service';
 
