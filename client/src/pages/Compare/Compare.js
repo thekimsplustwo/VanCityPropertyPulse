@@ -56,7 +56,7 @@ function Compare() {
               Add Property
             </Button>
             <Modal open={isModalOpen} onClose={() => setIsModalOpen(false)}>
-              TODO: Insert Like properties here
+              {/* TODO: Insert Like properties here */}
             </Modal>
           </ButtonWrapper>
           <ContentWrapper>
