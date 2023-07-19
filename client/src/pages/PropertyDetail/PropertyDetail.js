@@ -13,6 +13,7 @@ import VirtualTour from '../../components/Property/VirtualTour';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
 import { LOGIN_URI } from '../../config';
+import NearByHomes from '../../components/Property/NearByHomes';
 
 function Property() {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ function Property() {
     } else {
       dispatch(getPropertyAsync(zpid));
     }
-  }, [dispatch]);
+  }, [dispatch, zpid]);
 
   if (isObjectValid(property)) {
     const images = Array.isArray(property.imgSrc)
@@ -54,6 +55,8 @@ function Property() {
         )}
         <Divider sx={{ borderBottomWidth: 1 }} />
         <AdditionalInfo />
+        <Divider sx={{ borderBottomWidth: 1 }} />
+        <NearByHomes nearProperties={property} />
       </Wrapper>
     );
   }
@@ -67,7 +70,7 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-item: space-around;
+  align-items: space-around;
 `;
 
 const HeaderWrapper = styled.div`

@@ -10,11 +10,10 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     height: 100vh;
-    font-family: 'AirbnbCereal_W_Bk', 'Montserrat', sans-serif, Courier, monospace;
+    font-family: Circular, -apple-system, "system-ui", Roboto, "Helvetica Neue", sans-serif;
     margin: 0;
     padding: 0;
     background-color: rgba(249, 247, 247, 0.872);
-
   }
 
   img {

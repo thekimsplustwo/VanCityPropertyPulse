@@ -13,6 +13,7 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import Container from '@mui/material/Container';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
+import { baseInfoRowStyles } from '../../styles/theme';
 
 function DetailedInfo({ propertyDetails }) {
   // decompose props
@@ -195,6 +196,7 @@ export default DetailedInfo;
 
 const InfoRow = styled.p`
   margin-bottom: 10px;
+  ${baseInfoRowStyles}
 `;
 
 const StyledText = styled.p`

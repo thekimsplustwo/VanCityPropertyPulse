@@ -4,6 +4,7 @@ import { Info, ArrowForward, Add } from '@mui/icons-material';
 import Divider from '@mui/material/Divider';
 import { themeColorPink } from '../../styles/theme';
 // import { Bold, InfoRow } from './DetailedInfo';
+import { baseInfoRowStyles } from '../../styles/theme';
 
 function AdditionalInfo() {
   return (
@@ -39,15 +40,14 @@ const Wrapper = styled.div`
   display: 'flex';
   font-size: 20px;
   flex-direction: column;
-  font-family: arial, sans-serif;
 `;
 
 const InfoRow = styled.p`
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  ${baseInfoRowStyles}
 `;
 
 const Bold = styled.b`
