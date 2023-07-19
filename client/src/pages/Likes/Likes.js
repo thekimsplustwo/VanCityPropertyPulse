@@ -56,8 +56,6 @@ const Main = styled.div`
 
 const Margin = styled.div`
   margin: 20px;
-  line-height: 30pt;
-  text-align: center;
 `;
 const Header = styled.h1`
   font-size: 2rem;
