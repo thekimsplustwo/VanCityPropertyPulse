@@ -1,17 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-
-import './PropertyCard.css';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import PropertyImage from './PropertyImage';
 import { convertPriceToCAD } from '../../utils/utils';
-
+import { baseInfoRowStyles } from '../../styles/theme';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
-function PropertyCard({ property, showCompareButton }) {
+function PropertyCard({ property, showCompareButton, showHeartIcon }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currZpid = property.zpid;
@@ -31,28 +30,32 @@ function PropertyCard({ property, showCompareButton }) {
   };
 
   const handleAddLike = event => {
-    event.stopPropagation(); // prevent the click event from bubbling up to the parent
-    // toggle the liked state
-    // console.log('handleAddLike');
-    // console.log(property);
+    event.stopPropagation();
     dispatch(addLikesAsync(property));
-    // console.log('handleAddLike dispatched');
   };
 
   const handleDeleteLike = event => {
-    event.stopPropagation(); // prevent the click event from bubbling up to the parent
+    event.stopPropagation();
     dispatch(deleteLikesAsync(currZpid));
   };
-
+  const streetAddress = property.address.split(',')[0];
+  const city = property.address.split(',')[1];
+  const provinceZipcode = property.address.split(',')[2];
   return (
-    <Img onClick={() => navigateToPropertyPage(property.zpid)}>
-      <div className="property-card">
-        <img src={property?.imgSrc} alt="Property" className="property-image" />
-        {liked ? (
-          <StyledHeartLikedIcon onClick={handleDeleteLike} />
-        ) : (
-          <StyledHeartBorderIcon onClick={handleAddLike} />
-        )}
+    <Container onClick={() => navigateToPropertyPage(property.zpid)}>
+      <PropertyCardContent>
+        <PropertyImage
+          src={property?.imgSrc}
+          alt="Property"
+          className="property-image"
+        />
+        {showHeartIcon &&
+          (liked ? (
+            <StyledHeartLikedIcon onClick={handleDeleteLike} />
+          ) : (
+            <StyledHeartBorderIcon onClick={handleAddLike} />
+          ))}
+
         <StatusWrapper>
           <StyledStatusIcon />
           <StatusText>{property.listingStatus}</StatusText>
@@ -60,29 +63,63 @@ function PropertyCard({ property, showCompareButton }) {
         {showCompareButton && (
           <CompareButton onClick={handleCompare}>Compare</CompareButton>
         )}
-
-        <div className="property-info">
-          <div className="property-price">
-            {convertPriceToCAD(property.price)}
-          </div>
-          <div>
-            <span className="property-bed">Bed {property.bedrooms}, </span>
-            <span className="property-bath">Bath {property.bathrooms}, </span>
-            <span className="property-area">{property.livingArea} sqft, </span>
-          </div>
-          <PropertyLocation>{property.address}</PropertyLocation>
-        </div>
-      </div>
-    </Img>
+        <PropertyInfo>
+          <PropertyPrice>{convertPriceToCAD(property.price)}</PropertyPrice>
+          <PropertySpec>
+            {property.bedrooms && (
+              <div>
+                <span className="property-bed">Bed {property.bedrooms}, </span>
+                <span className="property-bath">
+                  Bath {property.bathrooms},{' '}
+                </span>
+                <span className="property-area">
+                  {property.livingArea} sqft,{' '}
+                </span>
+              </div>
+            )}
+          </PropertySpec>
+          <PropertyLocation>
+            <p>{streetAddress}</p>
+            <p>
+              {city}, {provinceZipcode}
+            </p>
+          </PropertyLocation>
+        </PropertyInfo>
+      </PropertyCardContent>
+    </Container>
   );
 }
 
 export default PropertyCard;
 
-const Img = styled.div`
+const Container = styled.div`
   margin: 23px;
 `;
 
+const PropertyCardContent = styled.section`
+  position: relative;
+  width: 350px;
+  height: 350px;
+`;
+
+const PropertyInfo = styled.section`
+  position: absolute;
+  width: 350px;
+  height: 100px;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  ${baseInfoRowStyles}
+  line-height: 20px;
+`;
+
+const PropertyPrice = styled.div`
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 4px;
+`;
 const StyledHeartBorderIcon = styled(FavoriteBorderIcon)`
   position: absolute;
   top: 10px;
@@ -122,6 +159,10 @@ const StatusText = styled.span`
   color: white;
   font-size: 0.85rem;
   font-weight: bold;
+`;
+
+const PropertySpec = styled.div`
+  font-size: 1rem;
 `;
 
 const PropertyLocation = styled.div`

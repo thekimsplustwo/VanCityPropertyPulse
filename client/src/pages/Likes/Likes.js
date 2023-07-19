@@ -41,7 +41,7 @@ function Likes() {
           <StyledHeartBorderIcon onClick={handleDeleteAllLike} />
           <MenuOpt onClick={handleDeleteAllLike}>Clear All</MenuOpt>
         </MenuContainer>
-        <PropertyGridOld properties={properties} showCompareButton />
+        <PropertyGrid properties={properties} showCompareButton showHeartIcon />
       </Main>
     </Margin>
   );
@@ -56,10 +56,8 @@ const Main = styled.div`
 
 const Margin = styled.div`
   margin: 20px;
-  font-family: arial, sans-serif;
-  line-height: 30pt;
-  text-align: center;
 `;
+
 const Header = styled.h1`
   font-size: 2rem;
   font-weight: 700;
