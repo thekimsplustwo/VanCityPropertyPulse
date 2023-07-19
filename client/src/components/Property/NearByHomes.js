@@ -26,6 +26,8 @@ function NearByHomes({ nearProperties }) {
     slidesToShow: 6,
     slidesToScroll: 1,
     infinite: true,
+    centerMode: true,
+    dots: true,
   };
 
   const handlePrev = () => {
@@ -109,6 +111,7 @@ const SliderContainer = styled.div`
   border: 5px solid pink;
   box-shadow: 0 0 0 5px ${themeColorPink};
   margin-top: 2rem;
+  margin-bottom: 2rem;
 `;
 
 const StyledSlider = styled(Slider)`
@@ -120,10 +123,11 @@ const StyledSlider = styled(Slider)`
     margin-top: 10px;
   }
 
-  .slick-slide {
-    margin: 0 20px;
+  .slick-slide > div {
+    display: grid;
+    place-items: center;
     width: 100px;
-    height: 200px !important;
+    height: 440px !important;
   }
 `;
 
@@ -154,6 +158,7 @@ const StyledDiv = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  background-color: pink;
 `;
 
 export default NearByHomes;
