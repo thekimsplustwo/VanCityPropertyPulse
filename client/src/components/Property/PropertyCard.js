@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useEffect, useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShowChartIcon from '@mui/icons-material/ShowChart';
+import PropertyImage from './PropertyImage';
 import { convertPriceToCAD } from '../../utils/utils';
 import { baseInfoRowStyles } from '../../styles/theme';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
