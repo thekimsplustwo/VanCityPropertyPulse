@@ -99,8 +99,8 @@ function Compare() {
               {propertyList.map((property, index) => (
                 <Grid
                   item
-                  xs={12}
-                  sm={6}
+                  xs={4}
+                  sm={4}
                   md={4}
                   key={property ? property.zpid : `property-${index}`}
                 >
@@ -131,12 +131,13 @@ const Main = styled.div`
 const ContentWrapper = styled.div`
   padding: 10px 50px;
   display: flex;
-  justify-content: space-around;
+  justify-content: 'space-around';
   align-items: stretch;
   margin: 0;
   margin-top: 2rem;
   justify-content: center;
   width: 100%;
+  box-sizing: border-box;
 `;
 const Wrapper = styled.div`
   padding-top: 6em;
