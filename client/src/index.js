@@ -11,12 +11,12 @@ import { GOOGLE_CLIENT_ID } from './config';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-    <React.StrictMode>
-      <Provider store={store}>
-        <GlobalStyle />
-        <App />
-      </Provider>
-    </React.StrictMode>
-  </GoogleOAuthProvider>
+  // <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+  <React.StrictMode>
+    <Provider store={store}>
+      <GlobalStyle />
+      <App />
+    </Provider>
+  </React.StrictMode>
+  // </GoogleOAuthProvider>
 );
