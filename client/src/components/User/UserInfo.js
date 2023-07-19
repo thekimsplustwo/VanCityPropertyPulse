@@ -37,7 +37,6 @@ export default UserInfo;
 
 const Margin = styled.div`
   margin: 20px;
-  font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
   overflow: hidden;
