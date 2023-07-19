@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -44,7 +43,7 @@ function PropertyCard({ property, showCompareButton, showHeartIcon }) {
   return (
     <Container onClick={() => navigateToPropertyPage(property.zpid)}>
       <PropertyCardContent>
-        <PropertyImageContainer
+        <PropertyImage
           src={property?.imgSrc}
           alt="Property"
           className="property-image"
@@ -94,12 +93,6 @@ export default PropertyCard;
 
 const Container = styled.div`
   margin: 23px;
-`;
-
-const PropertyImageContainer = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 `;
 
 const PropertyCardContent = styled.section`

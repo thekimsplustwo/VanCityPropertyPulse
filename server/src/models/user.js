@@ -9,7 +9,9 @@ const getUserInfoByEmail = async (email, _source) => {
 };
 
 const findUserByEmailAndUpdate = async (email, updatedInfo) => {
-  const updatedUser = await User.findOneAndUpdate({ email }, updatedInfo);
+  const updatedUser = await User.findOneAndUpdate({ email }, updatedInfo, {
+    new: true,
+  });
   return updatedUser || errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
 };
 

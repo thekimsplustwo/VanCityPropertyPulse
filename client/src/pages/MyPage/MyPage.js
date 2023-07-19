@@ -17,6 +17,7 @@ function MyPage() {
   const navigateToLogin = () => {
     navigate('/');
   };
+
   useEffect(() => {
     if (!isLogin) {
       navigateToLogin();
@@ -24,6 +25,7 @@ function MyPage() {
       dispatch(getUserAsync());
     }
   }, [dispatch, isLogin]);
+
   return (
     isLogin && (
       <Main>
@@ -37,7 +39,7 @@ function MyPage() {
         >
           <Grid container spacing={4}>
             <Grid item="true" xs={4}>
-              <UserPageLeft modal={modal} setModal={setModal} />
+              <UserPageLeft setModal={setModal} />
             </Grid>
             <Grid item="true" xs={7.7}>
               <MoreOptions />

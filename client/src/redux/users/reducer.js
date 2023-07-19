@@ -38,7 +38,6 @@ const usersSlice = createSlice({
       })
       .addCase(getUserAsync.fulfilled, (state, action) => {
         state.getUser = REQUEST_STATE.FULFILLED;
-        state.loggedIn = true;
         state.user = action.payload;
       })
       .addCase(getUserAsync.rejected, (state, action) => {

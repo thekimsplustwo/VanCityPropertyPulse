@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TextField, Button } from '@mui/material';
-import { editProfileAsync, getUserAsync } from '../../redux/users/thunks';
+import { editProfileAsync } from '../../redux/users/thunks';
 
 function UserProfileEdit({ setModal }) {
   const user = useSelector(state => state.users.user);
@@ -17,10 +17,6 @@ function UserProfileEdit({ setModal }) {
     photo: user.photo || '',
   });
 
-  useEffect(() => {
-    dispatch(getUserAsync);
-  }, [dispatch, user]);
-
   const handleInputChange = target => {
     const { name, value } = target;
     setFormData(prevFormData => ({
@@ -30,8 +26,8 @@ function UserProfileEdit({ setModal }) {
   };
 
   const handleSaveBtn = () => {
-    setModal(false);
     dispatch(editProfileAsync(formData));
+    setModal(false);
   };
 
   return (
