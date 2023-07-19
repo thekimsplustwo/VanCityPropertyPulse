@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Button } from '@mui/material';
-import PropertyGrid from '../../components/Property/PropertyGrid';
+import PropertyGridOld from '../../components/Property/PropertyGridOld';
 // import { getListAsync } from '../../redux/home/thunks';
 import { getLikesAsync, deleteAllLikesAsync } from '../../redux/likes/thunks';
 // import SearchComponent from '../../components/SearchOption/SearchComponent';
@@ -41,7 +41,7 @@ function Likes() {
           <StyledHeartBorderIcon onClick={handleDeleteAllLike} />
           <MenuOpt onClick={handleDeleteAllLike}>Clear All</MenuOpt>
         </MenuContainer>
-        <PropertyGrid properties={properties} showCompareButton />
+        <PropertyGridOld properties={properties} showCompareButton />
       </Main>
     </Margin>
   );
