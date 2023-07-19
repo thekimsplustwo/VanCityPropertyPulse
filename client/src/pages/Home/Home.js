@@ -40,7 +40,11 @@ function Home() {
   return (
     <Main>
       <SearchComponent />
-      <PropertyGrid properties={properties} showCompareButton={false} />
+      <PropertyGrid
+        properties={properties}
+        showCompareButton={false}
+        showHeartIcon
+      />
     </Main>
   );
 }
