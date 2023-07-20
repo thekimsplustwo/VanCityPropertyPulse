@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
 import styled from 'styled-components';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
-import ChatWindow from '../ChatBot/ChatWindow';
 
 function Footer() {
-  const [isChatOpen, setIsChatOpen] = useState(false);
+  const openChatWindow = () => {
+    const chatWindowFeatures =
+      'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=500, top=100, left=100';
 
-  const handleChatButtonClick = () => {
-    setIsChatOpen(prevIsChatOpen => !prevIsChatOpen);
+    const chatWindow = window.open('', 'ChatBotWindow', chatWindowFeatures);
+
+    chatWindow.document.body.innerHTML = `
+      <iframe
+        title="ChatBot"
+        src="https://web.powerva.microsoft.com/environments/Default-99fe11df-ab57-448e-af64-07608c7218f7/bots/cr7c7_vanCityPropertyPulseBot/webchat?__version__=2"
+        style="width: 100%; height: 100%; border: none;"
+      ></iframe>
+    `;
   };
 
   return (
@@ -48,10 +55,9 @@ function Footer() {
             </FooterIcon>
             <FooterIcon>
               <SmartToyIcon
-                onClick={handleChatButtonClick}
-                style={{ fontSize: '40px' }}
+                onClick={openChatWindow}
+                style={{ fontSize: '40px', cursor: 'pointer' }}
               />
-              {isChatOpen && <ChatWindow />}
             </FooterIcon>
           </FooterRight>
         </FooterContent>
