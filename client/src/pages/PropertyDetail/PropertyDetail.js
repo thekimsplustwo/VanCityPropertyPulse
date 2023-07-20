@@ -40,6 +40,7 @@ function Property() {
     const images = Array.isArray(property.imgSrc)
       ? property.imgSrc
       : [property.imgSrc];
+    const { nearbyHomes } = property;
     return (
       <Wrapper>
         <HeaderWrapper>
@@ -56,7 +57,7 @@ function Property() {
         <Divider sx={{ borderBottomWidth: 1 }} />
         <AdditionalInfo />
         <Divider sx={{ borderBottomWidth: 1 }} />
-        <NearByHomes nearProperties={property} />
+        {nearbyHomes && <NearByHomes nearProperties={property} />}
       </Wrapper>
     );
   }
