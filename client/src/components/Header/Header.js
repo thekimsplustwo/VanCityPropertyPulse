@@ -1,7 +1,15 @@
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Nav from './Nav';
 
 function Header() {
+  const location = useLocation();
+  const isLogin = useSelector(state => state.users.isLogin);
+
+  if (location.pathname === '/' || !isLogin) {
+    return null;
+  }
   return (
     <FixedNav>
       <Nav />

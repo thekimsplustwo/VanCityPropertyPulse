@@ -15,15 +15,42 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 function NearByHomes({ nearProperties }) {
-  const similarHomes = nearProperties.nearbyHomes; // Array
+  const similarHomes = nearProperties.nearbyHomes;
   const sliderRef = useRef();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [slides, setSlides] = useState(1);
+
+  const calculateSlidesToShow = () => {
+    const element = document.querySelector(
+      '.slick-slide.slick-active.slick-center.slick-current img'
+    );
+    const elementWidth = element ? element.offsetWidth : 0;
+    const slidesToShow = Math.floor(windowWidth / (elementWidth + 50));
+    return slidesToShow > 0 ? slidesToShow : 1;
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    setSlides(calculateSlidesToShow());
+  }, [windowWidth]);
 
   const sliderSettings = {
-    speed: 1500,
+    speed: 1300,
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
-    slidesToShow: 6,
+    slidesToShow: slides || 1,
     slidesToScroll: 1,
     infinite: true,
     centerMode: true,
@@ -94,7 +121,6 @@ const ButtonContainer = styled.div`
 
 const StyledButton = styled.button`
   border: none;
-  background-color: pink;
   border-radius: 50%;
   width: 50px;
   height: 50px;
@@ -102,14 +128,14 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   margin: 0 10px;
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const SliderContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
-  border: 5px solid pink;
-  box-shadow: 0 0 0 5px ${themeColorPink};
   margin-top: 2rem;
   margin-bottom: 2rem;
 `;
@@ -118,7 +144,6 @@ const StyledSlider = styled(Slider)`
   flex-grow: 0;
   margin: 0 1em;
   width: 100%;
-
   .slick-list {
     margin-top: 10px;
   }
@@ -128,6 +153,22 @@ const StyledSlider = styled(Slider)`
     place-items: center;
     width: 100px;
     height: 440px !important;
+  }
+
+  .slick-dots {
+    display: flex;
+    justify-content: center; /* Center the dot buttons horizontally */
+    align-items: center; /* Center the dot buttons vertically */
+  }
+  .slick-dots li button:before {
+    color: ${themeColorPink};
+  }
+  .slick-dots li.slick-active button {
+    transform: scale(1.5);
+  }
+  .slick-dots li.slick-active button:before {
+    transform: scale(1.5);
+    color: ${themeColorPink};
   }
 `;
 
@@ -158,7 +199,6 @@ const StyledDiv = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  background-color: pink;
 `;
 
 export default NearByHomes;

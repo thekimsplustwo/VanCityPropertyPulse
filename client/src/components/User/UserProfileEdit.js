@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TextField, Button } from '@mui/material';
@@ -7,7 +7,6 @@ import { editProfileAsync } from '../../redux/users/thunks';
 function UserProfileEdit({ setModal }) {
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
-
   const [formData, setFormData] = useState({
     firstName: user.firstName ?? '',
     lastName: user.lastName || '',
@@ -27,9 +26,8 @@ function UserProfileEdit({ setModal }) {
   };
 
   const handleSaveBtn = () => {
-    setModal(false);
     dispatch(editProfileAsync(formData));
-    window.location.href = 'http://localhost:3000/mypage';
+    setModal(false);
   };
 
   return (

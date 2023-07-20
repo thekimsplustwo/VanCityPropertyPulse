@@ -1,13 +1,13 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { Button, Stack, styled as muiStyled } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import PropertyGrid from '../../components/Property/PropertyGrid';
-import demoHouseImage from '../../assets/images/demoHouse.jpg';
 import { getListAsync } from '../../redux/home/thunks';
 import SearchComponent from '../../components/SearchOption/SearchComponent';
 import { getLikesAsync } from '../../redux/likes/thunks';
+import { LOGIN_URI } from '../../config';
 
 function Home() {
   const [sortOrder, setSortOrder] = useState(null);
@@ -17,28 +17,31 @@ function Home() {
 
   const properties = useSelector(state => state.home.list);
   const searchParams = useSelector(state => state.search);
+  const isLogin = useSelector(state => state.users.isLogin);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getLikesAsync());
-
-    const filteredParams = Object.fromEntries(
-      Object.entries(searchParams).filter(
-        ([key, value]) =>
-          (typeof value === 'string' && value.length > 0) ||
-          (Array.isArray(value) && value.length > 0) ||
-          (typeof value === 'number' && value > 0)
-      )
-    );
-
-    const searchQuery = new URLSearchParams(filteredParams).toString();
-    dispatch(getListAsync(filteredParams));
-    if (searchQuery) {
-      navigate(`${location.pathname}?${searchQuery}`);
+    if (!isLogin) {
+      window.location.replace(LOGIN_URI);
     } else {
-      navigate(`${location.pathname}`);
+      dispatch(getListAsync(searchParams, isLogin));
+      dispatch(getLikesAsync());
+      const filteredParams = Object.fromEntries(
+        Object.entries(searchParams).filter(
+          ([key, value]) =>
+            (typeof value === 'string' && value.length > 0) ||
+            (Array.isArray(value) && value.length > 0) ||
+            (typeof value === 'number' && value >= 0)
+        )
+      );
+      const searchQuery = new URLSearchParams(filteredParams).toString();
+      if (searchQuery) {
+        navigate(`${location.pathname}?${searchQuery}`);
+      } else {
+        navigate(`${location.pathname}`);
+      }
     }
-  }, [dispatch, navigate, location.pathname, searchParams]);
+  }, [dispatch, navigate, location.pathname, searchParams, isLogin]);
 
   const sortedProperties = useMemo(() => {
     if (sortOrder === 'asc') {
@@ -61,22 +64,24 @@ function Home() {
   };
 
   return (
-    <Main>
-      <SearchComponent />
-      <ButtonContainer direction="row" spacing={2}>
-        <StyledButton variant="contained" onClick={handleSortAscending}>
-          Sort by Price (Ascending)
-        </StyledButton>
-        <StyledButton variant="contained" onClick={handleSortDescending}>
-          Sort by Price (Descending)
-        </StyledButton>
-      </ButtonContainer>
-      <PropertyGrid
-        properties={sortedProperties}
-        showCompareButton={false}
-        showHeartIcon
-      />
-    </Main>
+    isLogin && (
+      <Main>
+        <SearchComponent />
+        <ButtonContainer direction="row" spacing={2}>
+          <StyledButton variant="contained" onClick={handleSortAscending}>
+            Sort by Price (Ascending)
+          </StyledButton>
+          <StyledButton variant="contained" onClick={handleSortDescending}>
+            Sort by Price (Descending)
+          </StyledButton>
+        </ButtonContainer>
+        <PropertyGrid
+          properties={sortedProperties}
+          showCompareButton={false}
+          showHeartIcon
+        />
+      </Main>
+    )
   );
 }
 

@@ -14,7 +14,6 @@ import Compare from './pages/Compare/Compare';
 
 function Router() {
   return (
-    // <UserProvider>
     <BrowserRouter>
       <ScrollTop />
       <Header />
@@ -30,7 +29,6 @@ function Router() {
       </Routes>
       <Footer />
     </BrowserRouter>
-    // </UserProvider>
   );
 }
 

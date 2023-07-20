@@ -35,4 +35,4 @@ mongoose.connection.on('disconnected', () => {
   connect();
 });
 //resetDatabase('likes');
-export default connect;
+export { mongoDBURL, connect };

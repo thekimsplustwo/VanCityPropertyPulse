@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { Info, ArrowForward, Add } from '@mui/icons-material';

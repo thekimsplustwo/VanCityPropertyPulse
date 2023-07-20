@@ -1,8 +1,5 @@
 import mongoose from 'mongoose';
 import { BaseSchema } from './BaseSchema.js';
-import { propertyDetails } from '../data/data.js';
-
-const { Schema } = mongoose;
 
 const propertyDetailSchema = new BaseSchema(
   {
@@ -199,5 +196,4 @@ const propertyDetailSchema = new BaseSchema(
 const PropertyDetail =
   mongoose.model.PropertyDetail ||
   mongoose.model('PropertyDetail', propertyDetailSchema, 'propertyDetails');
-//PropertyDetail.insertMany(propertyDetails);
 export default PropertyDetail;

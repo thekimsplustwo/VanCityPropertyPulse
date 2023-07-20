@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Box } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -9,34 +10,44 @@ import MoreOptions from '../../components/User/MoreOptions';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
 
 function MyPage() {
+  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
+  const isLogin = useSelector(state => state.users.isLogin);
+  const navigateToLogin = () => {
+    navigate('/');
+  };
 
   useEffect(() => {
-    dispatch(getUserAsync());
-  }, [dispatch]);
+    if (!isLogin) {
+      navigateToLogin();
+    } else {
+      dispatch(getUserAsync());
+    }
+  }, [dispatch, isLogin]);
 
   return (
-    <Main>
-      {modal && <UserProfileEdit setModal={setModal} />}
-
-      <Box
-        sx={{
-          width: '100%',
-          height: '100vh',
-          paddingTop: '5em',
-        }}
-      >
-        <Grid container spacing={4}>
-          <Grid item="true" xs={4}>
-            <UserPageLeft modal={modal} setModal={setModal} />
+    isLogin && (
+      <Main>
+        {modal && <UserProfileEdit setModal={setModal} />}
+        <Box
+          sx={{
+            width: '100%',
+            height: '100vh',
+            paddingTop: '5em',
+          }}
+        >
+          <Grid container spacing={4}>
+            <Grid item="true" xs={4}>
+              <UserPageLeft setModal={setModal} />
+            </Grid>
+            <Grid item="true" xs={7.7}>
+              <MoreOptions />
+            </Grid>
           </Grid>
-          <Grid item="true" xs={7.7}>
-            <MoreOptions />
-          </Grid>
-        </Grid>
-      </Box>
-    </Main>
+        </Box>
+      </Main>
+    )
   );
 }
 

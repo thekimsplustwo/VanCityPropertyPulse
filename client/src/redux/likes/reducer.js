@@ -20,7 +20,9 @@ const INITIAL_STATE = {
 const likesSlice = createSlice({
   name: 'likes',
   initialState: INITIAL_STATE,
-  reducers: {},
+  reducers: {
+    resetLikesState: () => INITIAL_STATE,
+  },
   extraReducers: builder => {
     builder
       .addCase(getLikesAsync.pending, state => {
@@ -78,4 +80,5 @@ const likesSlice = createSlice({
   },
 });
 
+export const { resetLikesState } = likesSlice.actions;
 export default likesSlice.reducer;

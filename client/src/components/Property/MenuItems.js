@@ -1,17 +1,8 @@
-import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import styled from 'styled-components';
-import { FavoriteBorderOutlined } from '@mui/icons-material';
 import ReplyIcon from '@mui/icons-material/Reply';
-import MapIcon from '@mui/icons-material/Map';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
 function MenuItems({ zpid }) {

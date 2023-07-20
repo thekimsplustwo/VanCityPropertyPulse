@@ -22,40 +22,35 @@ import CompareArrowsOutlinedIcon from '@mui/icons-material/CompareArrowsOutlined
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { themeColorPink } from '../../styles/theme';
-import { getAccessToken } from '../../utils/storage';
 
 const StyledMenu = muiStyled(Menu)`
   z-index: 100
 `;
 
-const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
 const navIconStyle = { fontSize: '2rem', color: themeColor };
 
 const pages = [
   { name: 'Home', icon: <HomeOutlinedIcon sx={navIconStyle} />, path: '/home' },
-  // { <Delete Compare btn>
-  //   name: 'Compare',
-  //   icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
-  //   path: '/compare',
-  // },
   {
     name: 'Likes',
     icon: <FavoriteBorderIcon sx={navIconStyle} />,
     path: '/likes',
   },
 ];
-const settings = [
-  { name: 'Profile', path: '/mypage' },
-  // TODO(JY): Incomplete; currently, need to refresh once.
-  { name: 'Login', path: '/login' },
-  { name: 'Logout', path: '/logout' },
-];
-
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const isLogin = useSelector(state => state.users.isLogin);
   const searchParams = useSelector(state => state.search);
+
+  const settings = [
+    { name: 'Profile', path: '/mypage' },
+    {
+      name: isLogin ? 'Logout' : 'Login',
+      path: isLogin ? '/logout' : '/login',
+    },
+  ];
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);

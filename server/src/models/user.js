@@ -1,44 +1,23 @@
-import * as data from '../data/data.js';
 import User from '../schemas/users.js';
+import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 
-const { users } = data;
+const getUserInfoByEmail = async (email, _source) => {
+  const query = { email: email };
+  if (_source) query.source = _source;
+  const user = await User.findOne(query);
+  return user;
+};
 
-const getUserInfo = async emailAddress => {
-  //
+const findUserByEmailAndUpdate = async (email, updatedInfo) => {
+  const updatedUser = await User.findOneAndUpdate({ email }, updatedInfo, {
+    new: true,
+  });
+  return updatedUser || errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
 };
 
 const signup = async userInfo => {
-  const newUser = User.create(userInfo);
-  return newUser;
+  const user = await User.create(userInfo);
+  return user || errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
 };
 
-const login = async emailAddress => {
-  //
-};
-
-const logout = async () => {
-  //
-};
-
-const findByEmail = async email => {
-  // return users.find(user => user.email === email);
-  return User.findOne({ email });
-};
-
-const updateUser = async (email, updatedInfo) => {
-  //
-};
-
-const findByEmailAndUpdate = async (email, updatedInfo) => {
-  const updatedUser = await User.findOneAndUpdate({ email }, updatedInfo);
-  return updatedUser;
-};
-
-export {
-  getUserInfo,
-  login,
-  logout,
-  findByEmail,
-  updateUser,
-  findByEmailAndUpdate,
-};
+export { getUserInfoByEmail, findUserByEmailAndUpdate, signup };

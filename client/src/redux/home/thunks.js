@@ -4,7 +4,7 @@ import HomeService from './service';
 
 export const getListAsync = createAsyncThunk(
   actionTypes.GET_LIST,
-  async params => {
-    return HomeService.getList(params);
+  async (params, isLogin) => {
+    return HomeService.getList(params, isLogin);
   }
 );

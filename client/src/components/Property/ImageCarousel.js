@@ -1,6 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Carousel from 'react-material-ui-carousel';
 import { Box } from '@mui/material';

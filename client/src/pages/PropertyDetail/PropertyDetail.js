@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Divider from '@mui/material/Divider';
@@ -12,14 +12,28 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 import VirtualTour from '../../components/Property/VirtualTour';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
+import { LOGIN_URI } from '../../config';
 import NearByHomes from '../../components/Property/NearByHomes';
 
 function Property() {
+  const navigate = useNavigate();
+
   const { zpid } = useParams();
   const property = useSelector(state => state.property.property);
+  const isLogin = useSelector(state => state.users.isLogin);
+
   const dispatch = useDispatch();
+
+  const navigateToLogin = () => {
+    navigate('/');
+  };
+
   useEffect(() => {
-    dispatch(getPropertyAsync(zpid));
+    if (!isLogin) {
+      navigateToLogin();
+    } else {
+      dispatch(getPropertyAsync(zpid));
+    }
   }, [dispatch, zpid]);
 
   if (isObjectValid(property)) {

@@ -11,7 +11,7 @@ const ZILLOW_API_PROPERTY_DETAIL_FLAG_ON =
   process.env.ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on';
 
 const propertyModel =
-  MOCK === true ? model.mockPropertyModel : model.propertyModel;
+  MOCK.toLowerCase() === 'on' ? model.mockPropertyModel : model.propertyModel;
 
 const propertyDetailsOptions = zpid => {
   return {
