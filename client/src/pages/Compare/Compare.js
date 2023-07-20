@@ -99,8 +99,8 @@ function Compare() {
               {propertyList.map((property, index) => (
                 <Grid
                   item
-                  xs={4}
-                  sm={4}
+                  xs={propertyList.length === 1 ? 12 : 4}
+                  sm={propertyList.length <= 2 ? 6 : 4}
                   md={4}
                   key={property ? property.zpid : `property-${index}`}
                 >

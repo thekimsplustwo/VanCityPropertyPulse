@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Divider from '@mui/material/Divider';
+import Map, { Marker } from 'react-map-gl';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import DetailedInfo from '../../components/Property/DetailedInfo';
 import PropertyHeader from '../../components/Property/PropertyTitle';
@@ -20,6 +21,8 @@ function Property() {
   const images = Array.isArray(property.imgSrc)
     ? property.imgSrc
     : [property.imgSrc];
+  const currLong = property.longitude;
+  const currLat = property.latitude;
   return (
     <Wrapper>
       <HeaderWrapper>
@@ -27,7 +30,23 @@ function Property() {
         <MenuItems zpid={zpid} />
       </HeaderWrapper>
       <ContentWrapper>
-        <ImageCarousel propertyImages={images} />
+        <GraphicWrapper>
+          <ImageCarousel propertyImages={images} />
+          {currLong},{currLat}
+          <Map
+            mapboxAccessToken="<REACT_MAPBOX_KEY>"
+            initialViewState={{
+              longitude: currLong,
+              latitude: currLat,
+              zoom: 14,
+            }}
+            mapStyle="mapbox://styles/mapbox/streets-v9"
+          >
+            {/* <Marker longitude={property.longitude} latitude={property.latitude}>
+              📍
+            </Marker> */}
+          </Map>
+        </GraphicWrapper>
         <DetailedInfo propertyDetails={property} />
       </ContentWrapper>
       <Divider sx={{ borderBottomWidth: 1 }} />
@@ -51,6 +70,15 @@ const HeaderWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 20px 50px;
+  justify-content: center;
+`;
+
+const GraphicWrapper = styled.div`
+  display: start;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 50px;
+  width: 100%;
   justify-content: center;
 `;
 
