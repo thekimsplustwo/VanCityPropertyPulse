@@ -14,30 +14,36 @@ import PropertyCard from './PropertyCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const calculateSlidesToShow = () => {
-  const element = document.querySelector(
-    '.slick-slide.slick-active.slick-center.slick-current img'
-  );
-  const elementWidth = element ? element.offsetWidth : 0;
-  const windowWidth = window.innerWidth;
-  const slidesToShow = Math.floor(windowWidth / (elementWidth + 50));
-  return slidesToShow > 0 ? slidesToShow : 1;
-};
-
 function NearByHomes({ nearProperties }) {
-  const similarHomes = nearProperties.nearbyHomes; // Array
+  const similarHomes = nearProperties.nearbyHomes;
   const sliderRef = useRef();
-  const [slides, setSlides] = useState(calculateSlidesToShow());
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [slides, setSlides] = useState(1);
+
+  const calculateSlidesToShow = () => {
+    const element = document.querySelector(
+      '.slick-slide.slick-active.slick-center.slick-current img'
+    );
+    const elementWidth = element ? element.offsetWidth : 0;
+    const slidesToShow = Math.floor(windowWidth / (elementWidth + 50));
+    return slidesToShow > 0 ? slidesToShow : 1;
+  };
 
   useEffect(() => {
     const handleResize = () => {
-      setSlides(calculateSlidesToShow());
+      setWindowWidth(window.innerWidth);
     };
+
     window.addEventListener('resize', handleResize);
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    setSlides(calculateSlidesToShow());
+  }, [windowWidth]);
 
   const sliderSettings = {
     speed: 1300,
