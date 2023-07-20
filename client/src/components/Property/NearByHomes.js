@@ -15,25 +15,13 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const calculateSlidesToShow = () => {
+  const element = document.querySelector(
+    '.slick-slide.slick-active.slick-center.slick-current img'
+  );
+  const elementWidth = element ? element.offsetWidth : 0;
   const windowWidth = window.innerWidth;
-  let slidesToShow = 1;
-
-  switch (true) {
-    case windowWidth >= 1700:
-      slidesToShow = 4;
-      break;
-    case windowWidth >= 1200:
-      slidesToShow = 3;
-      break;
-    case windowWidth >= 800:
-      slidesToShow = 2;
-      break;
-    default:
-      slidesToShow = 1;
-      break;
-  }
-
-  return slidesToShow;
+  const slidesToShow = Math.floor(windowWidth / (elementWidth + 50));
+  return slidesToShow > 0 ? slidesToShow : 1;
 };
 
 function NearByHomes({ nearProperties }) {
@@ -45,9 +33,7 @@ function NearByHomes({ nearProperties }) {
     const handleResize = () => {
       setSlides(calculateSlidesToShow());
     };
-
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -58,7 +44,7 @@ function NearByHomes({ nearProperties }) {
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
-    slidesToShow: slides,
+    slidesToShow: slides || 1,
     slidesToScroll: 1,
     infinite: true,
     centerMode: true,
