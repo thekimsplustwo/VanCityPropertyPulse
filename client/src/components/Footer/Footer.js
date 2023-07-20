@@ -1,9 +1,28 @@
 import styled from 'styled-components';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 function Footer() {
+  const isLogin = useSelector(state => state.users.isLogin);
+
+  useEffect(() => {
+    const footer = document.querySelector('.FooterContainer');
+
+    if (footer) {
+      const scrollHeight = window.innerHeight + window.scrollY;
+      const fullHeight = document.body.offsetHeight;
+
+      if (scrollHeight >= fullHeight) {
+        footer.style.display = 'block';
+      } else {
+        footer.style.display = 'none';
+      }
+    }
+  }, []);
+
   const openChatWindow = () => {
     const chatWindowFeatures =
       'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=500, top=100, left=100';

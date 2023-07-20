@@ -1,17 +1,29 @@
-import dotenv from 'dotenv';
+import passport from 'passport';
 import { Router } from 'express';
-import asyncWrap from '../async-wrap.js';
-import * as authController from '../controller/auth.js';
-import { verifyToken } from '../middleware/auth.js';
-import User from '../schemas/users.js';
+import asyncWrap from '../utils/async-wrap.js';
+import { authController } from '../controller/index.js';
+import {
+  isLoggedIn,
+  isNotLoggedIn,
+  googleCallback,
+} from '../middleware/auth.js';
 
-dotenv.config();
-
-const { FRONT_REDIRECT_URL } = process.env;
+const googleOptions = {
+  authType: 'request',
+  scope: ['email', 'profile'],
+  accessType: 'offline',
+  prompt: 'consent',
+};
 
 const authRouter = Router();
 
-authRouter.get('/google', asyncWrap(authController.google));
-authRouter.get('/google/callback', asyncWrap(authController.callback));
+authRouter.get(
+  '/login/google',
+  isNotLoggedIn,
+  passport.authenticate('google', googleOptions)
+);
+
+authRouter.get('/google/callback', googleCallback);
+authRouter.post('/logout/google', asyncWrap(authController.googleLogout));
 
 export default authRouter;

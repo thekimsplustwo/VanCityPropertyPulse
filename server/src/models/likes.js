@@ -6,6 +6,7 @@ const getLikes = async email => {
   const res = await Like.findOne({ email: email }).sort(defaultSort).exec();
   return res.properties;
 };
+
 const addLikes = async (email, newLike) => {
   const res = await Like.findOneAndUpdate(
     {

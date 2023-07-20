@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -19,17 +17,24 @@ import { isObjectValid } from '../../utils/utils';
 //   const location = useLocation();
 
 function Compare() {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const params = new URL(document.location).searchParams;
   const zpid = params.get('item');
   // const zpid2 = params.get('zpid2');
   const property = useSelector(state => state.property.property);
+  const isLogin = useSelector(state => state.users.isLogin);
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPropertyAsync(zpid));
-    // dispatch(getPropertyAsync(zpid2));
-  }, [dispatch]);
+    if (!isLogin) {
+      navigate('/');
+    } else {
+      dispatch(getPropertyAsync(zpid));
+      // dispatch(getPropertyAsync(zpid2));
+    }
+  }, [dispatch, isLogin]);
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -37,7 +42,7 @@ function Compare() {
     setIsModalOpen(false);
   };
 
-  if (isObjectValid(property)) {
+  if (isLogin && isObjectValid(property)) {
     const images = Array.isArray(property.imgSrc)
       ? property.imgSrc
       : [property.imgSrc];
@@ -112,7 +117,6 @@ const Wrapper = styled.div`
 `;
 const Margin = styled.div`
   margin: 20px;
-  font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
 `;

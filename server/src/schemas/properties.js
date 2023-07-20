@@ -4,7 +4,7 @@ import { BaseSchema } from './BaseSchema.js';
 const propertySchema = new BaseSchema(
   {
     zpid: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
     },

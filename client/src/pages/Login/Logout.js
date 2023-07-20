@@ -1,14 +1,26 @@
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
-import { getAccessToken } from '../../utils/storage';
-import { logoutAsync } from '../../redux/users/thunks';
+import { useNavigate } from 'react-router-dom';
+import { googleLogoutAsync } from '../../redux/users/thunks';
+import { resetUserState } from '../../redux/users/reducer';
+import { resetListState } from '../../redux/home/reducer';
+import { resetLikesState } from '../../redux/likes/reducer';
 
 function Logout() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const navigateToLogin = () => {
+    navigate('/');
+  };
+
   const logout = () => {
-    dispatch(logoutAsync());
-    window.location.href = 'http://localhost:3000/home';
+    dispatch(googleLogoutAsync());
+    dispatch(resetUserState());
+    dispatch(resetListState());
+    dispatch(resetLikesState());
+    navigateToLogin();
+    alert('You have successfully logged out.');
   };
 
   return (

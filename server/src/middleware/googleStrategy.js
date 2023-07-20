@@ -1,61 +1,43 @@
 import passport from 'passport';
-import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import OAuth2Strategy from 'passport-oauth2';
+import GoogleStrategy from 'passport-google-oauth2';
 import dotenv from 'dotenv';
-import jwt from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import User from '../schemas/users.js';
-
-const salt = bcrypt.genSaltSync();
+import { userModel } from '../models/index.js';
+import generateToken from '../utils/token.js';
 
 dotenv.config();
 
-const generateToken = async email => {
-  try {
-    const token = jwt.sign({ email: email }, process.env.SECRET_KEY, {
-      expiresIn: '1h',
-    });
-    return token;
-  } catch (error) {
-    error.statusCode = 400;
-    error.message = 'CREATE_TOKEN_FAILED';
-    throw error;
-  }
+const GOOGLE_OAUTH_OPTION = {
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: process.env.SERVER_REDIRECT_URL,
+  passReqToCallback: true,
 };
-const googleRequestURL =
-  `https://accounts.google.com/o/oauth2/v2/auth?client_id=` +
-  `${process.env.GOOGLE_CLIENT_ID}&response_type=code&redirect_uri=` +
-  `${process.env.SERVER_REDIRECT_URL}` +
-  '&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+openid&' +
-  'authuser=0&prompt=consent&accessType=offline';
 
 function google() {
   passport.use(
     new GoogleStrategy(
-      {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: 'http://localhost:10010/users/google/callback',
-      },
-      async (accessToken, refreshToken, profile, done) => {
+      GOOGLE_OAUTH_OPTION,
+      async (request, accessToken, refreshToken, profile, done) => {
         try {
-          const userLoggingIn = await User.findOne({
-            email: profile.emails[0].value,
-            source: 'google',
-          });
-          if (userLoggingIn) {
-            const token = await generateToken(userLoggingIn.email);
-            done(null, { ...userLoggingIn, token });
+          console.log('google strategy ==== ');
+          const user = await userModel.getUserInfoByEmail(
+            profile.emails[0].value,
+            'google'
+          );
+          console.log('found user == ', user);
+          if (user) {
+            const token = await generateToken(user.email);
+            done(null, { ...user, token });
           } else {
             const token = await generateToken(profile.emails[0].value);
-            const newUser = await User.create({
+            const userInfo = {
               email: profile.emails[0].value,
               firstName: profile.name.givenName,
               lastName: profile.name.familyName,
               photo: profile.photos[0].value,
               source: 'google',
-              token: token,
-            });
+            };
+            const newUser = await userModel.signup(userInfo);
             done(null, { ...newUser, token });
           }
         } catch (error) {

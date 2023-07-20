@@ -14,6 +14,7 @@ function formatPhoneNumber(phoneNumber) {
 
 function UserInfo({ setModal }) {
   const user = useSelector(state => state.users.user);
+
   return (
     <Margin>
       <Bold>First Name: </Bold> {user.firstName}
@@ -37,7 +38,6 @@ export default UserInfo;
 
 const Margin = styled.div`
   margin: 20px;
-  font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
   overflow: hidden;

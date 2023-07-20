@@ -1,5 +1,5 @@
-import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Divider from '@mui/material/Divider';
@@ -9,16 +9,32 @@ import PropertyHeader from '../../components/Property/PropertyTitle';
 import MenuItems from '../../components/Property/MenuItems';
 import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
+import VirtualTour from '../../components/Property/VirtualTour';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
+import { LOGIN_URI } from '../../config';
+import NearByHomes from '../../components/Property/NearByHomes';
 
 function Property() {
+  const navigate = useNavigate();
+
   const { zpid } = useParams();
   const property = useSelector(state => state.property.property);
+  const isLogin = useSelector(state => state.users.isLogin);
+
   const dispatch = useDispatch();
+
+  const navigateToLogin = () => {
+    navigate('/');
+  };
+
   useEffect(() => {
-    dispatch(getPropertyAsync(zpid));
-  }, [dispatch]);
+    if (!isLogin) {
+      navigateToLogin();
+    } else {
+      dispatch(getPropertyAsync(zpid));
+    }
+  }, [dispatch, zpid]);
 
   if (isObjectValid(property)) {
     const images = Array.isArray(property.imgSrc)
@@ -34,8 +50,13 @@ function Property() {
           <ImageCarousel propertyImages={images} />
           <DetailedInfo propertyDetails={property} />
         </ContentWrapper>
+        {property.resoFacts && (
+          <VirtualTour virtualTour={property.resoFacts.virtualTour} />
+        )}
         <Divider sx={{ borderBottomWidth: 1 }} />
         <AdditionalInfo />
+        <Divider sx={{ borderBottomWidth: 1 }} />
+        <NearByHomes nearProperties={property} />
       </Wrapper>
     );
   }
@@ -49,7 +70,7 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-item: space-around;
+  align-items: space-around;
 `;
 
 const HeaderWrapper = styled.div`

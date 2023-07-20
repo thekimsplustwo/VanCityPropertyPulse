@@ -15,21 +15,17 @@ export const addLikesAsync = createAsyncThunk(
     const response = await LikesService.addLikes(property);
 
     // Fetch likes again after successfully adding a like
-    thunkAPI.dispatch(getLikesAsync());
+    // thunkAPI.dispatch(getLikesAsync());
 
-    return response.properties;
+    return response[response.length - 1];
   }
 );
 
 export const deleteLikesAsync = createAsyncThunk(
   actionTypes.DELETE_LIKES,
   async (zpid, thunkAPI) => {
-    const response = await LikesService.deleteLikes(zpid);
-
-    // Fetch likes again after successfully deleting a like
-    thunkAPI.dispatch(getLikesAsync());
-
-    return response;
+    await LikesService.deleteLikes(zpid);
+    return zpid;
   }
 );
 

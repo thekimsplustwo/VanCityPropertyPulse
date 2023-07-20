@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import google from './googleStrategy.js';
 import User from '../schemas/users.js';
 
-function passportIndex() {
+function passportConfig() {
   passport.serializeUser((user, done) => {
     done(null, user.token);
   });
@@ -13,7 +13,7 @@ function passportIndex() {
     const { email } = decodedToken;
     User.findOne({ email })
       .then(user => {
-        done(null, user);
+        done(null, token);
       })
       .catch(err => {
         done(err);
@@ -23,4 +23,4 @@ function passportIndex() {
   google();
 }
 
-export default passportIndex;
+export default passportConfig;

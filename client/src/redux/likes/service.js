@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { BASE_URL } from '../../config';
+import { BASE_URL, LOGIN_URI } from '../../config';
+import googleLogout from '../users/service';
 
 const getLikes = async () => {
   const response = await fetch(`${BASE_URL}/likes`, {
@@ -7,6 +7,11 @@ const getLikes = async () => {
     method: 'GET',
   });
   const data = await response.json();
+  if (response.status === 401) {
+    await googleLogout();
+    window.location.replace(LOGIN_URI);
+    return null;
+  }
   if (!response.ok) {
     const errorMsg = data?.message;
     throw new Error(errorMsg);
@@ -41,8 +46,8 @@ const addLikes = async property => {
     body: JSON.stringify(property),
   });
   const data = await response.json();
-  if (!response.ok) {
-    const errorMsg = data?.message;
+  if (!response.ok || response.status !== 201) {
+    const errorMsg = data?.message || 'NETWORK_ERROR';
     throw new Error(errorMsg);
   }
 

@@ -1,10 +1,14 @@
 import dotenv from 'dotenv';
 import axios from 'axios';
-import { homeModel } from '../models/index.js';
+import * as model from '../models/index.js';
 import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 import { neighborhoodsVancouver } from '../data/locationData.js';
 
 dotenv.config();
+
+const { MOCK } = process.env;
+const homeModel =
+  MOCK.toLowerCase() === 'on' ? model.mockHomeModel : model.homeModel;
 
 const ZILLOW_API_LISTING_FLAG_ON =
   process.env.ZILLOW_API_LISTING.toLowerCase() === 'on';

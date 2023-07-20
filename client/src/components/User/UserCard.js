@@ -1,15 +1,25 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
-import { logoutAsync } from '../../redux/users/thunks';
+import { googleLogoutAsync } from '../../redux/users/thunks';
+import { resetUserState } from '../../redux/users/reducer';
+import { resetListState } from '../../redux/home/reducer';
+import { resetLikesState } from '../../redux/likes/reducer';
 
 function UserCard() {
+  const navigate = useNavigate();
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
-
+  const navigateToLogin = () => {
+    navigate('/');
+  };
   const logout = () => {
-    dispatch(logoutAsync());
-    window.location.href = 'http://localhost:3000/home';
+    dispatch(googleLogoutAsync());
+    dispatch(resetUserState());
+    dispatch(resetListState());
+    dispatch(resetLikesState());
+    navigateToLogin();
   };
 
   return (
@@ -31,7 +41,6 @@ export default UserCard;
 
 const Margin = styled.div`
   margin: 20px;
-  font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
 `;

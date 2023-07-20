@@ -1,9 +1,24 @@
 import styled from 'styled-components';
 import { Stack, Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import { useNavigate } from 'react-router-dom';
 import { themeColorPurple } from '../../styles/theme';
 
 function MoreOptions() {
+  const navigate = useNavigate();
+
+  const navigateToHome = () => {
+    navigate('/home');
+  };
+
+  const navigateToLike = () => {
+    navigate('/likes');
+  };
+
+  const navigateToCompare = () => {
+    //navigate('/compare');
+  };
+
   return (
     <Wrapper>
       <Box sx={{ width: '100%' }}>
@@ -13,7 +28,7 @@ function MoreOptions() {
               variant="h5"
               noWrap
               component="a"
-              href="/home"
+              onClick={navigateToHome}
               sx={{
                 mr: 2,
                 fontWeight: 600,
@@ -21,6 +36,9 @@ function MoreOptions() {
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
+                '&:hover': {
+                  cursor: 'pointer',
+                },
               }}
             >
               Search Available Properties
@@ -31,6 +49,7 @@ function MoreOptions() {
               variant="h5"
               noWrap
               component="a"
+              onClick={navigateToCompare}
               sx={{
                 mr: 2,
                 fontWeight: 600,
@@ -38,6 +57,9 @@ function MoreOptions() {
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
+                '&:hover': {
+                  cursor: 'pointer',
+                },
               }}
             >
               List Your Property
@@ -48,7 +70,7 @@ function MoreOptions() {
               variant="h5"
               noWrap
               component="a"
-              href="/likes"
+              onClick={navigateToLike}
               sx={{
                 mr: 2,
                 fontWeight: 600,
@@ -56,6 +78,9 @@ function MoreOptions() {
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
+                '&:hover': {
+                  cursor: 'pointer',
+                },
               }}
             >
               View Your Favourite Properties
