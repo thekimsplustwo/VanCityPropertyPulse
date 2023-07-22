@@ -13,10 +13,15 @@ const ZILLOW_API_PROPERTY_DETAIL_FLAG_ON =
 const propertyModel =
   MOCK.toLowerCase() === 'on' ? model.mockPropertyModel : model.propertyModel;
 
-const propertyDetailsOptions = zpid => {
+const ZILLOW_API_ENDPOINT = {
+  DETAIL: 'https://zillow-com1.p.rapidapi.com/property',
+  WALK_SCORE: 'https://zillow-com1.p.rapidapi.com/walkAndTransitScore',
+};
+
+const zillowAPIOptions = (zpid, endpoint) => {
   return {
     method: 'GET',
-    url: 'https://zillow-com1.p.rapidapi.com/property',
+    url: endpoint,
     params: { zpid: zpid },
     headers: {
       'X-RapidAPI-Key': process.env.ZILLOW_API_KEY,
@@ -25,15 +30,23 @@ const propertyDetailsOptions = zpid => {
   };
 };
 
-const getPropertyDetailFromZillowAPI = async zpid => {
-  const options = propertyDetailsOptions(zpid);
-  const response = await axios.request(options);
+const validateResponseStatus = response => {
   if (response.status !== 200 || response.data.status === 'error') {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
   }
+};
+
+const validateResonseDataFromDetailAPI = response => {
   if (!response.data.zpid) {
     errorGenerator(ERROR_TYPE.PROPERTY_NOT_FOUND);
   }
+};
+
+const getPropertyDetailFromZillowAPI = async zpid => {
+  const options = zillowAPIOptions(zpid, ZILLOW_API_ENDPOINT.DETAIL);
+  const response = await axios.request(options);
+  validateResponseStatus(response);
+  validateResonseDataFromDetailAPI(response);
   return response.data;
 };
 
@@ -48,4 +61,11 @@ const getPropertyDetails = async zpid => {
     : getPropertyDetailFromDatabase(zpid);
 };
 
-export { getPropertyDetails };
+const getPropertyWalkScore = async zpid => {
+  if (!ZILLOW_API_PROPERTY_DETAIL_FLAG_ON) return {};
+  const options = zillowAPIOptions(zpid, ZILLOW_API_ENDPOINT.WALK_SCORE);
+  const response = await axios.request(options);
+  return response.data || {};
+};
+
+export { getPropertyDetails, getPropertyWalkScore };
