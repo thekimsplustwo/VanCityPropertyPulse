@@ -21,6 +21,22 @@ function Compare() {
 
   // If there are more than 3 items in zpidList, show an alert
   useEffect(() => {
+    // handle Duplicate zpid
+    const uniqueZpidSet = new Set();
+    const uniqueZpidList = [];
+
+    zpidList.forEach(zpid => {
+      if (!uniqueZpidSet.has(zpid)) {
+        uniqueZpidSet.add(zpid);
+        uniqueZpidList.push(zpid);
+      }
+    });
+
+    if (zpidList.length !== uniqueZpidSet.length) {
+      const newURL = `/compare?item=${[...uniqueZpidSet].join('&item=')}`;
+      navigate(newURL, { replace: true });
+    }
+
     if (zpidList.length > 3) {
       alert(
         'Only 3 properties can be compared at a time. Redirecting to show the last three properties.'
