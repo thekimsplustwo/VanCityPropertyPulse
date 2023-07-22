@@ -75,7 +75,7 @@ function Compare() {
       <Wrapper>
         <Margin>
           <Main>
-            <Header>Compare properties</Header>
+            <Header>Compare Properties</Header>
             <ButtonWrapper>
               <Button
                 variant="contained"
