@@ -57,7 +57,7 @@ function Property() {
         <Divider sx={{ borderBottomWidth: 1 }} />
         <AdditionalInfo />
         <Divider sx={{ borderBottomWidth: 1 }} />
-        {nearbyHomes && <NearByHomes nearProperties={property} />}
+        <NearByHomes nearbyHomes={nearbyHomes} />
       </Wrapper>
     );
   }

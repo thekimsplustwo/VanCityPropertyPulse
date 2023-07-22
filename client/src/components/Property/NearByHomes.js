@@ -14,8 +14,7 @@ import PropertyCard from './PropertyCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-function NearByHomes({ nearProperties }) {
-  const similarHomes = nearProperties.nearbyHomes;
+function NearByHomes({ nearbyHomes }) {
   const sliderRef = useRef();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [slides, setSlides] = useState(1);
@@ -79,37 +78,39 @@ function NearByHomes({ nearProperties }) {
   };
 
   return (
-    <Wrapper>
-      <Divider sx={{ borderBottomWidth: 3 }} />
-      <InfoRow />
-      <Bold>Nearby homes</Bold>
-      <SliderContainer>
-        <StyledSlider ref={sliderRef} {...sliderSettings}>
-          {similarHomes.map(home => {
-            const adaptedHome = adaptHomeData(home);
-            return (
-              <StyledDiv key={home.zpid}>
-                <PropertyCard
-                  key={home.zpid}
-                  property={adaptedHome}
-                  showCompareButton={false}
-                  showHeartIcon={false}
-                />
-              </StyledDiv>
-            );
-          })}
-        </StyledSlider>
-      </SliderContainer>
-      <ButtonContainer>
-        <StyledButton type="button" onClick={handlePrev}>
-          <KeyboardDoubleArrowLeftIcon />
-        </StyledButton>
+    nearbyHomes && (
+      <Wrapper>
+        <Divider sx={{ borderBottomWidth: 3 }} />
+        <InfoRow />
+        <Bold>Nearby homes</Bold>
+        <SliderContainer>
+          <StyledSlider ref={sliderRef} {...sliderSettings}>
+            {nearbyHomes.map(home => {
+              const adaptedHome = adaptHomeData(home);
+              return (
+                <StyledDiv key={home.zpid}>
+                  <PropertyCard
+                    key={home.zpid}
+                    property={adaptedHome}
+                    showCompareButton={false}
+                    showHeartIcon={false}
+                  />
+                </StyledDiv>
+              );
+            })}
+          </StyledSlider>
+        </SliderContainer>
+        <ButtonContainer>
+          <StyledButton type="button" onClick={handlePrev}>
+            <KeyboardDoubleArrowLeftIcon />
+          </StyledButton>
 
-        <StyledButton type="button" onClick={handleNext}>
-          <KeyboardDoubleArrowRightIcon />
-        </StyledButton>
-      </ButtonContainer>
-    </Wrapper>
+          <StyledButton type="button" onClick={handleNext}>
+            <KeyboardDoubleArrowRightIcon />
+          </StyledButton>
+        </ButtonContainer>
+      </Wrapper>
+    )
   );
 }
 
