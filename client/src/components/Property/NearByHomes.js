@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { styled as muiStyled } from '@mui/material';
-import Divider from '@mui/material/Divider';
 import Slider from 'react-slick';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
@@ -80,7 +79,6 @@ function NearByHomes({ nearbyHomes }) {
   return (
     nearbyHomes && (
       <Wrapper>
-        <Divider sx={{ borderBottomWidth: 3 }} />
         <InfoRow />
         <Bold>Nearby homes</Bold>
         <SliderContainer>
@@ -104,7 +102,6 @@ function NearByHomes({ nearbyHomes }) {
           <StyledButton type="button" onClick={handlePrev}>
             <KeyboardDoubleArrowLeftIcon />
           </StyledButton>
-
           <StyledButton type="button" onClick={handleNext}>
             <KeyboardDoubleArrowRightIcon />
           </StyledButton>
