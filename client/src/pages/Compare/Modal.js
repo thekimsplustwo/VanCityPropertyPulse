@@ -37,15 +37,15 @@ export default function Modal({ open, children, onClose }) {
 
       <ModalStyle>
         {children}
+        <PropertyGrid properties={properties} showCompareButton />
         <Button
-          size="large"
+          // size="large"
           onClick={onClose}
-          variant="outlined"
-          color="inherit"
+          variant="contained"
+          // color="inherit"
         >
           Close
         </Button>
-        <PropertyGrid properties={properties} showCompareButton />
       </ModalStyle>
     </>,
     document.getElementById('portal')
@@ -66,6 +66,8 @@ const ModalStyle = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  overflow-y: auto;
+  max-height: calc(100vh - 210px);
 `;
 
 const OverlayStyle = styled.div`

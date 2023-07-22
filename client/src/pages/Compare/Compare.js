@@ -95,9 +95,7 @@ function Compare() {
               >
                 Clear
               </Button>
-              <Modal open={isModalOpen} onClose={handleCloseModal}>
-                TODO: Insert Like properties here
-              </Modal>
+              <Modal open={isModalOpen} onClose={handleCloseModal} />
             </ButtonWrapper>
             <ContentWrapper>
               <Grid container spacing={2}>
