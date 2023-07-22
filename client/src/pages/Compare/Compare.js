@@ -12,10 +12,6 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
 
-// function Compare() {
-//   const navigate = useNavigate();
-//   const location = useLocation();
-
 function Compare() {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -133,7 +129,7 @@ function Compare() {
   return <PropertyNotFound />;
 }
 const Main = styled.div`
-  padding-top: 23em;
+  // padding-top: 23em;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -142,10 +138,10 @@ const Main = styled.div`
 `;
 const ContentWrapper = styled.div`
   padding: 10px 50px;
-  display: flex;
+  flex-shrink: 1;
   justify-content: 'space-around';
   align-items: stretch;
-  margin: 0;
+  margin: 1;
   margin-top: 2rem;
   justify-content: center;
   width: 100%;
