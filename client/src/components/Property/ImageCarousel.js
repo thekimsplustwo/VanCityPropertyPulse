@@ -28,7 +28,7 @@ export default ImageCarousel;
 
 const Wrapper = styled.div`
   width: 100%;
-  hight: 100vh;
+  height: 100%;
 `;
 
 const Section = styled.section``;

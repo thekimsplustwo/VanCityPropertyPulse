@@ -31,8 +31,8 @@ function MapBox({ longitude, latitude }) {
     <div
       ref={mapContainer}
       style={{
-        width: '83%',
-        height: '50%',
+        width: '500px',
+        height: '500px',
         position: 'relative',
       }}
     />
