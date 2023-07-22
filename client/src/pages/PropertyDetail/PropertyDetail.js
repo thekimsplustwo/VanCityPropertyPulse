@@ -20,8 +20,7 @@ function Property() {
   const images = Array.isArray(property.imgSrc)
     ? property.imgSrc
     : [property.imgSrc];
-  const currLong = property.longitude;
-  const currLat = property.latitude;
+
   return (
     <Wrapper>
       <HeaderWrapper>
