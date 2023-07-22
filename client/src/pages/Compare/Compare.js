@@ -17,17 +17,43 @@ function Compare() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const params = new URL(document.location).searchParams;
   let zpidList = Array.from(new Set(params.getAll('item')));
-
-  const property = useSelector(state => state.property.property);
   const isLogin = useSelector(state => state.users.isLogin);
 
-  zpidList = zpidList.slice(-3); // Get the last three items always
+  // If there are more than 3 items in zpidList, show an alert
+  useEffect(() => {
+    // handle Duplicate zpid
+    const uniqueZpidSet = new Set();
+    const uniqueZpidList = [];
 
-  if (zpidList.length > 3) {
-    alert(
-      'Only 3 properties can be compared at a time. Showing the last three properties.'
-    );
-  }
+    zpidList.forEach(zpid => {
+      if (!uniqueZpidSet.has(zpid)) {
+        uniqueZpidSet.add(zpid);
+        uniqueZpidList.push(zpid);
+      }
+    });
+
+    if (zpidList.length !== uniqueZpidSet.length) {
+      const newURL = `/compare?item=${[...uniqueZpidSet].join('&item=')}`;
+      navigate(newURL, { replace: true });
+    }
+
+    if (zpidList.length > 3) {
+      alert(
+        'Only 3 properties can be compared at a time. Redirecting to show the last three properties.'
+      );
+
+      // Get the last three items from the zpidList
+      zpidList = zpidList.slice(-3);
+
+      // Create the new URL with the last three items from zpidList
+      const newURL = `/compare?item=${zpidList.join('&item=')}`;
+
+      // Navigate to the new URL
+      navigate(newURL, { replace: true });
+    }
+  }, []);
+
+  const property = useSelector(state => state.property.property);
 
   const [propertyList, setPropertyList] = useState(
     new Array(zpidList.length).fill(null)

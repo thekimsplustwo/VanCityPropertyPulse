@@ -62,7 +62,7 @@ const ModalStyle = styled.div`
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
   padding: 50px;
-  z-index: 1000;
+  z-index: 1500;
   width: 100%;
   height: 100%;
   display: flex;
@@ -70,7 +70,7 @@ const ModalStyle = styled.div`
   align-items: center;
   justify-content: center;
   overflow-y: auto;
-  max-height: calc(100vh - 210px);
+  // max-height: 75vh;
 `;
 
 const OverlayStyle = styled.div`

@@ -10,6 +10,7 @@ import MenuItems from '../../components/Property/MenuItems';
 import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
 import VirtualTour from '../../components/Property/VirtualTour';
+import MapBox from '../../components/Property/MapBox';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
 import { LOGIN_URI } from '../../config';
@@ -40,7 +41,7 @@ function Property() {
     const images = Array.isArray(property.imgSrc)
       ? property.imgSrc
       : [property.imgSrc];
-    const { nearbyHomes } = property;
+    const { nearbyHomes, longitude, latitude } = property;
     return (
       <Wrapper>
         <HeaderWrapper>
@@ -48,10 +49,11 @@ function Property() {
           <MenuItems zpid={zpid} />
         </HeaderWrapper>
         <ContentWrapper>
-          {/* <GraphicWrapper> */}
-          <ImageCarousel propertyImages={images} />
+          <GraphicWrapper>
+            <ImageCarousel propertyImages={images} />
+            <MapBox longitude={longitude} latitude={latitude} />
+          </GraphicWrapper>
           <DetailedInfo propertyDetails={property} />
-          {/* </GraphicWrapper> */}
         </ContentWrapper>
         {property.resoFacts && (
           <VirtualTour virtualTour={property.resoFacts.virtualTour} />
@@ -85,7 +87,7 @@ const HeaderWrapper = styled.div`
 `;
 
 const GraphicWrapper = styled.div`
-  display: start;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 20px 50px;
