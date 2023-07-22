@@ -40,6 +40,7 @@ function Footer() {
   };
 
   return (
+    isLogin && (
     <FooterContainer>
       <FooterWrapper>
         <FooterContent>
@@ -85,6 +86,7 @@ function Footer() {
         </FooterContent>
       </FooterWrapper>
     </FooterContainer>
+    )
   );
 }
 
