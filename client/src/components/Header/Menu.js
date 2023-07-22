@@ -14,7 +14,6 @@ import {
   ListItemIcon,
   styled as muiStyled,
 } from '@mui/material';
-
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
@@ -28,32 +27,30 @@ const StyledMenu = muiStyled(Menu)`
   z-index: 100
 `;
 
-const pid = '5500-Grand-Lake-Dr,-San-Antonio,-TX-78244';
 const themeColor = themeColorPink;
 const navIconStyle = { fontSize: '2rem', color: themeColor };
 
 const pages = [
   { name: 'Home', icon: <HomeOutlinedIcon sx={navIconStyle} />, path: '/home' },
-  // { <Delete Compare btn>
-  //   name: 'Compare',
-  //   icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
-  //   path: '/compare',
-  // },
   {
     name: 'Likes',
     icon: <FavoriteBorderIcon sx={navIconStyle} />,
     path: '/likes',
   },
 ];
-const settings = [
-  { name: 'Profile', path: '/mypage' },
-  { name: 'Logout', path: '/logout' },
-];
-
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const isLogin = useSelector(state => state.users.isLogin);
   const searchParams = useSelector(state => state.search);
+
+  const settings = [
+    { name: 'Profile', path: '/mypage' },
+    {
+      name: isLogin ? 'Logout' : 'Login',
+      path: isLogin ? '/logout' : '/login',
+    },
+  ];
 
   const handleOpenNavMenu = event => {
     setAnchorElNav(event.currentTarget);
@@ -78,7 +75,7 @@ function ResponsiveAppBar() {
           ([key, value]) =>
             (typeof value === 'string' && value.length > 0) ||
             (Array.isArray(value) && value.length > 0) ||
-            (typeof value === 'number' && value >= 0)
+            (typeof value === 'number' && value > 0)
         )
       );
 

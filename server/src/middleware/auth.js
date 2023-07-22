@@ -1,33 +1,79 @@
+import passport from 'passport';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-import * as model from '../models/index.js';
+import { getUserInfoByEmail } from '../models/user.js';
+import { users } from '../data/data.js';
+import generateToken from '../utils/token.js';
 
-dotenv.config();
+const { FRONT_REDIRECT_URL, FRONT_URL, SERVER_REDIRECT_URL, TEST_USER_EMAIL } =
+  process.env;
 
-const { MOCK } = process.env;
-const { SECRET_KEY } = process.env;
+export const isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    //res.redirect(301, FRONT_URL);
+    return res.status(401).json({ url: FRONT_URL });
+  }
+};
 
-dotenv.config();
-
-const userModel = MOCK ? model.mockUserModel : model.userModel;
+export const isNotLoggedIn = (req, res, next) => {
+  if (process.env.AUTH !== 'on') {
+    const token = generateToken(TEST_USER_EMAIL);
+    return res.redirect(301, `${FRONT_REDIRECT_URL}?token=${token}`);
+  }
+  if (!req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect(301, FRONT_REDIRECT_URL);
+  }
+};
 
 export const verifyToken = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization.split(' ')[1]; //bearer
-    const email = token;
-    //const token = req.headers.authorization;
-    //const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
-    //const { email } = decodedToken;
-    const user = await userModel.getUserInfoByEmail(email);
-    if (!user) {
-      res.status(401).send('Unauthorized');
-    } else {
-      req.token = token;
+  if (process.env.AUTH !== 'on') {
+    req.user = users.find(user => user.email === TEST_USER_EMAIL);
+    next();
+  } else {
+    try {
+      if (!(req.session.passport && req.isAuthenticated())) {
+        return res.status(401).json({ url: FRONT_URL });
+      }
+      const token = req.session.passport.user;
+      const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+      const { email } = decodedToken;
+      //const email = req.session.passport.user;
+      const user = await getUserInfoByEmail(email);
+      console.log('The following user has been verified: ', user);
+      if (!user) {
+        return res.status(401).send('Unauthorized');
+      }
+      req.token = req.user.token;
       req.user = user;
       next();
+    } catch (error) {
+      if (!res.headersSent) {
+        res.status(error.statusCode || 400).json({ message: error.message });
+      }
+      next(error);
     }
-  } catch (error) {
-    res.status(error.statusCode || 400).json({ message: error.message });
-    next(error);
   }
+};
+
+export const googleCallback = (req, res, next) => {
+  passport.authenticate('google', (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.redirect('/auth/login/google');
+    }
+    req.logIn(user, err => {
+      if (err) {
+        return next(err);
+      }
+      res.set('x-token', user.token);
+      return res
+        .status(200)
+        .redirect(`${FRONT_REDIRECT_URL}?token=${user.token}`);
+    });
+  })(req, res, next);
 };

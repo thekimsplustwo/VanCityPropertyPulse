@@ -1,15 +1,17 @@
-import axios from 'axios';
-import { BASE_URL } from '../../config';
+import { BASE_URL, LOGIN_URI } from '../../config';
+import googleLogout from '../users/service';
 
 const getLikes = async () => {
   const response = await fetch(`${BASE_URL}/likes`, {
+    credentials: 'include',
     method: 'GET',
-    headers: {
-      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
-      Authorization: 'Bearer johndoe@gmail.com',
-    },
   });
   const data = await response.json();
+  if (response.status === 401) {
+    await googleLogout();
+    window.location.replace(LOGIN_URI);
+    return null;
+  }
   if (!response.ok) {
     const errorMsg = data?.message;
     throw new Error(errorMsg);
@@ -19,11 +21,10 @@ const getLikes = async () => {
 
 const deleteAllLikes = async () => {
   const response = await fetch(`${BASE_URL}/likes`, {
+    credentials: 'include',
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
-      Authorization: 'Bearer johndoe@gmail.com',
     },
   });
   // console.log('deleteAllLikes is clicked, processing in service.js ');
@@ -37,17 +38,16 @@ const deleteAllLikes = async () => {
 
 const addLikes = async property => {
   const response = await fetch(`${BASE_URL}/likes`, {
+    credentials: 'include',
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
-      Authorization: 'Bearer johndoe@gmail.com',
     },
     body: JSON.stringify(property),
   });
   const data = await response.json();
-  if (!response.ok) {
-    const errorMsg = data?.message;
+  if (!response.ok || response.status !== 201) {
+    const errorMsg = data?.message || 'NETWORK_ERROR';
     throw new Error(errorMsg);
   }
 
@@ -56,11 +56,10 @@ const addLikes = async property => {
 
 const deleteLikes = async zpid => {
   const response = await fetch(`${BASE_URL}/likes/${zpid}`, {
+    credentials: 'include',
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
-      // 'Authorization': 'Bearer ' + localStorage.getItem('jwtToken'),
-      Authorization: 'Bearer johndoe@gmail.com',
     },
   });
 

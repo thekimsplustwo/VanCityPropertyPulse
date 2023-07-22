@@ -1,10 +1,24 @@
-import React from 'react';
 import styled from 'styled-components';
 import { Stack, Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import { useNavigate } from 'react-router-dom';
 import { themeColorPurple } from '../../styles/theme';
 
 function MoreOptions() {
+  const navigate = useNavigate();
+
+  const navigateToHome = () => {
+    navigate('/home');
+  };
+
+  const navigateToLike = () => {
+    navigate('/likes');
+  };
+
+  const navigateToCompare = () => {
+    //navigate('/compare');
+  };
+
   return (
     <Wrapper>
       <Box sx={{ width: '100%' }}>
@@ -14,7 +28,7 @@ function MoreOptions() {
               variant="h5"
               noWrap
               component="a"
-              href="/home"
+              onClick={navigateToHome}
               sx={{
                 mr: 2,
                 fontWeight: 600,
@@ -22,6 +36,9 @@ function MoreOptions() {
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
+                '&:hover': {
+                  cursor: 'pointer',
+                },
               }}
             >
               Search Available Properties
@@ -32,6 +49,7 @@ function MoreOptions() {
               variant="h5"
               noWrap
               component="a"
+              onClick={navigateToCompare}
               sx={{
                 mr: 2,
                 fontWeight: 600,
@@ -39,6 +57,9 @@ function MoreOptions() {
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
+                '&:hover': {
+                  cursor: 'pointer',
+                },
               }}
             >
               List Your Property
@@ -49,7 +70,7 @@ function MoreOptions() {
               variant="h5"
               noWrap
               component="a"
-              href="/likes"
+              onClick={navigateToLike}
               sx={{
                 mr: 2,
                 fontWeight: 600,
@@ -57,6 +78,9 @@ function MoreOptions() {
                 color: themeColorPurple,
                 textDecoration: 'none',
                 fontSize: '1.1rem',
+                '&:hover': {
+                  cursor: 'pointer',
+                },
               }}
             >
               View Your Favourite Properties
@@ -70,26 +94,17 @@ function MoreOptions() {
 
 export default MoreOptions;
 
-// const Main = styled.div`
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   padding: 30px;
-// `;
-
 const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;
   width: 100%;
-  margin: 20px;
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 62vh;
+  height: 100%;
 `;
 
 const CenteredGrid = styled(Grid)`

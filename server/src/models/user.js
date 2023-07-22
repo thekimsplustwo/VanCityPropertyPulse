@@ -1,23 +1,23 @@
-import * as data from '../data/data.js';
+import User from '../schemas/users.js';
+import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 
-const { users } = data;
-
-const getUserInfo = async emailAddress => {
-  //
+const getUserInfoByEmail = async (email, _source) => {
+  const query = { email: email };
+  if (_source) query.source = _source;
+  const user = await User.findOne(query);
+  return user;
 };
 
-const login = async emailAddress => {
-  //
+const findUserByEmailAndUpdate = async (email, updatedInfo) => {
+  const updatedUser = await User.findOneAndUpdate({ email }, updatedInfo, {
+    new: true,
+  });
+  return updatedUser || errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
 };
 
-const findByEmail = async email => {
-  // for (let i = 0; i < users.length; i += 1) {
-  //   if (users[i].email === email) {
-  //     return users[i];
-  //   }
-  // }
-  // return null;
-  return users.find(user => user.email === email);
+const signup = async userInfo => {
+  const user = await User.create(userInfo);
+  return user || errorGenerator(ERROR_TYPE.DB_NETWORK_ERROR);
 };
 
-export { getUserInfo, login, findByEmail };
+export { getUserInfoByEmail, findUserByEmailAndUpdate, signup };

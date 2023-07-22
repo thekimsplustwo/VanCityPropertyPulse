@@ -12,7 +12,9 @@ const INITIAL_STATE = {
 const homeSlice = createSlice({
   name: 'home',
   initialState: INITIAL_STATE,
-  reducers: {},
+  reducers: {
+    resetListState: () => INITIAL_STATE,
+  },
   extraReducers: builder => {
     builder
       .addCase(getListAsync.pending, state => {
@@ -29,5 +31,7 @@ const homeSlice = createSlice({
       });
   },
 });
+export const { resetListState } = homeSlice.actions;
+export const { setPage } = homeSlice.actions;
 
 export default homeSlice.reducer;

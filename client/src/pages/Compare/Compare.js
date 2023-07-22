@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-
-import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -11,16 +9,21 @@ import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
+import PropertyNotFound from '../../components/Property/PropertyNotFound';
+import { isObjectValid } from '../../utils/utils';
 
 // function Compare() {
 //   const navigate = useNavigate();
 //   const location = useLocation();
 
 function Compare() {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const params = new URL(document.location).searchParams;
   let zpidList = Array.from(new Set(params.getAll('item')));
-  const navigate = useNavigate();
+
+  const property = useSelector(state => state.property.property);
+  const isLogin = useSelector(state => state.users.isLogin);
 
   zpidList = zpidList.slice(-3); // Get the last three items always
 
@@ -35,24 +38,28 @@ function Compare() {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    zpidList.forEach((zpid, index) => {
-      dispatch(getPropertyAsync(zpid)).then(response => {
-        // Make a copy of the property
-        const property = { ...response.payload };
+    if (!isLogin) {
+      navigate('/');
+    } else {
+      zpidList.forEach((zpid, index) => {
+        dispatch(getPropertyAsync(zpid)).then(response => {
+          // Make a copy of the property
+          const property = { ...response.payload };
 
-        // Ensure property.imgSrc is always an array
-        property.imgSrc = Array.isArray(property.imgSrc)
-          ? property.imgSrc
-          : [property.imgSrc];
+          // Ensure property.imgSrc is always an array
+          property.imgSrc = Array.isArray(property.imgSrc)
+            ? property.imgSrc
+            : [property.imgSrc];
 
-        setPropertyList(prevPropertyList => {
-          const newPropertyList = [...prevPropertyList];
-          newPropertyList[index] = property;
-          return newPropertyList;
+          setPropertyList(prevPropertyList => {
+            const newPropertyList = [...prevPropertyList];
+            newPropertyList[index] = property;
+            return newPropertyList;
+          });
         });
       });
-    });
-  }, [dispatch]);
+    }
+  }, [dispatch, isLogin]);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -60,68 +67,73 @@ function Compare() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-
   const handleClear = () => {
     navigate('/compare', { replace: true });
     window.location.reload();
   };
-
-  return (
-    <Wrapper>
-      <Margin>
-        <Main>
-          <Header>Compare properties</Header>
-          <ButtonWrapper>
-            <Button
-              variant="contained"
-              size="small"
-              position="fixed"
-              height="mix-content"
-              onClick={handleOpenModal}
-            >
-              Add Property
-            </Button>
-            <Button
-              variant="contained"
-              size="small"
-              position="fixed"
-              height="mix-content"
-              onClick={handleClear}
-            >
-              Clear
-            </Button>
-            <Modal open={isModalOpen} onClose={handleCloseModal}>
-              {/* TODO: Insert Like properties here */}
-            </Modal>
-          </ButtonWrapper>
-          <ContentWrapper>
-            <Grid container spacing={2}>
-              {propertyList.map((property, index) => (
-                <Grid
-                  item
-                  xs={propertyList.length === 1 ? 12 : 4}
-                  sm={propertyList.length <= 2 ? 6 : 4}
-                  md={4}
-                  key={property ? property.zpid : `property-${index}`}
-                >
-                  {property && (
-                    <>
-                      <ImageCarousel propertyImages={property?.imgSrc || []} />
-                      <CompareProps propertyDetails={property} />
-                    </>
-                  )}
-                </Grid>
-              ))}
-            </Grid>
-          </ContentWrapper>
-        </Main>
-      </Margin>
-    </Wrapper>
-  );
+  if (isLogin && isObjectValid(property)) {
+    const images = Array.isArray(property.imgSrc)
+      ? property.imgSrc
+      : [property.imgSrc];
+    return (
+      <Wrapper>
+        <Margin>
+          <Main>
+            <Header>Compare properties</Header>
+            <ButtonWrapper>
+              <Button
+                variant="contained"
+                size="small"
+                position="fixed"
+                height="mix-content"
+                onClick={handleOpenModal}
+              >
+                Add Property
+              </Button>
+              <Button
+                variant="contained"
+                size="small"
+                position="fixed"
+                height="mix-content"
+                onClick={handleClear}
+              >
+                Clear
+              </Button>
+              <Modal open={isModalOpen} onClose={handleCloseModal}>
+                TODO: Insert Like properties here
+              </Modal>
+            </ButtonWrapper>
+            <ContentWrapper>
+              <Grid container spacing={2}>
+                {propertyList.map((property, index) => (
+                  <Grid
+                    item
+                    xs={propertyList.length === 1 ? 12 : 4}
+                    sm={propertyList.length <= 2 ? 6 : 4}
+                    md={4}
+                    key={property ? property.zpid : `property-${index}`}
+                  >
+                    {property && (
+                      <>
+                        <ImageCarousel
+                          propertyImages={property?.imgSrc || []}
+                        />
+                        <CompareProps propertyDetails={property} />
+                      </>
+                    )}
+                  </Grid>
+                ))}
+              </Grid>
+            </ContentWrapper>
+          </Main>
+        </Margin>
+      </Wrapper>
+    );
+  }
+  return <PropertyNotFound />;
 }
 const Main = styled.div`
-  padding-top: 1em;
-  min-height: 100vh;
+  padding-top: 23em;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -148,7 +160,6 @@ const Wrapper = styled.div`
 `;
 const Margin = styled.div`
   margin: 20px;
-  font-family: arial, sans-serif;
   line-height: 30pt;
   text-align: center;
 `;

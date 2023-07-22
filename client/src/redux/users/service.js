@@ -1,60 +1,54 @@
 import axios from 'axios';
-import { BASE_URL } from '../../config';
+import { BASE_URL, LOGIN_URI } from '../../config';
 
-const signup = async email => {
-  const response = await fetch(`${BASE_URL}/users`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${email}`,
-    },
-    body: JSON.stringify(email),
+const googleLogin = async () => {
+  try {
+    const response = await axios.get(`${BASE_URL}/auth/login/google`, {
+      withCredentials: true,
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const googleLogout = async () => {
+  try {
+    const response = await axios.post(`${BASE_URL}/auth/logout/google`, null, {
+      withCredentials: true,
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+const getUser = async () => {
+  const response = await fetch(`${BASE_URL}/users/profile`, {
+    credentials: 'include',
+    method: 'GET',
   });
-
-  const data = await response.json();
+  const data = response.json();
+  if (response.status === 401) {
+    await googleLogout();
+    window.location.replace(LOGIN_URI);
+    return null;
+  }
   if (!response.ok) {
     const errorMsg = data?.message;
     throw new Error(errorMsg);
   }
-
   return data;
-};
-
-const getUser = async email => {
-  const response = await fetch(`${BASE_URL}/users`, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${email}`,
-    },
-  });
-  return response.json();
-};
-
-const login = async email => {
-  const response = await axios.post(
-    `${BASE_URL}/users`,
-    {
-      email,
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${email}`,
-      },
-    }
-  );
-  return response.json();
 };
 
 const editProfile = async formData => {
   const url = `${BASE_URL}/users`;
-  const { email } = formData;
-
   try {
     const response = await axios.patch(url, formData, {
       headers: {
-        Authorization: `Bearer ${email}`,
         'Content-Type': 'application/json',
       },
+      withCredentials: true,
     });
     return response.data;
   } catch (error) {
@@ -63,8 +57,8 @@ const editProfile = async formData => {
 };
 
 export default {
-  signup,
-  login,
+  googleLogout,
   getUser,
   editProfile,
+  googleLogin,
 };

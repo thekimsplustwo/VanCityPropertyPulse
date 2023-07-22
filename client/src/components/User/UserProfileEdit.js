@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TextField, Button } from '@mui/material';
@@ -7,7 +7,6 @@ import { editProfileAsync } from '../../redux/users/thunks';
 function UserProfileEdit({ setModal }) {
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
-
   const [formData, setFormData] = useState({
     firstName: user.firstName ?? '',
     lastName: user.lastName || '',
@@ -27,8 +26,8 @@ function UserProfileEdit({ setModal }) {
   };
 
   const handleSaveBtn = () => {
-    setModal(false);
     dispatch(editProfileAsync(formData));
+    setModal(false);
   };
 
   return (
@@ -62,9 +61,9 @@ function UserProfileEdit({ setModal }) {
               <TextField
                 type="number"
                 label="Age"
-                disabled
-                value={formData.age}
                 name="age"
+                value={formData.age}
+                onChange={e => handleInputChange(e.currentTarget)}
               />
 
               <TextField
@@ -158,21 +157,6 @@ const Main = styled.div`
   margin: 20px;
   background-color: white;
   text-align: center;
-`;
-
-const EditInput = styled.input`
-  flex: 1;
-  width: 50%;
-  height: 50px;
-  padding: 13px 12px;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  outline: none;
-  border: 1px solid black;
-  border-radius: 15px;
-  background-color: white;
-  :focus {
-  }
 `;
 
 const Title = styled.p`

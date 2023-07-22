@@ -62,7 +62,11 @@ export default function PriceRange() {
   const handleMinPriceChange = event => {
     const newValue = parseInt(event.target.value, 10);
 
-    if (newValue > maxPrice) {
+    if (Number.isNaN(newValue)) {
+      return;
+    }
+
+    if (newValue > maxPrice && maxPrice !== 0) {
       setMinPrice(maxPrice);
       setMinMaxPrice(maxPrice);
     } else {
@@ -74,7 +78,11 @@ export default function PriceRange() {
   const handleMaxPriceChange = event => {
     const newValue = parseInt(event.target.value, 10);
 
-    if (newValue < minPrice) {
+    if (Number.isNaN(newValue)) {
+      return;
+    }
+
+    if (newValue < minPrice && newValue !== 0) {
       setMaxPrice(minPrice);
       setMaxMinPrice(minPrice);
     } else {
@@ -86,8 +94,8 @@ export default function PriceRange() {
   return (
     <div>
       <StyledButton onClick={handleClick}>
-        ${searchParams.minPrice !== '' ? searchParams.minPrice : 'Min'} - $
-        {searchParams.maxPrice !== '' ? searchParams.maxPrice : 'Max'}
+        ${searchParams.minPrice ? searchParams.minPrice : 'Min'} - $
+        {searchParams.maxPrice ? searchParams.maxPrice : 'Max'}
       </StyledButton>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem>
@@ -98,7 +106,7 @@ export default function PriceRange() {
             type="number"
             inputProps={{
               min: 0,
-              max: maxMinPrice,
+              max: maxPrice !== 0 ? maxMinPrice : undefined,
               step: 1000,
             }}
           />

@@ -5,12 +5,11 @@ const likeSchema = new BaseSchema({
   email: {
     type: String,
     required: true,
-    unique: true,
   },
   properties: [
     {
       zpid: {
-        type: Number,
+        type: String,
         required: true,
       },
       imgSrc: {
@@ -61,7 +60,7 @@ const likeSchema = new BaseSchema({
     { timestamps: true },
   ],
 });
-
+likeSchema.index({ email: 1, zpid: 1 }, { unique: true });
 const Like = mongoose.model.Like || mongoose.model('Like', likeSchema, 'likes');
 
 export default Like;
