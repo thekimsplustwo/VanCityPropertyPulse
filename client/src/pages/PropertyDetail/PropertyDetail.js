@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import Divider from '@mui/material/Divider';
-import Map, { Marker } from 'react-map-gl';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import DetailedInfo from '../../components/Property/DetailedInfo';
 import PropertyHeader from '../../components/Property/PropertyTitle';
@@ -32,20 +31,6 @@ function Property() {
       <ContentWrapper>
         <GraphicWrapper>
           <ImageCarousel propertyImages={images} />
-          {currLong},{currLat}
-          <Map
-            mapboxAccessToken="<REACT_MAPBOX_KEY>"
-            initialViewState={{
-              longitude: currLong,
-              latitude: currLat,
-              zoom: 14,
-            }}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-          >
-            {/* <Marker longitude={property.longitude} latitude={property.latitude}>
-              📍
-            </Marker> */}
-          </Map>
         </GraphicWrapper>
         <DetailedInfo propertyDetails={property} />
       </ContentWrapper>
