@@ -14,7 +14,6 @@ export const theme = createTheme({
     },
   },
 });
-
 export default function Modal({ open, children, onClose }) {
   if (!open) return null;
 
@@ -38,14 +37,16 @@ export default function Modal({ open, children, onClose }) {
       <ModalStyle>
         {children}
         <PropertyGrid properties={properties} showCompareButton />
-        <Button
-          // size="large"
-          onClick={onClose}
-          variant="contained"
-          // color="inherit"
-        >
-          Close
-        </Button>
+        <Box>
+          <Button
+            // size="large"
+            onClick={onClose}
+            variant="contained"
+            // color="inherit"
+          >
+            Close
+          </Button>
+        </Box>
       </ModalStyle>
     </>,
     document.getElementById('portal')
@@ -54,8 +55,8 @@ export default function Modal({ open, children, onClose }) {
 
 const ModalStyle = styled.div`
   position: fixed;
-  top: 50%;
   left: 50%;
+  top: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
   padding: 50px;
@@ -79,4 +80,8 @@ const OverlayStyle = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000;
   backdrop-filter: blur(100%);
+`;
+
+const Box = styled.div`
+  margin-top: 1%;
 `;
