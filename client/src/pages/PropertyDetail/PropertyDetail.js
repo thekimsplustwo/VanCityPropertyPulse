@@ -48,10 +48,10 @@ function Property() {
           <MenuItems zpid={zpid} />
         </HeaderWrapper>
         <ContentWrapper>
-          <GraphicWrapper>
-            <ImageCarousel propertyImages={images} />
-            <DetailedInfo propertyDetails={property} />
-          </GraphicWrapper>
+          {/* <GraphicWrapper> */}
+          <ImageCarousel propertyImages={images} />
+          <DetailedInfo propertyDetails={property} />
+          {/* </GraphicWrapper> */}
         </ContentWrapper>
         {property.resoFacts && (
           <VirtualTour virtualTour={property.resoFacts.virtualTour} />
