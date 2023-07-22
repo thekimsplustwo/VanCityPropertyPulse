@@ -29,7 +29,7 @@ function CompareProps({ propertyDetails }) {
 
   const rows = [
     createData('Home Address', address?.streetAddress ?? 'No data'),
-    createData('Home Type', propertyDetails.homeType ?? 'No data'),
+    createData('Home Type', homeType ?? 'No data'),
     createData('Year Built', yearBuilt ?? 'No data'),
     createData('Living Area', livingArea ?? 'No data'),
     createData('Price per sqft', pricePerSquareFoot ?? 'No data'),
@@ -168,7 +168,10 @@ function CompareProps({ propertyDetails }) {
         <Table sx={{ minWidth: 100 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell colSpan={5} style={{ textAlign: 'center' }}>
+              <TableCell
+                colSpan={5}
+                style={{ textAlign: 'center', fontWeight: 'bold' }}
+              >
                 Property Details
               </TableCell>
             </TableRow>
