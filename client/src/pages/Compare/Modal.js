@@ -36,7 +36,9 @@ export default function Modal({ open, children, onClose }) {
 
       <ModalStyle>
         {children}
-        <PropertyGrid properties={properties} showCompareButton />
+        <Container>
+          <PropertyGrid properties={properties} showCompareButton />
+        </Container>
         <Box>
           <Button
             // size="large"
@@ -84,4 +86,8 @@ const OverlayStyle = styled.div`
 
 const Box = styled.div`
   margin-top: 1%;
+`;
+
+const Container = styled.div`
+  margin-top: 10%;
 `;
