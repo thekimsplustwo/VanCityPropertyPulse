@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon src/server.js",
     "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "distribute": "npm i && pm2 start server.js --name vancitypropertypulse-back -i max"
   },
   "keywords": [],
   "author": "",
@@ -49,6 +50,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "forever": "^4.0.3",
     "nodemon": "^2.0.22",
+    "pm2": "^5.3.0",
     "prettier": "^2.8.8"
   }
 }
