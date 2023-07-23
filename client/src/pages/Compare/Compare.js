@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -14,8 +14,9 @@ import { isObjectValid } from '../../utils/utils';
 
 function Compare() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const params = new URL(document.location).searchParams;
+  const params = new URLSearchParams(location.search);
   let zpidList = Array.from(new Set(params.getAll('item')));
   const isLogin = useSelector(state => state.users.isLogin);
 
