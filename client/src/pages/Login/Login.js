@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import searchImage from '../../assets/images/searchComponent.jpg';
-import { GOOGLE_LOGIN_REQUEST_URL, REDIRECT_URI } from '../../config';
+import { BASE_URL } from '../../config';
 import { setLoginStatus, resetUserState } from '../../redux/users/reducer';
 import { googleLogoutAsync } from '../../redux/users/thunks';
 import { resetListState } from '../../redux/home/reducer';
@@ -20,7 +20,19 @@ function Login() {
     dispatch(resetLikesState());
     try {
       await dispatch(googleLogoutAsync());
-      window.location.href = GOOGLE_LOGIN_REQUEST_URL;
+      //window.location.href = '/';
+      window.open(
+        `${BASE_URL}/auth/login/google`,
+        'google login',
+        `toolbar=no,
+        location=no,
+        status=no,
+        menubar=no,
+        scrollbars=yes,
+        resizable=yes,
+        width=500,
+        height=500`
+      );
     } catch (error) {
       console.error(error);
     }

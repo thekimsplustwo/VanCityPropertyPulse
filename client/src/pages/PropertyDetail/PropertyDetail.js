@@ -12,7 +12,6 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 import VirtualTour from '../../components/Property/VirtualTour';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
-import { LOGIN_URI } from '../../config';
 import NearByHomes from '../../components/Property/NearByHomes';
 
 function Property() {

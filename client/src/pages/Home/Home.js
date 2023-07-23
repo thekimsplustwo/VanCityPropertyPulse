@@ -7,7 +7,6 @@ import PropertyGrid from '../../components/Property/PropertyGrid';
 import { getListAsync } from '../../redux/home/thunks';
 import SearchComponent from '../../components/SearchOption/SearchComponent';
 import { getLikesAsync } from '../../redux/likes/thunks';
-import { LOGIN_URI } from '../../config';
 
 function Home() {
   const [sortOrder, setSortOrder] = useState(null);
@@ -22,7 +21,7 @@ function Home() {
 
   useEffect(() => {
     if (!isLogin) {
-      window.location.replace(LOGIN_URI);
+      navigate('/', { replace: true });
     } else {
       dispatch(getListAsync(searchParams, isLogin));
       dispatch(getLikesAsync());

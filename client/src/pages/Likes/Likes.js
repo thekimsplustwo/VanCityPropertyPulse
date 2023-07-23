@@ -7,7 +7,6 @@ import { Button } from '@mui/material';
 import PropertyGrid from '../../components/Property/PropertyGrid';
 // import { getListAsync } from '../../redux/home/thunks';
 import { getLikesAsync, deleteAllLikesAsync } from '../../redux/likes/thunks';
-import { LOGIN_URI } from '../../config';
 
 // import SearchComponent from '../../components/SearchOption/SearchComponent';
 
@@ -24,7 +23,7 @@ function Likes() {
 
   useEffect(() => {
     if (!isLogin) {
-      window.location.replace(LOGIN_URI);
+      navigate('/', { replace: true });
     } else {
       dispatch(getLikesAsync());
     }

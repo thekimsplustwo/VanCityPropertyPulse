@@ -1,4 +1,4 @@
-import { BASE_URL, LOGIN_URI } from '../../config';
+import { BASE_URL, FRONT_LOGIN_URL } from '../../config';
 import googleLogout from '../users/service';
 
 const getList = async (params, isLogin) => {
@@ -24,7 +24,7 @@ const getList = async (params, isLogin) => {
   const data = await response.json();
   if (response.status === 401) {
     await googleLogout();
-    window.location.replace(LOGIN_URI);
+    window.location.replace(FRONT_LOGIN_URL);
     return null;
   }
 

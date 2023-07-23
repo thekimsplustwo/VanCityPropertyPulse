@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BASE_URL, LOGIN_URI } from '../../config';
+import { BASE_URL, FRONT_LOGIN_URL } from '../../config';
 
 const googleLogin = async () => {
   try {
@@ -31,7 +31,7 @@ const getUser = async () => {
   const data = response.json();
   if (response.status === 401) {
     await googleLogout();
-    window.location.replace(LOGIN_URI);
+    window.location.replace(FRONT_LOGIN_URL);
     return null;
   }
   if (!response.ok) {
