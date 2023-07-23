@@ -23,13 +23,17 @@ function PropertyHeader({ propertyDetails }) {
     <Wrapper>
       <HeaderWrapper>
         <HeaderTitleWrapper>
-          <Tooltip title="Previous Page">
-            <ArrowCircleLeftOutlinedIcon
-              onClick={handleGoBack}
-              style={{ fontSize: '60px', cursor: 'pointer' }}
-            />
-          </Tooltip>
           <HeaderTitle>
+            <Tooltip title="Previous Page" placement="top">
+              <ArrowCircleLeftOutlinedIcon
+                onClick={handleGoBack}
+                style={{
+                  fontSize: '40px',
+                  cursor: 'pointer',
+                  marginBottom: '10px',
+                }}
+              />
+            </Tooltip>
             <h1>{address.streetAddress}</h1>
             <h3>
               {address.city}, {address.state}
@@ -37,6 +41,13 @@ function PropertyHeader({ propertyDetails }) {
           </HeaderTitle>
         </HeaderTitleWrapper>
         <HeaderSubTitle>
+          <ArrowCircleLeftOutlinedIcon
+            style={{
+              fontSize: '40px',
+              marginBottom: '10px',
+              opacity: '0',
+            }}
+          />
           <h1>{convertPriceToCAD(propertyDetails.price)}</h1>
           <h3>
             {convertPriceToCAD(propertyDetails.resoFacts?.pricePerSquareFoot) ??
@@ -86,6 +97,7 @@ const HeaderTitle = styled.div`
     font-weight: 500;
   }
 `;
+
 const HeaderSubTitle = styled.div`
   display: flex;
   flex-direction: column;
