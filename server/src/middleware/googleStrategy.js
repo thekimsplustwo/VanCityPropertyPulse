@@ -9,7 +9,7 @@ dotenv.config();
 const GOOGLE_OAUTH_OPTION = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.SERVER_REDIRECT_URL,
+  callbackURL: '/auth/google/callback',
   passReqToCallback: true,
 };
 
@@ -27,6 +27,8 @@ function google() {
           console.log('found user == ', user);
           if (user) {
             const token = await generateToken(user.email);
+            console.log('user ', user);
+            console.log('user token', token);
             done(null, { ...user, token });
           } else {
             const token = await generateToken(profile.emails[0].value);
@@ -38,6 +40,8 @@ function google() {
               source: 'google',
             };
             const newUser = await userModel.signup(userInfo);
+            console.log('nseUser ', newUser);
+            console.log('nseUser token', token);
             done(null, { ...newUser, token });
           }
         } catch (error) {

@@ -15,7 +15,7 @@ import checkFeatureFlag from './utils/featureFlags.js';
 
 dotenv.config();
 
-const { FRONT_URL, SECRET_KEY } = process.env;
+const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY } = process.env;
 
 const PORT = process.env.PORT || 10010;
 const MongoDBStore = connectMongoDBSession(session);
@@ -32,9 +32,10 @@ const sessionOptions = {
   cookie: { maxAge: 1000 * 60 * 60 },
 };
 
-const origins = [FRONT_URL];
+const whitelist = [FRONT_URL, FRONT_URL_DEPLOYED];
+
 const corsOptions = {
-  origin: origins,
+  origin: whitelist,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -47,8 +48,8 @@ connect();
 app.use(logger('dev'));
 app.use(cors(corsOptions));
 app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 
 app.use(session(sessionOptions));
