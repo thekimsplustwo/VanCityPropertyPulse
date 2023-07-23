@@ -10,6 +10,7 @@ import { resetListState } from '../../redux/home/reducer';
 import { resetLikesState } from '../../redux/likes/reducer';
 
 const LOGIN_URL = `${BASE_URL}/auth/login/google`;
+
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,19 +22,7 @@ function Login() {
     dispatch(resetLikesState());
     try {
       await dispatch(googleLogoutAsync());
-      //window.location.href = '/';
-      window.open(
-        LOGIN_URL,
-        'google login',
-        `toolbar=no,
-        location=no,
-        status=no,
-        menubar=no,
-        scrollbars=yes,
-        resizable=yes,
-        width=500,
-        height=500`
-      );
+      window.location.href = LOGIN_URL;
     } catch (error) {
       console.error(error);
     }
