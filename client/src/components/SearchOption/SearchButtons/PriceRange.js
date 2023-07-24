@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Menu,
@@ -42,6 +42,11 @@ export default function PriceRange() {
   const [minMaxPrice, setMinMaxPrice] = useState(0);
   const [maxMinPrice, setMaxMinPrice] = useState(9999999);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setMinPrice(searchParams.minPrice || 0);
+    setMaxPrice(searchParams.maxPrice || 0);
+  }, [searchParams.minPrice, searchParams.maxPrice]);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Menu, styled as muiStyled } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import HomeTypeMenuItem from './HomeTypeMenuItem';
@@ -32,6 +32,10 @@ export default function HomeType() {
   );
   const [buttonText, setButtonText] = useState('Home Type');
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setSelectedTypes([...searchParams.home_type] || []);
+  }, [searchParams.home_type]);
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
