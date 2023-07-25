@@ -134,12 +134,12 @@ function Compare() {
                     key={property ? property.zpid : `property-${index}`}
                   >
                     {property && (
-                      <>
+                      <Wrapper>
                         <ImageCarousel
                           propertyImages={property?.imgSrc || []}
                         />
                         <CompareProps propertyDetails={property} />
-                      </>
+                      </Wrapper>
                     )}
                   </Grid>
                 ))}
@@ -166,7 +166,7 @@ const ContentWrapper = styled.div`
   justify-content: 'space-around';
   align-items: stretch;
   margin: 1;
-  margin-top: 2rem;
+  margin-top: 1rem;
   justify-content: center;
   width: 100%;
   box-sizing: border-box;
