@@ -1,41 +1,45 @@
 // MapBox.js
-import React, { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import { MAPBOX_TOKEN, MAPBOX_STYLE, MAPBOX_ZOOM } from '../../config';
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
+mapboxgl.accessToken = MAPBOX_TOKEN;
 
 function MapBox({ longitude, latitude }) {
   const mapContainer = useRef(null);
-  console.log('longitude', longitude);
-  console.log('latitude', latitude);
+  const map = useRef(null);
+  const [lng, setLng] = useState(longitude);
+  const [lat, setLat] = useState(latitude);
+  const [zoom, setZoom] = useState(MAPBOX_ZOOM);
 
   useEffect(() => {
-    const map = new mapboxgl.Map({
+    if (map.current) return; // initialize map only once
+    map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [longitude, latitude],
-      zoom: 13,
+      style: MAPBOX_STYLE,
+      center: [lng, lat],
+      zoom,
     });
 
-    const marker = new mapboxgl.Marker()
-      .setLngLat([longitude, latitude])
-      .addTo(map);
+    const markerElement = document.createElement('div');
+    markerElement.textContent = '📍';
+    markerElement.style.fontSize = '30px';
 
-    return () => {
-      map.remove();
-      marker.remove();
-    };
+    new mapboxgl.Marker(markerElement).setLngLat([lng, lat]).addTo(map.current);
   }, [longitude, latitude]);
 
   return (
-    <div
-      ref={mapContainer}
-      style={{
-        width: '500px',
-        height: '500px',
-        position: 'relative',
-      }}
-    />
+    <div>
+      <div
+        ref={mapContainer}
+        style={{
+          width: '500px',
+          height: '400px',
+          border: '1px solid #ccc',
+        }}
+      />
+    </div>
   );
 }
 
