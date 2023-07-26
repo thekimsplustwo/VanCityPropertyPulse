@@ -99,7 +99,7 @@ function Property() {
               <div
                 ref={mapContainer}
                 style={{
-                  width: '600px',
+                  width: '500px',
                   height: '400px',
                   border: '1px solid #ccc',
                 }}
