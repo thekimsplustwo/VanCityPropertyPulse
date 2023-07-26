@@ -48,12 +48,10 @@ connect();
 app.use(logger('dev'));
 app.use(cors(corsOptions));
 app.use(express.static('public'));
-app.use(express.json());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
-
 app.use(session(sessionOptions));
-
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportConfig();

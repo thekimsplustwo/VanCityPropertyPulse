@@ -9,7 +9,7 @@
     "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "distribute": "npm i && pm2 start server.js --name vancitypropertypulse-back -i max"
+    "distribute": "npm i && pm2 start src/server.js --name vancitypropertypulse-back -i max"
   },
   "keywords": [],
   "author": "",
