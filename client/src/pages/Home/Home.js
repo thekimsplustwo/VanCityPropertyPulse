@@ -7,9 +7,11 @@ import PropertyGrid from '../../components/Property/PropertyGrid';
 import { getListAsync } from '../../redux/home/thunks';
 import SearchComponent from '../../components/SearchOption/SearchComponent';
 import { getLikesAsync } from '../../redux/likes/thunks';
+import { setSearchParams } from '../../redux/search/reducer';
 
 function Home() {
   const [sortOrder, setSortOrder] = useState(null);
+  const [searchClicked, setSearchClicked] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,28 +21,68 @@ function Home() {
   const isLogin = useSelector(state => state.users.isLogin);
   const dispatch = useDispatch();
 
+  const filterInitialState = state => {
+    return Object.fromEntries(
+      Object.entries(state).filter(
+        ([key, value]) =>
+          (typeof value === 'string' && value.length > 0) ||
+          (Array.isArray(value) && value.length > 0) ||
+          (typeof value === 'number' && value > 0)
+      )
+    );
+  };
+
   useEffect(() => {
     if (!isLogin) {
       navigate('/', { replace: true });
     } else {
-      dispatch(getListAsync(searchParams, isLogin));
+      const params = new URLSearchParams(location.search);
+      const initialState = {
+        location: params.get('location') || '',
+        minPrice: params.get('minPrice')
+          ? parseInt(params.get('minPrice'), 10)
+          : '',
+        maxPrice: params.get('maxPrice')
+          ? parseInt(params.get('maxPrice'), 10)
+          : '',
+        bedsMin: params.get('bedsMin')
+          ? parseInt(params.get('bedsMin'), 10)
+          : '',
+        home_type: params.get('home_type')
+          ? params.get('home_type').split(',')
+          : [],
+        page: params.get('page') ? parseInt(params.get('page'), 10) : 1,
+      };
+
+      dispatch(setSearchParams(initialState));
+
+      const filteredInitialState = filterInitialState(initialState);
+      dispatch(getListAsync(filteredInitialState, isLogin));
       dispatch(getLikesAsync());
-      const filteredParams = Object.fromEntries(
-        Object.entries(searchParams).filter(
-          ([key, value]) =>
-            (typeof value === 'string' && value.length > 0) ||
-            (Array.isArray(value) && value.length > 0) ||
-            (typeof value === 'number' && value >= 0)
-        )
-      );
+    }
+  }, [location.search, isLogin, dispatch]);
+
+  useEffect(() => {
+    if (searchClicked) {
+      const filteredParams = filterInitialState(searchParams);
       const searchQuery = new URLSearchParams(filteredParams).toString();
       if (searchQuery) {
         navigate(`${location.pathname}?${searchQuery}`);
       } else {
         navigate(`${location.pathname}`);
       }
+
+      dispatch(getListAsync(searchParams, isLogin));
+      setSearchClicked(false);
     }
-  }, [dispatch, navigate, location.pathname, searchParams, isLogin]);
+  }, [
+    location.pathname,
+    searchClicked,
+    searchParams,
+    navigate,
+    dispatch,
+    isLogin,
+  ]);
 
   const sortedProperties = useMemo(() => {
     if (sortOrder === 'asc') {
@@ -62,10 +104,22 @@ function Home() {
     setSortOrder('desc');
   };
 
+  const handleSearchClick = () => {
+    setSearchClicked(true);
+  };
+
+  const handleReset = () => {
+    window.location.href = '/home';
+  };
+
   return (
     isLogin && (
       <Main>
         <SearchComponent />
+        <ButtonContainer direction="row" spacing={2}>
+          <StyledButton onClick={handleSearchClick}>Search</StyledButton>
+          <StyledButton onClick={handleReset}>Reset</StyledButton>
+        </ButtonContainer>
         <ButtonContainer direction="row" spacing={2}>
           <StyledButton variant="contained" onClick={handleSortAscending}>
             Sort by Price (Ascending)

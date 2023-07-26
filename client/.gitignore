@@ -46,6 +46,9 @@ dist
 !.vscode/extensions.json
 !.vscode/*.code-snippets
 
+# intellij cache
+.idea
+
 # dotenv environment variable files
 .env
 .env.local

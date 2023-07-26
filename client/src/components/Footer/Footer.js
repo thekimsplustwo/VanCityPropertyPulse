@@ -1,8 +1,10 @@
 import styled from 'styled-components';
+import { Tooltip } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 function Footer() {
   const isLogin = useSelector(state => state.users.isLogin);
@@ -21,45 +23,69 @@ function Footer() {
       }
     }
   }, []);
+
+  const openChatWindow = () => {
+    const chatWindowFeatures =
+      'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=500, top=100, left=100';
+
+    const chatWindow = window.open('', 'Live Chat', chatWindowFeatures);
+
+    chatWindow.document.body.innerHTML = `
+      <iframe
+        title="Live Chat"
+        src="https://web.powerva.microsoft.com/environments/Default-99fe11df-ab57-448e-af64-07608c7218f7/bots/cr7c7_vanCityPropertyPulseBot/webchat?__version__=2"
+        style="width: 100%; height: 100%; border: none;"
+      ></iframe>
+    `;
+  };
+
   return (
     isLogin && (
-      <FooterContainer>
-        <FooterWrapper>
-          <FooterContent>
-            <div>
-              <FooterInfoTop>VanCity Property Pulse</FooterInfoTop>
-              <FooterInfoBottom>
-                <InfoBottom>
-                  <p>by TheKimsPlusTwo</p>
-                </InfoBottom>
-                <InfoBottom>
-                  <p>UBC CPSC455</p>
-                </InfoBottom>
-              </FooterInfoBottom>
-            </div>
-            <FooterRight>
-              <FooterIcon>
-                <a
-                  href="https://github.com/czhaoca/TheKimsPlusTwo"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <GitHubIcon style={{ fontSize: '40px' }} />
-                </a>
-              </FooterIcon>
-              <FooterIcon>
-                <a
-                  href="https://blogs.ubc.ca/cpsc4552023s"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <CoPresentIcon style={{ fontSize: '40px' }} />
-                </a>
-              </FooterIcon>
-            </FooterRight>
-          </FooterContent>
-        </FooterWrapper>
-      </FooterContainer>
+    <FooterContainer>
+      <FooterWrapper>
+        <FooterContent>
+          <div>
+            <FooterInfoTop>VanCity Property Pulse</FooterInfoTop>
+            <FooterInfoBottom>
+              <InfoBottom>
+                <p>by TheKimsPlusTwo</p>
+              </InfoBottom>
+              <InfoBottom>
+                <p>UBC CPSC455</p>
+              </InfoBottom>
+            </FooterInfoBottom>
+          </div>
+          <FooterRight>
+            <FooterIcon>
+              <a
+                href="https://github.com/czhaoca/TheKimsPlusTwo"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <GitHubIcon style={{ fontSize: '40px' }} />
+              </a>
+            </FooterIcon>
+            <FooterIcon>
+              <a
+                href="https://blogs.ubc.ca/cpsc4552023s"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <CoPresentIcon style={{ fontSize: '40px' }} />
+              </a>
+            </FooterIcon>
+            <FooterIcon>
+              <Tooltip title="Live Chat" placement="top">
+                <SmartToyIcon
+                  onClick={openChatWindow}
+                  style={{ fontSize: '40px', cursor: 'pointer' }}
+                />
+              </Tooltip>
+            </FooterIcon>
+          </FooterRight>
+        </FooterContent>
+      </FooterWrapper>
+    </FooterContainer>
     )
   );
 }
