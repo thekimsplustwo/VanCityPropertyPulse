@@ -4,8 +4,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import FooterSocial from './FooterSocial';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
+import FooterSocial from './FooterSocial';
 
 function Footer() {
   const isLogin = useSelector(state => state.users.isLogin);
