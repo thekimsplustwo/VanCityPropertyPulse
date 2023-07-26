@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+import { Tooltip } from '@mui/material';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
+import { useNavigate } from 'react-router-dom';
 import { convertPriceToCAD } from '../../utils/utils';
 
 function PropertyHeader({ propertyDetails }) {
@@ -9,16 +12,42 @@ function PropertyHeader({ propertyDetails }) {
     streetAddress: propertyDetails.address?.streetAddress ?? '',
     zipcode: propertyDetails.address?.zipcode ?? '',
   };
+
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
   return (
     <Wrapper>
       <HeaderWrapper>
-        <HeaderTitle>
-          <h1>{address.streetAddress}</h1>
-          <h3>
-            {address.city}, {address.state}
-          </h3>
-        </HeaderTitle>
+        <HeaderTitleWrapper>
+          <HeaderTitle>
+            <Tooltip title="Previous Page" placement="top">
+              <ArrowCircleLeftOutlinedIcon
+                onClick={handleGoBack}
+                style={{
+                  fontSize: '40px',
+                  cursor: 'pointer',
+                  marginBottom: '10px',
+                }}
+              />
+            </Tooltip>
+            <h1>{address.streetAddress}</h1>
+            <h3>
+              {address.city}, {address.state}
+            </h3>
+          </HeaderTitle>
+        </HeaderTitleWrapper>
         <HeaderSubTitle>
+          <ArrowCircleLeftOutlinedIcon
+            style={{
+              fontSize: '40px',
+              marginBottom: '10px',
+              opacity: '0',
+            }}
+          />
           <h1>{convertPriceToCAD(propertyDetails.price)}</h1>
           <h3>
             {convertPriceToCAD(propertyDetails.resoFacts?.pricePerSquareFoot) ??
@@ -45,6 +74,14 @@ const HeaderWrapper = styled.div`
   padding: 20px 0;
 `;
 
+const HeaderTitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: row;
+  gap: 10px;
+`;
+
 const HeaderTitle = styled.div`
   display: flex;
   justify-content: space-between;
@@ -60,6 +97,7 @@ const HeaderTitle = styled.div`
     font-weight: 500;
   }
 `;
+
 const HeaderSubTitle = styled.div`
   display: flex;
   flex-direction: column;

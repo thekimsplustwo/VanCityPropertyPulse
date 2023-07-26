@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { Tooltip } from '@mui/material';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import CoPresentIcon from '@mui/icons-material/CoPresent';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import FooterSocial from './FooterSocial';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 
 function Footer() {
   const isLogin = useSelector(state => state.users.isLogin);
@@ -22,6 +24,22 @@ function Footer() {
       }
     }
   }, []);
+
+  const openChatWindow = () => {
+    const chatWindowFeatures =
+      'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=500, top=100, left=100';
+
+    const chatWindow = window.open('', 'Live Chat', chatWindowFeatures);
+
+    chatWindow.document.body.innerHTML = `
+      <iframe
+        title="Live Chat"
+        src="https://web.powerva.microsoft.com/environments/Default-99fe11df-ab57-448e-af64-07608c7218f7/bots/cr7c7_vanCityPropertyPulseBot/webchat?__version__=2"
+        style="width: 100%; height: 100%; border: none;"
+      ></iframe>
+    `;
+  };
+
   return (
     isLogin && (
       <FooterContainer>
@@ -59,6 +77,14 @@ function Footer() {
                 >
                   <CoPresentIcon style={{ fontSize: '40px' }} />
                 </a>
+              </FooterIcon>
+              <FooterIcon>
+                <Tooltip title="Live Chat" placement="top">
+                  <SmartToyIcon
+                    onClick={openChatWindow}
+                    style={{ fontSize: '40px', cursor: 'pointer' }}
+                  />
+                </Tooltip>
               </FooterIcon>
             </FooterRight>
           </FooterContent>

@@ -16,6 +16,7 @@ function createData(name, value) {
 }
 function CompareProps({ propertyDetails }) {
   const {
+    address,
     homeType,
     yearBuilt,
     livingArea,
@@ -27,16 +28,17 @@ function CompareProps({ propertyDetails }) {
   } = propertyDetails;
 
   const rows = [
-    createData('Home Type', propertyDetails.homeType),
-    createData('Year Built', yearBuilt),
-    createData('Living Area', livingArea),
-    createData('Price per sqft', pricePerSquareFoot),
-    createData('Monthly Strata Fee', monthlyHoaFee),
+    createData('Home Address', address?.streetAddress ?? 'No data'),
+    createData('Home Type', homeType ?? 'No data'),
+    createData('Year Built', yearBuilt ?? 'No data'),
+    createData('Living Area', livingArea ?? 'No data'),
+    createData('Price per sqft', pricePerSquareFoot ?? 'No data'),
+    createData('Monthly Strata Fee', monthlyHoaFee ?? 'No data'),
     hasGarage
       ? createData('Garage', 'Has Garage')
       : createData('Garage', 'No Garage'),
-    createData('Bathrooms', bathrooms),
-    createData('Bedrooms', bedrooms),
+    createData('Bathrooms', bathrooms ?? 'No data'),
+    createData('Bedrooms', bedrooms ?? 'No data'),
   ];
   //   return (
   //     <Main>
@@ -166,8 +168,11 @@ function CompareProps({ propertyDetails }) {
         <Table sx={{ minWidth: 100 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell colSpan={5} style={{ textAlign: 'left' }} width="100%">
-                Home Address
+              <TableCell
+                colSpan={5}
+                style={{ textAlign: 'center', fontWeight: 'bold' }}
+              >
+                Property Details
               </TableCell>
             </TableRow>
           </TableHead>
