@@ -2,13 +2,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import styled from 'styled-components';
-import ReplyIcon from '@mui/icons-material/Reply';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
+import ShareMenu from './ShareMenu';
 
-function MenuItems({ zpid }) {
+function MenuItems({ zpid, address }) {
   const dispatch = useDispatch();
-  // const currZpid = parseInt(zpid, 10);
-
   const likes = useSelector(state => state.likes.list);
   const properties = useSelector(state => state.home.list);
 
@@ -23,13 +21,6 @@ function MenuItems({ zpid }) {
     dispatch(deleteLikesAsync(zpid));
   };
 
-  const handleShare = () => {
-    // navigator.clipboard.writeText(window.location.href); // after deployment
-    const url = window.location.href;
-    console.log('URL copied to clipboard:', url);
-    alert('URL copied to clipboard');
-  };
-
   return (
     <Wrapper>
       <MenuContainer>
@@ -40,9 +31,8 @@ function MenuItems({ zpid }) {
         )}
         <MenuOpt>Save</MenuOpt>
       </MenuContainer>
-      <MenuContainer onClick={handleShare}>
-        <ReplyIcon />
-        <MenuOpt>Share</MenuOpt>
+      <MenuContainer>
+        <ShareMenu url={window.location.href} title={address} />
       </MenuContainer>
     </Wrapper>
   );
@@ -57,7 +47,7 @@ const MenuContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 80px;
+  max-width: 200px;
   border: 2px solid gray;
   opacity: 0.3;
   border-radius: 10px;

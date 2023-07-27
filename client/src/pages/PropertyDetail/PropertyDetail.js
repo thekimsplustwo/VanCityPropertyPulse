@@ -46,7 +46,7 @@ function Property() {
       <Wrapper>
         <HeaderWrapper>
           <PropertyHeader propertyDetails={property} />
-          <MenuItems zpid={zpid} />
+          <MenuItems zpid={zpid} address={property.address?.streetAddress} />
         </HeaderWrapper>
         <ContentWrapper>
           <GraphicWrapper>
