@@ -19,6 +19,7 @@ export default function Modal({ open, children, onClose }) {
 
   const likes = useSelector(state => state.likes.list);
   const [properties, setProperties] = useState(likes);
+  const [selectedProperties, setSelectedProperties] = useState([]);
 
   useEffect(() => {
     setProperties(likes);
@@ -30,6 +31,22 @@ export default function Modal({ open, children, onClose }) {
     }
   };
 
+  const handlePropertySelect = property => {
+    setSelectedProperties(prevSelected => [...prevSelected, property]);
+  };
+
+  const handlePropertyDeselect = property => {
+    setSelectedProperties(prevSelected =>
+      prevSelected.filter(prop => prop.zpid !== property.zpid)
+    );
+  };
+
+  const handleAddToCompare = property => {
+    setSelectedProperties(prevSelected => [...prevSelected, property]);
+    setProperties(prevProperties =>
+      prevProperties.filter(prop => prop.zpid !== property.zpid)
+    );
+  };
   return ReactDom.createPortal(
     <>
       <OverlayStyle id="overlay" onClick={handleOverlayClick} />
@@ -37,7 +54,14 @@ export default function Modal({ open, children, onClose }) {
       <ModalStyle>
         {children}
         <Container>
-          <PropertyGrid properties={properties} showCompareButton />
+          <PropertyGrid
+            properties={properties}
+            showCompareButton
+            selectedProperties={selectedProperties}
+            onSelectProperty={handlePropertySelect}
+            onDeselectProperty={handlePropertyDeselect}
+            onAddToCompare={handleAddToCompare}
+          />
         </Container>
         <Box>
           <Button

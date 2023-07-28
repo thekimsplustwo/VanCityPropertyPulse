@@ -13,6 +13,8 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
 
   const dispatch = useDispatch();
 
+  const [selectedProperties, setSelectedProperties] = useState([]);
+
   const handlePagination = page => {
     setCurrentPage(page);
     dispatch(setPage(page));
@@ -32,6 +34,26 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
         : totalPages;
     setCurrentPage(nextPage);
     dispatch(setPage(nextPage));
+  };
+
+  const handlePropertySelect = property => {
+    setSelectedProperties(prevSelected => [...prevSelected, property]);
+  };
+
+  const handlePropertyDeselect = property => {
+    setSelectedProperties(prevSelected =>
+      prevSelected.filter(prop => prop.zpid !== property.zpid)
+    );
+  };
+
+  const handleAddToCompare = property => {
+    if (selectedProperties.some(prop => prop.zpid === property.zpid)) {
+      setSelectedProperties(prevSelected =>
+        prevSelected.filter(prop => prop.zpid !== property.zpid)
+      );
+    } else {
+      setSelectedProperties(prevSelected => [...prevSelected, property]);
+    }
   };
 
   const renderPageNumbers = () => {
@@ -71,6 +93,12 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
                 property={property}
                 showCompareButton={showCompareButton}
                 showHeartIcon={showHeartIcon}
+                isSelected={selectedProperties.some(
+                  prop => prop.zpid === property.zpid
+                )}
+                onSelectProperty={handlePropertySelect}
+                onDeselectProperty={handlePropertyDeselect}
+                onAddToCompare={handleAddToCompare}
               />
             ))}
         </CardWrapper>
