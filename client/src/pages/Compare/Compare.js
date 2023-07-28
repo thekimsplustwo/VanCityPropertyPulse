@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Button, Div } from '@mui/material';
+import { throttle } from 'lodash';
+import CompareDeleteButton from '../../components/Compare/CompareDeleteButton';
 import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
-import CompareDeleteButton from '../../components/Compare/CompareDeleteButton';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
 
@@ -92,9 +93,9 @@ function Compare() {
     setIsModalOpen(false);
   };
   const handleClear = () => {
-    navigate('/compare', { replace: true });
-    window.location.reload();
+    window.location.href = '/compare';
   };
+
   if (isLogin && isObjectValid(property)) {
     const images = Array.isArray(property.imgSrc)
       ? property.imgSrc
@@ -220,13 +221,4 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-// const Button = styled.button`
-// height="mix-content";
-//  width: 100;
-//  position: fixed;
-//  margin-left: -200px;
-//   margin-top: 50px;
-//  `;
-// height: min-content;
-//     position: fixed;
 export default Compare;
