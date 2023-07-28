@@ -53,14 +53,8 @@ function PropertyCard({
     dispatch(deleteLikesAsync(currZpid));
   };
 
-  const handleAddToCompare = property => {
-    if (selectedProperties.some(prop => prop.zpid === property.zpid)) {
-      setSelectedProperties(prevSelected =>
-        prevSelected.filter(prop => prop.zpid !== property.zpid)
-      );
-    } else {
-      setSelectedProperties(prevSelected => [...prevSelected, property]);
-    }
+  const handleAddToCompare = () => {
+    onAddToCompare(property);
   };
   const streetAddress = property.address.split(',')[0];
   const city = property.address.split(',')[1];

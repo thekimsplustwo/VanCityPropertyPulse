@@ -9,6 +9,7 @@ import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
 import { getPropertyAsync } from '../../redux/property/thunks';
+import CompareDeleteButton from '../../components/Compare/CompareDeleteButton';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
 
@@ -139,6 +140,9 @@ function Compare() {
                         <ImageCarousel
                           propertyImages={property?.imgSrc || []}
                         />
+                        <CompareDeleteButton zpid={property.zpid}>
+                          Delete
+                        </CompareDeleteButton>
                         <CompareProps propertyDetails={property} />
                       </Wrapper>
                     )}
