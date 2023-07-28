@@ -33,10 +33,25 @@ const searchSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
+    setSearchParams: (state, action) => {
+      state.location = action.payload.location;
+      state.minPrice = action.payload.minPrice;
+      state.maxPrice = action.payload.maxPrice;
+      state.bedsMin = action.payload.bedsMin;
+      state.home_type = action.payload.home_type;
+      state.page = action.payload.page;
+    },
   },
 });
 
-export const { setLocation, setMin, setMax, setBed, setHomeType, setPage } =
-  searchSlice.actions;
+export const {
+  setLocation,
+  setMin,
+  setMax,
+  setBed,
+  setHomeType,
+  setPage,
+  setSearchParams,
+} = searchSlice.actions;
 
 export default searchSlice.reducer;

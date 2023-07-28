@@ -1,8 +1,7 @@
 # **VanCity Property Pulse**
 
 ## **Project Description**
-
-Our project is aimed at potential homebuyers, real estate investors, and market enthusiasts in the Vancouver area. Our platform will support the activity of tracking real estate listings and price trends within the Vancouver housing market. We plan to store data on real estate listings including properties' addresses, asking prices, selling prices, number of rooms, square footage, etc. Users will be able to search and filter through these listings based on their preferences, save their favorite properties, receive alerts for price changes, and visualize housing price trends via various charts or graphs. Should time permit, we also hope to incorporate a feature predicting future housing price trends and integrate with a map API for a more interactive user experience.
+VanCity Property Pulse is a web application that allows users to search,view details, and save listings for properties for sale in Vancouver. The app features a search interface to filter listings by criteria like price and location, displays property details like price and amenities, and lets users save favorite listings. The goal is to provide an easy way to find and compare properties on the market in Vancouver.
 <br><br>
 
 ## **Project Task Requirements**
@@ -14,15 +13,15 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
 <br><br>
 
 **Standard Requirements:**
-1. Implement a feature for users to save favorite properties.
-2. Display housing price trends over time.
-3. Provide alerts for price changes.
-4. Incorporate a user authentication system.
+1. Implement a feature for users to save their favorite properties.
+2. Incorporate a user authentication system.
+3. Provide users the nearby properties of the selected property.
 <br><br>
 
 **Stretch Requirements:**
-1. Predict future housing price trends using machine learning algorithms.
-2. Integrate with a map API to display properties on a map.
+1. Integrate with a map API to display a property's location on a map.
+2. User can compare properties' attributes such as price, the number of bedrooms/bathrooms, etc.
+3. Walk And Distance Score
 <br><br>
 
 **Task Breakdown:**
@@ -44,6 +43,7 @@ Our project is aimed at potential homebuyers, real estate investors, and market 
     - Pass the search and filter options to the listing component 
     - Re-render the listing page at option submit 
 <br><br>
+
 
 ## **Prototypes**
 ![Main](https://storage.googleapis.com/pukkukim/455%20Main.png)
