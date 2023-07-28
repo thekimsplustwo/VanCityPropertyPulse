@@ -40,6 +40,7 @@ function Compare() {
       navigate(newURL, { replace: true });
     }
 
+    // handle if more than 3 zpid
     if (zpidList.length > 3) {
       alert(
         'Only 3 properties can be compared at a time. Redirecting to show the last three properties.'
@@ -124,7 +125,11 @@ function Compare() {
               >
                 Clear
               </Button>
-              <Modal open={isModalOpen} onClose={handleCloseModal} />
+              <Modal
+                open={isModalOpen}
+                onClose={handleCloseModal}
+                zpidList={zpidList}
+              />
             </ButtonWrapper>
             <ContentWrapper>
               <Grid container spacing={2}>
