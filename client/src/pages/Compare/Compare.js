@@ -25,6 +25,9 @@ function Compare() {
   // If there are more than 3 items in zpidList, show an alert
   useEffect(() => {
     // handle Duplicate zpid
+    // Do nothing if there are no URL parameters.
+    if (zpidList.length === 0) return;
+
     const uniqueZpidSet = new Set();
     const uniqueZpidList = [];
 
@@ -94,7 +97,8 @@ function Compare() {
     setIsModalOpen(false);
   };
   const handleClear = () => {
-    window.location.href = '/compare';
+    navigate('/compare', { replace: true });
+    window.location.reload();
   };
 
   if (isLogin && isObjectValid(property)) {
