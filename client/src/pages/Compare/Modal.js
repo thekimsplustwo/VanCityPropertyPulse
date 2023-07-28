@@ -14,39 +14,24 @@ export const theme = createTheme({
     },
   },
 });
-export default function Modal({ open, children, onClose }) {
+export default function Modal({ open, children, onClose, zpidList = [] }) {
   if (!open) return null;
 
   const likes = useSelector(state => state.likes.list);
   const [properties, setProperties] = useState(likes);
-  const [selectedProperties, setSelectedProperties] = useState([]);
 
   useEffect(() => {
-    setProperties(likes);
-  }, [likes]);
-
+    console.log('zpidList', zpidList);
+    const filteredLikes = likes.filter(like => !zpidList.includes(like.zpid));
+    console.log('filteredLikes', filteredLikes);
+    setProperties(filteredLikes);
+  }, [likes, zpidList]);
   const handleOverlayClick = e => {
     if (e.target.id === 'overlay') {
       onClose();
     }
   };
 
-  const handlePropertySelect = property => {
-    setSelectedProperties(prevSelected => [...prevSelected, property]);
-  };
-
-  const handlePropertyDeselect = property => {
-    setSelectedProperties(prevSelected =>
-      prevSelected.filter(prop => prop.zpid !== property.zpid)
-    );
-  };
-
-  const handleAddToCompare = property => {
-    setSelectedProperties(prevSelected => [...prevSelected, property]);
-    setProperties(prevProperties =>
-      prevProperties.filter(prop => prop.zpid !== property.zpid)
-    );
-  };
   return ReactDom.createPortal(
     <>
       <OverlayStyle id="overlay" onClick={handleOverlayClick} />
@@ -54,14 +39,7 @@ export default function Modal({ open, children, onClose }) {
       <ModalStyle>
         {children}
         <Container>
-          <PropertyGrid
-            properties={properties}
-            showCompareButton
-            selectedProperties={selectedProperties}
-            onSelectProperty={handlePropertySelect}
-            onDeselectProperty={handlePropertyDeselect}
-            onAddToCompare={handleAddToCompare}
-          />
+          <PropertyGrid properties={properties} showCompareButton />
         </Container>
         <Box>
           <Button
