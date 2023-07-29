@@ -14,14 +14,15 @@ const LOGIN_URL = `${BASE_URL}/auth/login/google`;
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const searchQuery = new URLSearchParams(useLocation().search);
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search);
   const token = searchQuery.get('token');
   const handleGoogleLogin = async () => {
     dispatch(resetUserState());
     dispatch(resetListState());
     dispatch(resetLikesState());
     try {
-      await dispatch(googleLogoutAsync());
+      await dispatch(googleLogoutAsync(token));
       window.location.href = LOGIN_URL;
     } catch (error) {
       console.error(error);
@@ -29,6 +30,7 @@ function Login() {
   };
   useEffect(() => {
     if (token) {
+      localStorage.setItem('token', token);
       dispatch(setLoginStatus(true));
       navigate('/home');
     }

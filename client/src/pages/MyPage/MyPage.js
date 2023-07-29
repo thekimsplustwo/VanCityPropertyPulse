@@ -10,6 +10,7 @@ import MoreOptions from '../../components/User/MoreOptions';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
 
 function MyPage() {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function MyPage() {
     if (!isLogin) {
       navigateToLogin();
     } else {
-      dispatch(getUserAsync());
+      dispatch(getUserAsync(token));
     }
   }, [dispatch, isLogin]);
 

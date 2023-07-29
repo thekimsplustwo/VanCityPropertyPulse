@@ -16,8 +16,9 @@ import { isObjectValid } from '../../utils/utils';
 import NearByHomes from '../../components/Property/NearByHomes';
 
 function Property() {
-  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
+  const navigate = useNavigate();
   const { zpid } = useParams();
   const property = useSelector(state => state.property.property);
   const isLogin = useSelector(state => state.users.isLogin);
@@ -32,7 +33,7 @@ function Property() {
     if (!isLogin) {
       navigateToLogin();
     } else {
-      dispatch(getPropertyAsync(zpid));
+      dispatch(getPropertyAsync({ zpid, token }));
     }
   }, [dispatch, zpid]);
 

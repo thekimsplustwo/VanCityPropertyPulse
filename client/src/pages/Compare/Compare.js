@@ -15,6 +15,7 @@ import { isObjectValid } from '../../utils/utils';
 function Compare() {
   const navigate = useNavigate();
   const location = useLocation();
+  const token = localStorage.getItem('token');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const params = new URLSearchParams(location.search);
   let zpidList = Array.from(new Set(params.getAll('item')));
@@ -65,7 +66,7 @@ function Compare() {
       navigate('/');
     } else {
       zpidList.forEach((zpid, index) => {
-        dispatch(getPropertyAsync(zpid)).then(response => {
+        dispatch(getPropertyAsync({ zpid, token })).then(response => {
           // Make a copy of the property
           const property = { ...response.payload };
 

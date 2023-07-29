@@ -1,71 +1,92 @@
+import axios from 'axios';
 import { BASE_URL, FRONT_LOGIN_URL } from '../../config';
 import googleLogout from '../users/service';
 
-const getLikes = async () => {
-  const response = await fetch(`${BASE_URL}/likes`, {
-    credentials: 'include',
-    method: 'GET',
-  });
-  const data = await response.json();
-  if (response.status === 401) {
-    await googleLogout();
-    window.location.replace(FRONT_LOGIN_URL);
-    return null;
+const getLikes = async token => {
+  try {
+    const response = await axios.get(`${BASE_URL}/likes`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    }
+    return response.data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      await googleLogout();
+      window.location.replace(FRONT_LOGIN_URL);
+      return null;
+    }
+    const errorMsg = error.response?.data?.message;
+    throw new Error(errorMsg || 'NETWORK_ERROR');
   }
-  if (!response.ok) {
-    const errorMsg = data?.message;
-    throw new Error(errorMsg);
-  }
-  return data;
 };
 
-const deleteAllLikes = async () => {
-  const response = await fetch(`${BASE_URL}/likes`, {
-    credentials: 'include',
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  // console.log('deleteAllLikes is clicked, processing in service.js ');
-  const data = await response.json();
-  if (!response.ok) {
-    const errorMsg = data?.message;
-    throw new Error(errorMsg);
+const addLikes = async (property, token) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/likes`, property, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+      maxBodyLength: Infinity,
+    });
+    return response.data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      await googleLogout();
+      window.location.replace(FRONT_LOGIN_URL);
+      return null;
+    }
+    const errorMsg = error.response?.data?.message;
+    throw new Error(errorMsg || 'NETWORK_ERROR');
   }
-  return data;
 };
 
-const addLikes = async property => {
-  const response = await fetch(`${BASE_URL}/likes`, {
-    credentials: 'include',
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(property),
-  });
-  const data = await response.json();
-  if (!response.ok || response.status !== 201) {
-    const errorMsg = data?.message || 'NETWORK_ERROR';
-    throw new Error(errorMsg);
+const deleteLikes = async (zpid, token) => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/likes/${zpid}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+    if (response.status !== 200) {
+      throw new Error(response.statusText);
+    }
+    return response.data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      await googleLogout();
+      window.location.replace(FRONT_LOGIN_URL);
+      return null;
+    }
+    const errorMsg = error.response?.data?.message;
+    throw new Error(errorMsg || 'NETWORK_ERROR');
   }
-
-  return data;
 };
 
-const deleteLikes = async zpid => {
-  const response = await fetch(`${BASE_URL}/likes/${zpid}`, {
-    credentials: 'include',
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    const errorMsg = await response.text();
-    throw new Error(errorMsg);
+const deleteAllLikes = async token => {
+  try {
+    const response = await axios.delete(`${BASE_URL}/likes`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      withCredentials: true,
+    });
+    return response.data;
+  } catch (error) {
+    if (error.response.status === 401) {
+      await googleLogout();
+      window.location.replace(FRONT_LOGIN_URL);
+      return null;
+    }
+    const errorMsg = error.response?.data?.message;
+    throw new Error(errorMsg || 'NETWORK_ERROR');
   }
 };
 

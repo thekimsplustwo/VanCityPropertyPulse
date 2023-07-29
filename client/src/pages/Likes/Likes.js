@@ -9,6 +9,7 @@ import PropertyGrid from '../../components/Property/PropertyGrid';
 import { getLikesAsync, deleteAllLikesAsync } from '../../redux/likes/thunks';
 
 function Likes() {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -26,13 +27,13 @@ function Likes() {
     if (!isLogin) {
       navigate('/', { replace: true });
     } else {
-      dispatch(getLikesAsync());
+      dispatch(getLikesAsync(token));
     }
   }, [dispatch, isLogin]);
 
   const handleDeleteAllLike = () => {
     alert('All likes will be deleted');
-    dispatch(deleteAllLikesAsync());
+    dispatch(deleteAllLikesAsync(token));
   };
 
   // Whenever likes changes, update properties

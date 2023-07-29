@@ -46,6 +46,7 @@ const app = express();
 connect();
 
 app.use(logger('dev'));
+app.use(express.json());
 app.use(cors(corsOptions));
 app.use(express.static('public'));
 

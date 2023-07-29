@@ -6,6 +6,7 @@ import ReplyIcon from '@mui/icons-material/Reply';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
 function MenuItems({ zpid }) {
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   // const currZpid = parseInt(zpid, 10);
 
@@ -16,11 +17,11 @@ function MenuItems({ zpid }) {
   const housing = properties.find(prop => prop.zpid === zpid);
 
   const handleAddLike = () => {
-    dispatch(addLikesAsync(housing));
+    dispatch(addLikesAsync({ property: housing, token }));
   };
 
   const handleDeleteLike = () => {
-    dispatch(deleteLikesAsync(zpid));
+    dispatch(deleteLikesAsync({ zpid, token }));
   };
 
   const handleShare = () => {

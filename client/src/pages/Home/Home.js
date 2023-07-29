@@ -10,6 +10,7 @@ import { getLikesAsync } from '../../redux/likes/thunks';
 import { setSearchParams } from '../../redux/search/reducer';
 
 function Home() {
+  const token = localStorage.getItem('token');
   const [sortOrder, setSortOrder] = useState(null);
   const [searchClicked, setSearchClicked] = useState(false);
 
@@ -57,10 +58,10 @@ function Home() {
       dispatch(setSearchParams(initialState));
 
       const filteredInitialState = filterInitialState(initialState);
-      dispatch(getListAsync(filteredInitialState, isLogin));
-      dispatch(getLikesAsync());
+      dispatch(getListAsync({ params: filteredInitialState, token }));
+      dispatch(getLikesAsync(token));
     }
-  }, [location.search, isLogin, dispatch]);
+  }, [location.search, dispatch, isLogin]);
 
   useEffect(() => {
     if (searchClicked) {
@@ -71,8 +72,7 @@ function Home() {
       } else {
         navigate(`${location.pathname}`);
       }
-
-      dispatch(getListAsync(searchParams, isLogin));
+      dispatch(getListAsync({ params: searchParams, token }));
       setSearchClicked(false);
     }
   }, [

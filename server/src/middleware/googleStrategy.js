@@ -19,16 +19,13 @@ function google() {
       GOOGLE_OAUTH_OPTION,
       async (request, accessToken, refreshToken, profile, done) => {
         try {
-          console.log('google strategy ==== ');
           const user = await userModel.getUserInfoByEmail(
             profile.emails[0].value,
             'google'
           );
-          console.log('found user == ', user);
           if (user) {
             const token = await generateToken(user.email);
-            console.log('user ', user);
-            console.log('user token', token);
+            console.log('create new token ', token);
             done(null, { ...user, token });
           } else {
             const token = await generateToken(profile.emails[0].value);
@@ -40,8 +37,6 @@ function google() {
               source: 'google',
             };
             const newUser = await userModel.signup(userInfo);
-            console.log('nseUser ', newUser);
-            console.log('nseUser token', token);
             done(null, { ...newUser, token });
           }
         } catch (error) {

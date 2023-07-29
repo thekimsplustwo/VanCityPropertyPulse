@@ -5,6 +5,7 @@ import { TextField, Button } from '@mui/material';
 import { editProfileAsync } from '../../redux/users/thunks';
 
 function UserProfileEdit({ setModal }) {
+  const token = localStorage.getItem('token');
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ function UserProfileEdit({ setModal }) {
   };
 
   const handleSaveBtn = () => {
-    dispatch(editProfileAsync(formData));
+    dispatch(editProfileAsync({ formData, token }));
     setModal(false);
   };
 
