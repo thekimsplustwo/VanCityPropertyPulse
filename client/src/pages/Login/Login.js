@@ -22,7 +22,8 @@ function Login() {
     dispatch(resetListState());
     dispatch(resetLikesState());
     try {
-      await dispatch(googleLogoutAsync(token));
+      localStorage.removeItem('token');
+      //await dispatch(googleLogoutAsync(token));
       window.location.href = LOGIN_URL;
     } catch (error) {
       console.error(error);
