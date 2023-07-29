@@ -62,7 +62,6 @@ app.use(session(sessionOptions));
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportConfig();
-
 app.use(limiter);
 app.use(routes);
 
