@@ -1,17 +1,12 @@
 import dotenv from 'dotenv';
 import axios from 'axios';
-import * as model from '../models/index.js';
+import { propertyModel } from '../models/index.js';
 import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 
 dotenv.config();
 
-const { MOCK } = process.env;
-
 const ZILLOW_API_PROPERTY_DETAIL_FLAG_ON =
   process.env.ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on';
-
-const propertyModel =
-  MOCK.toLowerCase() === 'on' ? model.mockPropertyModel : model.propertyModel;
 
 const ZILLOW_API_ENDPOINT = {
   DETAIL: 'https://zillow-com1.p.rapidapi.com/property',

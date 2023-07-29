@@ -1,12 +1,7 @@
 import dotenv from 'dotenv';
-import * as model from '../models/index.js';
+import { likesModel } from '../models/index.js';
 
 dotenv.config();
-
-const { MOCK } = process.env;
-
-const likesModel =
-  MOCK.toLowerCase() === 'on' ? model.mockLikesModel : model.likesModel;
 
 const getLikes = async email => {
   return likesModel.getLikes(email);
