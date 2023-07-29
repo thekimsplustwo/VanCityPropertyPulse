@@ -21,7 +21,7 @@ const limiter = RateLimit({
 
 dotenv.config();
 
-const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY } = process.env;
+const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY, ZILLOW_API_URL } = process.env;
 
 const PORT = process.env.PORT || 10010;
 const MongoDBStore = connectMongoDBSession(session);
@@ -38,7 +38,7 @@ const sessionOptions = {
   cookie: { maxAge: 1000 * 60 * 60 },
 };
 
-const whitelist = [FRONT_URL, FRONT_URL_DEPLOYED];
+const whitelist = [FRONT_URL, FRONT_URL_DEPLOYED, ZILLOW_API_URL];
 
 const corsOptions = {
   origin: whitelist,
