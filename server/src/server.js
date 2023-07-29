@@ -44,6 +44,7 @@ const whitelist = [
   'https://www.vancitypropertypulse.com',
   'https://vancitypropertypulse.com',
   'http://vancitypropertypulse.com',
+  'https://accounts.google.com',
 ];
 
 const corsOptions = {
