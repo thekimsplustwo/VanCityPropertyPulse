@@ -7,10 +7,11 @@ import {
   WhatsApp as WhatsAppIcon,
 } from '@mui/icons-material';
 import ReplyIcon from '@mui/icons-material/Reply';
+import { SNS_URL } from '../../config';
 
 function ShareMenu({ url, title }) {
   const testUrl = 'https://www.adidas.ca/en';
-  const finalUrl = process.env.REACT_APP_TEST_URL === 'on' ? testUrl : url;
+  const finalUrl = SNS_URL === 'on' ? testUrl : url;
 
   const [open, setOpen] = useState(false);
 
