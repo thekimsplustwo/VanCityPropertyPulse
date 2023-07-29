@@ -5,7 +5,6 @@ import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 dotenv.config();
 
 const getPropertyDetails = async (req, res) => {
-  const { user } = req;
   const { zpid } = req.params;
   if (!zpid) {
     errorGenerator(ERROR_TYPE.INVALID_REQUEST);
@@ -14,4 +13,13 @@ const getPropertyDetails = async (req, res) => {
   return res.status(200).json(propertyDetails);
 };
 
-export { getPropertyDetails };
+const getPropertyWalkScore = async (req, res) => {
+  const { zpid } = req.params;
+  if (!zpid) {
+    errorGenerator(ERROR_TYPE.INVALID_REQUEST);
+  }
+  const propertyDetails = await propertyService.getPropertyWalkScore(zpid);
+  return res.status(200).json(propertyDetails);
+};
+
+export { getPropertyDetails, getPropertyWalkScore };

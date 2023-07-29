@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import { Info, ArrowForward, Add } from '@mui/icons-material';
-import Divider from '@mui/material/Divider';
 import { themeColorPink } from '../../styles/theme';
 // import { Bold, InfoRow } from './DetailedInfo';
 import { baseInfoRowStyles } from '../../styles/theme';
@@ -9,7 +8,6 @@ import { baseInfoRowStyles } from '../../styles/theme';
 function AdditionalInfo() {
   return (
     <Wrapper>
-      <Divider sx={{ borderBottomWidth: 3 }} />
       <InfoRow>
         <Bold>Neighbourhood</Bold>
         <ButtonWrapper>
@@ -23,7 +21,7 @@ function AdditionalInfo() {
       </InfoRow>
       <MarginBottom>
         <Description>
-          Schoolds, amenities, travel times, and market trends.
+          Schools, amenities, travel times, and market trends.
         </Description>
       </MarginBottom>
     </Wrapper>

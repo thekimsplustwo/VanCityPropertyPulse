@@ -8,3 +8,10 @@ export const getPropertyAsync = createAsyncThunk(
     return PropertyService.getProperty(zpid, token);
   }
 );
+
+export const getWalkAndTransitScoreAsync = createAsyncThunk(
+  actionTypes.GET_WALKSCORE,
+  async ({ zpid, token }) => {
+    return PropertyService.getWalkAndTransitScore(zpid, token);
+  }
+);
