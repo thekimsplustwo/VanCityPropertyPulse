@@ -49,6 +49,7 @@ const corslist = [
   'http://vancitypropertypulse.com',
   'https://vancity-front.onrender.com',
   'https://accounts.google.com',
+  'https://vancity-back.onrender.com',
 ];
 
 const whitelist = corslist.filter((url, index) => {
