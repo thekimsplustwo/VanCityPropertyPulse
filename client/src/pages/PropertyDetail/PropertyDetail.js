@@ -12,8 +12,9 @@ import { getPropertyAsync } from '../../redux/property/thunks';
 import VirtualTour from '../../components/Property/VirtualTour';
 import MapBox from '../../components/Property/MapBox';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
-import { isObjectValid } from '../../utils/utils';
 import NearByHomes from '../../components/Property/NearByHomes';
+import WalkScore from '../../components/Property/WalkScore';
+import { isObjectValid } from '../../utils/utils';
 
 function Property() {
   const token = localStorage.getItem('token');
@@ -55,13 +56,17 @@ function Property() {
           </GraphicWrapper>
           <DetailedInfo propertyDetails={property} />
         </ContentWrapper>
-        {property.resoFacts && (
-          <VirtualTour virtualTour={property.resoFacts.virtualTour} />
-        )}
-        <Divider sx={{ borderBottomWidth: 1 }} />
+        <Row>
+          {property.resoFacts && (
+            <VirtualTour virtualTour={property.resoFacts.virtualTour} />
+          )}
+        </Row>
+        <Divider sx={{ borderBottomWidth: 4 }} />
         <AdditionalInfo />
-        <Divider sx={{ borderBottomWidth: 1 }} />
-        {nearbyHomes && <NearByHomes nearProperties={property} />}
+        <Divider sx={{ borderBottomWidth: 4 }} />
+        <NearByHomes nearbyHomes={nearbyHomes} />
+        <Divider sx={{ borderBottomWidth: 4 }} />
+        <WalkScore zpid={zpid} />
       </Wrapper>
     );
   }
@@ -101,4 +106,10 @@ const ContentWrapper = styled.div`
   justify-content: space-around;
   align-items: stretch;
   margin: 0;
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 `;

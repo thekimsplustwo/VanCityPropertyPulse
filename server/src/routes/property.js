@@ -9,5 +9,9 @@ propertyRouter.get(
   verifyToken,
   asyncWrap(propertyController.getPropertyDetails)
 );
-
+propertyRouter.get(
+  '/:zpid/walkscore',
+  verifyToken,
+  asyncWrap(propertyController.getPropertyWalkScore)
+);
 export default propertyRouter;
