@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -9,14 +10,22 @@ import { convertPriceToCAD } from '../../utils/utils';
 import { baseInfoRowStyles } from '../../styles/theme';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 
-function PropertyCard({ property, showCompareButton, showHeartIcon }) {
+function PropertyCard({
+  property,
+  showCompareButton,
+  showHeartIcon,
+  isSelected,
+  onSelectProperty,
+  onDeselectProperty,
+  onAddToCompare,
+}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currZpid = property.zpid;
+  const [selectedProperties, setSelectedProperties] = useState([]);
 
   const likes = useSelector(state => state.likes.list);
   const liked = likes && likes.some(like => like.zpid === currZpid, 10);
-
   const navigateToPropertyPage = zpid => {
     navigate(`/properties/${zpid}`, {
       state: { zpid },
@@ -25,6 +34,9 @@ function PropertyCard({ property, showCompareButton, showHeartIcon }) {
 
   const handleCompare = event => {
     event.stopPropagation();
+    if (!isSelected) {
+      onAddToCompare(property);
+    }
     const params = new URL(document.location).searchParams;
     params.append('item', property.zpid);
     const newParams = params.toString();
@@ -40,11 +52,18 @@ function PropertyCard({ property, showCompareButton, showHeartIcon }) {
     event.stopPropagation();
     dispatch(deleteLikesAsync(currZpid));
   };
+
+  const handleAddToCompare = () => {
+    onAddToCompare(property);
+  };
   const streetAddress = property.address.split(',')[0];
   const city = property.address.split(',')[1];
   const provinceZipcode = property.address.split(',')[2];
   return (
-    <Container onClick={() => navigateToPropertyPage(property.zpid)}>
+    <Container
+      onClick={() => navigateToPropertyPage(property.zpid)}
+      className={isSelected ? 'selected' : ''}
+    >
       <PropertyCardContent>
         <PropertyImage
           src={property?.imgSrc}
@@ -62,7 +81,7 @@ function PropertyCard({ property, showCompareButton, showHeartIcon }) {
           <StyledStatusIcon />
           <StatusText>{property.listingStatus}</StatusText>
         </StatusWrapper>
-        {showCompareButton && (
+        {showCompareButton && !isSelected && (
           <CompareButton onClick={handleCompare}>Compare</CompareButton>
         )}
         <PropertyInfo>

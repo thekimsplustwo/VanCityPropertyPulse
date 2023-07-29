@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { Button, Div } from '@mui/material';
+import { throttle } from 'lodash';
+import CompareDeleteButton from '../../components/Compare/CompareDeleteButton';
 import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
@@ -23,6 +25,9 @@ function Compare() {
   // If there are more than 3 items in zpidList, show an alert
   useEffect(() => {
     // handle Duplicate zpid
+    // Do nothing if there are no URL parameters.
+    if (zpidList.length === 0) return;
+
     const uniqueZpidSet = new Set();
     const uniqueZpidList = [];
 
@@ -38,6 +43,7 @@ function Compare() {
       navigate(newURL, { replace: true });
     }
 
+    // handle if more than 3 zpid
     if (zpidList.length > 3) {
       alert(
         'Only 3 properties can be compared at a time. Redirecting to show the last three properties.'
@@ -94,6 +100,7 @@ function Compare() {
     navigate('/compare', { replace: true });
     window.location.reload();
   };
+
   if (isLogin && isObjectValid(property)) {
     const images = Array.isArray(property.imgSrc)
       ? property.imgSrc
@@ -122,7 +129,11 @@ function Compare() {
               >
                 Clear
               </Button>
-              <Modal open={isModalOpen} onClose={handleCloseModal} />
+              <Modal
+                open={isModalOpen}
+                onClose={handleCloseModal}
+                zpidList={zpidList}
+              />
             </ButtonWrapper>
             <ContentWrapper>
               <Grid container spacing={2}>
@@ -139,6 +150,9 @@ function Compare() {
                         <ImageCarousel
                           propertyImages={property?.imgSrc || []}
                         />
+                        <CompareDeleteButton zpid={property.zpid}>
+                          Delete
+                        </CompareDeleteButton>
                         <CompareProps propertyDetails={property} />
                       </Wrapper>
                     )}
@@ -216,13 +230,4 @@ const ButtonWrapper = styled.div`
   }
 `;
 
-// const Button = styled.button`
-// height="mix-content";
-//  width: 100;
-//  position: fixed;
-//  margin-left: -200px;
-//   margin-top: 50px;
-//  `;
-// height: min-content;
-//     position: fixed;
 export default Compare;
