@@ -12,6 +12,12 @@ import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportConfig from './middleware/passportConfig.js';
 import checkFeatureFlag from './utils/featureFlags.js';
+import RateLimit from 'express-rate-limit';
+
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 100,
+});
 
 dotenv.config();
 
@@ -57,6 +63,7 @@ app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportConfig();
 
+app.use(limiter);
 app.use(routes);
 
 app.get('/ping', (req, res) => {
