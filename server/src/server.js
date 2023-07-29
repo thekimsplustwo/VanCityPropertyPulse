@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
 import http from 'http';
+import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
 import logger from 'morgan';
@@ -8,11 +8,11 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import session from 'express-session';
 import connectMongoDBSession from 'connect-mongodb-session';
+import RateLimit from 'express-rate-limit';
 import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportConfig from './middleware/passportConfig.js';
 import checkFeatureFlag from './utils/featureFlags.js';
-import RateLimit from 'express-rate-limit';
 
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
@@ -21,7 +21,8 @@ const limiter = RateLimit({
 
 dotenv.config();
 
-const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY, ZILLOW_API_URL } = process.env;
+const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY, ZILLOW_API_URL } =
+  process.env;
 
 const PORT = process.env.PORT || 10010;
 const MongoDBStore = connectMongoDBSession(session);
@@ -38,7 +39,12 @@ const sessionOptions = {
   cookie: { maxAge: 1000 * 60 * 60 },
 };
 
-const whitelist = [ZILLOW_API_URL, 'https://www.vancitypropertypulse.com', 'https://vancitypropertypulse.com'];
+const whitelist = [
+  ZILLOW_API_URL,
+  'https://www.vancitypropertypulse.com',
+  'https://vancitypropertypulse.com',
+  'http://vancitypropertypulse.com',
+];
 
 const corsOptions = {
   origin: whitelist,

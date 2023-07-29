@@ -56,7 +56,6 @@
     "spaced-comment": "off",
     "no-param-reassign": ["error", { "props": false }],
     "no-underscore-dangle": "off",
-    "consistent-return": "off",
     "func-names": "off"
   },
   "ignorePatterns": ["dist/", "node_modules/", "build/"]
