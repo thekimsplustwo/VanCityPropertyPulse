@@ -38,7 +38,7 @@ const sessionOptions = {
   cookie: { maxAge: 1000 * 60 * 60 },
 };
 
-const whitelist = [FRONT_URL, FRONT_URL_DEPLOYED, ZILLOW_API_URL];
+const whitelist = [ZILLOW_API_URL, 'https://www.vancitypropertypulse.com', 'https://vancitypropertypulse.com'];
 
 const corsOptions = {
   origin: whitelist,
