@@ -50,6 +50,7 @@
     "react/self-closing-comp": "warn",
     "react/jsx-curly-brace-presence": "warn",
     "react/prop-types": "off",
+    "consistent-return": "warn", 
     "eqeqeq": "warn",
     "default-param-last": "off",
     "dot-notation": "warn",
@@ -71,5 +72,5 @@
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
     "spaced-comment": "off"
   },
-  "ignorePatterns": ["dist/", "node_modules/"]
+  "ignorePatterns": ["dist/", "node_modules/", "build/", "tests/"]
 }

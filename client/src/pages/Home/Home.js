@@ -7,10 +7,10 @@ import PropertyGrid from '../../components/Property/PropertyGrid';
 import { getListAsync } from '../../redux/home/thunks';
 import SearchComponent from '../../components/SearchOption/SearchComponent';
 import { getLikesAsync } from '../../redux/likes/thunks';
-import { LOGIN_URI } from '../../config';
 import { setSearchParams } from '../../redux/search/reducer';
 
 function Home() {
+  const token = localStorage.getItem('token');
   const [sortOrder, setSortOrder] = useState(null);
   const [searchClicked, setSearchClicked] = useState(false);
 
@@ -35,7 +35,7 @@ function Home() {
 
   useEffect(() => {
     if (!isLogin) {
-      window.location.replace(LOGIN_URI);
+      navigate('/', { replace: true });
     } else {
       const params = new URLSearchParams(location.search);
       const initialState = {
@@ -58,10 +58,10 @@ function Home() {
       dispatch(setSearchParams(initialState));
 
       const filteredInitialState = filterInitialState(initialState);
-      dispatch(getListAsync(filteredInitialState, isLogin));
-      dispatch(getLikesAsync());
+      dispatch(getListAsync({ params: filteredInitialState, token }));
+      dispatch(getLikesAsync(token));
     }
-  }, [location.search, isLogin, dispatch]);
+  }, [location.search, dispatch, isLogin]);
 
   useEffect(() => {
     if (searchClicked) {
@@ -72,8 +72,7 @@ function Home() {
       } else {
         navigate(`${location.pathname}`);
       }
-
-      dispatch(getListAsync(searchParams, isLogin));
+      dispatch(getListAsync({ params: searchParams, token }));
       setSearchClicked(false);
     }
   }, [

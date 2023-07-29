@@ -8,6 +8,7 @@ import YouTubeIcon from '@mui/icons-material/YouTube';
 function FooterSocial() {
   return (
     <SocialContainer>
+      <FollowUs> Follow us!</FollowUs>
       <FooterIcon>
         <a href="https://www.facebook.com/" target="_blank" rel="noreferrer">
           <FacebookIcon style={{ color: '#3b5998', fontSize: '40px' }} />
@@ -33,16 +34,15 @@ function FooterSocial() {
           <YouTubeIcon style={{ color: '#FF0000', fontSize: '40px' }} />
         </a>
       </FooterIcon>
-      <FollowUs> Follow us!</FollowUs>
     </SocialContainer>
   );
 }
 
 const SocialContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  margin-left: 30px;
+  padding: 0 32px 32px 0;
 `;
 
 const FooterIcon = styled.div`

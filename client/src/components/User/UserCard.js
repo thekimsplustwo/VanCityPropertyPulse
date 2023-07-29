@@ -8,6 +8,7 @@ import { resetListState } from '../../redux/home/reducer';
 import { resetLikesState } from '../../redux/likes/reducer';
 
 function UserCard() {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const user = useSelector(state => state.users.user);
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ function UserCard() {
     navigate('/');
   };
   const logout = () => {
-    dispatch(googleLogoutAsync());
+    dispatch(googleLogoutAsync(token));
     dispatch(resetUserState());
     dispatch(resetListState());
     dispatch(resetLikesState());

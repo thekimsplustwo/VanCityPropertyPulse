@@ -19,6 +19,7 @@ function PropertyCard({
   onDeselectProperty,
   onAddToCompare,
 }) {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currZpid = property.zpid;
@@ -45,13 +46,70 @@ function PropertyCard({
 
   const handleAddLike = event => {
     event.stopPropagation();
-    dispatch(addLikesAsync(property));
+    dispatch(addLikesAsync({ property, token }));
   };
 
   const handleDeleteLike = event => {
     event.stopPropagation();
-    dispatch(deleteLikesAsync(currZpid));
+    dispatch(deleteLikesAsync({ zpid: currZpid, token }));
   };
+<<<<<<< HEAD
+  if (property) {
+    const { address } = property;
+    const streetAddress = address?.split(',')[0] || '';
+    const city = address?.split(',')[1] || '';
+    const provinceZipcode = address?.split(',')[2] || '';
+    return (
+      <Container onClick={() => navigateToPropertyPage(property.zpid)}>
+        <PropertyCardContent>
+          <PropertyImage
+            src={property?.imgSrc}
+            alt="Property"
+            className="property-image"
+          />
+          {showHeartIcon &&
+            (liked ? (
+              <StyledHeartLikedIcon onClick={handleDeleteLike} />
+            ) : (
+              <StyledHeartBorderIcon onClick={handleAddLike} />
+            ))}
+
+          <StatusWrapper>
+            <StyledStatusIcon />
+            <StatusText>{property.listingStatus}</StatusText>
+          </StatusWrapper>
+          {showCompareButton && (
+            <CompareButton onClick={handleCompare}>Compare</CompareButton>
+          )}
+          <PropertyInfo>
+            <PropertyPrice>{convertPriceToCAD(property.price)}</PropertyPrice>
+            <PropertySpec>
+              {property.bedrooms && (
+                <div>
+                  <span className="property-bed">
+                    Bed {property.bedrooms},{' '}
+                  </span>
+                  <span className="property-bath">
+                    Bath {property.bathrooms},{' '}
+                  </span>
+                  <span className="property-area">
+                    {property.livingArea} sqft,{' '}
+                  </span>
+                </div>
+              )}
+            </PropertySpec>
+            <PropertyLocation>
+              <p>{streetAddress}</p>
+              <p>
+                {city}, {provinceZipcode}
+              </p>
+            </PropertyLocation>
+          </PropertyInfo>
+        </PropertyCardContent>
+      </Container>
+    );
+  }
+=======
 
   const handleAddToCompare = () => {
     onAddToCompare(property);
@@ -109,6 +167,7 @@ function PropertyCard({
       </PropertyCardContent>
     </Container>
   );
+>>>>>>> main
 }
 
 export default PropertyCard;

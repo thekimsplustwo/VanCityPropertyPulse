@@ -57,7 +57,6 @@ function Footer() {
                   </InfoBottom>
                 </FooterInfoBottom>
               </div>
-              <FooterSocial />
             </InfoAndSocialContainer>
             <FooterRight>
               <FooterIcon>
@@ -88,6 +87,7 @@ function Footer() {
               </FooterIcon>
             </FooterRight>
           </FooterContent>
+          <FooterSocial />
         </FooterWrapper>
       </FooterContainer>
     )

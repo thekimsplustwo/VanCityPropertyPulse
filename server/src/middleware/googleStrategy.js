@@ -9,7 +9,7 @@ dotenv.config();
 const GOOGLE_OAUTH_OPTION = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.SERVER_REDIRECT_URL,
+  callbackURL: '/auth/google/callback',
   passReqToCallback: true,
 };
 
@@ -19,14 +19,13 @@ function google() {
       GOOGLE_OAUTH_OPTION,
       async (request, accessToken, refreshToken, profile, done) => {
         try {
-          console.log('google strategy ==== ');
           const user = await userModel.getUserInfoByEmail(
             profile.emails[0].value,
             'google'
           );
-          console.log('found user == ', user);
           if (user) {
             const token = await generateToken(user.email);
+            console.log('create new token ', token);
             done(null, { ...user, token });
           } else {
             const token = await generateToken(profile.emails[0].value);

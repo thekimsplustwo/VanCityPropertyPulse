@@ -1,4 +1,4 @@
-const { AUTH, MOCK, ZILLOW_API_LISTING, ZILLOW_API_PROPERTY_DETAIL } =
+const { AUTH, MOCK, ZILLOW_API_LISTING, ZILLOW_API_PROPERTY_DETAIL, PROD } =
   process.env;
 
 const checkFeatureFlag = () => {
@@ -19,6 +19,7 @@ const checkFeatureFlag = () => {
     'Zillow API Detail  =',
     ZILLOW_API_PROPERTY_DETAIL.toLowerCase() === 'on' ? 'ON' : 'OFF'
   );
+  console.log('DEPLOYED APP = ', PROD.toLowerCase() === 'on' ? 'ON' : 'OFF');
 };
 
 export default checkFeatureFlag;

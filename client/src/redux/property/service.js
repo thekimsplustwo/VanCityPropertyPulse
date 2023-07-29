@@ -1,15 +1,18 @@
-import { BASE_URL, LOGIN_URI } from '../../config';
+import { BASE_URL, FRONT_LOGIN_URL } from '../../config';
 import googleLogout from '../users/service';
 
-const getProperty = async zpid => {
+const getProperty = async (zpid, token) => {
   const response = await fetch(`${BASE_URL}/properties/${zpid}`, {
     credentials: 'include',
     method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   const data = response.json();
   if (response.status === 401) {
     await googleLogout();
-    window.location.replace(LOGIN_URI);
+    window.location.replace(FRONT_LOGIN_URL);
     return null;
   }
   if (!response.ok) {

@@ -7,9 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import PropertyGrid from '../../components/Property/PropertyGrid';
 import { getLikesAsync, deleteAllLikesAsync } from '../../redux/likes/thunks';
-import { LOGIN_URI } from '../../config';
 
 function Likes() {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -25,15 +25,15 @@ function Likes() {
 
   useEffect(() => {
     if (!isLogin) {
-      window.location.replace(LOGIN_URI);
+      navigate('/', { replace: true });
     } else {
-      dispatch(getLikesAsync());
+      dispatch(getLikesAsync(token));
     }
   }, [dispatch, isLogin]);
 
   const handleDeleteAllLike = () => {
     alert('All likes will be deleted');
-    dispatch(deleteAllLikesAsync());
+    dispatch(deleteAllLikesAsync(token));
   };
 
   // Whenever likes changes, update properties

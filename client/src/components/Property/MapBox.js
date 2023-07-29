@@ -1,8 +1,8 @@
 // MapBox.js
 import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
+import { MAPBOX_STYLE, MAPBOX_TOKEN, MAPBOX_ZOOM } from '../../config';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { MAPBOX_TOKEN, MAPBOX_STYLE, MAPBOX_ZOOM } from '../../config';
 
 mapboxgl.accessToken = MAPBOX_TOKEN;
 

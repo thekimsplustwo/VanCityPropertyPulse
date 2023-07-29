@@ -6,6 +6,7 @@ import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 import ShareMenu from './ShareMenu';
 
 function MenuItems({ zpid, address }) {
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const likes = useSelector(state => state.likes.list);
   const properties = useSelector(state => state.home.list);
@@ -14,11 +15,11 @@ function MenuItems({ zpid, address }) {
   const housing = properties.find(prop => prop.zpid === zpid);
 
   const handleAddLike = () => {
-    dispatch(addLikesAsync(housing));
+    dispatch(addLikesAsync({ property: housing, token }));
   };
 
   const handleDeleteLike = () => {
-    dispatch(deleteLikesAsync(zpid));
+    dispatch(deleteLikesAsync({ zpid, token }));
   };
 
   return (
