@@ -64,7 +64,7 @@ const corsOptions = {
 };
 
 const app = express();
-app.set('trust proxy', true);
+//app.set('trust proxy', true);
 connect();
 
 app.use(logger('dev'));
