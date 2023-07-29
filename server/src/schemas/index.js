@@ -20,6 +20,7 @@ const connect = async () => {
       mongoose.set('debug', true);
       const conn = await mongoose.connect(mongoDBURL, mongooseOptions);
       console.log(`connected@${conn.connection.host}`);
+      return conn;
     } catch (err) {
       console.error(`connection error: ${err.message}`);
       throw err;
