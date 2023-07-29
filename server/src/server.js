@@ -21,7 +21,7 @@ const limiter = RateLimit({
 
 dotenv.config();
 
-const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY, ZILLOW_API_URL } =
+const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY, ZILLOW_API_URL, EC2_DNS } =
   process.env;
 
 const PORT = process.env.PORT || 10010;
@@ -43,6 +43,7 @@ const corslist = [
   FRONT_URL,
   FRONT_URL_DEPLOYED,
   ZILLOW_API_URL,
+  EC2_DNS,
   'https://www.vancitypropertypulse.com',
   'https://vancitypropertypulse.com',
   'http://vancitypropertypulse.com',
