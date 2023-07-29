@@ -40,7 +40,6 @@ const getWalkAndTransitScore = async (zpid, token) => {
     const errorMsg = data?.message;
     throw new Error(errorMsg);
   }
-  console.log(response);
   return data;
 };
 
