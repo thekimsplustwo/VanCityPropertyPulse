@@ -1,13 +1,8 @@
 import dotenv from 'dotenv';
-import * as model from '../models/index.js';
+import { userModel } from '../models/index.js';
 import { errorGenerator, ERROR_TYPE } from '../utils/error.js';
 
 dotenv.config();
-
-const { MOCK } = process.env;
-
-const userModel =
-  MOCK.toLowerCase() === 'on' ? model.mockUserModel : model.userModel;
 
 const getUserInfoByEmail = async (email, _source) => {
   if (!email) {
