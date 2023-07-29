@@ -11,7 +11,6 @@ import {
 
 const googleOptions = {
   authType: 'request',
-  scope: ['email', 'profile'],
   accessType: 'offline',
   prompt: 'consent',
 };

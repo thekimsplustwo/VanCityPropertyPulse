@@ -10,6 +10,7 @@ const GOOGLE_OAUTH_OPTION = {
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
   callbackURL: '/auth/google/callback',
+  scope: ['email', 'profile'],
   passReqToCallback: true,
 };
 
