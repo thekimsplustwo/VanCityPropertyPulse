@@ -53,14 +53,21 @@ function PropertyCard({
     event.stopPropagation();
     dispatch(deleteLikesAsync({ zpid: currZpid, token }));
   };
-<<<<<<< HEAD
+
+  const handleAddToCompare = () => {
+    onAddToCompare(property);
+  };
+
   if (property) {
     const { address } = property;
     const streetAddress = address?.split(',')[0] || '';
     const city = address?.split(',')[1] || '';
     const provinceZipcode = address?.split(',')[2] || '';
     return (
-      <Container onClick={() => navigateToPropertyPage(property.zpid)}>
+      <Container
+        onClick={() => navigateToPropertyPage(property.zpid)}
+        className={isSelected ? 'selected' : ''}
+      >
         <PropertyCardContent>
           <PropertyImage
             src={property?.imgSrc}
@@ -78,7 +85,7 @@ function PropertyCard({
             <StyledStatusIcon />
             <StatusText>{property.listingStatus}</StatusText>
           </StatusWrapper>
-          {showCompareButton && (
+          {showCompareButton && !isSelected && (
             <CompareButton onClick={handleCompare}>Compare</CompareButton>
           )}
           <PropertyInfo>
@@ -109,65 +116,6 @@ function PropertyCard({
       </Container>
     );
   }
-=======
-
-  const handleAddToCompare = () => {
-    onAddToCompare(property);
-  };
-  const streetAddress = property.address.split(',')[0];
-  const city = property.address.split(',')[1];
-  const provinceZipcode = property.address.split(',')[2];
-  return (
-    <Container
-      onClick={() => navigateToPropertyPage(property.zpid)}
-      className={isSelected ? 'selected' : ''}
-    >
-      <PropertyCardContent>
-        <PropertyImage
-          src={property?.imgSrc}
-          alt="Property"
-          className="property-image"
-        />
-        {showHeartIcon &&
-          (liked ? (
-            <StyledHeartLikedIcon onClick={handleDeleteLike} />
-          ) : (
-            <StyledHeartBorderIcon onClick={handleAddLike} />
-          ))}
-
-        <StatusWrapper>
-          <StyledStatusIcon />
-          <StatusText>{property.listingStatus}</StatusText>
-        </StatusWrapper>
-        {showCompareButton && !isSelected && (
-          <CompareButton onClick={handleCompare}>Compare</CompareButton>
-        )}
-        <PropertyInfo>
-          <PropertyPrice>{convertPriceToCAD(property.price)}</PropertyPrice>
-          <PropertySpec>
-            {property.bedrooms && (
-              <div>
-                <span className="property-bed">Bed {property.bedrooms}, </span>
-                <span className="property-bath">
-                  Bath {property.bathrooms},{' '}
-                </span>
-                <span className="property-area">
-                  {property.livingArea} sqft,{' '}
-                </span>
-              </div>
-            )}
-          </PropertySpec>
-          <PropertyLocation>
-            <p>{streetAddress}</p>
-            <p>
-              {city}, {provinceZipcode}
-            </p>
-          </PropertyLocation>
-        </PropertyInfo>
-      </PropertyCardContent>
-    </Container>
-  );
->>>>>>> main
 }
 
 export default PropertyCard;
