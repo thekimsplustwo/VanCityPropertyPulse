@@ -25,11 +25,14 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/mapbox-gl": "^2.7.12",
     "axios": "^1.4.0",
     "cheerio": "^1.0.0-rc.12",
+    "mapbox-gl": "^2.15.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
+    "react-map-gl": "^7.1.3",
     "react-redux": "^8.0.7",
     "react-router-dom": "^6.11.2",
     "react-scripts": "^5.0.1",
@@ -49,7 +52,8 @@
     "eject": "react-scripts eject",
     "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "distribute": "npm i && npm run build && pm2 serve build 3000 --name vancity-front --spa"
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",

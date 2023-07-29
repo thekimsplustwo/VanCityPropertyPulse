@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
 import http from 'http';
+import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
 import logger from 'morgan';
@@ -8,14 +8,21 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import session from 'express-session';
 import connectMongoDBSession from 'connect-mongodb-session';
+import RateLimit from 'express-rate-limit';
 import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportConfig from './middleware/passportConfig.js';
 import checkFeatureFlag from './utils/featureFlags.js';
 
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 100,
+});
+
 dotenv.config();
 
-const { FRONT_URL, SECRET_KEY } = process.env;
+const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY, ZILLOW_API_URL } =
+  process.env;
 
 const PORT = process.env.PORT || 10010;
 const MongoDBStore = connectMongoDBSession(session);
@@ -32,9 +39,22 @@ const sessionOptions = {
   cookie: { maxAge: 1000 * 60 * 60 },
 };
 
-const origins = [FRONT_URL];
+const corslist = [
+  FRONT_URL,
+  FRONT_URL_DEPLOYED,
+  ZILLOW_API_URL,
+  'https://www.vancitypropertypulse.com',
+  'https://vancitypropertypulse.com',
+  'http://vancitypropertypulse.com',
+  'https://vancity-front.onrender.com',
+  'https://accounts.google.com',
+];
+
+const whitelist = corslist.filter((url, index) => {
+  return corslist.indexOf(url) === index;
+});
 const corsOptions = {
-  origin: origins,
+  origin: whitelist,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -45,18 +65,17 @@ const app = express();
 connect();
 
 app.use(logger('dev'));
+app.use(express.json());
 app.use(cors(corsOptions));
 app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(express.urlencoded({ extended: true }));
 app.use(compression());
-
 app.use(session(sessionOptions));
-
 app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportConfig();
-
+app.use(limiter);
 app.use(routes);
 
 app.get('/ping', (req, res) => {

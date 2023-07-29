@@ -10,7 +10,7 @@ const getUserInfoByEmail = async (req, res) => {
     errorGenerator(ERROR_TYPE.INVALID_REQUEST);
   }
   const user = await userService.getUserInfoByEmail(email, source);
-  return res.status(201).json(user);
+  return res.status(200).json(user);
 };
 
 const updateUserInfo = async (req, res) => {

@@ -3,30 +3,34 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import searchImage from '../../assets/images/searchComponent.jpg';
-import { GOOGLE_LOGIN_REQUEST_URL, REDIRECT_URI } from '../../config';
+import { BASE_URL } from '../../config';
 import { setLoginStatus, resetUserState } from '../../redux/users/reducer';
 import { googleLogoutAsync } from '../../redux/users/thunks';
 import { resetListState } from '../../redux/home/reducer';
 import { resetLikesState } from '../../redux/likes/reducer';
 
+const LOGIN_URL = `${BASE_URL}/auth/login/google`;
+
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const searchQuery = new URLSearchParams(useLocation().search);
+  const location = useLocation();
+  const searchQuery = new URLSearchParams(location.search);
   const token = searchQuery.get('token');
   const handleGoogleLogin = async () => {
     dispatch(resetUserState());
     dispatch(resetListState());
     dispatch(resetLikesState());
     try {
-      await dispatch(googleLogoutAsync());
-      window.location.href = GOOGLE_LOGIN_REQUEST_URL;
+      await dispatch(googleLogoutAsync(token));
+      window.location.href = LOGIN_URL;
     } catch (error) {
       console.error(error);
     }
   };
   useEffect(() => {
     if (token) {
+      localStorage.setItem('token', token);
       dispatch(setLoginStatus(true));
       navigate('/home');
     }

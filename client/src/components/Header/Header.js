@@ -1,11 +1,20 @@
 import styled from 'styled-components';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setLoginStatus } from '../../redux/users/reducer';
 import Nav from './Nav';
 
 function Header() {
   const location = useLocation();
+  const dispatch = useDispatch();
   const isLogin = useSelector(state => state.users.isLogin);
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  useEffect(() => {
+    if (!token) {
+      dispatch(setLoginStatus(false));
+    }
+  }, [token]);
 
   if (location.pathname === '/' || !isLogin) {
     return null;

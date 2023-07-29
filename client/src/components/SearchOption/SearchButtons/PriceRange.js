@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Button,
   Menu,
@@ -43,6 +43,11 @@ export default function PriceRange() {
   const [maxMinPrice, setMaxMinPrice] = useState(9999999);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    setMinPrice(searchParams.minPrice || 0);
+    setMaxPrice(searchParams.maxPrice || 0);
+  }, [searchParams.minPrice, searchParams.maxPrice]);
+
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
@@ -60,13 +65,14 @@ export default function PriceRange() {
   };
 
   const handleMinPriceChange = event => {
-    const newValue = parseInt(event.target.value, 10);
+    const newValue =
+      event.target.value === '' ? '' : parseInt(event.target.value, 10);
 
     if (Number.isNaN(newValue)) {
       return;
     }
 
-    if (newValue > maxPrice && maxPrice !== 0) {
+    if (newValue !== '' && newValue > maxPrice && maxPrice !== 0) {
       setMinPrice(maxPrice);
       setMinMaxPrice(maxPrice);
     } else {
@@ -76,13 +82,14 @@ export default function PriceRange() {
   };
 
   const handleMaxPriceChange = event => {
-    const newValue = parseInt(event.target.value, 10);
+    const newValue =
+      event.target.value === '' ? '' : parseInt(event.target.value, 10);
 
     if (Number.isNaN(newValue)) {
       return;
     }
 
-    if (newValue < minPrice && newValue !== 0) {
+    if (newValue !== '' && newValue < minPrice && newValue !== 0) {
       setMaxPrice(minPrice);
       setMaxMinPrice(minPrice);
     } else {

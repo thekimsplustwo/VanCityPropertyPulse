@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Menu, MenuItem, styled as muiStyled } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBed } from '../../../redux/search/reducer';
@@ -33,6 +33,10 @@ export default function BedSelect() {
     setSelectedOption(value);
     dispatch(setBed(value));
   };
+
+  useEffect(() => {
+    setSelectedOption(searchParams.bedsMin || 0);
+  }, [searchParams.bedsMin]);
 
   return (
     <div>

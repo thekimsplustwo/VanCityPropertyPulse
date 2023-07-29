@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import { Tooltip } from '@mui/material';
+import ArrowCircleLeftOutlinedIcon from '@mui/icons-material/ArrowCircleLeftOutlined';
 import { useDispatch, useSelector } from 'react-redux';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Button } from '@mui/material';
 import PropertyGrid from '../../components/Property/PropertyGrid';
-// import { getListAsync } from '../../redux/home/thunks';
 import { getLikesAsync, deleteAllLikesAsync } from '../../redux/likes/thunks';
-import { LOGIN_URI } from '../../config';
-
-// import SearchComponent from '../../components/SearchOption/SearchComponent';
 
 function Likes() {
+  const token = localStorage.getItem('token');
   const navigate = useNavigate();
-  const location = useLocation();
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
 
   const likes = useSelector(state => state.likes.list);
   const isLogin = useSelector(state => state.users.isLogin);
@@ -24,15 +25,15 @@ function Likes() {
 
   useEffect(() => {
     if (!isLogin) {
-      window.location.replace(LOGIN_URI);
+      navigate('/', { replace: true });
     } else {
-      dispatch(getLikesAsync());
+      dispatch(getLikesAsync(token));
     }
   }, [dispatch, isLogin]);
 
   const handleDeleteAllLike = () => {
     alert('All likes will be deleted');
-    dispatch(deleteAllLikesAsync());
+    dispatch(deleteAllLikesAsync(token));
   };
 
   // Whenever likes changes, update properties
@@ -41,21 +42,32 @@ function Likes() {
   }, [likes]);
   return (
     isLogin && (
-      <Margin>
-        <Main>
-          <Header>Favourite Homes</Header>
-          {/* create a button to clear all likes lists when clicked */}
+      <Main>
+        <OuterHeaderWrapper>
+          <HeaderWrapper>
+            <HeaderTitle>
+              <Tooltip title="Previous Page" placement="top">
+                <ArrowCircleLeftOutlinedIcon
+                  onClick={handleGoBack}
+                  style={{
+                    fontSize: '40px',
+                    cursor: 'pointer',
+                    marginBottom: '10px',
+                  }}
+                />
+              </Tooltip>
+              <h1>Favourite Homes</h1>
+            </HeaderTitle>
+          </HeaderWrapper>
+        </OuterHeaderWrapper>
+        <Wrapper>
           <MenuContainer>
             <StyledHeartBorderIcon onClick={handleDeleteAllLike} />
             <MenuOpt onClick={handleDeleteAllLike}>Clear All</MenuOpt>
           </MenuContainer>
-          <PropertyGrid
-            properties={properties}
-            showCompareButton
-            showHeartIcon
-          />
-        </Main>
-      </Margin>
+        </Wrapper>
+        <PropertyGrid properties={properties} showCompareButton showHeartIcon />
+      </Main>
     )
   );
 }
@@ -65,20 +77,34 @@ const Main = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
 `;
 
-const Margin = styled.div`
-  margin: 20px;
+const OuterHeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 50px;
+  justify-content: center;
 `;
 
-const Header = styled.h1`
-  font-size: 2rem;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 1rem;
-  text-align: left;
-  margin-top: 1rem;
-  margin-left: 1rem;
+const HeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 20px 0;
+`;
+
+const HeaderTitle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-direction: column;
+  h1 {
+    font-size: 30px;
+    font-weight: 700;
+  }
 `;
 
 const StyledHeartBorderIcon = styled(FavoriteBorderIcon)`
@@ -87,19 +113,24 @@ const StyledHeartBorderIcon = styled(FavoriteBorderIcon)`
   right: 10px;
   color: white;
 `;
+
 const MenuContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 80px;
+  height: 33px;
   border: 2px solid gray;
   opacity: 0.3;
   border-radius: 10px;
   padding: 3px 0;
   margin: 10px;
+  margin-left: 50px;
   &:hover {
     cursor: pointer;
     opacity: 1;
+    color: red;
+    border-color: red;
   }
 `;
 
@@ -108,4 +139,10 @@ const MenuOpt = styled.div`
   font-size: 15px;
   font-weight: 5rem;
 `;
+
+const Wrapper = styled.div`
+  display: flex;
+  margin-top: 10px;
+`;
+
 export default Likes;

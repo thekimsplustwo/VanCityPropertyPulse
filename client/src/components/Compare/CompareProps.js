@@ -16,6 +16,7 @@ function createData(name, value) {
 }
 function CompareProps({ propertyDetails }) {
   const {
+    address,
     homeType,
     yearBuilt,
     livingArea,
@@ -27,147 +28,30 @@ function CompareProps({ propertyDetails }) {
   } = propertyDetails;
 
   const rows = [
-    createData('Home Type', propertyDetails.homeType),
-    createData('Year Built', yearBuilt),
-    createData('Living Area', livingArea),
-    createData('Price per sqft', pricePerSquareFoot),
-    createData('Monthly Strata Fee', monthlyHoaFee),
+    createData('Home Address', address?.streetAddress ?? 'No data'),
+    createData('Home Type', homeType ?? 'No data'),
+    createData('Year Built', yearBuilt ?? 'No data'),
+    createData('Living Area', livingArea ?? 'No data'),
+    createData('Price per sqft', pricePerSquareFoot ?? 'No data'),
+    createData('Monthly Strata Fee', monthlyHoaFee ?? 'No data'),
     hasGarage
       ? createData('Garage', 'Has Garage')
       : createData('Garage', 'No Garage'),
-    createData('Bathrooms', bathrooms),
-    createData('Bedrooms', bedrooms),
+    createData('Bathrooms', bathrooms ?? 'No data'),
+    createData('Bedrooms', bedrooms ?? 'No data'),
   ];
-  //   return (
-  //     <Main>
-  //       <Box
-  //         sx={{
-  //           width: '100%',
-  //           height: '100vh',
-  //           paddingTop: '5em',
-  //         }}
-  //       >
-  //         <Wrapper>
-  //           <Grid container spacing={20}>
-  //             <Grid item xs={12} sm={6}>
-  //               <div
-  //                 style={{
-  //                   textAlign: 'left',
-  //                   marginBottom: '2rem',
-  //                   marginRight: '-5rem',
-  //                 }}
-  //               >
-  //                 <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
-  //                   <InfoRow>
-  //                     <Bold>Home Type: </Bold> {homeType}
-  //                   </InfoRow>
-  //                   <InfoRow>
-  //                     <Bold>Year Built: </Bold> {yearBuilt}
-  //                   </InfoRow>
-  //                   <InfoRow>
-  //                     <Bold> House Age: </Bold>
-  //                     {new Date().getFullYear() - yearBuilt}
-  //                   </InfoRow>
-  //                   <InfoRow>
-  //                     <Bold>Living Area: </Bold> {livingArea} sqft
-  //                   </InfoRow>
-  //                   <InfoRow>
-  //                     <Bold>Price Per sqft: </Bold> {pricePerSquareFoot} CAD
-  //                   </InfoRow>
-  //                   <InfoRow>
-  //                     <Bold>Strata Fee: </Bold> {monthlyHoaFee} CAD
-  //                   </InfoRow>
-  //                   <InfoRow>
-  //                     <Bold>Garage: </Bold> {hasGarage === true ? 'Yes' : 'No'}
-  //                   </InfoRow>
-  //                   <InfoRow>
-  //                     <Bold>Bathrooms: </Bold> {bathrooms}
-  //                   </InfoRow>
-  //                   <InfoRow>
-  //                     <Bold> Bedrooms: </Bold> {bedrooms}
-  //                   </InfoRow>
-  //                 </Typography>
-  //               </div>
-  //             </Grid>
-  //           </Grid>
-  //         </Wrapper>
-  //       </Box>
-  //     </Main>
-  //   );
-  // }
-  // const Main = styled.div`
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   padding: 30px;
-  // `;
-
-  // const InfoRow = styled.p`
-  //   margin-bottom: 10px;
-  // `;
-
-  // const Wrapper = styled.div`
-  //   border-radius: 15px;
-  //   padding: 16px;
-  //   min-width: 100%;
-  //   width: fit-content;
-  //   margin: -23px;
-  //   background-color: white;
-  //   text-align: center;
-  //   box-shadow: 10px 10px #fbe8e9;
-  //   display: inline-flex;
-  //   flex-direction: row;
-  // `;
-
-  // const Bold = styled.b`
-  //   font-weight: bold;
-  //   margin-top: 30px;
-  // `;
-  // const BoldHeader = styled.h2`
-  //   font-weight: bold;
-  //   font-size: 25px;
-  //   margin-bottom: 20px;
-  // `;
-
-  // const Box = styled.div`
-  //   padding: 20px;
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: column;
-  //   background-color: "#f5f5f5"";
-  //   color: white;
-  //   font-size: 20px;
-  //   font-weight: bold;
-  //   border-radius: 10px;
-  //   box-shadow: 10px 10px #fbe8e9;
-  // `;
-
-  // const rows = [
-  //   {
-  //     homeType,
-  //     yearBuilt,
-  //     livingArea,
-  //     pricePerSquareFoot,
-  //     monthlyHoaFee,
-  //     hasGarage,
-  //     bathrooms,
-  //     bedrooms,
-  //   },
-  // ];
 
   return (
     <StyledContainer>
-      <StyledTableContainer
-        component={Paper}
-        style={{ width: 500 }}
-        // style={({ maxHeight: '280px' }, { maxWidth: '400px' })}
-      >
+      <StyledTableContainer component={Paper} style={{ width: 500 }}>
         <Table sx={{ minWidth: 100 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell colSpan={5} style={{ textAlign: 'left' }} width="100%">
-                Home Address
+              <TableCell
+                colSpan={5}
+                style={{ textAlign: 'center', fontWeight: 'bold' }}
+              >
+                Property Details
               </TableCell>
             </TableRow>
           </TableHead>
@@ -200,30 +84,5 @@ const StyledTableContainer = styled(TableContainer)`
     }
   }
 `;
-// const Wrapper = styled.div`
-//   border-radius: 15px;
-//   padding: 16px;
-//   min-width: 100%;
-//   width: fit-content;
-//   margin: -23px;
-//   background-color: white;
-//   text-align: center;
-//   box-shadow: 10px 10px #fbe8e9;
-//   display: inline-flex;
-//   flex-direction: row;
-// `;
-
-// const Box = styled.div`
-//   padding: 20px;
-//   width: 100%;
-//   display: flex;
-//   flex-direction: column;
-//   background-color: "#f5f5f5"";
-//   color: white;
-//   font-size: 20px;
-//   font-weight: bold;
-//   border-radius: 10px;
-//   box-shadow: 10px 10px #fbe8e9;
-// `;
 
 export default CompareProps;

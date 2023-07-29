@@ -6,12 +6,13 @@ import axios from 'axios';
 import { getWalkAndTransitScoreAsync } from '../../redux/property/thunks';
 
 function WalkScore({ zpid }) {
+  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
   const walkAndTransitScore = useSelector(
     state => state.property.walkAndTransitScore
   );
   useEffect(() => {
-    dispatch(getWalkAndTransitScoreAsync(zpid));
+    dispatch(getWalkAndTransitScoreAsync({ zpid, token }));
   }, [zpid]);
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const Wrapper = styled.div`
   display: 'flex';
   font-size: 20px;
   flex-direction: column;
+  margin-top: 20px;
 `;
 
 const Bold = styled.b`
@@ -59,7 +61,7 @@ const IframeWalkScore = styled.iframe`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 57%;
-  height: 500px;
-  margin: 20px 0;
+  width: 100%;
+  height: 400px;
+  margin: 32px;
 `;

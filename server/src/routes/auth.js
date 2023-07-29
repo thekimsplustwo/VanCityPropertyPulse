@@ -6,11 +6,11 @@ import {
   isLoggedIn,
   isNotLoggedIn,
   googleCallback,
+  sendUserToken,
 } from '../middleware/auth.js';
 
 const googleOptions = {
   authType: 'request',
-  scope: ['email', 'profile'],
   accessType: 'offline',
   prompt: 'consent',
 };
@@ -23,7 +23,7 @@ authRouter.get(
   passport.authenticate('google', googleOptions)
 );
 
-authRouter.get('/google/callback', googleCallback);
+authRouter.get('/google/callback', googleCallback, sendUserToken);
 authRouter.post('/logout/google', asyncWrap(authController.googleLogout));
 
 export default authRouter;

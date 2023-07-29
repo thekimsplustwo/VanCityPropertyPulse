@@ -31,6 +31,7 @@
     }
   },
   "rules": {
+    "consistent-return": "warn", 
     "eqeqeq": "warn",
     "default-param-last": "off",
     "dot-notation": "off",
@@ -55,8 +56,7 @@
     "spaced-comment": "off",
     "no-param-reassign": ["error", { "props": false }],
     "no-underscore-dangle": "off",
-    "consistent-return": "off",
     "func-names": "off"
   },
-  "ignorePatterns": ["dist/", "node_modules/"]
+  "ignorePatterns": ["dist/", "node_modules/", "build/"]
 }

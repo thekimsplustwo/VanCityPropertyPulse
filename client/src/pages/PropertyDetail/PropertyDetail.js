@@ -10,15 +10,16 @@ import MenuItems from '../../components/Property/MenuItems';
 import AdditionalInfo from '../../components/Property/AdditonalInfo';
 import { getPropertyAsync } from '../../redux/property/thunks';
 import VirtualTour from '../../components/Property/VirtualTour';
+import MapBox from '../../components/Property/MapBox';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import NearByHomes from '../../components/Property/NearByHomes';
 import WalkScore from '../../components/Property/WalkScore';
 import { isObjectValid } from '../../utils/utils';
-import { LOGIN_URI } from '../../config';
 
 function Property() {
-  const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
+  const navigate = useNavigate();
   const { zpid } = useParams();
   const property = useSelector(state => state.property.property);
   const isLogin = useSelector(state => state.users.isLogin);
@@ -33,7 +34,7 @@ function Property() {
     if (!isLogin) {
       navigateToLogin();
     } else {
-      dispatch(getPropertyAsync(zpid));
+      dispatch(getPropertyAsync({ zpid, token }));
     }
   }, [dispatch, zpid]);
 
@@ -41,15 +42,18 @@ function Property() {
     const images = Array.isArray(property.imgSrc)
       ? property.imgSrc
       : [property.imgSrc];
-    const { nearbyHomes } = property;
+    const { nearbyHomes, longitude, latitude } = property;
     return (
       <Wrapper>
         <HeaderWrapper>
           <PropertyHeader propertyDetails={property} />
-          <MenuItems zpid={zpid} />
+          <MenuItems zpid={zpid} address={property.address?.streetAddress} />
         </HeaderWrapper>
         <ContentWrapper>
-          <ImageCarousel propertyImages={images} />
+          <GraphicWrapper>
+            <ImageCarousel propertyImages={images} />
+            <MapBox longitude={longitude} latitude={latitude} />
+          </GraphicWrapper>
           <DetailedInfo propertyDetails={property} />
         </ContentWrapper>
         <Row>
@@ -84,6 +88,15 @@ const HeaderWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 20px 50px;
+  justify-content: center;
+`;
+
+const GraphicWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px 50px;
+  width: 100%;
   justify-content: center;
 `;
 

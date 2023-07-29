@@ -2,9 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { actionTypes } from './actionTypes';
 import UserService from './service';
 
-export const getUserAsync = createAsyncThunk(actionTypes.GET_USER, async () => {
-  return UserService.getUser();
-});
+export const getUserAsync = createAsyncThunk(
+  actionTypes.GET_USER,
+  async token => {
+    return UserService.getUser(token);
+  }
+);
 
 export const googleLoginAsync = createAsyncThunk(
   actionTypes.GOOGLE_LOGIN,
@@ -15,14 +18,14 @@ export const googleLoginAsync = createAsyncThunk(
 
 export const googleLogoutAsync = createAsyncThunk(
   actionTypes.LOGOUT,
-  async () => {
-    return UserService.googleLogout();
+  async token => {
+    return UserService.googleLogout(token);
   }
 );
 
 export const editProfileAsync = createAsyncThunk(
   actionTypes.EDIT_PROFILE,
-  async formData => {
-    return UserService.editProfile(formData);
+  async ({ formData, token }) => {
+    return UserService.editProfile(formData, token);
   }
 );
