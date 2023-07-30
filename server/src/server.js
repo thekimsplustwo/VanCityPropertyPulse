@@ -1,5 +1,4 @@
 import http from 'http';
-import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';

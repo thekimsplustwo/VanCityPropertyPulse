@@ -17,7 +17,14 @@ const googleLogout = async token => {
     const response = await axios.post(`${BASE_URL}/auth/logout/google`, null, {
       withCredentials: true,
     });
-    localStorage.removeItem('token');
+    if ('caches' in window) {
+      caches.keys().then(names => {
+        names.forEach(name => {
+          caches.delete(name);
+        });
+      });
+    }
+    localStorage.clear();
     return response;
   } catch (error) {
     throw new Error(error.message);

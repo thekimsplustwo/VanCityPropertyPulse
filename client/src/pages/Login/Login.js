@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import searchImage from '../../assets/images/searchComponent.jpg';
@@ -17,13 +18,16 @@ function Login() {
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search);
   const token = searchQuery.get('token');
-  const handleGoogleLogin = async () => {
-    dispatch(resetUserState());
-    dispatch(resetListState());
-    dispatch(resetLikesState());
+  const isLogin = useSelector(state => state.users.isLogin);
+  const handleGoogleLogin = async event => {
+    event.preventDefault();
     try {
-      localStorage.removeItem('token');
-      //await dispatch(googleLogoutAsync(token));
+      if (isLogin) {
+        await dispatch(googleLogoutAsync(token));
+        dispatch(resetUserState());
+        dispatch(resetListState());
+        dispatch(resetLikesState());
+      }
       window.location.href = LOGIN_URL;
     } catch (error) {
       console.error(error);
