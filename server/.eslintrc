@@ -58,5 +58,5 @@
     "no-underscore-dangle": "off",
     "func-names": "off"
   },
-  "ignorePatterns": ["dist/", "node_modules/", "build/"]
+  "ignorePatterns": ["dist/", "node_modules/", "build/", "test/"]
 }
