@@ -4,9 +4,7 @@ import Router from './Router';
 
 function App() {
   return (
-    <HashRouter>
-      <Router />;
-    </HashRouter>
+    <Router />;
   );
 }
 
