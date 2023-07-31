@@ -6,8 +6,7 @@ import { neighborhoodsVancouver } from '../data/locationData.js';
 
 dotenv.config();
 
-const ZILLOW_API_LISTING_FLAG_ON =
-  process.env.ZILLOW_API_LISTING.toLowerCase() === 'on';
+const ZILLOW_API_LISTING_FLAG_ON = process.env.ZILLOW_API_LISTING === 'on';
 
 const ExtendedSearchOptions = (filter, sort) => {
   return {
