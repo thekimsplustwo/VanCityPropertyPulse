@@ -26,8 +26,14 @@ const limiter = RateLimit({
 
 dotenv.config();
 
-const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY, ZILLOW_API_URL, EC2_DNS } =
-  process.env;
+const {
+  FRONT_URL,
+  FRONT_URL_DEPLOYED,
+  DEPLOYABLE_URL,
+  SECRET_KEY,
+  ZILLOW_API_URL,
+  EC2_DNS,
+} = process.env;
 
 const PORT = process.env.PORT || 10010;
 const MongoDBStore = connectMongoDBSession(session);
@@ -44,24 +50,16 @@ const sessionOptions = {
   cookie: { maxAge: 1000 * 60 * 60 },
 };
 
-const corslist = [
-  FRONT_URL,
-  FRONT_URL_DEPLOYED,
-  ZILLOW_API_URL,
-  EC2_DNS,
-  'http://localhost:10010',
-  'http://localhost:3000',
-  'https://www.vancitypropertypulse.com',
-  'https://vancitypropertypulse.com',
-  'http://vancitypropertypulse.com',
-  'https://vancity-front.onrender.com',
-  'https://accounts.google.com',
-  'https://vancity-back.onrender.com',
-];
+const deployableUrls = DEPLOYABLE_URL.split(',');
 
-const whitelist = corslist.filter((url, index) => {
-  return corslist.indexOf(url) === index;
-});
+const corslist = [FRONT_URL, FRONT_URL_DEPLOYED, ZILLOW_API_URL, EC2_DNS];
+
+const whitelist = corslist
+  .concat(deployableUrls)
+  .filter(item => item !== undefined && item !== null && item !== '')
+  .filter((value, index, self) => self.indexOf(value) === index);
+
+
 const corsOptions = {
   origin: whitelist,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
