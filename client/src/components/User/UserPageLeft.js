@@ -25,7 +25,7 @@ const WrapperOne = styled.div`
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
-  height: 45%;
+  height: 48%;
 `;
 
 const WrapperTwo = styled.div`
@@ -35,7 +35,7 @@ const WrapperTwo = styled.div`
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
-  height: 50%;
+  height: 48%;
 `;
 
 const Outer = styled.div`
@@ -43,5 +43,5 @@ const Outer = styled.div`
 `;
 
 const Spacer = styled.div`
-  height: 5%;
+  height: 4%;
 `;
