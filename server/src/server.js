@@ -1,4 +1,6 @@
 import http from 'http';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
@@ -13,6 +15,9 @@ import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportConfig from './middleware/passportConfig.js';
 import checkFeatureFlag from './utils/featureFlags.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
@@ -44,6 +49,8 @@ const corslist = [
   FRONT_URL_DEPLOYED,
   ZILLOW_API_URL,
   EC2_DNS,
+  'http://localhost:10010',
+  'http://localhost:3000',
   'https://www.vancitypropertypulse.com',
   'https://vancitypropertypulse.com',
   'http://vancitypropertypulse.com',
@@ -70,7 +77,7 @@ connect();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, '../../client/build')));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
@@ -83,6 +90,10 @@ app.use(routes);
 
 app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });
+});
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/build/index.html'));
 });
 
 const server = http.createServer(app);
