@@ -15,3 +15,10 @@ export const getWalkAndTransitScoreAsync = createAsyncThunk(
     return PropertyService.getWalkAndTransitScore(zpid, token);
   }
 );
+
+export const getCompareAsync = createAsyncThunk(
+  actionTypes.GET_COMPARE,
+  async ({ queryString, token }) => {
+    return PropertyService.getCompare(queryString, token);
+  }
+);

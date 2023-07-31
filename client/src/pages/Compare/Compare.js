@@ -10,11 +10,12 @@ import CompareDeleteButton from '../../components/Compare/CompareDeleteButton';
 import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
-import { getPropertyAsync } from '../../redux/property/thunks';
+import { getPropertyAsync, getCompareAsync } from '../../redux/property/thunks';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
 import { isObjectValid } from '../../utils/utils';
 
 function Compare() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const token = localStorage.getItem('token');
@@ -22,6 +23,18 @@ function Compare() {
   const params = new URLSearchParams(location.search);
   let zpidList = Array.from(new Set(params.getAll('item')));
   const isLogin = useSelector(state => state.users.isLogin);
+
+  /* get property list via compare api
+  const propertyList = useSelector(state => state.property.compare);
+
+  useEffect(() => {
+    if (!isLogin) {
+      navigate('/');
+    } else {
+      dispatch(getCompareAsync({ queryString: location.search, token }));
+    }
+  }, [isLogin, dispatch, location.search]);
+*/
 
   // If there are more than 3 items in zpidList, show an alert
   useEffect(() => {
@@ -66,7 +79,7 @@ function Compare() {
   const [propertyList, setPropertyList] = useState(
     new Array(zpidList.length).fill(null)
   );
-  const dispatch = useDispatch();
+
   useEffect(() => {
     if (!isLogin) {
       navigate('/');
