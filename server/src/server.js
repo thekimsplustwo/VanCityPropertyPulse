@@ -24,7 +24,9 @@ const limiter = RateLimit({
   max: 100,
 });
 
-dotenv.config();
+dotenv.config({path: '/home/chao/VanCityPropertyPulse/server/src/.env'});
+
+console.log(process.env.ZILLOW_API_URL);
 
 const { FRONT_URL, FRONT_URL_DEPLOYED, SECRET_KEY, ZILLOW_API_URL, EC2_DNS } =
   process.env;
