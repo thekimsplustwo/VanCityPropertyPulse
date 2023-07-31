@@ -9,7 +9,7 @@
     "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "distribute": "npm ci && pm2 start src/server.js --name vancityprod -i max --node-args=\"-r dotenv/config\"",
+    "distribute": "npm ci && pm2 start src/server.js --name vancityprod -i max",
     "test": "jest --coverage"
   },
   "keywords": [],
