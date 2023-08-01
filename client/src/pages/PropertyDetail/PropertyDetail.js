@@ -94,18 +94,16 @@ const HeaderWrapper = styled.div`
 const GraphicWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 20px 50px;
+  align-items: stretch;
   width: 100%;
-  justify-content: center;
 `;
 
 const ContentWrapper = styled.div`
   padding: 10px 50px;
   display: flex;
-  justify-content: space-around;
   align-items: stretch;
   margin: 0;
+  vertical-align: top;
 `;
 
 const Row = styled.div`

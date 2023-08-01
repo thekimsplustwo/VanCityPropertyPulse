@@ -197,7 +197,7 @@ const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;
   width: 100%;
-  margin: -23px;
+  // margin: -23px;
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
@@ -215,7 +215,6 @@ const BoldHeader = styled.h2`
 `;
 
 const Box = styled.div`
-  padding: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
