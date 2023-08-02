@@ -15,6 +15,16 @@
     ]
   },
   "homepage": "https://vancitypropertypulse.com",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "distribute": "npm ci && npm run build && pm2 serve build 3000 --name vancity-front --spa"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -45,16 +55,6 @@
     "styled-components": "^5.3.11",
     "styled-reset": "^4.4.7",
     "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "distribute": "npm i && npm run build && pm2 serve build 3000 --name vancity-front --spa"
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",
