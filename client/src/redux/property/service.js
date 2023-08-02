@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { BASE_URL, FRONT_LOGIN_URL } from '../../config';
 import googleLogout from '../users/service';
 
@@ -43,7 +44,32 @@ const getWalkAndTransitScore = async (zpid, token) => {
   return data;
 };
 
+const getCompare = async (queryString, token) => {
+  try {
+    const response = await axios.get(
+      `${BASE_URL}/compare${queryString.toString()}`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        withCredentials: true,
+      }
+    );
+    return Array.isArray(response.data) ? response.data : [response.data];
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      await googleLogout();
+      window.location.replace(FRONT_LOGIN_URL);
+      return null;
+    }
+    const errorMsg = error.response?.data?.message;
+    throw new Error(errorMsg);
+  }
+};
+
 export default {
   getProperty,
+  getCompare,
   getWalkAndTransitScore,
 };
