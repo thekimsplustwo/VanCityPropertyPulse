@@ -3,7 +3,10 @@ import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import { MAPBOX_STYLE, MAPBOX_TOKEN, MAPBOX_ZOOM } from '../../config';
 import 'mapbox-gl/dist/mapbox-gl.css';
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/order, import/no-unresolved
+import mapboxCspWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 
+mapboxgl.workerClass = mapboxCspWorker;
 mapboxgl.accessToken = MAPBOX_TOKEN;
 
 function MapBox({ longitude, latitude }) {
