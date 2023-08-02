@@ -14,7 +14,19 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://vancitypropertypulse.com",
+  "proxy": "http://localhost:10010",
+  "homepage": "http://localhost:10010",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "distribute": "npm ci && npm run build && pm2 serve build 3000 --name vancity-front --spa",
+    "test:playwright": "npx playwright test tests --headed --project=chromium"
+  },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
@@ -30,6 +42,8 @@
     "axios": "^1.4.0",
     "cheerio": "^1.0.0-rc.12",
     "mapbox-gl": "^2.15.0",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
@@ -46,16 +60,6 @@
     "styled-reset": "^4.4.7",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "distribute": "npm i && npm run build && pm2 serve build 3000 --name vancity-front --spa"
-  },
   "devDependencies": {
     "@babel/core": "^7.22.1",
     "@babel/eslint-parser": "^7.21.8",
@@ -63,6 +67,7 @@
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
     "@babel/runtime": "^7.22.3",
+    "@playwright/test": "^1.36.2",
     "babel-loader": "^9.1.2",
     "eslint": "^8.42.0",
     "eslint-config-airbnb": "^19.0.4",
