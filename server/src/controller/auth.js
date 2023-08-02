@@ -21,7 +21,7 @@ const googleLogout = async (req, res) => {
       httpOnly: true,
       secure: true,
     });
-    res.redirect(`${SERVER_HOST}/auth/google/callback`);
+    res.redirect(`${SERVER_HOST}/auth/login/google`);
   });
 };
 
