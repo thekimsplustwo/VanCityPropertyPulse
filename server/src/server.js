@@ -58,8 +58,6 @@ const whitelist = corslist
   .concat(deployableUrls)
   .filter(item => item !== undefined && item !== null && item !== '')
   .filter((value, index, self) => self.indexOf(value) === index);
-
-
 const corsOptions = {
   origin: whitelist,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
@@ -84,7 +82,7 @@ app.use(passport.initialize());
 app.use(passport.authenticate('session'));
 passportConfig();
 app.use(limiter);
-app.use(routes);
+app.use('/api', routes);
 
 app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });

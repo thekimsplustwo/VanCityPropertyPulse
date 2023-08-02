@@ -4,7 +4,7 @@ import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 
 dotenv.config();
 
-const { GOOGLE_CLIENT_ID, SERVER_REDIRECT_URI } = process.env;
+const { SERVER_HOST } = process.env;
 
 const googleLogout = async (req, res) => {
   const expirationDate = addSeconds(new Date(), 1);
@@ -13,13 +13,15 @@ const googleLogout = async (req, res) => {
       errorGenerator(ERROR_TYPE.NETWORK_ERROR);
     }
     req.session.passport = null;
-    res.clearCookie('connect.sid', { path: '/auth/login/google' });
+    res.clearCookie('connect.sid', {
+      path: `${SERVER_HOST}/auth/login/google`,
+    });
     res.cookie('connect.sid', '', {
       expires: expirationDate,
       httpOnly: true,
       secure: true,
     });
-    res.redirect('/auth/login/google');
+    res.redirect(`${SERVER_HOST}/auth/google/callback`);
   });
 };
 
