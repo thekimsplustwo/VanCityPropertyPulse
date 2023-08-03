@@ -4,7 +4,14 @@ import { getUserInfoByEmail } from '../models/user.js';
 import { users } from '../data/data.js';
 import generateToken from '../utils/token.js';
 
-const { FRONT_URL_DEPLOYED, FRONT_URL, TEST_USER_EMAIL, PROD } = process.env;
+const {
+  FRONT_URL_DEPLOYED,
+  FRONT_URL,
+  TEST_USER_EMAIL,
+  PROD,
+  SECRET_KEY,
+  AUTH,
+} = process.env;
 
 const REDIRECT_URL = PROD === 'on' ? FRONT_URL_DEPLOYED : FRONT_URL;
 
@@ -18,7 +25,7 @@ export const isLoggedIn = (req, res, next) => {
 };
 
 export const isNotLoggedIn = (req, res, next) => {
-  if (process.env.AUTH !== 'on') {
+  if (AUTH !== 'on') {
     const token = generateToken(TEST_USER_EMAIL);
     return res.redirect(301, `${REDIRECT_URL}?token=${token}`);
   }
@@ -30,17 +37,17 @@ export const isNotLoggedIn = (req, res, next) => {
 };
 
 export const verifyToken = async (req, res, next) => {
-  if (process.env.AUTH !== 'on') {
+  if (AUTH !== 'on') {
     req.user = users.find(user => user.email === TEST_USER_EMAIL);
     next();
   } else {
     try {
       const token = req.headers.authorization.split(' ')[1];
-      console.log('verifyTone ', token);
+      //console.log('verifyToken ', token);
       if (!token) {
         return res.status(401).json({ url: REDIRECT_URL });
       }
-      const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+      const decodedToken = jwt.verify(token, SECRET_KEY);
       const { email } = decodedToken;
       //const email = req.session.passport.user;
       const user = await getUserInfoByEmail(email);
@@ -61,18 +68,16 @@ export const verifyToken = async (req, res, next) => {
   }
 };
 export const verifyToken2 = async (req, res, next) => {
-  if (process.env.AUTH !== 'on') {
+  if (AUTH !== 'on') {
     req.user = users.find(user => user.email === TEST_USER_EMAIL);
     next();
   } else {
     try {
-      console.log('req.session : ', req.session);
-      console.log('req.session passport: ', req.session.passport);
       if (!(req.session.passport && req.isAuthenticated())) {
         return res.status(401).json({ url: REDIRECT_URL });
       }
       const token = req.session.passport.user;
-      const decodedToken = jwt.verify(token, process.env.SECRET_KEY);
+      const decodedToken = jwt.verify(token, SECRET_KEY);
       const { email } = decodedToken;
       //const email = req.session.passport.user;
       const user = await getUserInfoByEmail(email);
@@ -99,7 +104,7 @@ export const googleCallback2 = (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.redirect('/auth/login/google');
+      return res.redirect('/api/auth/login/google');
     }
     req.logIn(user, err => {
       if (err) {
@@ -118,7 +123,7 @@ export const googleCallback = (req, res, next) => {
     if (err) {
       console.error(err);
     } else if (!user) {
-      res.redirect('/auth/login/google');
+      res.redirect('/api/auth/login/google');
     } else {
       req.logIn(user, err => {
         if (err) {

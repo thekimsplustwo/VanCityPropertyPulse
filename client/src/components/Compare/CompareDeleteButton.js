@@ -14,7 +14,12 @@ function CompareDeleteButton({ zpid, children }) {
   };
 
   return (
-    <Button variant="outlined" color="secondary" onClick={handleDelete}>
+    <Button
+      style={{ maxWidth: 500 }}
+      variant="outlined"
+      color="secondary"
+      onClick={handleDelete}
+    >
       {children}
     </Button>
   );

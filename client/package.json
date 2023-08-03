@@ -14,11 +14,10 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:10010",
-  "homepage": "http://localhost:10010",
+  "homepage": "https://vancitypropertypulse.com",
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "pretty": "prettier --config ./.prettierrc --write \"./**/*.js\"",
@@ -58,7 +57,8 @@
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.11",
     "styled-reset": "^4.4.7",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "worker-loader": "^3.0.8"
   },
   "devDependencies": {
     "@babel/core": "^7.22.1",

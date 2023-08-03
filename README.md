@@ -1,7 +1,7 @@
 # **VanCity Property Pulse**
 
 ## **Project Description**
-VanCity Property Pulse is a web application that allows users to search,view details, and save listings for properties for sale in Vancouver. The app features a search interface to filter listings by criteria like price and location, displays property details like price and amenities, and lets users save favorite listings. The goal is to provide an easy way to find and compare properties on the market in Vancouver.
+VanCity Property Pulse is a web application that allows users to search, view details, and save listings for properties for sale in Vancouver. The app features a search interface to filter listings by criteria like price and location, displays property details like price and amenities, and lets users save favourite listings. The goal is to provide an easy way to find and compare properties on the market in Vancouver.
 <br><br>
 
 ## **Project Task Requirements**
@@ -33,7 +33,7 @@ VanCity Property Pulse is a web application that allows users to search,view det
 <br><br>
 2.  Display property's detailed information such as price and location
     - Set up a React.js application for the client-side interface
-    - Get selected property id (pid) from URL ( /properties/:pid ) to retreive property information 
+    - Get selected property id (pid) from URL ( /properties/:pid ) to retrieve property information 
     - Display property information such as address, price, and image(s)
 <br><br>
 3. Implement user interface for searching and filtering through listings.

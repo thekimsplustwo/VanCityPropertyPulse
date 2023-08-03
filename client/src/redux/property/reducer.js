@@ -1,13 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import { REQUEST_STATE } from '../utils';
-import { getPropertyAsync, getWalkAndTransitScoreAsync } from './thunks';
+import {
+  getPropertyAsync,
+  getCompareAsync,
+  getWalkAndTransitScoreAsync,
+} from './thunks';
 
 const INITIAL_STATE = {
   property: {},
   walkAndTransitScore: {},
+  compare: [],
   getProperty: REQUEST_STATE.IDLE,
   getWalkAndTransitScore: REQUEST_STATE.IDLE,
+  getCompare: REQUEST_STATE.IDLE,
   error: null,
 };
 
@@ -39,6 +45,18 @@ const propertySlice = createSlice({
       })
       .addCase(getWalkAndTransitScoreAsync.rejected, (state, action) => {
         state.getWalkAndTransitScore = REQUEST_STATE.REJECTED;
+        state.error = action.error;
+      })
+      .addCase(getCompareAsync.pending, state => {
+        state.getCompare = REQUEST_STATE.PENDING;
+        state.error = null;
+      })
+      .addCase(getCompareAsync.fulfilled, (state, action) => {
+        state.getCompare = REQUEST_STATE.FULFILLED;
+        state.compare = action.payload;
+      })
+      .addCase(getCompareAsync.rejected, (state, action) => {
+        state.getCompare = REQUEST_STATE.REJECTED;
         state.error = action.error;
       });
   },

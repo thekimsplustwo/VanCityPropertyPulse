@@ -45,7 +45,7 @@ function DetailedInfo({ propertyDetails }) {
         }}
       >
         <Wrapper>
-          <Grid container spacing={20}>
+          <Grid container spacing={20} wrap="nowrap">
             <Grid item xs={12} sm={6}>
               <div
                 style={{
@@ -176,17 +176,6 @@ function DetailedInfo({ propertyDetails }) {
               </InfoRow>
             </StyledText>
           </div>
-          {/* <ThemeProvider theme={theme}> */}
-          {/* <Button
-            variant="outlined"
-            color="primary"
-            size="large"
-            endIcon={<ArrowForward />}
-            sx={{ backgroundColor: '#FFFFFF' }}
-          >
-            See More Facts and Features
-          </Button> */}
-          {/* </ThemeProvider> */}
         </Wrapper>
       </Box>
     </Container>
@@ -208,7 +197,7 @@ const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;
   width: 100%;
-  margin: -23px;
+  // margin: -23px;
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
@@ -218,6 +207,7 @@ const Bold = styled.b`
   font-weight: bold;
   margin-top: 30px;
 `;
+
 const BoldHeader = styled.h2`
   font-weight: bold;
   font-size: 25px;
@@ -225,7 +215,6 @@ const BoldHeader = styled.h2`
 `;
 
 const Box = styled.div`
-  padding: 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
