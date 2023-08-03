@@ -11,7 +11,6 @@ function UserProfileEdit({ setModal }) {
   const [formData, setFormData] = useState({
     firstName: user.firstName ?? '',
     lastName: user.lastName || '',
-    age: user.age || '',
     email: user.email || '',
     phoneNumber: user.phoneNumber || '',
     region: user.region || '',
@@ -57,14 +56,6 @@ function UserProfileEdit({ setModal }) {
                 disabled
                 name="lastName"
                 value={formData.lastName}
-              />
-
-              <TextField
-                type="number"
-                label="Age"
-                name="age"
-                value={formData.age}
-                onChange={e => handleInputChange(e.currentTarget)}
               />
 
               <TextField
@@ -154,7 +145,7 @@ const FormContainer = styled.div`
 const Main = styled.div`
   padding: 16px;
   width: 35em;
-  height: 35em;
+  height: 30em;
   margin: 20px;
   background-color: white;
   text-align: center;
