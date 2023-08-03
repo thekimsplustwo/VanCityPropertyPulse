@@ -5,7 +5,6 @@ import { users } from '../data/data.js';
 import generateToken from '../utils/token.js';
 
 const {
-  SERVER_HOST,
   FRONT_URL_DEPLOYED,
   FRONT_URL,
   TEST_USER_EMAIL,
@@ -105,7 +104,7 @@ export const googleCallback2 = (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      return res.redirect(`${SERVER_HOST}/auth/login/google`);
+      return res.redirect('/api/auth/login/google');
     }
     req.logIn(user, err => {
       if (err) {
@@ -124,7 +123,7 @@ export const googleCallback = (req, res, next) => {
     if (err) {
       console.error(err);
     } else if (!user) {
-      res.redirect(`${SERVER_HOST}/auth/login/google`);
+      res.redirect('/api/auth/login/google');
     } else {
       req.logIn(user, err => {
         if (err) {
