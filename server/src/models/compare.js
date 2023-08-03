@@ -7,7 +7,7 @@ const getCompareProperties = async (email, items) => {
     { $match: { email: email } },
     { $unwind: '$properties' },
     { $match: { 'properties.zpid': { $in: zpids } } },
-    { $project: { _id: 0, properties: 1 } }, // This line is new
+    { $project: { _id: 0, properties: 1 } },
   ]);
   return res.map(item => item.properties);
 };
