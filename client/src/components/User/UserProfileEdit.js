@@ -158,11 +158,21 @@ const Main = styled.div`
   margin: 20px;
   background-color: white;
   text-align: center;
+
+  @media (max-width: 800px) {
+    width: 22em;
+    height: 35em;
+  }
 `;
 
 const Title = styled.p`
   font-size: 28px;
   margin-bottom: 10px;
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
 `;
 
 export default UserProfileEdit;
