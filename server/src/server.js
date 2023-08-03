@@ -1,6 +1,7 @@
 import http from 'http';
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
+import tracer from 'dd-trace';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import express from 'express';
@@ -15,6 +16,8 @@ import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportConfig from './middleware/passportConfig.js';
 import checkFeatureFlag from './utils/featureFlags.js';
+
+tracer.init();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
