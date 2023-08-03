@@ -19,10 +19,18 @@ const StyledPaper = styled(Paper)`
   height: 70px;
   background-color: white;
   border-radius: 8px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 `;
 
 const StyledAutocomplete = styled(Autocomplete)`
   width: 370px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 `;
 
 export default function Search() {
