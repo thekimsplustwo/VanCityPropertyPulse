@@ -15,7 +15,7 @@ const StyledPaper = styled(Paper)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  width: 370px;
   height: 70px;
   background-color: white;
   border-radius: 8px;
@@ -53,9 +53,6 @@ export default function Search() {
         )}
         onChange={handleLocationChange}
       />
-      <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-        <SearchIcon />
-      </IconButton>
     </StyledPaper>
   );
 }
