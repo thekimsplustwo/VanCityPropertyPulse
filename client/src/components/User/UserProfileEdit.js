@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TextField, Button } from '@mui/material';
 import { editProfileAsync } from '../../redux/users/thunks';
+import { FRONT_LOGIN_URL } from '../../config';
 
 function UserProfileEdit({ setModal }) {
   const token = localStorage.getItem('token');
@@ -28,6 +29,7 @@ function UserProfileEdit({ setModal }) {
   const handleSaveBtn = () => {
     dispatch(editProfileAsync({ formData, token }));
     setModal(false);
+    window.location.href = `${FRONT_LOGIN_URL}/mypage`;
   };
 
   return (
