@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { useLocation, useNavigate } from 'react-router-dom';
 import searchImage from '../../assets/images/searchComponent.jpg';
-import { BASE_URL } from '../../config';
+import { BASE_URL, AUTH } from '../../config';
 import { setLoginStatus, resetUserState } from '../../redux/users/reducer';
 import { googleLogoutAsync } from '../../redux/users/thunks';
 import { resetListState } from '../../redux/home/reducer';
@@ -40,6 +40,13 @@ function Login() {
       navigate('/home');
     }
   }, [token]);
+
+  useEffect(() => {
+    if (AUTH === 'off') {
+      dispatch(setLoginStatus(true));
+      navigate('/home');
+    }
+  }, [AUTH]);
 
   return (
     <Main>

@@ -6,8 +6,9 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const MAPBOX_STYLE = process.env.REACT_APP_MAPBOX_STYLE;
 const MAPBOX_ZOOM = process.env.REACT_APP_MAPBOX_ZOOM;
 const SNS_URL = process.env.REACT_APP_TEST_URL;
-
+const AUTH = process.env.REACT_APP_AUTH;
 export {
+  AUTH,
   BASE_URL,
   FRONT_LOGIN_URL,
   GOOGLE_CLIENT_SECRET,
