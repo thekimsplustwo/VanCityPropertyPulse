@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, MenuItem } from '@mui/material';
 import { editProfileAsync } from '../../redux/users/thunks';
 import { FRONT_LOGIN_URL } from '../../config';
+import { neighborhoodsVancouver } from '../SearchOption/neighborhoods';
 
 function UserProfileEdit({ setModal }) {
   const token = localStorage.getItem('token');
@@ -23,6 +24,13 @@ function UserProfileEdit({ setModal }) {
     setFormData(prevFormData => ({
       ...prevFormData,
       [name]: value,
+    }));
+  };
+
+  const handleInputChangeForRegion = selectedValue => {
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      region: selectedValue, // Update the region with the selected value
     }));
   };
 
@@ -78,12 +86,19 @@ function UserProfileEdit({ setModal }) {
               />
 
               <TextField
-                type="text"
+                select
                 label="Region"
                 name="region"
                 value={formData.region}
-                onChange={e => handleInputChange(e.currentTarget)}
-              />
+                onChange={e => handleInputChangeForRegion(e.target.value)}
+                sx={{ textAlign: 'left' }}
+              >
+                {neighborhoodsVancouver.map(option => (
+                  <MenuItem key={option.title} value={option.title}>
+                    {option.title}
+                  </MenuItem>
+                ))}
+              </TextField>
             </FormContainer>
             <Button
               sx={{ margin: '8px' }}
