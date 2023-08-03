@@ -43,6 +43,9 @@ const SocialContainer = styled.div`
   justify-content: flex-end;
   align-items: center;
   padding: 0 32px 32px 0;
+  @media (max-width: 700px) {
+    display: none;
+  }
 `;
 
 const FooterIcon = styled.div`
