@@ -44,6 +44,9 @@ const Margin = styled.div`
   margin: 20px;
   line-height: 30pt;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const Bold = styled.b`
