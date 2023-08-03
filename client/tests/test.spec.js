@@ -1,12 +1,12 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 
-
-test.describe('Basic flow test', () => {
+test.describe('Basic flow test', async () => {
   const url = process.env.TEST_URL || '';
+  await expect(url).not.toBe('');
 
   test.beforeEach(async ({ page }) => {
-    await expect(url).not.toBe('');
+
     await page.goto(url);
     await page.waitForURL(`${url}/home`);
     await page.waitForLoadState('domcontentloaded');
