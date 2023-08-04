@@ -15,6 +15,9 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const walk = transit.walkScore;
   const bike = transit.bikeScore;
 
+  console.log(lotFeature);
+  console.log(communityFeature);
+
   return (
     <Wrapper>
       <InfoRow>
@@ -40,11 +43,15 @@ function AdditionalInfo({ propertyDetails, transit }) {
           label="Bike Score"
           description={bike.description}
         />
-        <FeaturesSection title="Lot Features" features={lotFeature} />
-        <FeaturesSection
-          title="Community Features"
-          features={communityFeature}
-        />
+        {lotFeature && lotFeature.length > 0 && (
+          <FeaturesSection title="Lot Features" features={lotFeature} />
+        )}
+        {communityFeature && communityFeature.length > 0 && (
+          <FeaturesSection
+            title="Community Features"
+            features={communityFeature}
+          />
+        )}
         {schoolList && schoolList.length > 0 ? (
           schoolList.map((school, index) => (
             <School key={index} school={school} />
