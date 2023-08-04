@@ -22,7 +22,7 @@ function WalkScore({ zpid }) {
   return (
     walkAndTransitScore?.walkScore?.ws_link && (
       <Wrapper>
-        <Bold>Walk And Distance Score</Bold>
+        <Bold>Walk And Distance Score Details</Bold>
         <IframeWalkScore
           src={walkAndTransitScore.walkScore.ws_link}
           title="WalkScore"

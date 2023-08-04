@@ -22,6 +22,7 @@ function Property() {
   const navigate = useNavigate();
   const { zpid } = useParams();
   const property = useSelector(state => state.property.property);
+  const transitScore = useSelector(state => state.property.walkAndTransitScore);
   const isLogin = useSelector(state => state.users.isLogin);
 
   const dispatch = useDispatch();
@@ -62,7 +63,7 @@ function Property() {
           )}
         </Row>
         <Divider sx={{ borderBottomWidth: 4 }} />
-        <AdditionalInfo />
+        <AdditionalInfo propertyDetails={property} transit={transitScore} />
         <Divider sx={{ borderBottomWidth: 4 }} />
         <NearByHomes nearbyHomes={nearbyHomes} />
         <Divider sx={{ borderBottomWidth: 4 }} />
