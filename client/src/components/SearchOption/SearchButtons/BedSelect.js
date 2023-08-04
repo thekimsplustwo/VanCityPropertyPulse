@@ -3,7 +3,7 @@ import { Button, Menu, MenuItem, styled as muiStyled } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setBed } from '../../../redux/search/reducer';
 
-const StyledButton = muiStyled(Button)({
+const StyledButton = muiStyled(Button)(({ theme }) => ({
   backgroundColor: 'white',
   width: '90px',
   height: '45px',
@@ -14,7 +14,12 @@ const StyledButton = muiStyled(Button)({
     border: '1px solid black',
   },
   marginRight: '10px',
-});
+  [theme.breakpoints.down('sm')]: {
+    width: '70px',
+    height: '35px',
+    fontSize: '14px',
+  },
+}));
 
 export default function BedSelect() {
   const searchParams = useSelector(state => state.search);
