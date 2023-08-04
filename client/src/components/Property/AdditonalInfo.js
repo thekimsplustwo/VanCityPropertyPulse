@@ -12,16 +12,17 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const schoolList = propertyDetails.schools;
   const lotFeature = propertyDetails.resoFacts.lotFeatures;
   const communityFeature = propertyDetails.resoFacts.communityFeatures;
+  const interiorFeature = propertyDetails.resoFacts.interiorFeatures;
+  const windowFeature = propertyDetails.resoFacts.windowFeatures;
+  const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
+  const appliance = propertyDetails.resoFacts.appliances;
   const walk = transit.walkScore;
   const bike = transit.bikeScore;
-
-  console.log(lotFeature);
-  console.log(communityFeature);
 
   return (
     <Wrapper>
       <InfoRow>
-        <Bold>Neighbourhood</Bold>
+        <Bold>Additional Information</Bold>
         <ButtonWrapper>
           <Button
             variant="outlined"
@@ -51,6 +52,21 @@ function AdditionalInfo({ propertyDetails, transit }) {
             title="Community Features"
             features={communityFeature}
           />
+        )}
+        {interiorFeature && interiorFeature.length > 0 && (
+          <FeaturesSection
+            title="Interior Features"
+            features={interiorFeature}
+          />
+        )}
+        {windowFeature && windowFeature.length > 0 && (
+          <FeaturesSection title="Window Features" features={windowFeature} />
+        )}
+        {parkingFeature && parkingFeature.length > 0 && (
+          <FeaturesSection title="Parking Features" features={parkingFeature} />
+        )}
+        {appliance && appliance.length > 0 && (
+          <FeaturesSection title="Appliances" features={appliance} />
         )}
         {schoolList && schoolList.length > 0 ? (
           schoolList.map((school, index) => (
