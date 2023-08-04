@@ -136,11 +136,14 @@ const SliderContainer = styled.div`
   justify-content: space-evenly;
   margin-top: 2rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 800px) {
+    margin-top: 0rem;
+  }
 `;
 
 const StyledSlider = styled(Slider)`
   flex-grow: 0;
-  margin: 0 1em;
   width: 100%;
   .slick-list {
     margin-top: 10px;
@@ -183,13 +186,17 @@ const Bold = styled.b`
   align-items: left;
   margin-top: 20px;
   margin-left: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 24px;
+  }
 `;
 
 const InfoRow = styled.p`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 `;
 
 const StyledDiv = styled.div`

@@ -54,7 +54,13 @@ function DetailedInfo({ propertyDetails }) {
                   marginRight: '-5rem',
                 }}
               >
-                <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    marginBottom: '1rem',
+                    fontSize: { xs: '0.75rem', sm: '1rem' },
+                  }}
+                >
                   <InfoRow>
                     <HomeRoundedIcon
                       style={{ marginBottom: '-5px' }}
@@ -109,7 +115,13 @@ function DetailedInfo({ propertyDetails }) {
                   marginLeft: '-5em',
                 }}
               >
-                <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    marginBottom: '1rem',
+                    fontSize: { xs: '0.75rem', sm: '1rem' },
+                  }}
+                >
                   <InfoRow>
                     <CalendarMonthIcon
                       style={{ marginBottom: '-5px' }}
@@ -186,6 +198,10 @@ export default DetailedInfo;
 const InfoRow = styled.p`
   margin-bottom: 10px;
   ${baseInfoRowStyles}
+
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const StyledText = styled.p`
@@ -201,6 +217,10 @@ const Wrapper = styled.div`
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
+
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const Bold = styled.b`
@@ -212,6 +232,10 @@ const BoldHeader = styled.h2`
   font-weight: bold;
   font-size: 25px;
   margin-bottom: 20px;
+
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Box = styled.div`
