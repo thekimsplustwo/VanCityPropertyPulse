@@ -8,6 +8,7 @@ import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
 import MoreOptions from '../../components/User/MoreOptions';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
+import NearbyMe from '../../components/User/NearbyMe';
 
 function MyPage() {
   const token = localStorage.getItem('token');
@@ -27,6 +28,9 @@ function MyPage() {
     }
   }, [dispatch, isLogin]);
 
+  const user = useSelector(state => state.users.user);
+  const { region } = user;
+
   return (
     isLogin && (
       <Main>
@@ -34,7 +38,7 @@ function MyPage() {
         <Box
           sx={{
             width: '100%',
-            height: '100vh',
+            height: '100%',
             paddingTop: '5em',
           }}
         >
@@ -47,6 +51,7 @@ function MyPage() {
             </Grid>
           </Grid>
         </Box>
+        <NearbyMe region={region} />
       </Main>
     )
   );
