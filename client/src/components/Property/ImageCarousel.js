@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Carousel from 'react-material-ui-carousel';
-import { Box } from '@mui/material';
+import { Box, styled as muiStyled } from '@mui/material';
 import Image from './Image';
 
 function ImageCarousel(props) {
@@ -9,13 +9,13 @@ function ImageCarousel(props) {
     <Wrapper>
       <Section>
         {propertyImages ? (
-          <Box sx={{ maxWidth: 500, flexGrow: 1 }}>
+          <CarouselBox>
             <Carousel>
               {propertyImages.map((image, index) => (
                 <Image key={index} image={image} />
               ))}
             </Carousel>
-          </Box>
+          </CarouselBox>
         ) : (
           <ImageEmpty />
         )}
@@ -34,3 +34,11 @@ const Wrapper = styled.div`
 const Section = styled.section``;
 
 const ImageEmpty = styled.div``;
+
+const CarouselBox = muiStyled(Box)(({ theme }) => ({
+  maxWidth: '500px',
+  flexGrow: 1,
+  [theme.breakpoints.down('sm')]: {
+    maxWidth: '300px',
+  },
+}));

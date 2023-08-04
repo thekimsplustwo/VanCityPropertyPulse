@@ -54,12 +54,20 @@ const Bold = styled.b`
   align-items: left;
   margin-top: 20px;
   margin-left: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 24px;
+  }
 `;
 
 const Description = styled.p`
   font-size: 20px;
   color: #666666;
   margin-left: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 16px;
+  }
 `;
 
 const MarginBottom = styled.div`

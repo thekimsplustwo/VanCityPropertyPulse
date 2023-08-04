@@ -94,8 +94,14 @@ const HeaderWrapper = styled.div`
 const GraphicWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: stretch;
   width: 100%;
+
+  @media (max-width: 800px) {
+    margin-bottom: 30px;
+    margin-left: 30px;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -104,6 +110,11 @@ const ContentWrapper = styled.div`
   align-items: stretch;
   margin: 0;
   vertical-align: top;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Row = styled.div`

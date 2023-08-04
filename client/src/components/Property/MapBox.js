@@ -1,6 +1,7 @@
 // MapBox.js
 import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
+import styled from 'styled-components';
 import { MAPBOX_STYLE, MAPBOX_TOKEN, MAPBOX_ZOOM } from '../../config';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/order, import/no-unresolved
@@ -34,16 +35,20 @@ function MapBox({ longitude, latitude }) {
 
   return (
     <div>
-      <div
-        ref={mapContainer}
-        style={{
-          maxWidth: '500px',
-          height: '400px',
-          border: '1px solid #ccc',
-        }}
-      />
+      <MapBoxContainer ref={mapContainer} />
     </div>
   );
 }
+
+const MapBoxContainer = styled.div`
+  width: 500px;
+  height: 400px;
+  border: 1px solid #ccc;
+
+  @media (max-width: 600px) {
+    width: 290px;
+    height: 240px;
+  }
+`;
 
 export default MapBox;

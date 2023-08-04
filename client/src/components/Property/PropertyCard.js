@@ -128,6 +128,11 @@ const PropertyCardContent = styled.section`
   position: relative;
   width: 350px;
   height: 350px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const PropertyInfo = styled.section`
@@ -141,6 +146,11 @@ const PropertyInfo = styled.section`
   color: white;
   ${baseInfoRowStyles}
   line-height: 20px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 100px;
+  }
 `;
 
 const PropertyPrice = styled.div`

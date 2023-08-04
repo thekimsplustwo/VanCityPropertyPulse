@@ -96,6 +96,15 @@ const HeaderTitle = styled.div`
     font-size: 16px;
     font-weight: 500;
   }
+
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 22px;
+    }
+    h3 {
+      font-size: 14px;
+    }
+  }
 `;
 
 const HeaderSubTitle = styled.div`
@@ -111,6 +120,15 @@ const HeaderSubTitle = styled.div`
     margin: 10px 0;
     font-size: 16px;
     font-weight: 500;
+  }
+
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 22px;
+    }
+    h3 {
+      font-size: 14px;
+    }
   }
 `;
 
