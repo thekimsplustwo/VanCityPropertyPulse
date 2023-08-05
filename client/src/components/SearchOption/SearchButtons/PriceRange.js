@@ -130,6 +130,7 @@ export default function PriceRange() {
             value={maxPrice}
             onChange={handleMaxPriceChange}
             type="number"
+            // 150px
             sx={{ width: '150px' }}
             inputProps={{
               min: minMaxPrice,
