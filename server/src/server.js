@@ -15,7 +15,7 @@ import RateLimit from 'express-rate-limit';
 import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportConfig from './middleware/passportConfig.js';
-import checkFeatureFlag from './utils/featureFlags.js';s
+import checkFeatureFlag from './utils/featureFlags.js';
 
 tracer.init();
 
