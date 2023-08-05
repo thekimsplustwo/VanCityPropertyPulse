@@ -5,7 +5,7 @@ import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 dotenv.config();
 
 let lastRequestTime = 0;
-const INTERVAL_MS = 600;
+const INTERVAL_MS = 0;
 
 const sleep = ms => {
   return new Promise(resolve => {
