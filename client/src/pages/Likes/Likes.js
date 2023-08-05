@@ -73,6 +73,7 @@ function Likes() {
 }
 
 const Main = styled.div`
+  min-height: 100vh;
   padding-top: 5em;
   width: 100%;
   display: flex;
