@@ -116,6 +116,7 @@ export default function PriceRange() {
             value={minPrice}
             onChange={handleMinPriceChange}
             type="number"
+            sx={{ width: '150px' }}
             inputProps={{
               min: 0,
               max: maxPrice !== 0 ? maxMinPrice : undefined,
@@ -129,6 +130,7 @@ export default function PriceRange() {
             value={maxPrice}
             onChange={handleMaxPriceChange}
             type="number"
+            sx={{ width: '150px' }}
             inputProps={{
               min: minMaxPrice,
               max: 9999999,
