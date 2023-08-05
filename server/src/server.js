@@ -73,7 +73,8 @@ connect();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use(express.static(path.join(__dirname, '../../client/build')));
+//app.use(express.static(path.join(__dirname, '../../client/build')));
+app.use(express.static('public'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
@@ -88,9 +89,9 @@ app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client/build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+// });
 
 const server = http.createServer(app);
 
