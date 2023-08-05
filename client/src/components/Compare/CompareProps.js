@@ -23,10 +23,8 @@ function CompareProps({ propertyDetails }) {
     bedrooms,
   } = propertyDetails;
   let postedText;
-  if (!daysOnZillow) {
+  if (!daysOnZillow || daysOnZillow === -1) {
     postedText = 'N/A';
-  } else if (daysOnZillow === -1) {
-    postedText = 'Today';
   } else {
     postedText = `${daysOnZillow} ago`;
   }
