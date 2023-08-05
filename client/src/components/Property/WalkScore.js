@@ -22,7 +22,7 @@ function WalkScore({ zpid }) {
   return (
     walkAndTransitScore?.walkScore?.ws_link && (
       <Wrapper>
-        <Bold>Walk And Distance Score</Bold>
+        <Bold>Walk And Distance Score Details</Bold>
         <IframeWalkScore
           src={walkAndTransitScore.walkScore.ws_link}
           title="WalkScore"
@@ -46,8 +46,12 @@ const Bold = styled.b`
   font-weight: bold;
   font-size: 32px;
   align-items: left;
-  margin-top: 20px;
+  margin-top: 25px;
   margin-left: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 24px;
+  }
 `;
 
 const InfoRow = styled.p`
@@ -64,4 +68,9 @@ const IframeWalkScore = styled.iframe`
   width: 100%;
   height: 400px;
   margin: 32px;
+
+  @media (max-width: 800px) {
+    box-sizing: border-box;
+    margin: 32px 0;
+  }
 `;

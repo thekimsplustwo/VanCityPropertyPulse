@@ -4,12 +4,25 @@ import { Info, ArrowForward, Add } from '@mui/icons-material';
 import { themeColorPink } from '../../styles/theme';
 // import { Bold, InfoRow } from './DetailedInfo';
 import { baseInfoRowStyles } from '../../styles/theme';
+import School from './SchoolCard';
+import FeaturesSection from './FeaturesSection';
+import TransitScore from './TransitScore';
 
-function AdditionalInfo() {
+function AdditionalInfo({ propertyDetails, transit }) {
+  const schoolList = propertyDetails.schools;
+  const lotFeature = propertyDetails.resoFacts.lotFeatures;
+  const communityFeature = propertyDetails.resoFacts.communityFeatures;
+  const interiorFeature = propertyDetails.resoFacts.interiorFeatures;
+  const windowFeature = propertyDetails.resoFacts.windowFeatures;
+  const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
+  const appliance = propertyDetails.resoFacts.appliances;
+  const walk = transit.walkScore;
+  const bike = transit.bikeScore;
+
   return (
     <Wrapper>
       <InfoRow>
-        <Bold>Neighbourhood</Bold>
+        <Bold>Additional Information</Bold>
         <ButtonWrapper>
           <Button
             variant="outlined"
@@ -20,9 +33,48 @@ function AdditionalInfo() {
         </ButtonWrapper>
       </InfoRow>
       <MarginBottom>
-        <Description>
-          Schools, amenities, travel times, and market trends.
-        </Description>
+        <Description>Schools, amenities, travel times</Description>
+        <TransitScore
+          score={parseInt(walk.walkscore, 10)}
+          label="Walk Score"
+          description={walk.description}
+        />
+        <TransitScore
+          score={parseInt(bike.bikescore, 10)}
+          label="Bike Score"
+          description={bike.description}
+        />
+        {lotFeature && lotFeature.length > 0 && (
+          <FeaturesSection title="Lot Features" features={lotFeature} />
+        )}
+        {communityFeature && communityFeature.length > 0 && (
+          <FeaturesSection
+            title="Community Features"
+            features={communityFeature}
+          />
+        )}
+        {interiorFeature && interiorFeature.length > 0 && (
+          <FeaturesSection
+            title="Interior Features"
+            features={interiorFeature}
+          />
+        )}
+        {windowFeature && windowFeature.length > 0 && (
+          <FeaturesSection title="Window Features" features={windowFeature} />
+        )}
+        {parkingFeature && parkingFeature.length > 0 && (
+          <FeaturesSection title="Parking Features" features={parkingFeature} />
+        )}
+        {appliance && appliance.length > 0 && (
+          <FeaturesSection title="Appliances" features={appliance} />
+        )}
+        {schoolList && schoolList.length > 0 ? (
+          schoolList.map((school, index) => (
+            <School key={index} school={school} />
+          ))
+        ) : (
+          <NoSchools>Nearby schools not found</NoSchools>
+        )}
       </MarginBottom>
     </Wrapper>
   );
@@ -54,16 +106,32 @@ const Bold = styled.b`
   align-items: left;
   margin-top: 20px;
   margin-left: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 24px;
+  }
 `;
 
 const Description = styled.p`
   font-size: 20px;
   color: #666666;
   margin-left: 20px;
+  margin-bottom: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 16px;
+  }
 `;
 
 const MarginBottom = styled.div`
   margin-bottom: 20px;
+`;
+
+const NoSchools = styled.div`
+  color: ${themeColorPink};
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
 `;
 
 export default AdditionalInfo;

@@ -154,7 +154,7 @@ const Main = styled.div`
   flex-direction: column;
 `;
 
-const StyledButton = muiStyled(Button)({
+const StyledButton = muiStyled(Button)(({ theme }) => ({
   color: 'black',
   fontWeight: 'bold',
   fontSize: '1rem',
@@ -163,7 +163,11 @@ const StyledButton = muiStyled(Button)({
   '&:hover': {
     backgroundColor: 'pink',
   },
-});
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '0.7rem',
+    padding: '4px 6px',
+  },
+}));
 
 const ButtonContainer = muiStyled(Stack)({
   justifyContent: 'center',
