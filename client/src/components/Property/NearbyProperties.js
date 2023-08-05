@@ -9,7 +9,7 @@ import PropertyCard from './PropertyCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-function NearbyProperties({ properties }) {
+function NearbyProperties({ properties, adaptHomeData }) {
   const sliderRef = useRef();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [slides, setSlides] = useState(1);
@@ -57,19 +57,6 @@ function NearbyProperties({ properties }) {
 
   const handleNext = () => {
     sliderRef.current.slickNext();
-  };
-
-  const adaptHomeData = homeData => {
-    return {
-      zpid: homeData.zpid,
-      imgSrc: homeData.imgSrc || '',
-      listingStatus: homeData.listingStatus,
-      price: homeData.price,
-      bedrooms: homeData.bedrooms,
-      bathrooms: homeData.bedrbathroomsooms,
-      livingArea: homeData.livingArea,
-      address: homeData.address,
-    };
   };
 
   return (

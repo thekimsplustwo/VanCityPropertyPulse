@@ -28,25 +28,28 @@ function NearbyMe({ region }) {
   const limitedProperties =
     properties.length >= 10 ? properties.slice(0, 10) : properties;
 
-  // const adaptHomeData = homeData => {
-  //   return {
-  //     zpid: homeData.zpid,
-  //     imgSrc: homeData.imgSrc || '',
-  //     listingStatus: homeData.listingStatus,
-  //     price: homeData.price,
-  //     bedrooms: homeData.bedrooms,
-  //     bathrooms: homeData.bedrbathroomsooms,
-  //     livingArea: homeData.livingArea,
-  //     address: homeData.address,
-  //   };
-  // };
+  const adaptHomeData = homeData => {
+    return {
+      zpid: homeData.zpid,
+      imgSrc: homeData.imgSrc || '',
+      listingStatus: homeData.listingStatus,
+      price: homeData.price,
+      bedrooms: homeData.bedrooms,
+      bathrooms: homeData.bedrbathroomsooms,
+      livingArea: homeData.livingArea,
+      address: homeData.address,
+    };
+  };
 
   return (
     limitedProperties && (
       <Wrapper>
         <InfoRow />
         <Bold>Nearby Me</Bold>
-        <NearbyProperties properties={limitedProperties} />
+        <NearbyProperties
+          properties={limitedProperties}
+          adaptHomeData={adaptHomeData}
+        />
       </Wrapper>
     )
   );

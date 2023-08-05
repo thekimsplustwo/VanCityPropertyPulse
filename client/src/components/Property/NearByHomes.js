@@ -4,12 +4,28 @@ import 'slick-carousel/slick/slick-theme.css';
 import NearbyProperties from './NearbyProperties';
 
 function NearByHomes({ nearbyHomes }) {
+  const adaptHomeData = homeData => {
+    return {
+      zpid: homeData.zpid,
+      imgSrc: homeData.miniCardPhotos[0]?.url || '',
+      listingStatus: homeData.homeStatus,
+      price: homeData.price,
+      bedrooms: null,
+      bathrooms: null,
+      livingArea: null,
+      address: `${homeData.address.streetAddress}, ${homeData.address.city}, ${homeData.address.state} ${homeData.address.zipcode}`,
+    };
+  };
+
   return (
     nearbyHomes && (
       <Wrapper>
         <InfoRow />
         <Bold>Nearby homes</Bold>
-        <NearbyProperties properties={nearbyHomes} />
+        <NearbyProperties
+          properties={nearbyHomes}
+          adaptHomeData={adaptHomeData}
+        />
       </Wrapper>
     )
   );
