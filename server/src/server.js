@@ -15,24 +15,8 @@ import RateLimit from 'express-rate-limit';
 import { mongoDBURL, connect } from './schemas/index.js';
 import routes from './routes/index.js';
 import passportConfig from './middleware/passportConfig.js';
-import checkFeatureFlag from './utils/featureFlags.js';
-import { datadogRum } from '@datadog/browser-rum';
+import checkFeatureFlag from './utils/featureFlags.js';s
 
-datadogRum.init({
-    applicationId: 'b91a3233-d018-4071-b8c5-8198df82d7ba',
-    clientToken: 'puba243a8fd73adf3e77866d33a894eacc2',
-    site: 'us5.datadoghq.com',
-    service:'vancitypropertypulse',
-    env:'prod',
-    // Specify a version number to identify the deployed version of your application in Datadog 
-    // version: '1.0.0', 
-    sessionSampleRate:100,
-    premiumSampleRate: 100,
-    trackUserInteractions: true,
-    defaultPrivacyLevel:'mask-user-input'
-});
-    
-datadogRum.startSessionReplayRecording();
 tracer.init();
 
 const __filename = fileURLToPath(import.meta.url);
