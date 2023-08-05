@@ -70,8 +70,7 @@
     "no-unused-vars": "warn",
     "object-curly-newline": "off",
     "space-unary-ops": ["error", { "words": true, "nonwords": false }],
-    "spaced-comment": "off",
-    "react/jsx-props-no-spreading": "off"
+    "spaced-comment": "off"
   },
   "ignorePatterns": ["dist/", "node_modules/", "build/", "tests/"]
 }
