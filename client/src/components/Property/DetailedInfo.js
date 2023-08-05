@@ -98,6 +98,7 @@ function DetailedInfo({ propertyDetails }) {
                     value={monthlyHoaFee}
                     unit="CAD"
                   />
+
                 </Typography>
               </div>
             </Grid>
@@ -109,6 +110,7 @@ function DetailedInfo({ propertyDetails }) {
                   marginLeft: '-5em',
                 }}
               >
+
                 <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
                   <InfoRowComponent
                     icon={CalendarMonthIcon}
@@ -119,14 +121,13 @@ function DetailedInfo({ propertyDetails }) {
                     icon={PaidIcon}
                     label="Home Insurance"
                     value={annualHomeownersInsurance}
-                    CAD
+                    unit="CAD"
                   />
                   <InfoRowComponent
                     icon={LocalParkingIcon}
                     label="Garage"
                     value={hasGarage === true ? 'Yes' : 'No'}
-                    CAD
-                  />
+                                     />
                   <InfoRowComponent
                     icon={BathtubIcon}
                     label="Bathrooms"
@@ -174,6 +175,10 @@ export default DetailedInfo;
 const InfoRow = styled.p`
   margin-bottom: 10px;
   ${baseInfoRowStyles}
+
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const StyledText = styled.p`
@@ -189,6 +194,10 @@ const Wrapper = styled.div`
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
+
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const Bold = styled.b`
@@ -200,6 +209,10 @@ const BoldHeader = styled.h2`
   font-weight: bold;
   font-size: 25px;
   margin-bottom: 20px;
+
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const Box = styled.div`

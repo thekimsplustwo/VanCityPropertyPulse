@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import HomeTypeMenuItem from './HomeTypeMenuItem';
 import { setHomeType } from '../../../redux/search/reducer';
 
-const StyledButton = muiStyled(Button)({
+const StyledButton = muiStyled(Button)(({ theme }) => ({
   backgroundColor: 'white',
   width: '130px',
   height: '45px',
@@ -14,7 +14,12 @@ const StyledButton = muiStyled(Button)({
   '&:hover': {
     border: '1px solid black',
   },
-});
+  [theme.breakpoints.down('sm')]: {
+    width: '110px',
+    height: '35px',
+    fontSize: '14px',
+  },
+}));
 
 export default function HomeType() {
   const homeTypes = [

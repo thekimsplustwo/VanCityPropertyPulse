@@ -35,7 +35,7 @@ function MoreOptions() {
                 letterSpacing: '.2rem',
                 color: themeColorPurple,
                 textDecoration: 'none',
-                fontSize: '1.1rem',
+                fontSize: { xs: '0.8rem', sm: '1.1rem' },
                 '&:hover': {
                   cursor: 'pointer',
                 },
@@ -56,7 +56,7 @@ function MoreOptions() {
                 letterSpacing: '.2rem',
                 color: themeColorPurple,
                 textDecoration: 'none',
-                fontSize: '1.1rem',
+                fontSize: { xs: '0.8rem', sm: '1.1rem' },
                 '&:hover': {
                   cursor: 'pointer',
                 },
@@ -77,7 +77,7 @@ function MoreOptions() {
                 letterSpacing: '.2rem',
                 color: themeColorPurple,
                 textDecoration: 'none',
-                fontSize: '1.1rem',
+                fontSize: { xs: '0.8rem', sm: '1.1rem' },
                 '&:hover': {
                   cursor: 'pointer',
                 },
@@ -119,4 +119,8 @@ const CenteredGrid = styled(Grid)`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 600px) {
+    height: 6vh;
+  }
 `;
