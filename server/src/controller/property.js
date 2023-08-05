@@ -32,7 +32,7 @@ const getPropertyDetails = async (req, res) => {
     }
 
     // Enforce the delay between requests
-    await delayNextRequest();
+    // await delayNextRequest();
 
     const propertyDetails = await propertyService.getPropertyDetails(zpid);
     return res.status(200).json(propertyDetails);
