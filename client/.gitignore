@@ -65,11 +65,4 @@ yarn-error.log*
 #database
 /database/data
 *.insert*data.sql
-/test-results/
-/playwright-report/
-/playwright/.cache/
-/test-results/
-/playwright-report/
-/playwright/.cache/
-/test-results/
 
