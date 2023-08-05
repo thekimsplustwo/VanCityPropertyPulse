@@ -7,6 +7,7 @@ import { baseInfoRowStyles } from '../../styles/theme';
 import School from './SchoolCard';
 import FeaturesSection from './FeaturesSection';
 import TransitScore from './TransitScore';
+import PriceComparisonBar from './PriceComparisonBar';
 
 function AdditionalInfo({ propertyDetails, transit }) {
   const schoolList = propertyDetails.schools;
@@ -16,8 +17,17 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const windowFeature = propertyDetails.resoFacts.windowFeatures;
   const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
   const appliance = propertyDetails.resoFacts.appliances;
+  const nearbyList = propertyDetails.nearbyHomes;
   const walk = transit.walkScore;
   const bike = transit.bikeScore;
+
+  const currentPropertyPrice = propertyDetails.price;
+  const prices = nearbyList.map(property => property.price);
+  const total = prices.reduce((a, b) => a + b, 0);
+  const averagePrice = total / prices.length;
+
+  console.log(prices);
+  console.log(currentPropertyPrice);
 
   return (
     <Wrapper>
@@ -33,17 +43,29 @@ function AdditionalInfo({ propertyDetails, transit }) {
         </ButtonWrapper>
       </InfoRow>
       <MarginBottom>
-        <Description>Schools, amenities, travel times</Description>
-        <TransitScore
-          score={parseInt(walk.walkscore, 10)}
-          label="Walk Score"
-          description={walk.description}
-        />
-        <TransitScore
-          score={parseInt(bike.bikescore, 10)}
-          label="Bike Score"
-          description={bike.description}
-        />
+        <Description>
+          Schools, amenities, travel times, price comparison
+        </Description>
+        <InfoWrapper>
+          <ScoreWrapper>
+            <TransitScore
+              score={parseInt(walk.walkscore, 10)}
+              label="Walk Score"
+              description={walk.description}
+            />
+            <TransitScore
+              score={parseInt(bike.bikescore, 10)}
+              label="Bike Score"
+              description={bike.description}
+            />
+          </ScoreWrapper>
+          <BarWrapper>
+            <PriceComparisonBar
+              averagePrice={averagePrice}
+              propertyPrice={currentPropertyPrice}
+            />
+          </BarWrapper>
+        </InfoWrapper>
         {lotFeature && lotFeature.length > 0 && (
           <FeaturesSection title="Lot Features" features={lotFeature} />
         )}
@@ -132,6 +154,24 @@ const NoSchools = styled.div`
   font-size: 18px;
   text-align: center;
   margin-top: 20px;
+`;
+
+const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
+`;
+
+const ScoreWrapper = styled.div`
+  margin-right: 3em;
+`;
+
+const BarWrapper = styled.div`
+  flex-grow: 0;
 `;
 
 export default AdditionalInfo;
