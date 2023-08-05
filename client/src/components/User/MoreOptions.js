@@ -23,6 +23,7 @@ function MoreOptions() {
     <Wrapper>
       <Box sx={{ width: '100%' }}>
         <Stack justifyContent="center" alignItems="center">
+          {/* TODO(JY): Refactor! */}
           <CenteredGrid>
             <Typography
               variant="h5"
