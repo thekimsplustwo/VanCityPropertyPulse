@@ -98,7 +98,6 @@ function DetailedInfo({ propertyDetails }) {
                     value={monthlyHoaFee}
                     unit="CAD"
                   />
-
                 </Typography>
               </div>
             </Grid>
@@ -110,7 +109,6 @@ function DetailedInfo({ propertyDetails }) {
                   marginLeft: '-5em',
                 }}
               >
-
                 <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
                   <InfoRowComponent
                     icon={CalendarMonthIcon}
@@ -127,7 +125,7 @@ function DetailedInfo({ propertyDetails }) {
                     icon={LocalParkingIcon}
                     label="Garage"
                     value={hasGarage === true ? 'Yes' : 'No'}
-                                     />
+                  />
                   <InfoRowComponent
                     icon={BathtubIcon}
                     label="Bathrooms"
