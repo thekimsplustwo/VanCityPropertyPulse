@@ -17,6 +17,9 @@ jobs:
       run: cd client && npm ci
     - name: Install Playwright Browsers
       run: cd client && npx playwright install --with-deps
+    - name: 'Create env file'
+      run: |
+        echo "${{ secrets.TEST_URL }}" > .env
     - name: Run Playwright tests
       run: cd client && npx playwright test tests
     - uses: actions/upload-artifact@v3
