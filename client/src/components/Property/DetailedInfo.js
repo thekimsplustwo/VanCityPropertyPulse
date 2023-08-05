@@ -15,6 +15,16 @@ import Container from '@mui/material/Container';
 import LocalParkingIcon from '@mui/icons-material/LocalParking';
 import { baseInfoRowStyles } from '../../styles/theme';
 
+function InfoRowComponent({ icon, label, value, unit }) {
+  const StyledIcon = icon;
+
+  return (
+    <InfoRow>
+      <StyledIcon style={{ marginBottom: '-5px' }} sx={{ color: '#ff385c' }} />
+      <Bold>{label}: </Bold> {value} {unit}
+    </InfoRow>
+  );
+}
 function DetailedInfo({ propertyDetails }) {
   // decompose props
   const {
@@ -54,56 +64,41 @@ function DetailedInfo({ propertyDetails }) {
                   marginRight: '-5rem',
                 }}
               >
-                <Typography
-                  variant="body1"
-                  sx={{
-                    marginBottom: '1rem',
-                    fontSize: { xs: '0.75rem', sm: '1rem' },
-                  }}
-                >
-                  <InfoRow>
-                    <HomeRoundedIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Home Type: </Bold> {homeType}
-                  </InfoRow>
-                  <InfoRow>
-                    <EventAvailableRoundedIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Year Built: </Bold> {yearBuilt}
-                  </InfoRow>
-                  <InfoRow>
-                    <AutoAwesomeIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold> House Age: </Bold>
-                    {new Date().getFullYear() - yearBuilt}
-                  </InfoRow>
-                  <InfoRow>
-                    <CropFreeRoundedIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Living Area: </Bold> {livingArea} sqft
-                  </InfoRow>
-                  <InfoRow>
-                    <PaidIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Price Per sqft: </Bold> {pricePerSquareFoot} CAD
-                  </InfoRow>
-                  <InfoRow>
-                    <PaidIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Strata Fee: </Bold> {monthlyHoaFee} CAD
-                  </InfoRow>
+                <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+                  <InfoRowComponent
+                    icon={HomeRoundedIcon}
+                    label="Home Type"
+                    value={homeType}
+                  />
+                  <InfoRowComponent
+                    icon={EventAvailableRoundedIcon}
+                    label="Year Built"
+                    value={yearBuilt}
+                  />
+                  <InfoRowComponent
+                    icon={AutoAwesomeIcon}
+                    label="House Age"
+                    value={new Date().getFullYear() - yearBuilt}
+                  />
+                  <InfoRowComponent
+                    icon={CropFreeRoundedIcon}
+                    label="Living Area"
+                    value={livingArea}
+                    unit="sqft"
+                  />
+                  <InfoRowComponent
+                    icon={PaidIcon}
+                    label="Price Per sqft"
+                    value={pricePerSquareFoot}
+                    unit="CAD"
+                  />
+                  <InfoRowComponent
+                    icon={PaidIcon}
+                    label="Strata Fee"
+                    value={monthlyHoaFee}
+                    unit="CAD"
+                  />
+
                 </Typography>
               </div>
             </Grid>
@@ -115,57 +110,39 @@ function DetailedInfo({ propertyDetails }) {
                   marginLeft: '-5em',
                 }}
               >
-                <Typography
-                  variant="body1"
-                  sx={{
-                    marginBottom: '1rem',
-                    fontSize: { xs: '0.75rem', sm: '1rem' },
-                  }}
-                >
-                  <InfoRow>
-                    <CalendarMonthIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Date Posted: </Bold> {datePosted}
-                  </InfoRow>
-                  <InfoRow>
-                    <PaidIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Home Insurance: </Bold> {annualHomeownersInsurance}{' '}
-                    CAD
-                  </InfoRow>
 
-                  <InfoRow>
-                    <LocalParkingIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Garage: </Bold> {hasGarage === true ? 'Yes' : 'No'}
-                  </InfoRow>
-                  <InfoRow>
-                    <BathtubIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Bathrooms: </Bold> {bathrooms}
-                  </InfoRow>
-                  <InfoRow>
-                    <HotelIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold> Bedrooms: </Bold> {bedrooms}
-                  </InfoRow>
-                  <InfoRow>
-                    <StoreIcon
-                      style={{ marginBottom: '-5px' }}
-                      sx={{ color: '#ff385c' }}
-                    />
-                    <Bold>Home Status: </Bold> {homeStatus}
-                  </InfoRow>
+                <Typography variant="body1" sx={{ marginBottom: '1rem' }}>
+                  <InfoRowComponent
+                    icon={CalendarMonthIcon}
+                    label="Date Posted"
+                    value={datePosted}
+                  />
+                  <InfoRowComponent
+                    icon={PaidIcon}
+                    label="Home Insurance"
+                    value={annualHomeownersInsurance}
+                    unit="CAD"
+                  />
+                  <InfoRowComponent
+                    icon={LocalParkingIcon}
+                    label="Garage"
+                    value={hasGarage === true ? 'Yes' : 'No'}
+                                     />
+                  <InfoRowComponent
+                    icon={BathtubIcon}
+                    label="Bathrooms"
+                    value={bathrooms}
+                  />
+                  <InfoRowComponent
+                    icon={HotelIcon}
+                    label="Bedrooms"
+                    value={bedrooms}
+                  />
+                  <InfoRowComponent
+                    icon={StoreIcon}
+                    label="Home Status"
+                    value={homeStatus}
+                  />
                 </Typography>
               </div>
             </Grid>
