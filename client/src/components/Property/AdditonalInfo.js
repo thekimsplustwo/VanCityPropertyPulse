@@ -18,8 +18,11 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
   const appliance = propertyDetails.resoFacts.appliances;
   const nearbyList = propertyDetails?.nearbyHomes;
-  const walk = transit.walkScore;
-  const bike = transit.bikeScore;
+  const walk = transit?.walkScore;
+  const bike = transit?.bikeScore;
+
+  const walkScore = walk?.walkscore ? parseInt(walk.walkscore, 10) : null;
+  const bikeScore = bike?.bikescore ? parseInt(bike.bikescore, 10) : null;
 
   const currentPropertyPrice = propertyDetails.price;
   const prices = nearbyList?.map(property => property.price);
@@ -45,16 +48,20 @@ function AdditionalInfo({ propertyDetails, transit }) {
         </Description>
         <InfoWrapper>
           <ScoreWrapper>
-            <TransitScore
-              score={parseInt(walk.walkscore, 10)}
-              label="Walk Score"
-              description={walk.description}
-            />
-            <TransitScore
-              score={parseInt(bike.bikescore, 10)}
-              label="Bike Score"
-              description={bike.description}
-            />
+            {walkScore !== null && (
+              <TransitScore
+                score={walkScore}
+                label="Walk Score"
+                description={walk.description}
+              />
+            )}
+            {bikeScore !== null && (
+              <TransitScore
+                score={bikeScore}
+                label="Bike Score"
+                description={bike.description}
+              />
+            )}
           </ScoreWrapper>
           {averagePrice !== null && (
             <BarWrapper>
