@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -7,38 +6,44 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import styled from 'styled-components';
-import Container from '@mui/material/Container';
-import { Typography, createTheme } from '@mui/material';
-import Grid from '@mui/material/Grid';
 
 function createData(name, value) {
   return { name, value };
 }
 function CompareProps({ propertyDetails }) {
   const {
+    daysOnZillow,
     address,
-    homeType,
-    yearBuilt,
+    propertyType,
+    unit,
     livingArea,
-    pricePerSquareFoot,
-    monthlyHoaFee,
-    hasGarage,
+    price,
+    lotAreaValue,
     bathrooms,
     bedrooms,
   } = propertyDetails;
+  let postedText;
+  if (!daysOnZillow) {
+    postedText = 'N/A';
+  } else if (daysOnZillow === -1) {
+    postedText = 'Today';
+  } else {
+    postedText = `${daysOnZillow} ago`;
+  }
 
   const rows = [
-    createData('Home Address', address?.streetAddress ?? 'No data'),
-    createData('Home Type', homeType ?? 'No data'),
-    createData('Year Built', yearBuilt ?? 'No data'),
-    createData('Living Area', livingArea ?? 'No data'),
-    createData('Price per sqft', pricePerSquareFoot ?? 'No data'),
-    createData('Monthly Strata Fee', monthlyHoaFee ?? 'No data'),
-    hasGarage
-      ? createData('Garage', 'Has Garage')
-      : createData('Garage', 'No Garage'),
-    createData('Bathrooms', bathrooms ?? 'No data'),
-    createData('Bedrooms', bedrooms ?? 'No data'),
+    createData('Posted', postedText),
+    createData('Home Address', address ?? 'N/A'),
+    createData('Home Type', propertyType ?? 'N/A'),
+    createData('Unit', unit ?? 'N/A'),
+    createData('Living Area', livingArea ? `${livingArea} sqft` : 'N/A'),
+    createData('Price', price ? `$${price} CAD` : 'N/A'),
+    createData(
+      'Lot Area Value',
+      lotAreaValue && lotAreaValue !== 0 ? `$${lotAreaValue} CAD` : 'N/A'
+    ),
+    createData('Bathrooms', bathrooms ?? 'N/A'),
+    createData('Bedrooms', bedrooms ?? 'N/A'),
   ];
 
   return (

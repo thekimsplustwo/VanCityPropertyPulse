@@ -22,7 +22,6 @@ function Home() {
   const searchParams = useSelector(state => state.search);
   const isLogin = useSelector(state => state.users.isLogin);
   const dispatch = useDispatch();
-
   const filterInitialState = state => {
     return Object.fromEntries(
       Object.entries(state).filter(

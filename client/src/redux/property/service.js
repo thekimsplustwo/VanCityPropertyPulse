@@ -45,6 +45,7 @@ const getWalkAndTransitScore = async (zpid, token) => {
 };
 
 const getCompare = async (queryString, token) => {
+  if (!queryString) return [];
   try {
     const response = await axios.get(
       `${BASE_URL}/compare${queryString.toString()}`,
