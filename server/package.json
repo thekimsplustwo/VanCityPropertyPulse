@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "distribute": "npm ci && pm2 start src/server.js --name vancityprod -i max",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "dev": "cd .. && cd client && npm install && npm run build && cd .. && cd server && npm install && npm start"
   },
   "keywords": [],
   "author": "",
