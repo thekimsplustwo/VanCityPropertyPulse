@@ -131,6 +131,7 @@ function Compare() {
                 position="fixed"
                 height="mix-content"
                 onClick={handleOpenModal}
+                sx={{ mt: 4 }}
               >
                 Add Property
               </Button>
@@ -140,6 +141,7 @@ function Compare() {
                 position="fixed"
                 height="mix-content"
                 onClick={handleClear}
+                sx={{ mt: 4 }}
               >
                 Clear
               </Button>
@@ -154,7 +156,7 @@ function Compare() {
                 {propertyList.map((property, index) => (
                   <Grid
                     item
-                    xs={propertyList.length === 1 ? 12 : 4}
+                    xs={12}
                     sm={propertyList.length <= 2 ? 6 : 4}
                     md={4}
                     key={property ? property.zpid : `property-${index}`}
@@ -182,7 +184,6 @@ function Compare() {
   return <PropertyNotFound />;
 }
 const Main = styled.div`
-  // padding-top: 23em;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -201,6 +202,7 @@ const ContentWrapper = styled.div`
   box-sizing: border-box;
 `;
 const Wrapper = styled.div`
+  min-height: 100vh;
   padding-top: 6em;
   width: 100%;
   display: flex;
@@ -222,6 +224,10 @@ const Header = styled.h1`
   // margin-top: -20rem;
   margin-left: 1rem;
   margin-right: 1rem;
+
+  @media (max-width: 800px) {
+    font-size: 2rem;
+  }
 `;
 
 const ButtonWrapper = styled.div`
