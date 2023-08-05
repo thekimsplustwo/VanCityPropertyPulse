@@ -17,17 +17,14 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const windowFeature = propertyDetails.resoFacts.windowFeatures;
   const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
   const appliance = propertyDetails.resoFacts.appliances;
-  const nearbyList = propertyDetails.nearbyHomes;
+  const nearbyList = propertyDetails?.nearbyHomes;
   const walk = transit.walkScore;
   const bike = transit.bikeScore;
 
   const currentPropertyPrice = propertyDetails.price;
-  const prices = nearbyList.map(property => property.price);
-  const total = prices.reduce((a, b) => a + b, 0);
-  const averagePrice = total / prices.length;
-
-  console.log(prices);
-  console.log(currentPropertyPrice);
+  const prices = nearbyList?.map(property => property.price);
+  const total = prices.length > 0 ? prices.reduce((a, b) => a + b, 0) : null;
+  const averagePrice = total !== null ? total / prices.length : null;
 
   return (
     <Wrapper>
@@ -59,12 +56,14 @@ function AdditionalInfo({ propertyDetails, transit }) {
               description={bike.description}
             />
           </ScoreWrapper>
-          <BarWrapper>
-            <PriceComparisonBar
-              averagePrice={averagePrice}
-              propertyPrice={currentPropertyPrice}
-            />
-          </BarWrapper>
+          {averagePrice !== null && (
+            <BarWrapper>
+              <PriceComparisonBar
+                averagePrice={averagePrice}
+                propertyPrice={currentPropertyPrice}
+              />
+            </BarWrapper>
+          )}
         </InfoWrapper>
         {lotFeature && lotFeature.length > 0 && (
           <FeaturesSection title="Lot Features" features={lotFeature} />
