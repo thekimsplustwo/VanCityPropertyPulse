@@ -8,53 +8,71 @@ const likeSchema = new BaseSchema({
   },
   properties: [
     {
-      zpid: {
-        type: String,
-        required: true,
-      },
-      imgSrc: {
-        type: String,
-        required: false,
-      },
-      address: {
-        type: String,
-        required: true,
-      },
-      price: {
-        type: Number,
-        required: true,
-      },
-      bedrooms: {
-        type: Number,
-        required: false,
-      },
-      bathrooms: {
-        type: Number,
-        required: false,
-      },
-      livingArea: {
-        type: Number,
-        required: false,
+      dateSold: {
+        type: String || null,
       },
       propertyType: {
         type: String,
-        required: false,
       },
-      listingStatus: {
-        type: String,
-        required: false,
+      lotAreaValue: {
+        type: Number,
       },
-      unit: {
+      address: {
         type: String,
-        required: false,
+      },
+      imgSrc: {
+        type: String,
+      },
+      price: {
+        type: Number,
+      },
+      bedrooms: {
+        type: Number,
       },
       longitude: {
         type: Number,
-        required: false,
       },
       latitude: {
         type: Number,
-        required: false,
+      },
+      listingStatus: {
+        type: String,
+      },
+      zpid: {
+        type: String,
+        unique: true,
+      },
+      listingSubType: {
+        type: Object,
+        properties: {
+          is_FSBA: {
+            type: Boolean,
+          },
+        },
+      },
+      contingentListingType: {
+        type: String || null,
+      },
+      daysOnZillow: {
+        type: Number,
+      },
+      bathrooms: {
+        type: Number,
+      },
+      livingArea: {
+        type: Number,
+      },
+      country: {
+        type: String,
+      },
+      currency: {
+        type: String,
+      },
+      lotAreaUnit: {
+        type: String,
+      },
+      hasImage: {
+        type: Boolean,
       },
     },
     { timestamps: true },

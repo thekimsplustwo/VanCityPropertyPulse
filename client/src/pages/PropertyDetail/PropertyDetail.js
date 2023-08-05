@@ -40,9 +40,6 @@ function Property() {
   }, [dispatch, zpid]);
 
   if (isObjectValid(property)) {
-    const images = Array.isArray(property.imgSrc)
-      ? property.imgSrc
-      : [property.imgSrc];
     const { nearbyHomes, longitude, latitude } = property;
     return (
       <Wrapper>
@@ -52,7 +49,7 @@ function Property() {
         </HeaderWrapper>
         <ContentWrapper>
           <GraphicWrapper>
-            <ImageCarousel propertyImages={images} />
+            <ImageCarousel propertyImages={property?.imgSrc || []} />
             <MapBox longitude={longitude} latitude={latitude} />
           </GraphicWrapper>
           <DetailedInfo propertyDetails={property} />

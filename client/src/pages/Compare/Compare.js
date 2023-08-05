@@ -3,30 +3,26 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Unstable_Grid2';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { Button, Div } from '@mui/material';
-import { throttle } from 'lodash';
+import { Button } from '@mui/material';
 import CompareDeleteButton from '../../components/Compare/CompareDeleteButton';
 import Modal from './Modal';
 import CompareProps from '../../components/Compare/CompareProps';
 import ImageCarousel from '../../components/Property/ImageCarousel';
-import { getPropertyAsync, getCompareAsync } from '../../redux/property/thunks';
+import { getCompareAsync } from '../../redux/property/thunks';
 import PropertyNotFound from '../../components/Property/PropertyNotFound';
-import { isObjectValid } from '../../utils/utils';
 
 function Compare() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const token = localStorage.getItem('token');
+  const isLogin = useSelector(state => state.users.isLogin);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const params = new URLSearchParams(location.search);
+
   let zpidList = Array.from(new Set(params.getAll('item')));
-  const isLogin = useSelector(state => state.users.isLogin);
 
-  /* get property list via compare api
   const propertyList = useSelector(state => state.property.compare);
-
   useEffect(() => {
     if (!isLogin) {
       navigate('/');
@@ -34,7 +30,6 @@ function Compare() {
       dispatch(getCompareAsync({ queryString: location.search, token }));
     }
   }, [isLogin, dispatch, location.search]);
-*/
 
   // If there are more than 3 items in zpidList, show an alert
   useEffect(() => {
@@ -74,36 +69,6 @@ function Compare() {
     }
   }, []);
 
-  const property = useSelector(state => state.property.property);
-
-  const [propertyList, setPropertyList] = useState(
-    new Array(zpidList.length).fill(null)
-  );
-
-  useEffect(() => {
-    if (!isLogin) {
-      navigate('/');
-    } else {
-      zpidList.forEach((zpid, index) => {
-        dispatch(getPropertyAsync({ zpid, token })).then(response => {
-          // Make a copy of the property
-          const property = { ...response.payload };
-
-          // Ensure property.imgSrc is always an array
-          property.imgSrc = Array.isArray(property.imgSrc)
-            ? property.imgSrc
-            : [property.imgSrc];
-
-          setPropertyList(prevPropertyList => {
-            const newPropertyList = [...prevPropertyList];
-            newPropertyList[index] = property;
-            return newPropertyList;
-          });
-        });
-      });
-    }
-  }, [dispatch, isLogin]);
-
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -115,10 +80,7 @@ function Compare() {
     window.location.reload();
   };
 
-  if (isLogin && isObjectValid(property)) {
-    const images = Array.isArray(property.imgSrc)
-      ? property.imgSrc
-      : [property.imgSrc];
+  if (isLogin) {
     return (
       <Wrapper>
         <Margin>
@@ -200,6 +162,7 @@ const ContentWrapper = styled.div`
   justify-content: center;
   width: 100%;
   box-sizing: border-box;
+  min-height: 90vh;
 `;
 const Wrapper = styled.div`
   min-height: 100vh;

@@ -3,16 +3,18 @@ import Carousel from 'react-material-ui-carousel';
 import { Box, styled as muiStyled } from '@mui/material';
 import Image from './Image';
 
-function ImageCarousel(props) {
-  const { propertyImages } = props;
+function ImageCarousel({ propertyImages }) {
+  const images = Array.isArray(propertyImages)
+    ? propertyImages
+    : [propertyImages];
   return (
     <Wrapper>
       <Section>
         {propertyImages ? (
           <CarouselBox>
             <Carousel>
-              {propertyImages.map((image, index) => (
-                <Image key={index} image={image} />
+              {images.map(image => (
+                <Image key={image} image={image} />
               ))}
             </Carousel>
           </CarouselBox>
