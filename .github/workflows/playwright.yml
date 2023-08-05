@@ -19,8 +19,8 @@ jobs:
       run: cd client && npx playwright install --with-deps
     - name: 'Create env file'
       run: |
-        echo "${{ secrets.TEST_URL }}" > .env
-        cat .env
+        echo "${{ secrets.TEST_URL }}" > client/.env
+        cat client/.env
     - name: Run Playwright tests
       run: cd client && npx playwright test tests
     - uses: actions/upload-artifact@v3
