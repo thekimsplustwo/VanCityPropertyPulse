@@ -7,7 +7,7 @@ function Image(props) {
       <Box
         component="img"
         sx={{
-          height: 300,
+          height: { xs: 'auto', sm: 300 },
           display: 'block',
           maxWidth: 500,
           overflow: 'hidden',

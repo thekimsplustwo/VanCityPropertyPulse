@@ -13,6 +13,7 @@ function Home() {
   const token = localStorage.getItem('token');
   const [sortOrder, setSortOrder] = useState(null);
   const [searchClicked, setSearchClicked] = useState(false);
+  const [selectedButton, setSelectedButton] = useState(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -98,10 +99,12 @@ function Home() {
 
   const handleSortAscending = () => {
     setSortOrder('asc');
+    setSelectedButton('asc');
   };
 
   const handleSortDescending = () => {
     setSortOrder('desc');
+    setSelectedButton('desc');
   };
 
   const handleSearchClick = () => {
@@ -121,10 +124,16 @@ function Home() {
           <StyledButton onClick={handleReset}>Reset</StyledButton>
         </ButtonContainer>
         <ButtonContainer direction="row" spacing={2}>
-          <StyledButton variant="contained" onClick={handleSortAscending}>
+          <StyledButton
+            variant={selectedButton === 'asc' ? 'contained' : null}
+            onClick={handleSortAscending}
+          >
             Sort by Price (Ascending)
           </StyledButton>
-          <StyledButton variant="contained" onClick={handleSortDescending}>
+          <StyledButton
+            variant={selectedButton === 'desc' ? 'contained' : null}
+            onClick={handleSortDescending}
+          >
             Sort by Price (Descending)
           </StyledButton>
         </ButtonContainer>
@@ -145,15 +154,20 @@ const Main = styled.div`
   flex-direction: column;
 `;
 
-const StyledButton = muiStyled(Button)({
+const StyledButton = muiStyled(Button)(({ theme }) => ({
   color: 'black',
   fontWeight: 'bold',
   fontSize: '1rem',
-  backgroundColor: 'white',
+  backgroundColor: ({ variant }) =>
+    variant === 'contained' ? 'white' : 'grey',
   '&:hover': {
     backgroundColor: 'pink',
   },
-});
+  [theme.breakpoints.down('sm')]: {
+    fontSize: '0.7rem',
+    padding: '4px 6px',
+  },
+}));
 
 const ButtonContainer = muiStyled(Stack)({
   justifyContent: 'center',

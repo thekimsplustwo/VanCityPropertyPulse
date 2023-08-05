@@ -37,6 +37,11 @@ const pages = [
     icon: <FavoriteBorderIcon sx={navIconStyle} />,
     path: '/likes',
   },
+  {
+    name: 'Compare',
+    icon: <CompareArrowsOutlinedIcon sx={navIconStyle} />,
+    path: '/compare',
+  },
 ];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

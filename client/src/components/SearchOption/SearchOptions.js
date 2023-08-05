@@ -11,6 +11,11 @@ const OptionsContainer = styled.div`
   width: 400px;
   position: absolute;
   bottom: 20px;
+
+  @media (max-width: 700px) {
+    width: 350px;
+    justify-content: space-around;
+  }
 `;
 
 export default function SearchOptions() {
