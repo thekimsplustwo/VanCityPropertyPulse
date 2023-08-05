@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, MenuItem } from '@mui/material';
 import { editProfileAsync } from '../../redux/users/thunks';
+import { FRONT_LOGIN_URL } from '../../config';
+import { neighborhoodsVancouver } from '../SearchOption/neighborhoods';
 
 function UserProfileEdit({ setModal }) {
   const token = localStorage.getItem('token');
@@ -11,7 +13,6 @@ function UserProfileEdit({ setModal }) {
   const [formData, setFormData] = useState({
     firstName: user.firstName ?? '',
     lastName: user.lastName || '',
-    age: user.age || '',
     email: user.email || '',
     phoneNumber: user.phoneNumber || '',
     region: user.region || '',
@@ -26,9 +27,17 @@ function UserProfileEdit({ setModal }) {
     }));
   };
 
+  const handleInputChangeForRegion = selectedValue => {
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      region: selectedValue, // Update the region with the selected value
+    }));
+  };
+
   const handleSaveBtn = () => {
     dispatch(editProfileAsync({ formData, token }));
     setModal(false);
+    window.location.href = `${FRONT_LOGIN_URL}/mypage`;
   };
 
   return (
@@ -60,14 +69,6 @@ function UserProfileEdit({ setModal }) {
               />
 
               <TextField
-                type="number"
-                label="Age"
-                name="age"
-                value={formData.age}
-                onChange={e => handleInputChange(e.currentTarget)}
-              />
-
-              <TextField
                 type="email"
                 label="Email"
                 disabled
@@ -85,12 +86,19 @@ function UserProfileEdit({ setModal }) {
               />
 
               <TextField
-                type="text"
+                select
                 label="Region"
                 name="region"
                 value={formData.region}
-                onChange={e => handleInputChange(e.currentTarget)}
-              />
+                onChange={e => handleInputChangeForRegion(e.target.value)}
+                sx={{ textAlign: 'left' }}
+              >
+                {neighborhoodsVancouver.map(option => (
+                  <MenuItem key={option.title} value={option.title}>
+                    {option.title}
+                  </MenuItem>
+                ))}
+              </TextField>
             </FormContainer>
             <Button
               sx={{ margin: '8px' }}
@@ -154,7 +162,7 @@ const FormContainer = styled.div`
 const Main = styled.div`
   padding: 16px;
   width: 35em;
-  height: 35em;
+  height: 30em;
   margin: 20px;
   background-color: white;
   text-align: center;

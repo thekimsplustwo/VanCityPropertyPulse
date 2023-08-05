@@ -22,11 +22,13 @@ function UserCard() {
     dispatch(resetLikesState());
     navigateToLogin();
   };
+  const defaultPhoto =
+    'https://static.wikia.nocookie.net/muppet/images/6/6e/Ji-Young.jpg/';
 
   return (
     <Margin>
       <div>
-        <ProfileImage src={user.photo} alt={user.firstName} />
+        <ProfileImage src={user.photo || defaultPhoto} alt={user.firstName} />
         <p>
           Welcome, <Bold>{user.firstName}</Bold>!❤️
         </p>
