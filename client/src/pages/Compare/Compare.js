@@ -126,6 +126,7 @@ function Compare() {
                     {property && (
                       <Wrapper>
                         <ImageCarousel
+                          property={property}
                           propertyImages={property?.imgSrc || []}
                         />
                         <CompareDeleteButton zpid={property.zpid}>
@@ -182,9 +183,7 @@ const Header = styled.h1`
   font-size: 3rem;
   font-weight: 700;
   color: #000;
-  // margin-bottom: 2rem;
   text-align: left;
-  // margin-top: -20rem;
   margin-left: 1rem;
   margin-right: 1rem;
 
@@ -204,10 +203,6 @@ const ButtonWrapper = styled.div`
     padding: 8px 16px;
     margin-right: 10px;
   }
-  // position: 'fixed';
-  // zindex: 1;
-  // height="mix-content"
-
   & button:last-child {
     margin-right: 0;
   }
