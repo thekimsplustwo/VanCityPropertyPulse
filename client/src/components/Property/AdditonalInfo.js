@@ -18,7 +18,7 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
   const appliance = propertyDetails.resoFacts.appliances;
   const nearbyList = propertyDetails?.nearbyHomes;
-  const moreFeature = [...parkingFeature, ...interiorFeature];
+  const moreFeature = [...(parkingFeature ?? []), ...(interiorFeature ?? [])];
   const walk = transit?.walkScore;
   const bike = transit?.bikeScore;
 
