@@ -1,39 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 import { setPage } from '../../redux/search/reducer';
 
-function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
-  const numOfProperties = properties.length;
-  const propertiesPerPage = 9;
-  const totalPages = Math.ceil(numOfProperties / propertiesPerPage);
-  const [currentPage, setCurrentPage] = useState(1);
-  const pageGroupSize = 5;
+function PropertyGrid({
+  properties,
+  showCompareButton,
+  showHeartIcon,
+  searchParams,
+  setSearchClicked,
+}) {
+  const [currentPage, setCurrentPage] = useState(searchParams.page);
+  useEffect(() => {
+    setCurrentPage(searchParams.page);
+  });
+  const [selectedProperties, setSelectedProperties] = useState([]);
 
   const dispatch = useDispatch();
 
-  const [selectedProperties, setSelectedProperties] = useState([]);
-
-  const handlePagination = page => {
-    setCurrentPage(page);
-    dispatch(setPage(page));
-  };
-
   const handlePrevGroup = () => {
-    const prevPage =
-      currentPage - pageGroupSize >= 1 ? currentPage - pageGroupSize : 1;
+    const prevPage = currentPage - 1;
     setCurrentPage(prevPage);
     dispatch(setPage(prevPage));
+    setSearchClicked(true);
   };
 
   const handleNextGroup = () => {
-    const nextPage =
-      currentPage + pageGroupSize <= totalPages
-        ? currentPage + pageGroupSize
-        : totalPages;
+    const nextPage = currentPage + 1;
     setCurrentPage(nextPage);
     dispatch(setPage(nextPage));
+    setSearchClicked(true);
   };
 
   const handlePropertySelect = property => {
@@ -56,38 +53,12 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
     }
   };
 
-  const renderPageNumbers = () => {
-    const currentGroup = Math.ceil(currentPage / pageGroupSize);
-    const startPage = (currentGroup - 1) * pageGroupSize + 1;
-    const endPage = Math.min(startPage + pageGroupSize - 1, totalPages);
-
-    return Array.from({ length: endPage - startPage + 1 }, (_, index) => {
-      const pageNumber = startPage + index;
-      return (
-        <Button
-          key={pageNumber}
-          active={currentPage === pageNumber}
-          onClick={() => handlePagination(pageNumber)}
-        >
-          {pageNumber}
-        </Button>
-      );
-    });
-  };
-
-  const indexOfLastProperty = currentPage * propertiesPerPage;
-  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
-  const currentProperties = properties.slice(
-    indexOfFirstProperty,
-    indexOfLastProperty
-  );
-
   return (
     <Wrapper>
       <Section>
         <CardWrapper>
-          {currentProperties &&
-            currentProperties.map(property => (
+          {properties &&
+            properties.map(property => (
               <PropertyCard
                 key={property.zpid}
                 property={property}
@@ -107,11 +78,7 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
         <NavButton onClick={handlePrevGroup} disabled={currentPage === 1}>
           Prev
         </NavButton>
-        {renderPageNumbers()}
-        <NavButton
-          onClick={handleNextGroup}
-          disabled={currentPage >= totalPages}
-        >
+        <NavButton onClick={handleNextGroup} disabled={properties.length < 41}>
           Next
         </NavButton>
       </Pagination>
@@ -152,14 +119,6 @@ const Pagination = styled.div`
   margin-top: 1em;
 `;
 
-const Button = styled.button`
-  padding: 0.5em 1em;
-  margin: 0 0.5em;
-  border: none;
-  background-color: ${props => (props.active ? 'lightgray' : 'transparent')};
-  cursor: pointer;
-`;
-
 const NavButton = styled.button`
   padding: 0.5em 1em;
   margin: 0 0.5em;
@@ -167,4 +126,5 @@ const NavButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   color: ${props => (props.disabled ? 'gray' : 'black')};
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
 `;
