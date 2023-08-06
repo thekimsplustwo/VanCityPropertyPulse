@@ -8,6 +8,10 @@ dotenv.config();
 
 const ZILLOW_API_LISTING_FLAG_ON = process.env.ZILLOW_API_LISTING === 'on';
 
+const datascrappingPropertyList = async data => {
+  await homeModel.datascrappingPropertyList(data);
+};
+
 const ExtendedSearchOptions = (filter, sort) => {
   return {
     method: 'GET',
@@ -27,7 +31,11 @@ const requestZillowAPIExtendedSearch = async trimmedFilter => {
     if (response.status !== 200 || response.data.status === 'error') {
       errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
     }
-    return response.data.props || [];
+    const data = response.data.props;
+    if (process.env.DATA_SCRAP === 'on') {
+      await datascrappingPropertyList(data);
+    }
+    return data || [];
   } catch (error) {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
   }

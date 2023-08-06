@@ -1,7 +1,7 @@
 import { BarChart } from '@mui/x-charts/BarChart';
 import Box from '@mui/material/Box';
 
-function PriceComparisonBar({ averagePrice, propertyPrice }) {
+function PriceComparisonBar({ medianPrice, propertyPrice, averagePrice }) {
   return (
     <Box>
       <BarChart
@@ -9,18 +9,22 @@ function PriceComparisonBar({ averagePrice, propertyPrice }) {
         xAxis={[
           {
             id: 'priceCategories',
-            data: ['Average Price Nearby', 'Property Price'],
+            data: [
+              'Average Price Nearby',
+              'Median Price Nearby',
+              'Property Price',
+            ],
             scaleType: 'band',
-            categoryGapRatio: 0.7,
+            categoryGapRatio: 0.8,
           },
         ]}
         series={[
           {
-            data: [averagePrice, propertyPrice],
+            data: [averagePrice, medianPrice, propertyPrice],
             color: ['pink'],
           },
         ]}
-        width={400}
+        width={600}
         height={300}
       />
     </Box>
