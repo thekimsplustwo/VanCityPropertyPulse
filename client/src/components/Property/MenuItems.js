@@ -39,8 +39,8 @@ function MenuItems({ zpid, address }) {
 
   return (
     <Wrapper>
-      <MenuContainer>
-        <StyledHeartLikedIcon liked={liked} onClick={handleLike} />
+      <MenuContainer id="save" onClick={handleLike}>
+        <StyledHeartLikedIcon liked={liked} />
         <MenuOpt>Save</MenuOpt>
       </MenuContainer>
       <MenuContainer>
