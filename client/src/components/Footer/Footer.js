@@ -88,6 +88,10 @@ function Footer() {
               </FooterIcon>
             </FooterRight>
           </FooterContent>
+          <Right>
+            * This application is for academic and demonstration purposes only
+            and is not intended for production use
+          </Right>
         </FooterWrapper>
       </FooterContainer>
     )
@@ -169,6 +173,16 @@ const InfoAndSocialContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+`;
+
+const Right = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+  padding-top: 0.2em;
+  color: #bdbdbd;
+  font-size: 13px;
+  font-style: italic;
 `;
 
 export default Footer;
