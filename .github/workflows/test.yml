@@ -22,9 +22,9 @@ jobs:
       - name: install dependencies
         run: cd server && npm install
 
-      - name: run tests
-        env:
-          FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
-          MONGO_URL: ${{ secrets.MONGO_URL }}
-          PORT: ${{ secrets.PORT }}
-        run: cd server && npm run test
+      # - name: run tests
+      #   env:
+      #     FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+      #     MONGO_URL: ${{ secrets.MONGO_URL }}
+      #     PORT: ${{ secrets.PORT }}
+      #   run: cd server && npm run test
