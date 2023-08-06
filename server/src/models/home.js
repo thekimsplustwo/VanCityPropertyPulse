@@ -71,6 +71,10 @@ const insertOrUpdateBulk = async data => {
 };
 
 const datascrappingPropertyList = async data => {
-  await insertOrUpdateBulk(data);
+  try {
+    await insertOrUpdateBulk(data);
+  } catch (error) {
+    errorGenerator(ERROR_TYPE.DATA_SCRAPPING_ERROR);
+  }
 };
 export { findZipcodeByNeighborhoodTitle, getList, datascrappingPropertyList };

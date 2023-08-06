@@ -1,74 +1,36 @@
 import mongoose from 'mongoose';
 import { BaseSchema } from './BaseSchema.js';
 
+const { Schema } = mongoose;
+const listingSubTypeSchema = new BaseSchema(
+  {
+    is_FSBA: Boolean,
+  },
+  { _id: false }
+);
+
 const rawPropertySchema = new BaseSchema(
   {
-    dateSold: {
-      type: String || null,
-    },
-    propertyType: {
-      type: String,
-    },
-    lotAreaValue: {
-      type: Number,
-    },
-    address: {
-      type: String,
-    },
-    imgSrc: {
-      type: String,
-    },
-    price: {
-      type: Number,
-    },
-    bedrooms: {
-      type: Number,
-    },
-    longitude: {
-      type: Number,
-    },
-    latitude: {
-      type: Number,
-    },
-    listingStatus: {
-      type: String,
-    },
-    zpid: {
-      type: String,
-      unique: true,
-    },
-    listingSubType: {
-      type: Object,
-      properties: {
-        is_FSBA: {
-          type: Boolean,
-        },
-      },
-    },
-    contingentListingType: {
-      type: String || null,
-    },
-    daysOnZillow: {
-      type: Number,
-    },
-    bathrooms: {
-      type: Number,
-    },
-    livingArea: {
-      type: Number,
-    },
-    country: {
-      type: String,
-    },
-    currency: {
-      type: String,
-    },
-    lotAreaUnit: {
-      type: String,
-    },
-    hasImage: {
-      type: Boolean,
-    },
+    dateSold: BaseSchema.Types.Mixed,
+    propertyType: String,
+    lotAreaValue: Number,
+    address: String,
+    imgSrc: String,
+    price: Number,
+    bedrooms: Number,
+    longitude: Number,
+    latitude: Number,
+    listingStatus: String,
+    zpid: Number,
+    listingSubType: listingSubTypeSchema,
+    contingentListingType: BaseSchema.Types.Mixed,
+    daysOnZillow: Number,
+    bathrooms: Number,
+    livingArea: Number,
+    country: String,
+    currency: String,
+    lotAreaUnit: String,
+    hasImage: Boolean,
   },
   { timestamps: true }
 );
