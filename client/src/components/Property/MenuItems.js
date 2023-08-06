@@ -1,6 +1,6 @@
+import { useMemo, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import styled from 'styled-components';
 import { addLikesAsync, deleteLikesAsync } from '../../redux/likes/thunks';
 import ShareMenu from './ShareMenu';
@@ -11,25 +11,36 @@ function MenuItems({ zpid, address }) {
   const likes = useSelector(state => state.likes.list);
   const properties = useSelector(state => state.home.list);
 
-  const liked = likes && likes.some(prop => prop.zpid === zpid);
-  const housing = properties.find(prop => prop.zpid === zpid);
+  const likesArray = useMemo(
+    () => (Array.isArray(likes) ? likes : []),
+    [likes]
+  );
+  const liked = useMemo(
+    () => likesArray.some(prop => prop.zpid === Number(zpid)),
+    [likesArray, zpid]
+  );
+  const housing = useMemo(
+    () => properties.find(prop => prop.zpid === Number(zpid)),
+    [properties, zpid]
+  );
 
-  const handleAddLike = () => {
-    dispatch(addLikesAsync({ property: housing, token }));
-  };
-
-  const handleDeleteLike = () => {
-    dispatch(deleteLikesAsync({ zpid, token }));
-  };
+  const handleLike = useCallback(
+    event => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (liked) {
+        dispatch(deleteLikesAsync({ zpid, token }));
+      } else {
+        dispatch(addLikesAsync({ property: housing, token }));
+      }
+    },
+    [liked, housing, zpid, token, dispatch]
+  );
 
   return (
     <Wrapper>
       <MenuContainer>
-        {liked ? (
-          <StyledHeartLikedIcon onClick={handleDeleteLike} />
-        ) : (
-          <StyledHeartBorderIcon onClick={handleAddLike} />
-        )}
+        <StyledHeartLikedIcon liked={liked} onClick={handleLike} />
         <MenuOpt>Save</MenuOpt>
       </MenuContainer>
       <MenuContainer>
@@ -66,12 +77,8 @@ const MenuOpt = styled.div`
   font-weight: 5rem;
 `;
 
-const StyledHeartBorderIcon = styled(FavoriteBorderIcon)`
-  color: white;
-`;
-
 const StyledHeartLikedIcon = styled(FavoriteIcon)`
-  color: red;
+  color: ${({ liked }) => (liked ? 'red' : '#bdbdbd')};
 `;
 
 export default MenuItems;

@@ -21,8 +21,9 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
   const [properties, setProperties] = useState(likes);
 
   useEffect(() => {
-    console.log('zpidList', zpidList);
-    const filteredLikes = likes.filter(like => !zpidList.includes(like.zpid));
+    const filteredLikes = likes.filter(
+      like => !zpidList.includes(like.zpid.toString())
+    );
     console.log('filteredLikes', filteredLikes);
     setProperties(filteredLikes);
   }, [likes, zpidList]);
@@ -42,12 +43,7 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
           <PropertyGrid properties={properties} showCompareButton />
         </Container>
         <Box>
-          <Button
-            // size="large"
-            onClick={onClose}
-            variant="contained"
-            // color="inherit"
-          >
+          <Button onClick={onClose} variant="contained">
             Close
           </Button>
         </Box>

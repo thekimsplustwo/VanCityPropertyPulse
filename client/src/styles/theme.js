@@ -1,6 +1,7 @@
 const themeColorPink = '#ff385c';
 const themeColorBlue = '#80dddd';
 const themeColorPurple = '#8088ff';
+const themeColorGrey = '#bdbdbd';
 
 const baseInfoRowStyles = `
   font-weight: 400;
@@ -14,4 +15,10 @@ const baseInfoRowStyles = `
   white-space: normal;
   word-spacing: 0px;
 `;
-export { themeColorPink, themeColorBlue, themeColorPurple, baseInfoRowStyles };
+export {
+  themeColorPink,
+  themeColorBlue,
+  themeColorPurple,
+  themeColorGrey,
+  baseInfoRowStyles,
+};
