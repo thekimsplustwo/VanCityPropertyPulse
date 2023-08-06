@@ -73,6 +73,11 @@ const ModalStyle = styled.div`
   justify-content: center;
   overflow-y: auto;
   // max-height: 75vh;
+
+  @media (max-width: 800px) {
+    max-width: 95%;
+    max-height: 95%;
+  }
 `;
 
 const OverlayStyle = styled.div`
@@ -92,4 +97,7 @@ const Box = styled.div`
 
 const Container = styled.div`
   margin-top: 10%;
+  @media (max-width: 800px) {
+    overflow-y: auto;
+  }
 `;

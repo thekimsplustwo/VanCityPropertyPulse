@@ -13,24 +13,37 @@ mapboxgl.accessToken = MAPBOX_TOKEN;
 function MapBox({ longitude, latitude }) {
   const mapContainer = useRef(null);
   const map = useRef(null);
+  const markerRef = useRef(null);
   const [lng, setLng] = useState(longitude);
   const [lat, setLat] = useState(latitude);
   const [zoom, setZoom] = useState(MAPBOX_ZOOM);
 
   useEffect(() => {
-    if (map.current) return; // initialize map only once
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: MAPBOX_STYLE,
-      center: [lng, lat],
-      zoom,
-    });
+    if (!map.current) {
+      // initialize map only once
+      map.current = new mapboxgl.Map({
+        container: mapContainer.current,
+        style: MAPBOX_STYLE,
+        center: [lng, lat],
+        zoom,
+      });
+    }
 
     const markerElement = document.createElement('div');
     markerElement.textContent = '📍';
     markerElement.style.fontSize = '30px';
 
-    new mapboxgl.Marker(markerElement).setLngLat([lng, lat]).addTo(map.current);
+    if (markerRef.current) {
+      markerRef.current.remove();
+    }
+
+    markerRef.current = new mapboxgl.Marker(markerElement)
+      .setLngLat([longitude, latitude])
+      .addTo(map.current);
+
+    map.current.flyTo({
+      center: [longitude, latitude],
+    });
   }, [longitude, latitude]);
 
   return (
