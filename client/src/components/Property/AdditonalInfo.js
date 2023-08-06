@@ -18,6 +18,7 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
   const appliance = propertyDetails.resoFacts.appliances;
   const nearbyList = propertyDetails?.nearbyHomes;
+  const moreFeature = [...(parkingFeature ?? []), ...(interiorFeature ?? [])];
   const walk = transit?.walkScore;
   const bike = transit?.bikeScore;
 
@@ -28,6 +29,20 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const prices = nearbyList?.map(property => property.price);
   const total = prices.length > 0 ? prices.reduce((a, b) => a + b, 0) : null;
   const averagePrice = total !== null ? total / prices.length : null;
+
+  function findMedian(arr) {
+    if (arr.length === 0) return null;
+
+    const sorted = [...arr].sort((a, b) => a - b);
+    const middle = Math.floor(sorted.length / 2);
+
+    if (sorted.length % 2 === 0) {
+      return (sorted[middle - 1] + sorted[middle]) / 2;
+    }
+    return sorted[middle];
+  }
+
+  const medianPrice = findMedian(prices);
 
   return (
     <Wrapper>
@@ -63,11 +78,12 @@ function AdditionalInfo({ propertyDetails, transit }) {
               />
             )}
           </ScoreWrapper>
-          {averagePrice !== null && (
+          {medianPrice !== null && (
             <BarWrapper>
               <PriceComparisonBar
-                averagePrice={averagePrice}
+                medianPrice={medianPrice}
                 propertyPrice={currentPropertyPrice}
+                averagePrice={averagePrice}
               />
             </BarWrapper>
           )}
@@ -81,17 +97,11 @@ function AdditionalInfo({ propertyDetails, transit }) {
             features={communityFeature}
           />
         )}
-        {interiorFeature && interiorFeature.length > 0 && (
-          <FeaturesSection
-            title="Interior Features"
-            features={interiorFeature}
-          />
-        )}
         {windowFeature && windowFeature.length > 0 && (
           <FeaturesSection title="Window Features" features={windowFeature} />
         )}
-        {parkingFeature && parkingFeature.length > 0 && (
-          <FeaturesSection title="Parking Features" features={parkingFeature} />
+        {moreFeature && moreFeature.length > 0 && (
+          <FeaturesSection title="More Features" features={moreFeature} />
         )}
         {appliance && appliance.length > 0 && (
           <FeaturesSection title="Appliances" features={appliance} />
