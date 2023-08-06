@@ -41,6 +41,9 @@ function Property() {
 
   if (isObjectValid(property)) {
     const { nearbyHomes, longitude, latitude } = property;
+    const filteredNearbyHomes = nearbyHomes.filter(
+      home => home.homeStatus === 'FOR_SALE'
+    );
     return (
       <Wrapper>
         <HeaderWrapper>
@@ -62,7 +65,7 @@ function Property() {
         <Divider sx={{ borderBottomWidth: 4 }} />
         <AdditionalInfo propertyDetails={property} transit={transitScore} />
         <Divider sx={{ borderBottomWidth: 4 }} />
-        <NearByHomes nearbyHomes={nearbyHomes} />
+        <NearByHomes nearbyHomes={filteredNearbyHomes} />
         <Divider sx={{ borderBottomWidth: 4 }} />
         <WalkScore zpid={zpid} />
       </Wrapper>

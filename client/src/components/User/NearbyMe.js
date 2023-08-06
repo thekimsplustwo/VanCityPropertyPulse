@@ -25,8 +25,13 @@ function NearbyMe({ region }) {
   }, [dispatch, region]);
 
   const properties = useSelector(state => state.home.list);
+  const filteredProperties = properties.filter(
+    property => property.listingStatus === 'FOR_SALE'
+  );
   const limitedProperties =
-    properties.length >= 10 ? properties.slice(0, 10) : properties;
+    filteredProperties.length >= 10
+      ? filteredProperties.slice(0, 10)
+      : filteredProperties;
 
   const adaptHomeData = homeData => {
     return {

@@ -6,12 +6,14 @@ import User from './users.js';
 import RawProperty from './rawProperties.js';
 import Neighborhood from './neighborhood.js';
 import * as mock from '../data/data.js';
+import RawPropertyDetail from './rawPropertyDetail.js';
 
 const collections = {
   properties: Property,
   propertyDetails: PropertyDetail,
   users: User,
   likes: Like,
+  rawPropertyDetails: RawPropertyDetail,
   rawProperties: RawProperty,
   neighborhoods: Neighborhood,
 };
@@ -58,7 +60,7 @@ const resetDatabase = async (...collectionsToReset) => {
   try {
     await deleteDataset(collectionsToResetUpdated);
     await dropDataset(collectionsToResetUpdated);
-    await insertDataset(collectionsToResetUpdated);
+    //await insertDataset(collectionsToResetUpdated);
   } catch (err) {
     console.error(err);
   }
