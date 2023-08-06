@@ -181,7 +181,7 @@ const Right = styled.div`
   padding: 2em;
   padding-top: 0.2em;
   color: #bdbdbd;
-  font-size: 13px;
+  font-size: 0.8em;
   font-style: italic;
 `;
 
