@@ -12,31 +12,20 @@ export const getLikesAsync = createAsyncThunk(
 export const addLikesAsync = createAsyncThunk(
   actionTypes.ADD_LIKES,
   async ({ property, token }) => {
-    const response = await LikesService.addLikes(property, token);
-
-    // Fetch likes again after successfully adding a like
-    // thunkAPI.dispatch(getLikesAsync());
-
-    return response[response.length - 1];
+    return LikesService.addLikes(property, token);
   }
 );
 
 export const deleteLikesAsync = createAsyncThunk(
   actionTypes.DELETE_LIKES,
   async ({ zpid, token }) => {
-    await LikesService.deleteLikes(zpid, token);
-    return zpid;
+    return LikesService.deleteLikes(zpid, token);
   }
 );
 
 export const deleteAllLikesAsync = createAsyncThunk(
   actionTypes.DELETE_ALL_LIKES,
   async token => {
-    const response = await LikesService.deleteAllLikes(token);
-
-    // This might not be necessary
-    // thunkAPI.dispatch(getLikesAsync());
-
-    return response; // if your backend returns the updated list of likes
+    return LikesService.deleteAllLikes(token);
   }
 );
