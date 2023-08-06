@@ -56,4 +56,21 @@ const getList = async (filter, sort) => {
   return res;
 };
 
-export { findZipcodeByNeighborhoodTitle, getList };
+const insertOrUpdateBulk = async data => {
+  const operations = data.map(obj => {
+    return {
+      updateOne: {
+        filter: { zpid: obj.zpid },
+        update: { $set: obj },
+        upsert: true,
+      },
+    };
+  });
+
+  await RawProperty.bulkWrite(operations);
+};
+
+const datascrappingPropertyList = async data => {
+  await insertOrUpdateBulk(data);
+};
+export { findZipcodeByNeighborhoodTitle, getList, datascrappingPropertyList };
