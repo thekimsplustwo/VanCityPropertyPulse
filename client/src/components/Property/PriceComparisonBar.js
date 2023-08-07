@@ -9,22 +9,18 @@ function PriceComparisonBar({ medianPrice, propertyPrice, averagePrice }) {
         xAxis={[
           {
             id: 'priceCategories',
-            data: [
-              'Average Price Nearby',
-              'Median Price Nearby',
-              'Property Price',
-            ],
+            data: ['Median Price Nearby', 'Property Price'],
             scaleType: 'band',
-            categoryGapRatio: 0.8,
+            categoryGapRatio: 0.7,
           },
         ]}
         series={[
           {
-            data: [averagePrice, medianPrice, propertyPrice],
+            data: [medianPrice, propertyPrice],
             color: ['pink'],
           },
         ]}
-        width={600}
+        width={400}
         height={300}
       />
     </Box>
