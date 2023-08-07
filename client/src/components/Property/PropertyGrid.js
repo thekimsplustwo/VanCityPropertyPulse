@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 import { setPage } from '../../redux/search/reducer';
+import PropertyNotFound from './PropertyNotFound';
 
 function PropertyGrid({
   properties,
@@ -90,26 +91,28 @@ function PropertyGrid({
   return (
     <Wrapper>
       <Section>
-        <CardWrapper>
-          {properties &&
-            properties
-              .slice(0, propertiesPerPage)
-              .map(property => (
-                <PropertyCard
-                  key={property.zpid}
-                  property={property}
-                  showCompareButton={showCompareButton}
-                  showHeartIcon={showHeartIcon}
-                  isSelected={selectedProperties.some(
-                    prop => prop.zpid === property.zpid
-                  )}
-                  onSelectProperty={handlePropertySelect}
-                  onDeselectProperty={handlePropertyDeselect}
-                  onAddToCompare={handleAddToCompare}
-                />
-              ))}
-        </CardWrapper>
+        {properties?.length > 0 ? (
+          <CardWrapper>
+            {properties.map(property => (
+              <PropertyCard
+                key={property.zpid}
+                property={property}
+                showCompareButton={showCompareButton}
+                showHeartIcon={showHeartIcon}
+                isSelected={selectedProperties.some(
+                  prop => prop.zpid === property.zpid
+                )}
+                onSelectProperty={handlePropertySelect}
+                onDeselectProperty={handlePropertyDeselect}
+                onAddToCompare={handleAddToCompare}
+              />
+            ))}
+          </CardWrapper>
+        ) : (
+          <PropertyNotFound />
+        )}
       </Section>
+
       <Pagination>
         <NavButton onClick={handlePrevGroup} disabled={currentPage === 1}>
           Prev
