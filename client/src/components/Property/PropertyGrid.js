@@ -11,8 +11,8 @@ function PropertyGrid({
   searchParams,
   setSearchClicked,
 }) {
-  const propertiesPerPage = 41;
-  const totalPages = 50;
+  const propertiesPerPage = 39;
+  const totalPages = 20;
   const pageGroupSize = 5;
 
   const [currentPage, setCurrentPage] = useState(searchParams.page);
@@ -87,32 +87,27 @@ function PropertyGrid({
     });
   };
 
-  const indexOfLastProperty = currentPage * propertiesPerPage;
-  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
-  const currentProperties = properties.slice(
-    indexOfFirstProperty,
-    indexOfLastProperty
-  );
-
   return (
     <Wrapper>
       <Section>
         <CardWrapper>
-          {currentProperties &&
-            properties.map(property => (
-              <PropertyCard
-                key={property.zpid}
-                property={property}
-                showCompareButton={showCompareButton}
-                showHeartIcon={showHeartIcon}
-                isSelected={selectedProperties.some(
-                  prop => prop.zpid === property.zpid
-                )}
-                onSelectProperty={handlePropertySelect}
-                onDeselectProperty={handlePropertyDeselect}
-                onAddToCompare={handleAddToCompare}
-              />
-            ))}
+          {properties &&
+            properties
+              .slice(0, propertiesPerPage)
+              .map(property => (
+                <PropertyCard
+                  key={property.zpid}
+                  property={property}
+                  showCompareButton={showCompareButton}
+                  showHeartIcon={showHeartIcon}
+                  isSelected={selectedProperties.some(
+                    prop => prop.zpid === property.zpid
+                  )}
+                  onSelectProperty={handlePropertySelect}
+                  onDeselectProperty={handlePropertyDeselect}
+                  onAddToCompare={handleAddToCompare}
+                />
+              ))}
         </CardWrapper>
       </Section>
       <Pagination>
@@ -122,7 +117,9 @@ function PropertyGrid({
         {renderPageNumbers()}
         <NavButton
           onClick={handleNextGroup}
-          disabled={properties.length < propertiesPerPage}
+          disabled={
+            currentPage >= totalPages || properties.length < propertiesPerPage
+          }
         >
           Next
         </NavButton>
