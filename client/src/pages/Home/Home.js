@@ -140,6 +140,8 @@ function Home() {
           properties={sortedProperties}
           showCompareButton={false}
           showHeartIcon
+          searchParams={searchParams}
+          setSearchClicked={setSearchClicked}
         />
       </Main>
     )
