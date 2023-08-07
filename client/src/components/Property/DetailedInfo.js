@@ -96,18 +96,22 @@ function DetailedInfo({ propertyDetails }) {
                     value={livingArea}
                     unit="sqft"
                   />
-                  <InfoRowComponent
-                    icon={PaidIcon}
-                    label="Price Per sqft"
-                    value={pricePerSquareFoot}
-                    unit="CAD"
-                  />
-                  <InfoRowComponent
-                    icon={PaidIcon}
-                    label="Strata Fee"
-                    value={monthlyHoaFee}
-                    unit="CAD"
-                  />
+                  {pricePerSquareFoot && (
+                    <InfoRowComponent
+                      icon={PaidIcon}
+                      label="Price Per sqft"
+                      value={pricePerSquareFoot}
+                      unit="CAD"
+                    />
+                  )}
+                  {monthlyHoaFee && (
+                    <InfoRowComponent
+                      icon={PaidIcon}
+                      label="Strata Fee"
+                      value={monthlyHoaFee}
+                      unit="CAD"
+                    />
+                  )}
                 </Typography>
               </div>
             </Grid>
