@@ -28,7 +28,7 @@ function PropertyGrid({
   const dispatch = useDispatch();
 
   const handlePagination = (event, page) => {
-    if (location.pathname !== '/likes') {
+    if (location.pathname === '/home') {
       setCurrentPage(page);
       dispatch(setPage(page));
       setSearchClicked(true);
