@@ -25,13 +25,22 @@ function NearbyMe({ region }) {
   }, [dispatch, region]);
 
   const properties = useSelector(state => state.home.list);
-  const filteredProperties = properties.filter(
-    property => property.listingStatus === 'FOR_SALE'
-  );
-  const limitedProperties =
-    filteredProperties.length >= 10
-      ? filteredProperties.slice(0, 10)
-      : filteredProperties;
+  let filteredProperties = [];
+  if (region === '') {
+    filteredProperties = [];
+  } else {
+    filteredProperties = properties.filter(
+      property => property.listingStatus === 'FOR_SALE'
+    );
+  }
+  let limitedProperties = [];
+  if (properties.length !== 0) {
+    if (filteredProperties && filteredProperties.length >= 10) {
+      limitedProperties = filteredProperties.slice(0, 10);
+    } else {
+      limitedProperties = filteredProperties;
+    }
+  }
 
   const adaptHomeData = homeData => {
     return {
