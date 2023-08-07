@@ -41,9 +41,6 @@ function Property() {
 
   if (isObjectValid(property)) {
     const { nearbyHomes, longitude, latitude } = property;
-    // const filteredNearbyHomes = nearbyHomes.filter(
-    //   home => home.homeStatus === 'FOR_SALE'
-    // );
     return (
       <Wrapper>
         <HeaderWrapper>
