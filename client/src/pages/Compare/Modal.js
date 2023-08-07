@@ -21,8 +21,9 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
   const [properties, setProperties] = useState(likes);
 
   useEffect(() => {
-    console.log('zpidList', zpidList);
-    const filteredLikes = likes.filter(like => !zpidList.includes(like.zpid));
+    const filteredLikes = likes.filter(
+      like => !zpidList.includes(like.zpid.toString())
+    );
     console.log('filteredLikes', filteredLikes);
     setProperties(filteredLikes);
   }, [likes, zpidList]);
@@ -42,12 +43,7 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
           <PropertyGrid properties={properties} showCompareButton />
         </Container>
         <Box>
-          <Button
-            // size="large"
-            onClick={onClose}
-            variant="contained"
-            // color="inherit"
-          >
+          <Button onClick={onClose} variant="contained">
             Close
           </Button>
         </Box>
@@ -73,6 +69,11 @@ const ModalStyle = styled.div`
   justify-content: center;
   overflow-y: auto;
   // max-height: 75vh;
+
+  @media (max-width: 800px) {
+    max-width: 95%;
+    max-height: 95%;
+  }
 `;
 
 const OverlayStyle = styled.div`
@@ -92,4 +93,7 @@ const Box = styled.div`
 
 const Container = styled.div`
   margin-top: 10%;
+  @media (max-width: 800px) {
+    overflow-y: auto;
+  }
 `;

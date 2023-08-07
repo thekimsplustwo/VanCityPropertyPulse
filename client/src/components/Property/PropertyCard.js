@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -26,7 +26,11 @@ function PropertyCard({
   const [selectedProperties, setSelectedProperties] = useState([]);
 
   const likes = useSelector(state => state.likes.list);
-  const liked = likes && likes.some(like => like.zpid === currZpid, 10);
+  const likesArray = useMemo(
+    () => (Array.isArray(likes) ? likes : []),
+    [likes]
+  );
+  const liked = likesArray.some(like => like.zpid === currZpid, 10);
   const navigateToPropertyPage = zpid => {
     navigate(`/properties/${zpid}`, {
       state: { zpid },

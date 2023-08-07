@@ -40,10 +40,10 @@ function Property() {
   }, [dispatch, zpid]);
 
   if (isObjectValid(property)) {
-    const images = Array.isArray(property.imgSrc)
-      ? property.imgSrc
-      : [property.imgSrc];
     const { nearbyHomes, longitude, latitude } = property;
+    const filteredNearbyHomes = nearbyHomes.filter(
+      home => home.homeStatus === 'FOR_SALE'
+    );
     return (
       <Wrapper>
         <HeaderWrapper>
@@ -52,7 +52,7 @@ function Property() {
         </HeaderWrapper>
         <ContentWrapper>
           <GraphicWrapper>
-            <ImageCarousel propertyImages={images} />
+            <ImageCarousel propertyImages={property?.imgSrc || []} />
             <MapBox longitude={longitude} latitude={latitude} />
           </GraphicWrapper>
           <DetailedInfo propertyDetails={property} />
@@ -65,7 +65,7 @@ function Property() {
         <Divider sx={{ borderBottomWidth: 4 }} />
         <AdditionalInfo propertyDetails={property} transit={transitScore} />
         <Divider sx={{ borderBottomWidth: 4 }} />
-        <NearByHomes nearbyHomes={nearbyHomes} />
+        <NearByHomes nearbyHomes={filteredNearbyHomes} />
         <Divider sx={{ borderBottomWidth: 4 }} />
         <WalkScore zpid={zpid} />
       </Wrapper>
