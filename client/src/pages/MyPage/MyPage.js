@@ -8,6 +8,7 @@ import { getUserAsync } from '../../redux/users/thunks';
 import UserPageLeft from '../../components/User/UserPageLeft';
 import MoreOptions from '../../components/User/MoreOptions';
 import UserProfileEdit from '../../components/User/UserProfileEdit';
+import NearbyMe from '../../components/User/NearbyMe';
 
 function MyPage() {
   const token = localStorage.getItem('token');
@@ -27,26 +28,24 @@ function MyPage() {
     }
   }, [dispatch, isLogin]);
 
+  const user = useSelector(state => state.users.user);
+  const { region } = user;
+
   return (
     isLogin && (
       <Main>
         {modal && <UserProfileEdit setModal={setModal} />}
-        <Box
-          sx={{
-            width: '100%',
-            height: '100vh',
-            paddingTop: '5em',
-          }}
-        >
+        <StyledBox>
           <Grid container spacing={4}>
-            <Grid item="true" xs={4}>
+            <Grid item xs={12} sm={4}>
               <UserPageLeft setModal={setModal} />
             </Grid>
-            <Grid item="true" xs={7.7}>
+            <Grid item xs={12} sm={7.7}>
               <MoreOptions />
             </Grid>
           </Grid>
-        </Box>
+        </StyledBox>
+        <NearbyMe region={region} />
       </Main>
     )
   );
@@ -60,4 +59,13 @@ const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   padding: 30px;
+`;
+
+const StyledBox = styled(Box)`
+  width: 100%;
+  padding-top: 5em;
+
+  @media (max-width: 600px) {
+    height: 100%;
+  }
 `;

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMin, setMax } from '../../../redux/search/reducer';
 
-const StyledButton = muiStyled(Button)({
+const StyledButton = muiStyled(Button)(({ theme }) => ({
   backgroundColor: 'white',
   height: '45px',
   fontSize: '17px',
@@ -23,7 +23,12 @@ const StyledButton = muiStyled(Button)({
   overflow: 'hidden',
   'text-overflow': 'ellipsis',
   marginRight: '10px',
-});
+  [theme.breakpoints.down('sm')]: {
+    width: '110px',
+    height: '35px',
+    fontSize: '14px',
+  },
+}));
 
 const StyledMenuItem = muiStyled(MenuItem)`
   background-color: #e0e0e0;
@@ -111,6 +116,7 @@ export default function PriceRange() {
             value={minPrice}
             onChange={handleMinPriceChange}
             type="number"
+            sx={{ width: '150px' }}
             inputProps={{
               min: 0,
               max: maxPrice !== 0 ? maxMinPrice : undefined,
@@ -124,6 +130,8 @@ export default function PriceRange() {
             value={maxPrice}
             onChange={handleMaxPriceChange}
             type="number"
+            // 150px
+            sx={{ width: '150px' }}
             inputProps={{
               min: minMaxPrice,
               max: 9999999,

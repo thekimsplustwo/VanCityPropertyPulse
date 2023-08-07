@@ -37,11 +37,18 @@ const validateResonseDataFromDetailAPI = response => {
   }
 };
 
+const datascrappingProperty = async data => {
+  await propertyModel.datascrappingProperty(data);
+};
+
 const getPropertyDetailFromZillowAPI = async zpid => {
   const options = zillowAPIOptions(zpid, ZILLOW_API_ENDPOINT.DETAIL);
   const response = await axios.request(options);
   validateResponseStatus(response);
   validateResonseDataFromDetailAPI(response);
+  if (process.env.DATA_SCRAP === 'on') {
+    await datascrappingProperty(response.data);
+  }
   return response.data;
 };
 

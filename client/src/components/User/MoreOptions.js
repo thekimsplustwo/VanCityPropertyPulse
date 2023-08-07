@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import { Stack, Box, Typography } from '@mui/material';
-import Grid from '@mui/material/Unstable_Grid2';
+import { Stack, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { themeColorPurple } from '../../styles/theme';
+import CenteredGrid from './CenteredGrid';
 
 function MoreOptions() {
   const navigate = useNavigate();
@@ -16,76 +15,25 @@ function MoreOptions() {
   };
 
   const navigateToCompare = () => {
-    //navigate('/compare');
+    navigate('/compare');
   };
 
   return (
     <Wrapper>
       <Box sx={{ width: '100%' }}>
         <Stack justifyContent="center" alignItems="center">
-          <CenteredGrid>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              onClick={navigateToHome}
-              sx={{
-                mr: 2,
-                fontWeight: 600,
-                letterSpacing: '.2rem',
-                color: themeColorPurple,
-                textDecoration: 'none',
-                fontSize: '1.1rem',
-                '&:hover': {
-                  cursor: 'pointer',
-                },
-              }}
-            >
-              Search Available Properties
-            </Typography>
-          </CenteredGrid>
-          <CenteredGrid>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              onClick={navigateToCompare}
-              sx={{
-                mr: 2,
-                fontWeight: 600,
-                letterSpacing: '.2rem',
-                color: themeColorPurple,
-                textDecoration: 'none',
-                fontSize: '1.1rem',
-                '&:hover': {
-                  cursor: 'pointer',
-                },
-              }}
-            >
-              List Your Property
-            </Typography>
-          </CenteredGrid>
-          <CenteredGrid>
-            <Typography
-              variant="h5"
-              noWrap
-              component="a"
-              onClick={navigateToLike}
-              sx={{
-                mr: 2,
-                fontWeight: 600,
-                letterSpacing: '.2rem',
-                color: themeColorPurple,
-                textDecoration: 'none',
-                fontSize: '1.1rem',
-                '&:hover': {
-                  cursor: 'pointer',
-                },
-              }}
-            >
-              View Your Favourite Properties
-            </Typography>
-          </CenteredGrid>
+          <CenteredGrid
+            onClick={navigateToHome}
+            text="Search for Available Properties"
+          />
+          <CenteredGrid
+            onClick={navigateToLike}
+            text="View Your Favourite Properties"
+          />
+          <CenteredGrid
+            onClick={navigateToCompare}
+            text="Compare Your Favourite Properties"
+          />
         </Stack>
       </Box>
     </Wrapper>
@@ -107,16 +55,20 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-const CenteredGrid = styled(Grid)`
-  border-radius: 15px;
-  width: 80%;
-  height: 10vh;
-  --Grid-borderWidth: 2px;
-  border: var(--Grid-borderWidth) solid #f8c9cd;
-  background-color: #feedef;
-  margin-top: 35px;
-  margin-bottom: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+// const CenteredGrid = styled(Grid)`
+//   border-radius: 15px;
+//   width: 80%;
+//   height: 10vh;
+//   --Grid-borderWidth: 2px;
+//   border: var(--Grid-borderWidth) solid #f8c9cd;
+//   background-color: #feedef;
+//   margin-top: 35px;
+//   margin-bottom: 35px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+
+//   @media (max-width: 600px) {
+//     height: 6vh;
+//   }
+// `;

@@ -73,11 +73,17 @@ function Likes() {
 }
 
 const Main = styled.div`
+  min-height: 100vh;
   padding-top: 5em;
   width: 100%;
   display: flex;
   flex-direction: column;
   margin-top: 10px;
+
+  @media (max-width: 700px) {
+    padding-top: 4em;
+    margin-top: 3px;
+  }
 `;
 
 const OuterHeaderWrapper = styled.div`
@@ -86,6 +92,10 @@ const OuterHeaderWrapper = styled.div`
   align-items: flex-start;
   padding: 20px 50px;
   justify-content: center;
+
+  @media (max-width: 700px) {
+    padding: 13x 50px;
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -94,6 +104,10 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: stretch;
   padding: 20px 0;
+
+  @media (max-width: 700px) {
+    padding: 0;
+  }
 `;
 
 const HeaderTitle = styled.div`
@@ -132,6 +146,13 @@ const MenuContainer = styled.div`
     color: red;
     border-color: red;
   }
+
+  @media (max-width: 700px) {
+    width: 70px;
+    height: 30px;
+    margin: 2px;
+    margin-left: 50px;
+  }
 `;
 
 const MenuOpt = styled.div`
@@ -143,6 +164,11 @@ const MenuOpt = styled.div`
 const Wrapper = styled.div`
   display: flex;
   margin-top: 10px;
+
+  @media (max-width: 700px) {
+    display: flex;
+    margin-top: 2px;
+  }
 `;
 
 export default Likes;

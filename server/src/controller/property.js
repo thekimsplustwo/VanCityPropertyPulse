@@ -5,7 +5,7 @@ import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 dotenv.config();
 
 let lastRequestTime = 0;
-const INTERVAL_MS = 600;
+const INTERVAL_MS = 0;
 
 const sleep = ms => {
   return new Promise(resolve => {
@@ -32,7 +32,7 @@ const getPropertyDetails = async (req, res) => {
     }
 
     // Enforce the delay between requests
-    await delayNextRequest();
+    // await delayNextRequest();
 
     const propertyDetails = await propertyService.getPropertyDetails(zpid);
     return res.status(200).json(propertyDetails);

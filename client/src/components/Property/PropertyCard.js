@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -26,7 +26,11 @@ function PropertyCard({
   const [selectedProperties, setSelectedProperties] = useState([]);
 
   const likes = useSelector(state => state.likes.list);
-  const liked = likes && likes.some(like => like.zpid === currZpid, 10);
+  const likesArray = useMemo(
+    () => (Array.isArray(likes) ? likes : []),
+    [likes]
+  );
+  const liked = likesArray.some(like => like.zpid === currZpid, 10);
   const navigateToPropertyPage = zpid => {
     navigate(`/properties/${zpid}`, {
       state: { zpid },
@@ -128,6 +132,11 @@ const PropertyCardContent = styled.section`
   position: relative;
   width: 350px;
   height: 350px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 300px;
+  }
 `;
 
 const PropertyInfo = styled.section`
@@ -141,6 +150,11 @@ const PropertyInfo = styled.section`
   color: white;
   ${baseInfoRowStyles}
   line-height: 20px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+    height: 100px;
+  }
 `;
 
 const PropertyPrice = styled.div`

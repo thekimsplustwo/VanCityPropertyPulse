@@ -5,8 +5,9 @@ const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 const MAPBOX_STYLE = process.env.REACT_APP_MAPBOX_STYLE;
 const MAPBOX_ZOOM = process.env.REACT_APP_MAPBOX_ZOOM;
-const SNS_URL = process.env.REACT_APP_TEST_URL;
 const AUTH = process.env.REACT_APP_AUTH;
+const SNS_TEST_URL = process.env.REACT_APP_SNS_TEST_URL;
+
 export {
   AUTH,
   BASE_URL,
@@ -16,5 +17,5 @@ export {
   MAPBOX_TOKEN,
   MAPBOX_STYLE,
   MAPBOX_ZOOM,
-  SNS_URL,
+  SNS_TEST_URL,
 };

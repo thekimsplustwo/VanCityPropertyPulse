@@ -7,11 +7,11 @@ import {
   WhatsApp as WhatsAppIcon,
 } from '@mui/icons-material';
 import ReplyIcon from '@mui/icons-material/Reply';
-import { SNS_URL } from '../../config';
+import { SNS_TEST_URL } from '../../config';
 
 function ShareMenu({ url, title }) {
   const testUrl = 'https://www.adidas.ca/en';
-  const finalUrl = SNS_URL === 'on' ? testUrl : url;
+  const finalUrl = SNS_TEST_URL === 'on' ? testUrl : url;
 
   const [open, setOpen] = useState(false);
 
@@ -19,7 +19,7 @@ function ShareMenu({ url, title }) {
   const handleClose = () => setOpen(false);
 
   const handleCopy = () => {
-    if (process.env.REACT_APP_TEST_URL === 'on') {
+    if (SNS_TEST_URL === 'on') {
       console.log('URL:', finalUrl);
     } else {
       navigator.clipboard.writeText(finalUrl);

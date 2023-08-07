@@ -22,6 +22,7 @@ function Property() {
   const navigate = useNavigate();
   const { zpid } = useParams();
   const property = useSelector(state => state.property.property);
+  const transitScore = useSelector(state => state.property.walkAndTransitScore);
   const isLogin = useSelector(state => state.users.isLogin);
 
   const dispatch = useDispatch();
@@ -39,10 +40,10 @@ function Property() {
   }, [dispatch, zpid]);
 
   if (isObjectValid(property)) {
-    const images = Array.isArray(property.imgSrc)
-      ? property.imgSrc
-      : [property.imgSrc];
     const { nearbyHomes, longitude, latitude } = property;
+    const filteredNearbyHomes = nearbyHomes.filter(
+      home => home.homeStatus === 'FOR_SALE'
+    );
     return (
       <Wrapper>
         <HeaderWrapper>
@@ -51,7 +52,7 @@ function Property() {
         </HeaderWrapper>
         <ContentWrapper>
           <GraphicWrapper>
-            <ImageCarousel propertyImages={images} />
+            <ImageCarousel propertyImages={property?.imgSrc || []} />
             <MapBox longitude={longitude} latitude={latitude} />
           </GraphicWrapper>
           <DetailedInfo propertyDetails={property} />
@@ -62,9 +63,9 @@ function Property() {
           )}
         </Row>
         <Divider sx={{ borderBottomWidth: 4 }} />
-        <AdditionalInfo />
+        <AdditionalInfo propertyDetails={property} transit={transitScore} />
         <Divider sx={{ borderBottomWidth: 4 }} />
-        <NearByHomes nearbyHomes={nearbyHomes} />
+        <NearByHomes nearbyHomes={filteredNearbyHomes} />
         <Divider sx={{ borderBottomWidth: 4 }} />
         <WalkScore zpid={zpid} />
       </Wrapper>
@@ -94,8 +95,14 @@ const HeaderWrapper = styled.div`
 const GraphicWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: stretch;
   width: 100%;
+
+  @media (max-width: 800px) {
+    margin-bottom: 30px;
+    margin-left: 30px;
+  }
 `;
 
 const ContentWrapper = styled.div`
@@ -104,6 +111,11 @@ const ContentWrapper = styled.div`
   align-items: stretch;
   margin: 0;
   vertical-align: top;
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Row = styled.div`

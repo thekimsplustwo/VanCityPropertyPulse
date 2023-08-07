@@ -15,14 +15,22 @@ const StyledPaper = styled(Paper)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  width: 370px;
   height: 70px;
   background-color: white;
   border-radius: 8px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 `;
 
 const StyledAutocomplete = styled(Autocomplete)`
   width: 370px;
+
+  @media (max-width: 600px) {
+    width: 300px;
+  }
 `;
 
 export default function Search() {
@@ -53,9 +61,6 @@ export default function Search() {
         )}
         onChange={handleLocationChange}
       />
-      <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-        <SearchIcon />
-      </IconButton>
     </StyledPaper>
   );
 }
