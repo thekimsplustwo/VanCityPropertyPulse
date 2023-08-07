@@ -20,8 +20,17 @@ function InfoRowComponent({ icon, label, value, unit }) {
 
   return (
     <InfoRow>
-      <StyledIcon style={{ marginBottom: '-5px' }} sx={{ color: '#ff385c' }} />
-      <Bold>{label}: </Bold> {value} {unit}
+      <StyledIcon
+        style={{ marginBottom: '-5px' }}
+        sx={{
+          color: '#ff385c',
+          opacity: '0.7',
+          padding: '0.3rem',
+          fontSize: '2rem',
+          marginRight: '1rem',
+        }}
+      />
+      <Bold>{label}: </Bold> {value || 'N/A'} {value && unit ? unit : ''}
     </InfoRow>
   );
 }
@@ -79,6 +88,7 @@ function DetailedInfo({ propertyDetails }) {
                     icon={AutoAwesomeIcon}
                     label="House Age"
                     value={new Date().getFullYear() - yearBuilt}
+                    unit="year"
                   />
                   <InfoRowComponent
                     icon={CropFreeRoundedIcon}
@@ -86,18 +96,22 @@ function DetailedInfo({ propertyDetails }) {
                     value={livingArea}
                     unit="sqft"
                   />
-                  <InfoRowComponent
-                    icon={PaidIcon}
-                    label="Price Per sqft"
-                    value={pricePerSquareFoot}
-                    unit="CAD"
-                  />
-                  <InfoRowComponent
-                    icon={PaidIcon}
-                    label="Strata Fee"
-                    value={monthlyHoaFee}
-                    unit="CAD"
-                  />
+                  {pricePerSquareFoot && (
+                    <InfoRowComponent
+                      icon={PaidIcon}
+                      label="Price Per sqft"
+                      value={pricePerSquareFoot}
+                      unit="CAD"
+                    />
+                  )}
+                  {monthlyHoaFee && (
+                    <InfoRowComponent
+                      icon={PaidIcon}
+                      label="Strata Fee"
+                      value={monthlyHoaFee}
+                      unit="CAD"
+                    />
+                  )}
                 </Typography>
               </div>
             </Grid>
@@ -159,7 +173,8 @@ function DetailedInfo({ propertyDetails }) {
           >
             <StyledText>
               <InfoRow>
-                <BoldHeader>Overview </BoldHeader> {description}
+                <BoldHeader>Overview </BoldHeader>
+                <DescriptionWrapper>{description}</DescriptionWrapper>
               </InfoRow>
             </StyledText>
           </div>
@@ -173,7 +188,7 @@ export default DetailedInfo;
 const InfoRow = styled.p`
   margin-bottom: 10px;
   ${baseInfoRowStyles}
-
+  letter-spacing: 0.08em;
   @media (max-width: 600px) {
     font-size: 0.8rem;
   }
@@ -223,4 +238,10 @@ const Box = styled.div`
   font-weight: bold;
   border-radius: 10px;
   box-shadow: 10px 10px #fbe8e9;
+`;
+
+const DescriptionWrapper = styled.div`
+  letter-spacing: 0.1em;
+  word-spacing: 0.2em;
+  line-height: 2.1em;
 `;

@@ -1,23 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import PropertyCard from './PropertyCard';
 import { setPage } from '../../redux/search/reducer';
+import PropertyNotFound from './PropertyNotFound';
 
-function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
-  const numOfProperties = properties.length;
-  const propertiesPerPage = 9;
-  const totalPages = Math.ceil(numOfProperties / propertiesPerPage);
-  const [currentPage, setCurrentPage] = useState(1);
+function PropertyGrid({
+  properties,
+  showCompareButton,
+  showHeartIcon,
+  searchParams,
+  setSearchClicked,
+}) {
+  const propertiesPerPage = 39;
+  const totalPages = 20;
   const pageGroupSize = 5;
 
-  const dispatch = useDispatch();
-
+  const [currentPage, setCurrentPage] = useState(searchParams.page);
   const [selectedProperties, setSelectedProperties] = useState([]);
+
+  useEffect(() => {
+    setCurrentPage(searchParams.page);
+  });
+
+  const dispatch = useDispatch();
 
   const handlePagination = page => {
     setCurrentPage(page);
     dispatch(setPage(page));
+    setSearchClicked(true);
   };
 
   const handlePrevGroup = () => {
@@ -25,6 +36,7 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
       currentPage - pageGroupSize >= 1 ? currentPage - pageGroupSize : 1;
     setCurrentPage(prevPage);
     dispatch(setPage(prevPage));
+    setSearchClicked(true);
   };
 
   const handleNextGroup = () => {
@@ -34,6 +46,7 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
         : totalPages;
     setCurrentPage(nextPage);
     dispatch(setPage(nextPage));
+    setSearchClicked(true);
   };
 
   const handlePropertySelect = property => {
@@ -75,19 +88,12 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
     });
   };
 
-  const indexOfLastProperty = currentPage * propertiesPerPage;
-  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
-  const currentProperties = properties.slice(
-    indexOfFirstProperty,
-    indexOfLastProperty
-  );
-
   return (
     <Wrapper>
       <Section>
-        <CardWrapper>
-          {currentProperties &&
-            currentProperties.map(property => (
+        {properties?.length > 0 ? (
+          <CardWrapper>
+            {properties.map(property => (
               <PropertyCard
                 key={property.zpid}
                 property={property}
@@ -101,8 +107,12 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
                 onAddToCompare={handleAddToCompare}
               />
             ))}
-        </CardWrapper>
+          </CardWrapper>
+        ) : (
+          <PropertyNotFound />
+        )}
       </Section>
+
       <Pagination>
         <NavButton onClick={handlePrevGroup} disabled={currentPage === 1}>
           Prev
@@ -110,7 +120,9 @@ function PropertyGrid({ properties, showCompareButton, showHeartIcon }) {
         {renderPageNumbers()}
         <NavButton
           onClick={handleNextGroup}
-          disabled={currentPage >= totalPages}
+          disabled={
+            currentPage >= totalPages || properties.length < propertiesPerPage
+          }
         >
           Next
         </NavButton>
@@ -161,10 +173,12 @@ const Button = styled.button`
 `;
 
 const NavButton = styled.button`
+  font-weight: bold;
   padding: 0.5em 1em;
   margin: 0 0.5em;
   border: none;
   background-color: transparent;
   cursor: pointer;
   color: ${props => (props.disabled ? 'gray' : 'black')};
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
 `;

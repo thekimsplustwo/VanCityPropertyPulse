@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
-import { Info, ArrowForward, Add } from '@mui/icons-material';
-import { themeColorPink } from '../../styles/theme';
-// import { Bold, InfoRow } from './DetailedInfo';
-import { baseInfoRowStyles } from '../../styles/theme';
+import { Add } from '@mui/icons-material';
+import { themeColorPink, baseInfoRowStyles } from '../../styles/theme';
 import School from './SchoolCard';
 import FeaturesSection from './FeaturesSection';
 import TransitScore from './TransitScore';
+import PriceComparisonBar from './PriceComparisonBar';
 
 function AdditionalInfo({ propertyDetails, transit }) {
   const schoolList = propertyDetails.schools;
@@ -16,8 +15,35 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const windowFeature = propertyDetails.resoFacts.windowFeatures;
   const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
   const appliance = propertyDetails.resoFacts.appliances;
-  const walk = transit.walkScore;
-  const bike = transit.bikeScore;
+  const nearbyList = propertyDetails?.nearbyHomes;
+  const moreFeature = [
+    ...(Array.isArray(parkingFeature) ? parkingFeature : []),
+    ...(Array.isArray(interiorFeature) ? interiorFeature : []),
+  ];
+  const walk = transit?.walkScore;
+  const bike = transit?.bikeScore;
+
+  const walkScore = walk?.walkscore ? parseInt(walk.walkscore, 10) : null;
+  const bikeScore = bike?.bikescore ? parseInt(bike.bikescore, 10) : null;
+
+  const currentPropertyPrice = propertyDetails.price;
+  const prices = nearbyList?.map(property => property.price);
+  const total = prices.length > 0 ? prices.reduce((a, b) => a + b, 0) : null;
+  const averagePrice = total !== null ? total / prices.length : null;
+
+  function findMedian(arr) {
+    if (arr.length === 0) return null;
+
+    const sorted = [...arr].sort((a, b) => a - b);
+    const middle = Math.floor(sorted.length / 2);
+
+    if (sorted.length % 2 === 0) {
+      return (sorted[middle - 1] + sorted[middle]) / 2;
+    }
+    return sorted[middle];
+  }
+
+  const medianPrice = findMedian(prices);
 
   return (
     <Wrapper>
@@ -33,17 +59,36 @@ function AdditionalInfo({ propertyDetails, transit }) {
         </ButtonWrapper>
       </InfoRow>
       <MarginBottom>
-        <Description>Schools, amenities, travel times</Description>
-        <TransitScore
-          score={parseInt(walk.walkscore, 10)}
-          label="Walk Score"
-          description={walk.description}
-        />
-        <TransitScore
-          score={parseInt(bike.bikescore, 10)}
-          label="Bike Score"
-          description={bike.description}
-        />
+        <Description>
+          Schools, amenities, travel times, price comparison
+        </Description>
+        <InfoWrapper>
+          <ScoreWrapper>
+            {walkScore !== null && (
+              <TransitScore
+                score={walkScore}
+                label="Walk Score"
+                description={walk.description}
+              />
+            )}
+            {bikeScore !== null && (
+              <TransitScore
+                score={bikeScore}
+                label="Bike Score"
+                description={bike.description}
+              />
+            )}
+          </ScoreWrapper>
+          {medianPrice !== null && (
+            <BarWrapper>
+              <PriceComparisonBar
+                medianPrice={medianPrice}
+                propertyPrice={currentPropertyPrice}
+                averagePrice={averagePrice}
+              />
+            </BarWrapper>
+          )}
+        </InfoWrapper>
         {lotFeature && lotFeature.length > 0 && (
           <FeaturesSection title="Lot Features" features={lotFeature} />
         )}
@@ -53,17 +98,11 @@ function AdditionalInfo({ propertyDetails, transit }) {
             features={communityFeature}
           />
         )}
-        {interiorFeature && interiorFeature.length > 0 && (
-          <FeaturesSection
-            title="Interior Features"
-            features={interiorFeature}
-          />
-        )}
         {windowFeature && windowFeature.length > 0 && (
           <FeaturesSection title="Window Features" features={windowFeature} />
         )}
-        {parkingFeature && parkingFeature.length > 0 && (
-          <FeaturesSection title="Parking Features" features={parkingFeature} />
+        {moreFeature && moreFeature.length > 0 && (
+          <FeaturesSection title="More Features" features={moreFeature} />
         )}
         {appliance && appliance.length > 0 && (
           <FeaturesSection title="Appliances" features={appliance} />
@@ -132,6 +171,24 @@ const NoSchools = styled.div`
   font-size: 18px;
   text-align: center;
   margin-top: 20px;
+`;
+
+const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
+`;
+
+const ScoreWrapper = styled.div`
+  margin-right: 3em;
+`;
+
+const BarWrapper = styled.div`
+  flex-grow: 0;
 `;
 
 export default AdditionalInfo;

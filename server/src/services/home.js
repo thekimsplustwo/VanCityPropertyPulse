@@ -8,6 +8,10 @@ dotenv.config();
 
 const ZILLOW_API_LISTING_FLAG_ON = process.env.ZILLOW_API_LISTING === 'on';
 
+const datascrappingPropertyList = async data => {
+  await homeModel.datascrappingPropertyList(data);
+};
+
 const ExtendedSearchOptions = (filter, sort) => {
   return {
     method: 'GET',
@@ -20,14 +24,24 @@ const ExtendedSearchOptions = (filter, sort) => {
   };
 };
 
-const requestZillowAPIExtendedSearch = async trimmedFilter => {
+const requestZillowAPIExtendedSearch = async (trimmedFilter, offset) => {
   const options = ExtendedSearchOptions(trimmedFilter);
   try {
     const response = await axios.request(options);
     if (response.status !== 200 || response.data.status === 'error') {
       errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
     }
-    return response.data.props || [];
+    if (
+      trimmedFilter.page &&
+      Number(trimmedFilter.page) > response.data.totalPages
+    ) {
+      return [];
+    }
+    const data = response.data.props;
+    if (process.env.DATA_SCRAP === 'on') {
+      await datascrappingPropertyList(data);
+    }
+    return data.length > offset ? data.slice(0, offset) : data || [];
   } catch (error) {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
   }
@@ -56,8 +70,9 @@ const trimFilter = async filter => {
 
 const getList = async (filter, sort) => {
   const trimmedFilter = await trimFilter(filter);
+  const offset = filter.offset || 39;
   return ZILLOW_API_LISTING_FLAG_ON
-    ? requestZillowAPIExtendedSearch(trimmedFilter)
+    ? requestZillowAPIExtendedSearch(trimmedFilter, offset)
     : homeModel.getList(trimmedFilter, sort);
 };
 

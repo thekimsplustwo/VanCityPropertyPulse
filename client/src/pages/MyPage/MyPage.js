@@ -63,7 +63,6 @@ const Main = styled.div`
 
 const StyledBox = styled(Box)`
   width: 100%;
-  height: 100vh;
   padding-top: 5em;
 
   @media (max-width: 600px) {

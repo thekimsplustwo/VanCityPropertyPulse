@@ -1,16 +1,21 @@
 import { Button } from '@mui/material';
 
 function CompareDeleteButton({ zpid, children }) {
+  function removeQueryParam(key, value) {
+    const url = new URL(window.location.href);
+    const searchParams = new URLSearchParams(url.search);
+    const paramArray = Array.from(searchParams.entries());
+    const updatedParamArray = paramArray.filter(
+      param => !(param[0] === key && param[1] === value)
+    );
+    const updatedSearchParams = new URLSearchParams(updatedParamArray);
+    url.search = updatedSearchParams.toString();
+    return url.toString();
+  }
+
   const handleDelete = () => {
-    const items = new URLSearchParams(window.location.search).getAll('item');
-
-    const filteredItems = items.filter(item => item !== zpid);
-
-    const newUrl = `${window.location.origin}${
-      window.location.pathname
-    }?${filteredItems.map(item => `item=${item}`).join('&')}`;
-
-    window.location.href = `${window.location.origin}/compare?${newUrl}`;
+    const updatedUrl = removeQueryParam('item', `${zpid}`);
+    window.location.href = updatedUrl;
   };
 
   return (

@@ -36,6 +36,7 @@ const {
   SECRET_KEY,
   ZILLOW_API_URL,
   EC2_DNS,
+  PROD,
 } = process.env;
 
 const PORT = process.env.PORT || 10010;
@@ -76,8 +77,12 @@ connect();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cors(corsOptions));
-app.use(express.static(path.join(__dirname, '../../client/build')));
 
+if (PROD === 'on') {
+  app.use(express.static(path.join(__dirname, '../../client/build')));
+} else {
+  app.use(express.static('public'));
+}
 app.use(express.urlencoded({ extended: true }));
 app.use(compression());
 app.use(session(sessionOptions));
@@ -91,9 +96,11 @@ app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });
 });
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client/build/index.html'));
-});
+if (PROD === 'on') {
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/build/index.html'));
+  });
+}
 
 const server = http.createServer(app);
 
