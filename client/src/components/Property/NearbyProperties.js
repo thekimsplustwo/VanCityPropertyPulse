@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
+import { v4 as uuid } from 'uuid';
 import { themeColorPink } from '../../styles/theme';
 import PropertyCard from './PropertyCard';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-function NearbyProperties({ properties, adaptHomeData }) {
+function NearbyProperties({ properties }) {
   const sliderRef = useRef();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [slides, setSlides] = useState(1);
@@ -19,10 +20,37 @@ function NearbyProperties({ properties, adaptHomeData }) {
       '.slick-slide.slick-active.slick-center.slick-current img'
     );
     const elementWidth = element ? element.offsetWidth : 0;
-    const slidesToShow = Math.floor(windowWidth / (elementWidth + 50));
-    return slidesToShow > 0 ? slidesToShow : 1;
+    let slidesToShow = Math.floor(windowWidth / (elementWidth + 50));
+    slidesToShow = slidesToShow > 0 ? slidesToShow : 1;
+    slidesToShow = Math.min(slidesToShow, 6);
+    return slidesToShow;
   };
 
+  const adaptHomeData = homeData => {
+    const addressTrimmed =
+      typeof homeData.address === 'string'
+        ? homeData.address
+        : `${homeData.address.streetAddress}, ${homeData.address.city}, ${homeData.address.state} ${homeData.address.zipcode}`;
+    return {
+      zpid: homeData.zpid,
+      imgSrc: homeData.miniCardPhotos
+        ? homeData.miniCardPhotos[0]?.url
+        : homeData.imgSrc || '',
+      listingStatus: homeData.listingStatus || homeData.homeStatus,
+      price: homeData.price,
+      bedrooms: homeData.bedrooms || null,
+      bathrooms: homeData.bathrooms || null,
+      livingArea: homeData.listingArea || null,
+      address: addressTrimmed,
+    };
+  };
+  const adaptedProperties = properties
+    .map(adaptHomeData)
+    .filter(
+      property =>
+        property.listingStatus === 'FOR_SALE' ||
+        property.listingStatus === 'OTHER'
+    );
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -49,6 +77,7 @@ function NearbyProperties({ properties, adaptHomeData }) {
     infinite: true,
     centerMode: true,
     dots: true,
+    rows: 1,
   };
 
   const handlePrev = () => {
@@ -64,19 +93,17 @@ function NearbyProperties({ properties, adaptHomeData }) {
       <div>
         <SliderContainer>
           <StyledSlider ref={sliderRef} {...sliderSettings}>
-            {properties.map(home => {
-              const adaptedHome = adaptHomeData(home);
-              return (
-                <StyledDiv key={home.zpid}>
+            {adaptedProperties &&
+              adaptedProperties.map(home => (
+                <StyledDiv key={uuid()}>
                   <PropertyCard
-                    key={home.zpid}
-                    property={adaptedHome}
+                    key={uuid()}
+                    property={home}
                     showCompareButton={false}
                     showHeartIcon={false}
                   />
                 </StyledDiv>
-              );
-            })}
+              ))}
           </StyledSlider>
         </SliderContainer>
         <ButtonContainer>
@@ -117,10 +144,6 @@ const SliderContainer = styled.div`
   justify-content: space-evenly;
   margin-top: 2rem;
   margin-bottom: 2rem;
-
-  @media (max-width: 800px) {
-    margin-top: 0rem;
-  }
 `;
 
 const StyledSlider = styled(Slider)`
