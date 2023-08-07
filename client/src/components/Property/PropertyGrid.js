@@ -11,23 +11,38 @@ function PropertyGrid({
   searchParams,
   setSearchClicked,
 }) {
+  const propertiesPerPage = 41;
+  const totalPages = 50;
+  const pageGroupSize = 5;
+
   const [currentPage, setCurrentPage] = useState(searchParams.page);
+  const [selectedProperties, setSelectedProperties] = useState([]);
+
   useEffect(() => {
     setCurrentPage(searchParams.page);
   });
-  const [selectedProperties, setSelectedProperties] = useState([]);
 
   const dispatch = useDispatch();
 
+  const handlePagination = page => {
+    setCurrentPage(page);
+    dispatch(setPage(page));
+    setSearchClicked(true);
+  };
+
   const handlePrevGroup = () => {
-    const prevPage = currentPage - 1;
+    const prevPage =
+      currentPage - pageGroupSize >= 1 ? currentPage - pageGroupSize : 1;
     setCurrentPage(prevPage);
     dispatch(setPage(prevPage));
     setSearchClicked(true);
   };
 
   const handleNextGroup = () => {
-    const nextPage = currentPage + 1;
+    const nextPage =
+      currentPage + pageGroupSize <= totalPages
+        ? currentPage + pageGroupSize
+        : totalPages;
     setCurrentPage(nextPage);
     dispatch(setPage(nextPage));
     setSearchClicked(true);
@@ -53,11 +68,37 @@ function PropertyGrid({
     }
   };
 
+  const renderPageNumbers = () => {
+    const currentGroup = Math.ceil(currentPage / pageGroupSize);
+    const startPage = (currentGroup - 1) * pageGroupSize + 1;
+    const endPage = Math.min(startPage + pageGroupSize - 1, totalPages);
+
+    return Array.from({ length: endPage - startPage + 1 }, (_, index) => {
+      const pageNumber = startPage + index;
+      return (
+        <Button
+          key={pageNumber}
+          active={currentPage === pageNumber}
+          onClick={() => handlePagination(pageNumber)}
+        >
+          {pageNumber}
+        </Button>
+      );
+    });
+  };
+
+  const indexOfLastProperty = currentPage * propertiesPerPage;
+  const indexOfFirstProperty = indexOfLastProperty - propertiesPerPage;
+  const currentProperties = properties.slice(
+    indexOfFirstProperty,
+    indexOfLastProperty
+  );
+
   return (
     <Wrapper>
       <Section>
         <CardWrapper>
-          {properties &&
+          {currentProperties &&
             properties.map(property => (
               <PropertyCard
                 key={property.zpid}
@@ -78,7 +119,11 @@ function PropertyGrid({
         <NavButton onClick={handlePrevGroup} disabled={currentPage === 1}>
           Prev
         </NavButton>
-        <NavButton onClick={handleNextGroup} disabled={properties.length < 41}>
+        {renderPageNumbers()}
+        <NavButton
+          onClick={handleNextGroup}
+          disabled={properties.length < propertiesPerPage}
+        >
           Next
         </NavButton>
       </Pagination>
@@ -119,7 +164,16 @@ const Pagination = styled.div`
   margin-top: 1em;
 `;
 
+const Button = styled.button`
+  padding: 0.5em 1em;
+  margin: 0 0.5em;
+  border: none;
+  background-color: ${props => (props.active ? 'lightgray' : 'transparent')};
+  cursor: pointer;
+`;
+
 const NavButton = styled.button`
+  font-weight: bold;
   padding: 0.5em 1em;
   margin: 0 0.5em;
   border: none;

@@ -27,6 +27,7 @@ const homeSlice = createSlice({
       })
       .addCase(getListAsync.rejected, (state, action) => {
         state.getList = REQUEST_STATE.REJECTED;
+        state.list = [];
         state.error = action.error;
       });
   },
