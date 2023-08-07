@@ -144,6 +144,10 @@ const SliderContainer = styled.div`
   justify-content: space-evenly;
   margin-top: 2rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 800px) {
+    margin-top: 0rem;
+  }
 `;
 
 const StyledSlider = styled(Slider)`
