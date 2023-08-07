@@ -54,21 +54,3 @@ const Wrapper = styled.div`
   align-items: center;
   height: 100%;
 `;
-
-// const CenteredGrid = styled(Grid)`
-//   border-radius: 15px;
-//   width: 80%;
-//   height: 10vh;
-//   --Grid-borderWidth: 2px;
-//   border: var(--Grid-borderWidth) solid #f8c9cd;
-//   background-color: #feedef;
-//   margin-top: 35px;
-//   margin-bottom: 35px;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-
-//   @media (max-width: 600px) {
-//     height: 6vh;
-//   }
-// `;

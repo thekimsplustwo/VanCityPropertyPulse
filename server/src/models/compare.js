@@ -2,7 +2,9 @@ import Like from '../schemas/likes.js';
 import { ERROR_TYPE, errorGenerator } from '../utils/error.js';
 
 const getCompareProperties = async (email, items) => {
-  const zpids = Array.isArray(items) ? items : items.split(',');
+  const zpids = Array.isArray(items)
+    ? items.map(Number)
+    : items.split(',').map(Number);
   const res = await Like.aggregate([
     { $match: { email: email } },
     { $unwind: '$properties' },

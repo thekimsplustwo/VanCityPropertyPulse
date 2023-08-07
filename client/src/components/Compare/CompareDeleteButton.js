@@ -14,7 +14,7 @@ function CompareDeleteButton({ zpid, children }) {
   }
 
   const handleDelete = () => {
-    const updatedUrl = removeQueryParam('item', zpid);
+    const updatedUrl = removeQueryParam('item', `${zpid}`);
     window.location.href = updatedUrl;
   };
 
