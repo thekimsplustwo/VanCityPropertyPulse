@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 import PropertyCard from './PropertyCard';
 import { setPage } from '../../redux/search/reducer';
 import PropertyNotFound from './PropertyNotFound';
@@ -12,23 +13,29 @@ function PropertyGrid({
   searchParams,
   setSearchClicked,
 }) {
+  const location = useLocation();
   const propertiesPerPage = 39;
   const totalPages = 20;
   const pageGroupSize = 5;
 
-  const [currentPage, setCurrentPage] = useState(searchParams.page);
+  const [currentPage, setCurrentPage] = useState(searchParams?.page || 1);
   const [selectedProperties, setSelectedProperties] = useState([]);
 
   useEffect(() => {
-    setCurrentPage(searchParams.page);
+    setCurrentPage(searchParams?.page || 1);
   });
 
   const dispatch = useDispatch();
 
-  const handlePagination = page => {
-    setCurrentPage(page);
-    dispatch(setPage(page));
-    setSearchClicked(true);
+  const handlePagination = (event, page) => {
+    if (location.pathname !== '/likes') {
+      setCurrentPage(page);
+      dispatch(setPage(page));
+      setSearchClicked(true);
+    } else {
+      event.preventDefault();
+      event.stopPropagation();
+    }
   };
 
   const handlePrevGroup = () => {
@@ -80,7 +87,7 @@ function PropertyGrid({
         <Button
           key={pageNumber}
           active={currentPage === pageNumber}
-          onClick={() => handlePagination(pageNumber)}
+          onClick={event => handlePagination(event, pageNumber)}
         >
           {pageNumber}
         </Button>
@@ -91,7 +98,7 @@ function PropertyGrid({
   return (
     <Wrapper>
       <Section>
-        {properties?.length > 0 ? (
+        {properties && properties?.length > 0 ? (
           <CardWrapper>
             {properties.map(property => (
               <PropertyCard
