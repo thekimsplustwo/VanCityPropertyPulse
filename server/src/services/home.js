@@ -38,9 +38,16 @@ const requestZillowAPIExtendedSearch = async (trimmedFilter, offset) => {
       return [];
     }
     const data = response.data.props;
-    if (process.env.DATA_SCRAP === 'on') {
+    if (
+      process.env.DATA_SCRAP === 'on' ||
+      process.env.DATA_SCRAP === 'exclusive'
+    ) {
       await datascrappingPropertyList(data);
     }
+    if (process.env.DATA_SCRAP === 'exclusive') {
+      return response.data;
+    }
+
     return data.length > offset ? data.slice(0, offset) : data || [];
   } catch (error) {
     errorGenerator(ERROR_TYPE.ZILLOW_API_NETWORK_ERROR);
@@ -59,11 +66,16 @@ const getZipcodeByTitle = title => {
 };
 
 const trimFilter = async filter => {
+  let locationOpt = filter.locationAdmin;
+  if (!locationOpt) {
+    locationOpt = filter.location
+      ? `${await getZipcodeByTitleFromDB(filter.location)} bc`
+      : 'vancouver, bc';
+  }
+  console.log('locationOpt ', locationOpt);
   return {
     ...filter,
-    location: filter.location
-      ? `${await getZipcodeByTitleFromDB(filter.location)} bc`
-      : 'vancouver, bc',
+    location: locationOpt,
     listingStatus: 'FOR_SALE',
   };
 };

@@ -46,7 +46,10 @@ const getPropertyDetailFromZillowAPI = async zpid => {
   const response = await axios.request(options);
   validateResponseStatus(response);
   validateResonseDataFromDetailAPI(response);
-  if (process.env.DATA_SCRAP === 'on') {
+  if (
+    process.env.DATA_SCRAP === 'on' ||
+    process.env.DATA_SCRAP === 'exclusive'
+  ) {
     await datascrappingProperty(response.data);
   }
   return response.data;
