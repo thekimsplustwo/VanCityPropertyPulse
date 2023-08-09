@@ -45,14 +45,14 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 ✅ **2. Integrate with a map API to display a property's location on a map**
 - As a home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
 
-⚠ **3. Visualize properties' locations on a single map**
+⚠️ **3. Visualize properties' locations on a single map**
 - As a home buyer, I want to view listed properties plotted on an interactive map so that I can easily see where each home is located relative to amenities, landmarks, and boundaries.
 <br>** progress: building on coordinators of properties(latitude, longitude) to be rendered, need to communicate with the listing API.
 
 ✅ **4. Compare prices of properties in the selected area**
 - As a home buyer, I want to view and compare the listing prices of properties in my desired neighborhoods so I can understand the market and price ranges in those areas.
 
-⚠ **5. Walk And Distance Score**
+⚠️ **5. Walk And Distance Score**
 - As a home buyer, I want to see walk scores and distance to amenities like schools, parks, and shopping for properties I'm considering so that I can evaluate accessibility and convenience when making a decision.
 <br>** progress: cross-site iframe issue on the deployed application.
  
@@ -65,7 +65,7 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 1. Display a list of properties
     - Set up a React.js application for the client-side interface
     - Create a mock date for a list of properties
-    - Create a component that contains a list of properties
+    - Cr⚠️eate a component that contains a list of properties
     - Create a component that contains a single property as a child component of the listing component
 2.  Display property's detailed information such as price and location
     - Set up a React.js application for the client-side interface
