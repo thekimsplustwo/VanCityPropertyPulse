@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -23,7 +23,6 @@ function PropertyCard({
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currZpid = property.zpid;
-  const [selectedProperties, setSelectedProperties] = useState([]);
 
   const likes = useSelector(state => state.likes.list);
   const likesArray = useMemo(
@@ -58,15 +57,12 @@ function PropertyCard({
     dispatch(deleteLikesAsync({ zpid: currZpid, token }));
   };
 
-  const handleAddToCompare = () => {
-    onAddToCompare(property);
-  };
-
   if (property) {
     const { address } = property;
     const streetAddress = address?.split(',')[0] || '';
     const city = address?.split(',')[1] || '';
     const provinceZipcode = address?.split(',')[2] || '';
+
     return (
       <Container
         onClick={() => navigateToPropertyPage(property.zpid)}
@@ -162,6 +158,7 @@ const PropertyPrice = styled.div`
   font-weight: bold;
   margin-bottom: 4px;
 `;
+
 const StyledHeartBorderIcon = styled(FavoriteBorderIcon)`
   position: absolute;
   top: 10px;

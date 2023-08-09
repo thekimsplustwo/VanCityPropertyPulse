@@ -33,8 +33,8 @@ function Compare() {
 
   // If there are more than 3 items in zpidList, show an alert
   useEffect(() => {
-    // handle Duplicate zpid
-    // Do nothing if there are no URL parameters.
+    // handles Duplicate zpid
+    // Does nothing if there are no URL parameters.
     if (zpidList.length === 0) return;
 
     const uniqueZpidSet = new Set();
@@ -146,6 +146,9 @@ function Compare() {
   }
   return <PropertyNotFound />;
 }
+
+export default Compare;
+
 const Main = styled.div`
   width: 100vw;
   display: flex;
@@ -153,6 +156,7 @@ const Main = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const ContentWrapper = styled.div`
   padding: 10px 50px;
   flex-shrink: 1;
@@ -165,6 +169,7 @@ const ContentWrapper = styled.div`
   box-sizing: border-box;
   min-height: 90vh;
 `;
+
 const Wrapper = styled.div`
   min-height: 100vh;
   padding-top: 6em;
@@ -173,6 +178,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: space-around;
 `;
+
 const Margin = styled.div`
   margin: 20px;
   line-height: 30pt;
@@ -207,5 +213,3 @@ const ButtonWrapper = styled.div`
     margin-right: 0;
   }
 `;
-
-export default Compare;

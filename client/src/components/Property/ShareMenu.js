@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import {
   Facebook as FacebookIcon,
@@ -138,6 +138,8 @@ function ShareMenu({ url, title }) {
   );
 }
 
+export default ShareMenu;
+
 const MenuOpt = styled.div`
   padding: 0 0.3rem;
   font-size: 15px;
@@ -161,5 +163,3 @@ const ShareOption = styled.div`
   align-items: center;
   margin: 0 5px;
 `;
-
-export default ShareMenu;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Checkbox, FormControlLabel, MenuItem } from '@mui/material';
 
 function HomeTypeMenuItem({ type, isSelected, handleSelect }) {

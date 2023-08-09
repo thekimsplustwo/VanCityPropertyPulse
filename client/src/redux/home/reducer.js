@@ -32,7 +32,7 @@ const homeSlice = createSlice({
       });
   },
 });
+
 export const { resetListState } = homeSlice.actions;
 export const { setPage } = homeSlice.actions;
-
 export default homeSlice.reducer;

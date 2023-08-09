@@ -119,6 +119,8 @@ function NearbyProperties({ properties }) {
   );
 }
 
+export default NearbyProperties;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -156,14 +158,12 @@ const StyledSlider = styled(Slider)`
   .slick-list {
     margin-top: 10px;
   }
-
   .slick-slide > div {
     display: grid;
     place-items: center;
     width: 100px;
     height: 440px !important;
   }
-
   .slick-dots {
     display: flex;
     justify-content: center; /* Center the dot buttons horizontally */
@@ -187,5 +187,3 @@ const StyledDiv = styled.div`
   align-items: center;
   box-sizing: border-box;
 `;
-
-export default NearbyProperties;

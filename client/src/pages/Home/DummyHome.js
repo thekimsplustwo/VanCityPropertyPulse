@@ -1,11 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 function DummyHome() {
-  const navigate = useNavigate();
-
   return <Main />;
 }
+
+export default DummyHome;
 
 const Main = styled.div`
   padding-top: 5em;
@@ -13,4 +12,3 @@ const Main = styled.div`
   height: 100vh;
   display: flex;
 `;
-export default DummyHome;

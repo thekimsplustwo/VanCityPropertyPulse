@@ -10,6 +10,7 @@ function Header() {
   const dispatch = useDispatch();
   const isLogin = useSelector(state => state.users.isLogin);
   const [token, setToken] = useState(localStorage.getItem('token'));
+
   useEffect(() => {
     if (!token) {
       dispatch(setLoginStatus(false));
@@ -19,6 +20,7 @@ function Header() {
   if (location.pathname === '/' || !isLogin) {
     return null;
   }
+
   return (
     <FixedNav>
       <Nav />

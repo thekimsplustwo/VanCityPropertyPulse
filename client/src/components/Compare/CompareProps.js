@@ -10,6 +10,7 @@ import styled from 'styled-components';
 function createData(name, value) {
   return { name, value };
 }
+
 function CompareProps({ propertyDetails }) {
   const {
     daysOnZillow,
@@ -22,6 +23,7 @@ function CompareProps({ propertyDetails }) {
     bathrooms,
     bedrooms,
   } = propertyDetails;
+
   let postedText;
   if (!daysOnZillow || daysOnZillow === -1) {
     postedText = 'N/A';
@@ -73,6 +75,9 @@ function CompareProps({ propertyDetails }) {
     </StyledContainer>
   );
 }
+
+export default CompareProps;
+
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -87,5 +92,3 @@ const StyledTableContainer = styled(TableContainer)`
     }
   }
 `;
-
-export default CompareProps;

@@ -122,6 +122,8 @@ function UserProfileEdit({ setModal }) {
   );
 }
 
+export default UserProfileEdit;
+
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -183,5 +185,3 @@ const Title = styled.p`
     margin-bottom: 5px;
   }
 `;
-
-export default UserProfileEdit;

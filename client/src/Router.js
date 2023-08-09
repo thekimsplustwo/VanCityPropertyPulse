@@ -1,6 +1,4 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import DummyHome from './pages/Home/DummyHome';
 import Home from './pages/Home/Home';
 import PropertyDetail from './pages/PropertyDetail/PropertyDetail';
 import MyPage from './pages/MyPage/MyPage';

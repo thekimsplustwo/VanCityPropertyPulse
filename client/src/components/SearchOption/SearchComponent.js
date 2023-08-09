@@ -1,8 +1,17 @@
-import React from 'react';
 import styled from 'styled-components';
 import SearchInput from './SearchInput';
 import searchImage from '../../assets/images/searchComponent.jpg';
 import SearchOptions from './SearchOptions';
+
+export default function SearchComponent() {
+  return (
+    <SearchContainer>
+      <Title>Looking for a place to live?</Title>
+      <SearchInput />
+      <SearchOptions />
+    </SearchContainer>
+  );
+}
 
 const SearchContainer = styled.div`
   display: flex;
@@ -27,13 +36,3 @@ const Title = styled.h1`
     font-size: 1.5rem;
   }
 `;
-
-export default function SearchComponent() {
-  return (
-    <SearchContainer>
-      <Title>Looking for a place to live?</Title>
-      <SearchInput />
-      <SearchOptions />
-    </SearchContainer>
-  );
-}

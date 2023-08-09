@@ -119,6 +119,8 @@ function AdditionalInfo({ propertyDetails, transit }) {
   );
 }
 
+export default AdditionalInfo;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -190,5 +192,3 @@ const ScoreWrapper = styled.div`
 const BarWrapper = styled.div`
   flex-grow: 0;
 `;
-
-export default AdditionalInfo;
