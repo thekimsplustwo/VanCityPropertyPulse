@@ -36,7 +36,7 @@ VanCity Property Pulse is a web application that allows potential home buyers to
    - As a home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
 
 ✅ **6. Share properties through Social Network Sites:** 
-- As a home buyer, I want to be able to share property information that I am interested in with my friends so that I can make inform decisions on my target property and get more involvement from my friends.
+- As a home buyer, I want to be able to share property information that I am interested in with my friends so that I can make informed decisions on my target property and get more involvement from my friends.
 
 <br><br>
 
