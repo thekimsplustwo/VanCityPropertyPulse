@@ -26,16 +26,17 @@ function Footer() {
   }, []);
 
   const openChatWindow = () => {
-    const chatWindow = window.open('', '_self');
+    const chatWindowFeatures =
+      'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, width=400, height=500, top=100, left=100';
+
+    const chatWindow = window.open('', 'Live Chat', chatWindowFeatures);
 
     chatWindow.document.body.innerHTML = `
       <iframe
-        id="chat"
         title="Live Chat"
         src="https://web.powerva.microsoft.com/environments/Default-99fe11df-ab57-448e-af64-07608c7218f7/bots/cr7c7_vanCityPropertyPulseBot/webchat?__version__=2"
-        style="width: 100%; height: 90%; border: none;"
+        style="width: 100%; height: 100%; border: none;"
       ></iframe>
-      <button style="background-color: #f44336; margin: 20px; padding: 10px 30px; font-size: 20px; font-weight: bold" onClick={location.reload()}>Close</button>
     `;
   };
 

@@ -12,6 +12,7 @@ function PropertyGrid({
   showHeartIcon,
   searchParams,
   setSearchClicked,
+  showPagination = false,
 }) {
   const location = useLocation();
   const propertiesPerPage = 39;
@@ -120,20 +121,22 @@ function PropertyGrid({
         )}
       </Section>
 
-      <Pagination>
-        <NavButton onClick={handlePrevGroup} disabled={currentPage === 1}>
-          Prev
-        </NavButton>
-        {renderPageNumbers()}
-        <NavButton
-          onClick={handleNextGroup}
-          disabled={
-            currentPage >= totalPages || properties.length < propertiesPerPage
-          }
-        >
-          Next
-        </NavButton>
-      </Pagination>
+      {showPagination && (
+        <Pagination>
+          <NavButton onClick={handlePrevGroup} disabled={currentPage === 1}>
+            Prev
+          </NavButton>
+          {renderPageNumbers()}
+          <NavButton
+            onClick={handleNextGroup}
+            disabled={
+              currentPage >= totalPages || properties.length < propertiesPerPage
+            }
+          >
+            Next
+          </NavButton>
+        </Pagination>
+      )}
     </Wrapper>
   );
 }

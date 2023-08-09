@@ -59,16 +59,15 @@ const ModalStyle = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 50px;
+  padding: 5vh 5vw;
   z-index: 1500;
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow-y: auto;
-  // max-height: 75vh;
 
   @media (max-width: 800px) {
     max-width: 95%;
@@ -93,7 +92,5 @@ const Box = styled.div`
 
 const Container = styled.div`
   margin-top: 10%;
-  @media (max-width: 800px) {
-    overflow-y: auto;
-  }
+  overflow-y: auto;
 `;
