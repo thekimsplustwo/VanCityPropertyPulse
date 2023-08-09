@@ -26,7 +26,7 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 - As a potential home buyer, I want to easily log in and out of my account so I can keep it personalized.
     
 ✅ **3. Provide users with the nearby properties of the selected property**
-- As a potential home buyer, I want to click a button on a property to view nearby listings so I can see other available options near that location.
+- As a potential home buyer, I want to view nearby listings of a selected property so I can see other available options near that location.
     
 ✅ **4. Provide users with the nearby properties of their location**
 - As a potential home buyer, I want to get the list of properties nearby my location based on my profile setting so that I can have a better judgment on the vicinity.
