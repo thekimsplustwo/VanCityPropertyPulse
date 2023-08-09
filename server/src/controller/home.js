@@ -1,4 +1,3 @@
-import dotenv from 'dotenv';
 import { homeService } from '../services/index.js';
 
 const trimSortOpt = rawSort => {

@@ -60,7 +60,7 @@ const resetDatabase = async (...collectionsToReset) => {
   try {
     await deleteDataset(collectionsToResetUpdated);
     await dropDataset(collectionsToResetUpdated);
-    //await insertDataset(collectionsToResetUpdated);
+    await insertDataset(collectionsToResetUpdated);
   } catch (err) {
     console.error(err);
   }
