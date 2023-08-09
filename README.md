@@ -118,7 +118,7 @@ Elly played a hands-on role in the project's various stages, working on frontend
 Ji Young's technical contributions include implementing the User Profile page, working on both the client and the server sides to connect the user page. In addition to enhancing the User Profile page, Ji Young introduced features like Google Auth login and pagination; she also implemented the interactive Chat Bot through Microsoft Power Platform.
 <br><br>
 ### **Chao Zhao**
-Chao contributed to the team's project through a balanced blend of organizational tasks and hands-on technical development. Initially, he researched for potential APIs and data sources, and throughout the project, Chao's practical skills shone in the implementation of the functionality of Comparison, among others. Notably, his expertise played a crucial role in overcoming deployment challenges, leading to the successful deployment of the website, reflecting his knack for practical and timely solutions.
+Chao contributed to the team's project through a balanced blend of organizational tasks and hands-on technical development. Initially, he researched for potential APIs and data sources, and throughout the project, Chao's practical skills shone in the implementation of the functionality of comparing the properties, among others. Notably, his expertise played a crucial role in overcoming deployment challenges, leading to the successful deployment of the website, reflecting his knack for practical and timely solutions.
 <br><br>
 ### **Christina Su**
 Christina's contributions to design mock-ups and feedback on visual aspects showcased her attention to detail. Throughout various iterations, she worked on key components such as the Detailed Page and enhancing the Compare page for easier property comparisons. Additionally, she contributed to the team by crafting meeting minutes and creating PowerPoint slides for our presentations.
@@ -139,12 +139,7 @@ Christina's contributions to design mock-ups and feedback on visual aspects show
 * Spawn a local node server with `npm run server` and a client with `npm run client`
 * `npm start`to run both the server and the client concurrently.
 * We use port 3000 for the client and 10010 for the server. If you assign these ports to other apps, change the port.
-
-#### Setting up React App
-
-
-#### Setting up the Mongo DB
-
+<br><br>
 
 #### Making Changes
 1. Create a new feature branch off of the `main` branch and name it with the number of the Issue you'll be working on (e.g. `ISSUE-01`).
