@@ -28,6 +28,11 @@ function MenuItems({ zpid, address }) {
     event => {
       event.preventDefault();
       event.stopPropagation();
+
+      if (!housing || housing.length === 0) {
+        return;
+      }
+
       if (liked) {
         dispatch(deleteLikesAsync({ zpid, token }));
       } else {
