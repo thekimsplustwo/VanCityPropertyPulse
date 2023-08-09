@@ -28,6 +28,10 @@ function InfoRowComponent({ icon, label, value, unit }) {
           padding: '0.3rem',
           fontSize: '2rem',
           marginRight: '1rem',
+          '@media (max-width: 600px)': {
+            fontSize: '1.5rem',
+            marginRight: '0',
+          },
         }}
       />
       <Bold>{label}: </Bold> {value || 'N/A'} {value && unit ? unit : ''}
@@ -191,6 +195,8 @@ const InfoRow = styled.p`
   letter-spacing: 0.08em;
   @media (max-width: 600px) {
     font-size: 0.8rem;
+    margin-left: 0;
+    letter-spacing: 0.001rem;
   }
 `;
 
@@ -203,7 +209,6 @@ const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;
   width: 100%;
-  // margin: -23px;
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;
@@ -216,6 +221,10 @@ const Wrapper = styled.div`
 const Bold = styled.b`
   font-weight: bold;
   margin-top: 30px;
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
 `;
 
 const BoldHeader = styled.h2`

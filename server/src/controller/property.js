@@ -30,14 +30,9 @@ const getPropertyDetails = async (req, res) => {
     if (!zpid) {
       errorGenerator(ERROR_TYPE.INVALID_REQUEST);
     }
-
-    // Enforce the delay between requests
-    // await delayNextRequest();
-
     const propertyDetails = await propertyService.getPropertyDetails(zpid);
     return res.status(200).json(propertyDetails);
   } catch (error) {
-    // Handle the error appropriately here
     console.error(error);
     return res.status(500).json({ error: 'An error occurred' });
   }

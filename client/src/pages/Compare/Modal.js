@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import ReactDom from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createTheme } from '@mui/material/styles';
 import styled from 'styled-components';
 import PropertyGrid from '../../components/Property/PropertyGrid';
@@ -19,12 +19,11 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
 
   const likes = useSelector(state => state.likes.list);
   const [properties, setProperties] = useState(likes);
-
+  const offset = 9;
   useEffect(() => {
     const filteredLikes = likes.filter(
       like => like.zpid && !zpidList.includes(like.zpid.toString())
     );
-    console.log('filteredLikes', filteredLikes);
     setProperties(filteredLikes);
   }, [likes, zpidList]);
   const handleOverlayClick = e => {
@@ -40,7 +39,11 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
       <ModalStyle>
         {children}
         <Container>
-          <PropertyGrid properties={properties} showCompareButton />
+          <PropertyGrid
+            properties={properties}
+            offset={offset}
+            showCompareButton
+          />
         </Container>
         <Box>
           <Button onClick={onClose} variant="contained">
