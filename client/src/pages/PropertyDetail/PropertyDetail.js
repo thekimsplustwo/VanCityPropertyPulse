@@ -98,6 +98,7 @@ const GraphicWrapper = styled.div`
   justify-content: center;
   align-items: stretch;
   width: 100%;
+  flex: 1;
 
   @media (max-width: 800px) {
     margin-bottom: 30px;
@@ -108,7 +109,8 @@ const GraphicWrapper = styled.div`
 const ContentWrapper = styled.div`
   padding: 10px 50px;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin: 0;
   vertical-align: top;
 
