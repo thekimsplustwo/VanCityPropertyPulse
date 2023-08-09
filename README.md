@@ -1,40 +1,63 @@
 # **VanCity Property Pulse**
 
 ## **Project Description**
-VanCity Property Pulse is a web application that allows users to search, view details, and save listings for properties for sale in Vancouver. The app features a search interface to filter listings by criteria like price and location, displays property details like price and amenities, and lets users save favourite listings. The goal is to provide an easy way to find and compare properties on the market in Vancouver.
+VanCity Property Pulse is a web application that allows potential home buyers to search, view details, and save listings for properties for sale in Vancouver. The app features a search interface to filter listings by criteria like price and location, displays property details like price and amenities, and lets them save favourite listings. The goal is to provide an easy way to find and compare properties on the market in Vancouver.
 <br><br>
 
 ## **Project Task Requirements**
 
-**Minimal Requirements:**
-<br><br>
-✅ 1. Display a list of properties. 
-  - As a user, I want to see a list of properties with basic information like address, price, number of bedrooms, etc. so that I can get a quick overview of available listings in Vancouver.
+### Minimal Requirements
+✅ **1. Display a list of properties. :**
+  - As a potential home buyer, I want to see a list of properties with basic information like address, price, number of bedrooms, etc. so that I can get a quick overview of available listings in Vancouver.
 
-✅ 2. Display property's detailed information such as price and location.
-  - As a user, I want to click on a property and see all details like description, photos, map location, etc so I can determine if it meets my criteria.
+✅ **2. Display property's detailed information such as price and location.:**
+  - As a potential home buyer, I want to click on a property and see all details like description, photos, map location, etc so I can determine if it meets my criteria.
 
-✅ 3. Implement user interface for searching and filtering through listings.
-  - As a user, I want to search listings by location, number of bedrooms, price range etc. so I can narrow down the listings to those matching my criteria.
+✅ **3. Implement user interface for searching and filtering through listings.:**
+  - As a potential home buyer, I want to search listings by location, number of bedrooms, price range etc. so I can narrow down the listings to those matching my criteria.
 
-<br><br>
-
-**Standard Requirements:**
-
-✅ 1. Implement a feature for users to save their favorite properties.
-  - As a user, I want the ability to favorite and unfavorite properties by clicking a button and view my favorited listings in a separate section so that I can easily track and access properties I'm interested in.
-✅ 2. Incorporate a user authentication system.
-  - As a user, I want to easily log in and out of my account so I can keep it personalized.
-✅ 3. Provide users with the nearby properties of the selected property.
-  - As a user, I want to click a button on a property to view nearby listings so I can see other available options near that location.
-✅ 4. Provide users with the nearby properties of their location.
-  - As a user, I  
 <br><br>
 
-**Stretch Requirements:**
-1. Integrate with a map API to display a property's location on a map.
-2. User can compare properties' attributes such as price, the number of bedrooms/bathrooms, etc.
-3. Walk And Distance Score
+### Standard Requirements 
+
+✅ **1. Implement a feature for users to save their favorite properties.:**
+  - As a potential home buyer, I want the ability to favorite and unfavorite properties by clicking a button and view my favorited listings in a separate section so that I can easily track and access properties I'm interested in.
+    
+✅ **2. Incorporate a user authentication system.:**
+  - As a potential home buyer, I want to easily log in and out of my account so I can keep it personalized.
+    
+✅ **3. Provide users with the nearby properties of the selected property.:**
+  - As a potential home buyer, I want to click a button on a property to view nearby listings so I can see other available options near that location.
+    
+✅ **4. Provide users with the nearby properties of their location.:**
+  - As a potential home buyer, I want to get the list of properties nearby my location based on my profile setting so that I can have a better judgment on the vicinity.
+    
+✅ **5. Implement a feature for users to compare properties' attributes such as price, the number of bedrooms/bathrooms, etc.:**
+   - As a home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
+
+✅ **6. Share properties through Social Network Sites:** 
+- As a home buyer, I want to be able to share property information that I am interested in with my friends so that I can make inform decisions on my target property and get more involvement from my friends.
+
+<br><br>
+
+### Stretch Requirements ### 
+✅ 1. Implement Artificial Chatbot to allow users to quickly navigate to appropriate pages and content through an intuitive conversational interface.
+   - As a home buyer, I want to interact with an intelligent chatbot that asks me qualifying questions and provides custom links so that I can easily find relevant information.
+
+✅ 2. Integrate with a map API to display a property's location on a map.
+ - As a home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
+
+⚠ 3. Visualize properties' locations on a single map. 
+  - As a home buyer, I want to view listed properties plotted on an interactive map so that I can easily see where each home is located relative to amenities, landmarks, and boundaries.
+<br>** progress: building on coordinators of properties(latitude, longitude) to be rendered, need to communicate with the listing API.   
+
+✅ 4. Compare prices of properties in the selected area
+  - As a home buyer, I want to view and compare the listing prices of properties in my desired neighborhoods so I can understand the market and price ranges in those areas.
+
+⚠ 5. Walk And Distance Score
+  -  I want to see walk scores and distance to amenities like schools, parks, and shopping for properties I'm considering so that I can evaluate accessibility and convenience when making a decision.
+*progress: cross-site iframe issue
+ 
 <br><br>
 
 **Task Breakdown:**
