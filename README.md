@@ -7,54 +7,54 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 ## **Project Task Requirements**
 
 ### Minimal Requirements
-✅ **1. Display a list of properties:**
+✅ **1. Display a list of properties**
 - As a potential home buyer, I want to see a list of properties with basic information like address, price, number of bedrooms, etc. so that I can get a quick overview of available listings in Vancouver.
 
-✅ **2. Display property's detailed information such as price and location:**
+✅ **2. Display property's detailed information such as price and location**
 - As a potential home buyer, I want to click on a property and see all details like description, photos, map location, etc so I can determine if it meets my criteria.
 
-✅ **3. Implement user interface for searching and filtering through listings:**
+✅ **3. Implement user interface for searching and filtering through listings**
 - As a potential home buyer, I want to search listings by location, number of bedrooms, price range etc. so I can narrow down the listings to those matching my criteria.
 <br><br>
 
 ### Standard Requirements 
 
-✅ **1. Implement a feature for users to save their favorite properties:**
+✅ **1. Implement a feature for users to save their favorite properties**
 - As a potential home buyer, I want the ability to favorite and unfavorite properties by clicking a button and view my favorited listings in a separate section so that I can easily track and access properties I'm interested in.
     
-✅ **2. Incorporate a user authentication system:**
+✅ **2. Incorporate a user authentication system**
 - As a potential home buyer, I want to easily log in and out of my account so I can keep it personalized.
     
-✅ **3. Provide users with the nearby properties of the selected property:**
+✅ **3. Provide users with the nearby properties of the selected property**
 - As a potential home buyer, I want to click a button on a property to view nearby listings so I can see other available options near that location.
     
-✅ **4. Provide users with the nearby properties of their location:**
+✅ **4. Provide users with the nearby properties of their location**
 - As a potential home buyer, I want to get the list of properties nearby my location based on my profile setting so that I can have a better judgment on the vicinity.
     
-✅ **5. Implement a feature for users to compare properties' attributes such as price, the number of bedrooms/bathrooms, etc:**
+✅ **5. Implement a feature for users to compare properties' attributes such as price, the number of bedrooms/bathrooms, etc**
 - As a potential home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
 
-✅ **6. Share properties through Social Network Sites:** 
+✅ **6. Share properties through Social Network Sites** 
 - As a potential home buyer, I want to be able to share property information that I am interested in with my friends so that I can make informed decisions on my target property and get more involvement from my friends.
 <br><br>
 
 ### Stretch Requirements ### 
-✅ **1. Implement an interactive Chatbot to allow users to quickly navigate to appropriate pages and content through an intuitive conversational interface.**
+✅ **1. Implement an interactive Chatbot to allow users to quickly navigate to appropriate pages and content through an intuitive conversational interface**
 - As a home buyer, I want to interact with a chatbot that asks me qualifying questions and provides custom links so that I can easily find relevant information.
 
-✅ **2. Integrate with a map API to display a property's location on a map.**
+✅ **2. Integrate with a map API to display a property's location on a map**
 - As a home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
 
-⚠ **3. Visualize properties' locations on a single map.**
+⚠ **3. Visualize properties' locations on a single map**
 - As a home buyer, I want to view listed properties plotted on an interactive map so that I can easily see where each home is located relative to amenities, landmarks, and boundaries.
-<br>** progress: building on coordinators of properties(latitude, longitude) to be rendered, need to communicate with the listing API.   
+<br>** progress: building on coordinators of properties(latitude, longitude) to be rendered, need to communicate with the listing API.
 
-✅ **4. Compare prices of properties in the selected area.**
+✅ **4. Compare prices of properties in the selected area**
 - As a home buyer, I want to view and compare the listing prices of properties in my desired neighborhoods so I can understand the market and price ranges in those areas.
 
 ⚠ **5. Walk And Distance Score**
 - As a home buyer, I want to see walk scores and distance to amenities like schools, parks, and shopping for properties I'm considering so that I can evaluate accessibility and convenience when making a decision.
-<br>** progress: cross-site iframe issue on the deployed application
+<br>** progress: cross-site iframe issue on the deployed application.
  
 ❌ **6. Implement AI Chatbot with NLP model to interact with users in natural language**
 - As a home buyer, I want to interact with a smart chatbot that understands natural language so I can get customized assistance through intuitive conversational exchanges.
@@ -94,17 +94,17 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 - Our application’s data persistence capabilities were significantly enhanced through the use of MongoDB, a non-relational database system. Together with Mongoose, an Object Document Mapper (ODM), we mapped and structured the data, allowing us to effectively store and manage various information such as user profiles, as well as property and location information.
 
 **[UNIT 5] Release Engineering**
-- We deployed our application on Oracle Cloud Infrastructure, using the Oracle Virtual Machine to host our website on Ubuntu OS, and configured it with nginx for port management and m2 for Node.js process management. In addition, we incorporated the GitHub Action Workflow for automated frontend tests through Playwright.
+- We deployed our application on Oracle Cloud Infrastructure, provisioned a Ubuntu Virtual Machine instance to host our website. We configured it with nginx for port management (reverse proxy) and PM2 for Node.js process management. In addition, we incorporated the GitHub Action Workflow for automated frontend tests through Playwright.
 <br><br>
 
 ## Above and Beyond
-1. Oracle Cloud was selected over render.com after careful consideration of our specific needs and priorities. Oracle Cloud offered a more comprehensive suite of services, including advanced security measures, scalable resources, and robust support for various development environments. While render.com provides a straightforward and agile deployment process, we found that Oracle Cloud's broader range of functionalities aligned more closely with our goals for responsiveness and security. The decision to use Oracle Cloud also stemmed from its proven reliability, enterprise-grade capabilities, and flexibility in configuration, all of which were vital in our pursuit of building a responsive and secure website.
+1. Oracle Cloud was selected over render.com after careful consideration of our specific needs and priorities. Oracle Cloud offered a more comprehensive suite of services, including advanced security measures, scalable resources, and robust support for various development environments. While render.com provides a straightforward and agile deployment process, we found that Oracle Cloud's broader range of functionalities aligned more closely with our goals for responsiveness and security. The decision to use Oracle Cloud also stemmed from its proven reliability, cost effectiveness, and flexibility in configuration, all of which were vital in our pursuit of building a responsive and secure website.
 2. To augment observability and monitoring across our deployed instances, we integrated DataDog tracer into our VM instance. This powerful tool offers real-time server performance insights, alerting us if any abnormal latencies occur. It also helps in identifying errors and ensures that the synthetic testing confirms the site's accessibility and proper functioning across various platforms, devices, and geographic locations. By combining these tools and services, we've created a robust, secure, and efficient infrastructure tailored to our specific needs.
-3. Our domain name was managed through Cloudflare, which allowed us to use the same domain for the client and the server; their CD network was instrumental in bolstering our application's scalability and security. To enhance the website's security in line with Google's standards, we utilized CERTBOT for SSL certificates, with an auto-renewal feature every 90 days, and integrated GitHub Actions for vulnerability scanning with CodeQL.
+3. Our domain name was registered and managed by Cloudflare, which allowed us to use the same domain for the client and the server; their CDN service was instrumental in bolstering our application's scalability and security. To enhance the website's security in line with Google Auth's standards, we utilized CertBot to issue our SSL certificates, with an auto-renewal feature every 90 days, and integrated GitHub Actions for vulnerability scanning with CodeQL.
 <br><br>
 
 ## Next Steps
-- To provide walk scores and distances to local facilities, we plan to resolve the current cross-site frame issues using Cross-Origin Resource Sharing (CORS) policies and third-party distance measurement APIs. Our goal of implementing a smart AI chatbot with Natural Language Processing (NLP) needs to be progressed by accumulating specific real estate dialogues for training, potentially utilizing pre-trained models like GPT-4. These efforts align with our commitment to enhance the application's interactivity, accessibility, and intelligent user interaction.
+- To provide walk scores and distances to local facilities, we plan to resolve the current cross-site frame issues using Cross-Origin Resource Sharing (CORS) policies and third-party distance measurement APIs. Our goal of implementing a smart AI chatbot with Natural Language Processing (NLP) needs to be progressed by accumulating more real estate dialogues for training, or potentially utilizing pre-trained models like GPT-4. These efforts align with our commitment to enhance the application's interactivity, accessibility, and intelligent user interaction.
 <br><br>
 
 ## Contributions
@@ -112,13 +112,13 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 Jieun was a central figure in the project, spearheading the initial brainstorming and meticulously setting up the infrastructure, including both frontend and backend architectures. Her robust technical skills and extensive knowledge were demonstrated through her development of a very large part of the project, covering various aspects such as property details, API flow, and database connections. Jieun's proficiency in both coding and technology extended to deploying the application and resolving critical issues. Her consistent assistance to other team members, along with her extraordinary leadership and balanced skill set, showcased a remarkable blend of technical mastery and collaborative spirit. Her commitment to excellence and ability to build complex components set a strong foundation for the project's success and marked her as an invaluable asset to the team.
 <br><br>
 ### **Chohyeon (Elly) Kim**
-Elly played a key role in the project. Throughout various iterations, she actively contributed to different frontend tasks, including the creation of the navigation bar, Search Input/Filter Option, and integration of features such as map box and social sharing on detail pages. Elly's efforts also extended to enhancing the detailed page, where she implemented a wealth of features to improve its functionality. Her dedication was evident in her continuous efforts to fix bugs and make improvements to the user interface, and her work on both the core functionalities and extra styling significantly enriched the overall project quality.
+Elly played a key role in the project. Throughout various iterations, she actively contributed to different frontend tasks, including the creation of the navigation bar, Search Input/Filter Option, and integration of features such as MapBox and SNS sharing function on detail pages. Elly's efforts also extended to enhancing the detailed page, where she implemented a wealth of features to improve its functionality. Her dedication was evident in her continuous efforts to fix bugs and make improvements to the user interface, and her work on both the core functionalities and extra styling significantly enriched the overall project quality.
 <br><br>
 ### **Ji Young Kim**
-Ji Young's technical contributions include implementing the "MyPage" (user profile) section, working on both the client and the server sides to connect the user page. In addition to enhancing the user profile page, Ji Young introduced features like Google login and pagination; she also implemented the chat bot.
+Ji Young's technical contributions include implementing the "MyPage" (user profile) section, working on both the client and the server sides to connect the user page. In addition to enhancing the user profile page, Ji Young introduced features like Google Auth login and pagination; she also implemented the interactive Chat Bot through Microsft Power Platform.
 <br><br>
 ### **Chao Zhao**
-Chao contributed to the team's project through a balanced blend of organizational tasks and hands-on technical development. He researched for potential APIs and data sources. Chao's practical skills shone in the implementation of the functionality of comparisoñ. Notably, his expertise played a crucial role in overcoming deployment challenges, leading to the successful launch of the website, reflecting his knack for practical and timely solutions.
+Chao contributed to the team's project through a balanced blend of organizational tasks and hands-on technical development. He researched for potential APIs and data sources. Chao's practical skills shone in the implementation of the functionality of comparison. Notably, his expertise played a crucial role in overcoming deployment challenges, leading to the successful deployment of the website, reflecting his knack for practical and timely solutions.
 <br><br>
 ### **Christina Su**
 Christina actively engaged with the team. Her contributions to design mock-ups and feedback on visual aspects showcased her attention to detail. Throughout various iterations, she worked on key components such as the detailed page and enhancing the compare page for easier property comparisons. Christina's consistent support of other team members and determination to fulfill her tasks underscore her valuable role within the project.
