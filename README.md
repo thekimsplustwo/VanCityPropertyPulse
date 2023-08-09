@@ -7,15 +7,28 @@ VanCity Property Pulse is a web application that allows users to search, view de
 ## **Project Task Requirements**
 
 **Minimal Requirements:**
-1. Display a list of properties.
-2. Display property's detailed information such as price and location.
-3. Implement user interface for searching and filtering through listings.
+<br><br>
+✅ 1. Display a list of properties. 
+  - As a user, I want to see a list of properties with basic information like address, price, number of bedrooms, etc. so that I can get a quick overview of available listings in Vancouver.
+
+✅ 2. Display property's detailed information such as price and location.
+  - As a user, I want to click on a property and see all details like description, photos, map location, etc so I can determine if it meets my criteria.
+
+✅ 3. Implement user interface for searching and filtering through listings.
+  - As a user, I want to search listings by location, number of bedrooms, price range etc. so I can narrow down the listings to those matching my criteria.
+
 <br><br>
 
 **Standard Requirements:**
-1. Implement a feature for users to save their favorite properties.
-2. Incorporate a user authentication system.
-3. Provide users the nearby properties of the selected property.
+
+✅ 1. Implement a feature for users to save their favorite properties.
+  - As a user, I want the ability to favorite and unfavorite properties by clicking a button and view my favorited listings in a separate section so that I can easily track and access properties I'm interested in.
+✅ 2. Incorporate a user authentication system.
+  - As a user, I want to easily log in and out of my account so I can keep it personalized.
+✅ 3. Provide users with the nearby properties of the selected property.
+  - As a user, I want to click a button on a property to view nearby listings so I can see other available options near that location.
+✅ 4. Provide users with the nearby properties of their location.
+  - As a user, I  
 <br><br>
 
 **Stretch Requirements:**
