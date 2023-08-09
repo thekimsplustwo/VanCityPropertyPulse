@@ -36,7 +36,6 @@ function Likes() {
     dispatch(deleteAllLikesAsync(token));
   };
 
-  // Whenever likes changes, update properties
   useEffect(() => {
     setProperties(likes);
   }, [likes]);

@@ -19,7 +19,6 @@ function MapBox({ longitude, latitude }) {
 
   useEffect(() => {
     if (!map.current) {
-      // initialize map only once
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: MAPBOX_STYLE,

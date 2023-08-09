@@ -205,7 +205,6 @@ const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;
   width: 100%;
-  // margin: -23px;
   background-color: white;
   text-align: center;
   box-shadow: 10px 10px #fbe8e9;

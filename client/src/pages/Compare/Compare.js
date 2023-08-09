@@ -31,10 +31,7 @@ function Compare() {
     }
   }, [isLogin, dispatch, location.search]);
 
-  // If there are more than 3 items in zpidList, show an alert
   useEffect(() => {
-    // handles Duplicate zpid
-    // Does nothing if there are no URL parameters.
     if (zpidList.length === 0) return;
 
     const uniqueZpidSet = new Set();
@@ -52,19 +49,15 @@ function Compare() {
       navigate(newURL, { replace: true });
     }
 
-    // handle if more than 3 zpid
     if (zpidList.length > 3) {
       alert(
         'Only 3 properties can be compared at a time. Redirecting to show the last three properties.'
       );
 
-      // Get the last three items from the zpidList
       zpidList = zpidList.slice(-3);
 
-      // Create the new URL with the last three items from zpidList
       const newURL = `/compare?item=${zpidList.join('&item=')}`;
 
-      // Navigate to the new URL
       navigate(newURL, { replace: true });
     }
   }, []);
