@@ -1,15 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { TextField, Button, MenuItem } from '@mui/material';
 import { editProfileAsync } from '../../redux/users/thunks';
-import { FRONT_LOGIN_URL } from '../../config';
 import { neighborhoodsVancouver } from '../SearchOption/neighborhoods';
 
 function UserProfileEdit({ setModal }) {
   const token = localStorage.getItem('token');
   const user = useSelector(state => state.users.user);
+
   const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     firstName: user.firstName ?? '',
     lastName: user.lastName || '',
@@ -30,14 +31,14 @@ function UserProfileEdit({ setModal }) {
   const handleInputChangeForRegion = selectedValue => {
     setFormData(prevFormData => ({
       ...prevFormData,
-      region: selectedValue, // Update the region with the selected value
+      region: selectedValue,
     }));
   };
 
   const handleSaveBtn = () => {
     dispatch(editProfileAsync({ formData, token }));
     setModal(false);
-    window.location.href = `${FRONT_LOGIN_URL}/mypage`;
+    window.location.reload(false);
   };
 
   return (
@@ -121,6 +122,8 @@ function UserProfileEdit({ setModal }) {
   );
 }
 
+export default UserProfileEdit;
+
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -182,5 +185,3 @@ const Title = styled.p`
     margin-bottom: 5px;
   }
 `;
-
-export default UserProfileEdit;

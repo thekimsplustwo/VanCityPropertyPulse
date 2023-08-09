@@ -9,12 +9,17 @@ import { resetLikesState } from '../../redux/likes/reducer';
 
 function UserCard() {
   const token = localStorage.getItem('token');
-  const navigate = useNavigate();
   const user = useSelector(state => state.users.user);
+  const defaultPhoto =
+    'https://static.wikia.nocookie.net/muppet/images/6/6e/Ji-Young.jpg/';
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const navigateToLogin = () => {
     navigate('/');
   };
+
   const logout = () => {
     dispatch(googleLogoutAsync(token));
     dispatch(resetUserState());
@@ -22,8 +27,6 @@ function UserCard() {
     dispatch(resetLikesState());
     navigateToLogin();
   };
-  const defaultPhoto =
-    'https://static.wikia.nocookie.net/muppet/images/6/6e/Ji-Young.jpg/';
 
   return (
     <Margin>

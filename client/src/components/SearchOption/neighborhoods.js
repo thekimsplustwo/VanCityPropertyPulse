@@ -3,8 +3,6 @@ export const neighborhoodsVancouver = [
   { title: 'WE Downtown Vancouver', zipcode: 'V6G' },
   { title: 'SW Downtown Vancouver', zipcode: 'V6Z' },
   { title: 'South West End Area Downtown Vancouver', zipcode: '	V6E' },
-  { title: 'Vancouver Pacific Centre Area', zipcode: 'V7Y' },
-  { title: 'Vancouver Bentall Centre Area', zipcode: 'V7X' },
   { title: 'Waterfront Coal Harbour Canada Place Area', zipcode: 'V6C' },
   { title: 'Gastown / Chinatown', zipcode: 'V6A' },
   { title: 'East Fairview / South Cambie', zipcode: 'V5Z' },

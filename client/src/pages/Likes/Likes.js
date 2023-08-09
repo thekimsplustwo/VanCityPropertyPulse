@@ -36,10 +36,10 @@ function Likes() {
     dispatch(deleteAllLikesAsync(token));
   };
 
-  // Whenever likes changes, update properties
   useEffect(() => {
     setProperties(likes);
   }, [likes]);
+
   return (
     isLogin && (
       <Main>
@@ -71,6 +71,8 @@ function Likes() {
     )
   );
 }
+
+export default Likes;
 
 const Main = styled.div`
   min-height: 100vh;
@@ -170,5 +172,3 @@ const Wrapper = styled.div`
     margin-top: 2px;
   }
 `;
-
-export default Likes;

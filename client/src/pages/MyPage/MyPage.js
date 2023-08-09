@@ -12,9 +12,11 @@ import NearbyMe from '../../components/User/NearbyMe';
 
 function MyPage() {
   const token = localStorage.getItem('token');
-  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const isLogin = useSelector(state => state.users.isLogin);
   const navigateToLogin = () => {
     navigate('/');
@@ -35,7 +37,7 @@ function MyPage() {
     isLogin && (
       <Main>
         {modal && <UserProfileEdit setModal={setModal} />}
-        <StyledBox>
+        <StyledBox hasRegion={!!region}>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={4}>
               <UserPageLeft setModal={setModal} />
@@ -64,6 +66,7 @@ const Main = styled.div`
 const StyledBox = styled(Box)`
   width: 100%;
   padding-top: 5em;
+  min-height: ${props => (props.hasRegion ? 'auto' : '100vh')};
 
   @media (max-width: 600px) {
     height: 100%;

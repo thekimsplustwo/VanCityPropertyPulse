@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import 'slick-carousel/slick/slick.css';
@@ -9,9 +9,10 @@ import NearbyProperties from '../Property/NearbyProperties';
 function NearbyMe({ region }) {
   const token = localStorage.getItem('token');
   const dispatch = useDispatch();
+  const properties = useSelector(state => state.home.list);
 
   useEffect(() => {
-    if (region) {
+    if (region && region !== '') {
       dispatch(
         getListAsync({
           params: {
@@ -24,41 +25,26 @@ function NearbyMe({ region }) {
     }
   }, [dispatch, region]);
 
-  const properties = useSelector(state => state.home.list);
-  const filteredProperties = properties.filter(
-    property => property.listingStatus === 'FOR_SALE'
-  );
-  const limitedProperties =
-    filteredProperties.length >= 10
-      ? filteredProperties.slice(0, 10)
-      : filteredProperties;
+  const limitedProperties = useMemo(() => {
+    if (properties && properties.length !== 0 && region && region !== '') {
+      return properties.length >= 10 ? properties.slice(0, 10) : properties;
+    }
 
-  const adaptHomeData = homeData => {
-    return {
-      zpid: homeData.zpid,
-      imgSrc: homeData.imgSrc || '',
-      listingStatus: homeData.listingStatus,
-      price: homeData.price,
-      bedrooms: homeData.bedrooms,
-      bathrooms: homeData.bedrbathroomsooms,
-      livingArea: homeData.livingArea,
-      address: homeData.address,
-    };
-  };
+    return [];
+  }, [properties, dispatch]);
 
   return (
-    limitedProperties && (
+    limitedProperties?.length > 0 && (
       <Wrapper>
         <InfoRow />
         <Bold>Nearby Me</Bold>
-        <NearbyProperties
-          properties={limitedProperties}
-          adaptHomeData={adaptHomeData}
-        />
+        <NearbyProperties properties={limitedProperties} />
       </Wrapper>
     )
   );
 }
+
+export default NearbyMe;
 
 const Wrapper = styled.div`
   display: 'flex';
@@ -74,6 +60,10 @@ const Bold = styled.b`
   align-items: left;
   margin-top: 20px;
   margin-left: 20px;
+
+  @media (max-width: 800px) {
+    font-size: 24px;
+  }
 `;
 
 const InfoRow = styled.p`
@@ -82,5 +72,3 @@ const InfoRow = styled.p`
   justify-content: space-between;
   margin-bottom: 30px;
 `;
-
-export default NearbyMe;

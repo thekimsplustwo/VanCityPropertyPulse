@@ -48,6 +48,8 @@ function TransitScore({ score, label, description }) {
   );
 }
 
+export default TransitScore;
+
 const ProgressLabel = muiStyled(Typography)(({ theme }) => ({
   color: theme.palette.primary.main,
   fontSize: '1rem',
@@ -57,5 +59,3 @@ const ProgressLabel = muiStyled(Typography)(({ theme }) => ({
 const ProgressDescription = muiStyled(Typography)(({ theme }) => ({
   color: theme.palette.grey[500],
 }));
-
-export default TransitScore;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import placeholderImage from '../../assets/images/imgNotFound.png';
 
@@ -12,10 +12,10 @@ function PropertyImage({ src, alt }) {
   return <NewPropertyImage src={imgSrc} alt={alt} onError={handleError} />;
 }
 
+export default PropertyImage;
+
 const NewPropertyImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
 `;
-
-export default PropertyImage;

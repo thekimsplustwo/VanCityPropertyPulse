@@ -6,11 +6,10 @@ const { app, connect: connectDB } = require('./index');
 
 describe('Testing backend', () => {
   beforeAll(async () => {
-    await connectDB(); // <-- Ensure connection is established before all tests
+    await connectDB();
   });
 
   afterAll(async () => {
-    // Ensure connection is closed after all tests
     if (mongoose.connection) {
       await mongoose.connection.close();
     }

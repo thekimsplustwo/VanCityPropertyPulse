@@ -16,9 +16,11 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
   const searchQuery = new URLSearchParams(location.search);
   const token = searchQuery.get('token');
   const isLogin = useSelector(state => state.users.isLogin);
+
   const handleGoogleLogin = async event => {
     event.preventDefault();
     try {
@@ -33,6 +35,7 @@ function Login() {
       console.error(error);
     }
   };
+
   useEffect(() => {
     if (token) {
       localStorage.setItem('token', token);
@@ -57,6 +60,7 @@ function Login() {
     </Main>
   );
 }
+
 export default Login;
 
 const sizes = {

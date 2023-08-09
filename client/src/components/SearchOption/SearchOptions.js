@@ -1,8 +1,17 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import BedSelect from './SearchButtons/BedSelect';
 import HomeType from './SearchButtons/HomeType';
 import PriceRange from './SearchButtons/PriceRange';
+
+export default function SearchOptions() {
+  return (
+    <OptionsContainer>
+      <PriceRange />
+      <BedSelect />
+      <HomeType />
+    </OptionsContainer>
+  );
+}
 
 const OptionsContainer = styled.div`
   margin-top: 4rem;
@@ -17,13 +26,3 @@ const OptionsContainer = styled.div`
     justify-content: space-around;
   }
 `;
-
-export default function SearchOptions() {
-  return (
-    <OptionsContainer>
-      <PriceRange />
-      <BedSelect />
-      <HomeType />
-    </OptionsContainer>
-  );
-}

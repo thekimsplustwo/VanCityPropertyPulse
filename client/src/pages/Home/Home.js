@@ -21,7 +21,9 @@ function Home() {
   const properties = useSelector(state => state.home.list);
   const searchParams = useSelector(state => state.search);
   const isLogin = useSelector(state => state.users.isLogin);
+
   const dispatch = useDispatch();
+
   const filterInitialState = state => {
     return Object.fromEntries(
       Object.entries(state).filter(
@@ -140,11 +142,16 @@ function Home() {
           properties={sortedProperties}
           showCompareButton={false}
           showHeartIcon
+          searchParams={searchParams}
+          setSearchClicked={setSearchClicked}
+          showPagination
         />
       </Main>
     )
   );
 }
+
+export default Home;
 
 const Main = styled.div`
   padding-top: 5em;
@@ -172,5 +179,3 @@ const ButtonContainer = muiStyled(Stack)({
   justifyContent: 'center',
   marginTop: '2rem',
 });
-
-export default Home;

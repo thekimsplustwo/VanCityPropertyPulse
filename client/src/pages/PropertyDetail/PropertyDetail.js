@@ -41,9 +41,6 @@ function Property() {
 
   if (isObjectValid(property)) {
     const { nearbyHomes, longitude, latitude } = property;
-    const filteredNearbyHomes = nearbyHomes.filter(
-      home => home.homeStatus === 'FOR_SALE'
-    );
     return (
       <Wrapper>
         <HeaderWrapper>
@@ -65,7 +62,7 @@ function Property() {
         <Divider sx={{ borderBottomWidth: 4 }} />
         <AdditionalInfo propertyDetails={property} transit={transitScore} />
         <Divider sx={{ borderBottomWidth: 4 }} />
-        <NearByHomes nearbyHomes={filteredNearbyHomes} />
+        <NearByHomes nearbyHomes={nearbyHomes} />
         <Divider sx={{ borderBottomWidth: 4 }} />
         <WalkScore zpid={zpid} />
       </Wrapper>
@@ -98,6 +95,7 @@ const GraphicWrapper = styled.div`
   justify-content: center;
   align-items: stretch;
   width: 100%;
+  flex: 1;
 
   @media (max-width: 800px) {
     margin-bottom: 30px;
@@ -108,7 +106,8 @@ const GraphicWrapper = styled.div`
 const ContentWrapper = styled.div`
   padding: 10px 50px;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
+  justify-content: flex-start;
   margin: 0;
   vertical-align: top;
 

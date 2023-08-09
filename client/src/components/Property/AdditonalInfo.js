@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
-import { Info, ArrowForward, Add } from '@mui/icons-material';
-import { themeColorPink } from '../../styles/theme';
-// import { Bold, InfoRow } from './DetailedInfo';
-import { baseInfoRowStyles } from '../../styles/theme';
+import { Add } from '@mui/icons-material';
+import { themeColorPink, baseInfoRowStyles } from '../../styles/theme';
 import School from './SchoolCard';
 import FeaturesSection from './FeaturesSection';
 import TransitScore from './TransitScore';
@@ -18,7 +16,10 @@ function AdditionalInfo({ propertyDetails, transit }) {
   const parkingFeature = propertyDetails.resoFacts.parkingFeatures;
   const appliance = propertyDetails.resoFacts.appliances;
   const nearbyList = propertyDetails?.nearbyHomes;
-  const moreFeature = [...(parkingFeature ?? []), ...(interiorFeature ?? [])];
+  const moreFeature = [
+    ...(Array.isArray(parkingFeature) ? parkingFeature : []),
+    ...(Array.isArray(interiorFeature) ? interiorFeature : []),
+  ];
   const walk = transit?.walkScore;
   const bike = transit?.bikeScore;
 
@@ -118,6 +119,8 @@ function AdditionalInfo({ propertyDetails, transit }) {
   );
 }
 
+export default AdditionalInfo;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -189,5 +192,3 @@ const ScoreWrapper = styled.div`
 const BarWrapper = styled.div`
   flex-grow: 0;
 `;
-
-export default AdditionalInfo;

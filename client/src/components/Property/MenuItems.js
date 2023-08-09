@@ -28,6 +28,11 @@ function MenuItems({ zpid, address }) {
     event => {
       event.preventDefault();
       event.stopPropagation();
+
+      if (!housing || housing.length === 0) {
+        return;
+      }
+
       if (liked) {
         dispatch(deleteLikesAsync({ zpid, token }));
       } else {
@@ -39,8 +44,8 @@ function MenuItems({ zpid, address }) {
 
   return (
     <Wrapper>
-      <MenuContainer>
-        <StyledHeartLikedIcon liked={liked} onClick={handleLike} />
+      <MenuContainer id="save" onClick={handleLike}>
+        <StyledHeartLikedIcon liked={liked} />
         <MenuOpt>Save</MenuOpt>
       </MenuContainer>
       <MenuContainer>
@@ -49,6 +54,8 @@ function MenuItems({ zpid, address }) {
     </Wrapper>
   );
 }
+
+export default MenuItems;
 
 const Wrapper = styled.div`
   display: flex;
@@ -80,5 +87,3 @@ const MenuOpt = styled.div`
 const StyledHeartLikedIcon = styled(FavoriteIcon)`
   color: ${({ liked }) => (liked ? 'red' : '#bdbdbd')};
 `;
-
-export default MenuItems;

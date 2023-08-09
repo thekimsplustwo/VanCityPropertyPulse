@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import ReactDom from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createTheme } from '@mui/material/styles';
 import styled from 'styled-components';
 import PropertyGrid from '../../components/Property/PropertyGrid';
@@ -14,6 +14,7 @@ export const theme = createTheme({
     },
   },
 });
+
 export default function Modal({ open, children, onClose, zpidList = [] }) {
   if (!open) return null;
 
@@ -22,11 +23,11 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
 
   useEffect(() => {
     const filteredLikes = likes.filter(
-      like => !zpidList.includes(like.zpid.toString())
+      like => like.zpid && !zpidList.includes(like.zpid.toString())
     );
-    console.log('filteredLikes', filteredLikes);
     setProperties(filteredLikes);
   }, [likes, zpidList]);
+
   const handleOverlayClick = e => {
     if (e.target.id === 'overlay') {
       onClose();
@@ -59,16 +60,15 @@ const ModalStyle = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 50px;
+  padding: 5vh 5vw;
   z-index: 1500;
-  width: 100%;
-  height: 100%;
+  width: 95%;
+  height: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   overflow-y: auto;
-  // max-height: 75vh;
 
   @media (max-width: 800px) {
     max-width: 95%;
@@ -93,7 +93,5 @@ const Box = styled.div`
 
 const Container = styled.div`
   margin-top: 10%;
-  @media (max-width: 800px) {
-    overflow-y: auto;
-  }
+  overflow-y: auto;
 `;

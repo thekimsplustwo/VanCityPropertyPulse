@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 function VirtualTour(props) {
@@ -79,6 +78,7 @@ function VirtualTour(props) {
 }
 
 export default VirtualTour;
+
 const Wrapper = styled.div`
   padding-bottom: 20px;
   padding-left: 50px;

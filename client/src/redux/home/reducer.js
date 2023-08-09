@@ -27,11 +27,12 @@ const homeSlice = createSlice({
       })
       .addCase(getListAsync.rejected, (state, action) => {
         state.getList = REQUEST_STATE.REJECTED;
+        state.list = [];
         state.error = action.error;
       });
   },
 });
+
 export const { resetListState } = homeSlice.actions;
 export const { setPage } = homeSlice.actions;
-
 export default homeSlice.reducer;

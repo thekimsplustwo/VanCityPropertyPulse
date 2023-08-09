@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Button,
   Menu,
@@ -6,7 +6,6 @@ import {
   TextField,
   styled as muiStyled,
 } from '@mui/material';
-import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { setMin, setMax } from '../../../redux/search/reducer';
 
@@ -44,8 +43,6 @@ export default function PriceRange() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [minPrice, setMinPrice] = useState(searchParams.minPrice || 0);
   const [maxPrice, setMaxPrice] = useState(searchParams.maxPrice || 0);
-  const [minMaxPrice, setMinMaxPrice] = useState(0);
-  const [maxMinPrice, setMaxMinPrice] = useState(9999999);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -57,16 +54,28 @@ export default function PriceRange() {
     setAnchorEl(event.currentTarget);
   };
 
+  const validatePrices = () => {
+    return minPrice <= maxPrice;
+  };
+
   const handleClose = () => {
-    setAnchorEl(null);
-    dispatch(setMin(minPrice));
-    dispatch(setMax(maxPrice));
+    if (validatePrices()) {
+      setAnchorEl(null);
+      dispatch(setMin(minPrice));
+      dispatch(setMax(maxPrice));
+    } else {
+      alert('Max price should be bigger than Min price.');
+    }
   };
 
   const handleApply = () => {
-    setAnchorEl(null);
-    dispatch(setMin(minPrice));
-    dispatch(setMax(maxPrice));
+    if (validatePrices()) {
+      setAnchorEl(null);
+      dispatch(setMin(minPrice));
+      dispatch(setMax(maxPrice));
+    } else {
+      alert('Max price should be bigger than Min price.');
+    }
   };
 
   const handleMinPriceChange = event => {
@@ -77,13 +86,7 @@ export default function PriceRange() {
       return;
     }
 
-    if (newValue !== '' && newValue > maxPrice && maxPrice !== 0) {
-      setMinPrice(maxPrice);
-      setMinMaxPrice(maxPrice);
-    } else {
-      setMinPrice(newValue);
-      setMinMaxPrice(newValue);
-    }
+    setMinPrice(newValue);
   };
 
   const handleMaxPriceChange = event => {
@@ -94,13 +97,7 @@ export default function PriceRange() {
       return;
     }
 
-    if (newValue !== '' && newValue < minPrice && newValue !== 0) {
-      setMaxPrice(minPrice);
-      setMaxMinPrice(minPrice);
-    } else {
-      setMaxPrice(newValue);
-      setMaxMinPrice(newValue);
-    }
+    setMaxPrice(newValue);
   };
 
   return (
@@ -119,8 +116,8 @@ export default function PriceRange() {
             sx={{ width: '150px' }}
             inputProps={{
               min: 0,
-              max: maxPrice !== 0 ? maxMinPrice : undefined,
-              step: 1000,
+              max: 9999999,
+              step: 10000,
             }}
           />
         </MenuItem>
@@ -130,12 +127,11 @@ export default function PriceRange() {
             value={maxPrice}
             onChange={handleMaxPriceChange}
             type="number"
-            // 150px
             sx={{ width: '150px' }}
             inputProps={{
-              min: minMaxPrice,
+              min: 0,
               max: 9999999,
-              step: 1000,
+              step: 10000,
             }}
           />
         </MenuItem>
