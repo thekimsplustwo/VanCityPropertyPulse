@@ -22,7 +22,7 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
 
   useEffect(() => {
     const filteredLikes = likes.filter(
-      like => !zpidList.includes(like.zpid.toString())
+      like => like.zpid && !zpidList.includes(like.zpid.toString())
     );
     console.log('filteredLikes', filteredLikes);
     setProperties(filteredLikes);
