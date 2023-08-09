@@ -38,6 +38,8 @@ function FooterSocial() {
   );
 }
 
+export default FooterSocial;
+
 const SocialContainer = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -56,5 +58,3 @@ const FollowUs = styled.span`
   margin-left: 0.6rem;
   font-style: italic;
 `;
-
-export default FooterSocial;

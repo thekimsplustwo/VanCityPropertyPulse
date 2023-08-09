@@ -59,6 +59,9 @@ function PropertyHeader({ propertyDetails }) {
     </Wrapper>
   );
 }
+
+export default PropertyHeader;
+
 const Wrapper = styled.div`
   width: 100%;
   display: flex;
@@ -131,5 +134,3 @@ const HeaderSubTitle = styled.div`
     }
   }
 `;
-
-export default PropertyHeader;

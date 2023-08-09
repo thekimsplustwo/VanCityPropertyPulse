@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
 import ReactDom from 'react-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { createTheme } from '@mui/material/styles';
 import styled from 'styled-components';
 import PropertyGrid from '../../components/Property/PropertyGrid';
@@ -14,6 +14,7 @@ export const theme = createTheme({
     },
   },
 });
+
 export default function Modal({ open, children, onClose, zpidList = [] }) {
   if (!open) return null;
 
@@ -24,9 +25,9 @@ export default function Modal({ open, children, onClose, zpidList = [] }) {
     const filteredLikes = likes.filter(
       like => like.zpid && !zpidList.includes(like.zpid.toString())
     );
-    console.log('filteredLikes', filteredLikes);
     setProperties(filteredLikes);
   }, [likes, zpidList]);
+
   const handleOverlayClick = e => {
     if (e.target.id === 'overlay') {
       onClose();

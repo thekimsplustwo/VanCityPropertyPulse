@@ -15,6 +15,7 @@ const baseInfoRowStyles = `
   white-space: normal;
   word-spacing: 0px;
 `;
+
 export {
   themeColorPink,
   themeColorBlue,

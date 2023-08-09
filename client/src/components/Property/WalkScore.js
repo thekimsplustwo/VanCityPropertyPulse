@@ -1,8 +1,6 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import cheerio from 'cheerio';
-import axios from 'axios';
 import { getWalkAndTransitScoreAsync } from '../../redux/property/thunks';
 
 function WalkScore({ zpid }) {
@@ -11,6 +9,7 @@ function WalkScore({ zpid }) {
   const walkAndTransitScore = useSelector(
     state => state.property.walkAndTransitScore
   );
+
   useEffect(() => {
     dispatch(getWalkAndTransitScoreAsync({ zpid, token }));
   }, [zpid]);
@@ -52,13 +51,6 @@ const Bold = styled.b`
   @media (max-width: 800px) {
     font-size: 24px;
   }
-`;
-
-const InfoRow = styled.p`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 30px;
 `;
 
 const IframeWalkScore = styled.iframe`

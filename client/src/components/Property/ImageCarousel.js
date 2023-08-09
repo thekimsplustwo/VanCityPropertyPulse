@@ -8,6 +8,7 @@ import Image from './Image';
 function ImageCarousel({ property, propertyImages }) {
   const navigate = useNavigate();
   const location = useLocation();
+
   const onClickHandler = event => {
     event.preventDefault();
     event.stopPropagation();
@@ -15,9 +16,11 @@ function ImageCarousel({ property, propertyImages }) {
       navigate(`/properties/${property.zpid}`);
     }
   };
+
   const images = Array.isArray(propertyImages)
     ? propertyImages
     : [propertyImages];
+
   return (
     <Wrapper>
       <Section>

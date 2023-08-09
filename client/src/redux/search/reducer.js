@@ -1,6 +1,5 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-import { REQUEST_STATE } from '../utils';
 
 const INITIAL_STATE = {
   location: '',
@@ -53,5 +52,4 @@ export const {
   setPage,
   setSearchParams,
 } = searchSlice.actions;
-
 export default searchSlice.reducer;

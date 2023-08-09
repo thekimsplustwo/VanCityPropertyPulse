@@ -1,4 +1,3 @@
-// MapBox.js
 import { useState, useEffect, useRef } from 'react';
 import mapboxgl from 'mapbox-gl';
 import styled from 'styled-components';
@@ -20,7 +19,6 @@ function MapBox({ longitude, latitude }) {
 
   useEffect(() => {
     if (!map.current) {
-      // initialize map only once
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: MAPBOX_STYLE,
@@ -53,6 +51,8 @@ function MapBox({ longitude, latitude }) {
   );
 }
 
+export default MapBox;
+
 const MapBoxContainer = styled.div`
   width: 500px;
   height: 400px;
@@ -63,5 +63,3 @@ const MapBoxContainer = styled.div`
     height: 240px;
   }
 `;
-
-export default MapBox;

@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Chip,
   Typography,
@@ -8,7 +7,6 @@ import {
   styled as muiStyled,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import styled from 'styled-components';
 
 function FeaturesSection({ title, features }) {
   return (
@@ -34,9 +32,9 @@ function FeaturesSection({ title, features }) {
   );
 }
 
+export default FeaturesSection;
+
 const StyledTypography = muiStyled(Typography)(() => ({
   fontWeight: 'bold',
   fontSize: '1.3rem',
 }));
-
-export default FeaturesSection;

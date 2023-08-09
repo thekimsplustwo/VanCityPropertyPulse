@@ -98,6 +98,8 @@ function Footer() {
   );
 }
 
+export default Footer;
+
 const FooterContainer = styled.div`
   left: 0px;
   bottom: 0px;
@@ -184,5 +186,3 @@ const Right = styled.div`
   font-size: 0.8em;
   font-style: italic;
 `;
-
-export default Footer;

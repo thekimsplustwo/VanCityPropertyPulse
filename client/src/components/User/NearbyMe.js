@@ -44,6 +44,8 @@ function NearbyMe({ region }) {
   );
 }
 
+export default NearbyMe;
+
 const Wrapper = styled.div`
   display: 'flex';
   font-size: 20px;
@@ -70,5 +72,3 @@ const InfoRow = styled.p`
   justify-content: space-between;
   margin-bottom: 30px;
 `;
-
-export default NearbyMe;

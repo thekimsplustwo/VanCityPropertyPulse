@@ -15,6 +15,8 @@ function NearByHomes({ nearbyHomes }) {
   );
 }
 
+export default NearByHomes;
+
 const Wrapper = styled.div`
   display: 'flex';
   font-size: 20px;
@@ -40,5 +42,3 @@ const InfoRow = styled.p`
   justify-content: space-between;
   margin-bottom: 25px;
 `;
-
-export default NearByHomes;

@@ -50,6 +50,8 @@ function MenuItems({ zpid, address }) {
   );
 }
 
+export default MenuItems;
+
 const Wrapper = styled.div`
   display: flex;
   margin-top: 10px;
@@ -80,5 +82,3 @@ const MenuOpt = styled.div`
 const StyledHeartLikedIcon = styled(FavoriteIcon)`
   color: ${({ liked }) => (liked ? 'red' : '#bdbdbd')};
 `;
-
-export default MenuItems;

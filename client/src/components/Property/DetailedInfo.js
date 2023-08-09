@@ -38,8 +38,8 @@ function InfoRowComponent({ icon, label, value, unit }) {
     </InfoRow>
   );
 }
+
 function DetailedInfo({ propertyDetails }) {
-  // decompose props
   const {
     homeType,
     yearBuilt,
@@ -187,6 +187,7 @@ function DetailedInfo({ propertyDetails }) {
     </Container>
   );
 }
+
 export default DetailedInfo;
 
 const InfoRow = styled.p`
@@ -205,6 +206,7 @@ const StyledText = styled.p`
   line-height: 1.5;
   overflow-y: scroll;
 `;
+
 const Wrapper = styled.div`
   border-radius: 15px;
   padding: 16px;

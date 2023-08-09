@@ -31,7 +31,7 @@ function UserProfileEdit({ setModal }) {
   const handleInputChangeForRegion = selectedValue => {
     setFormData(prevFormData => ({
       ...prevFormData,
-      region: selectedValue, // Update the region with the selected value
+      region: selectedValue,
     }));
   };
 
@@ -122,6 +122,8 @@ function UserProfileEdit({ setModal }) {
   );
 }
 
+export default UserProfileEdit;
+
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -183,5 +185,3 @@ const Title = styled.p`
     margin-bottom: 5px;
   }
 `;
-
-export default UserProfileEdit;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Button, Menu, styled as muiStyled } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import HomeTypeMenuItem from './HomeTypeMenuItem';
