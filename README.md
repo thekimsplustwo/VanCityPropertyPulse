@@ -65,7 +65,7 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 1. Display a list of properties
     - Set up a React.js application for the client-side interface
     - Create a mock date for a list of properties
-    - Cr⚠️eate a component that contains a list of properties
+    - Create a component that contains a list of properties
     - Create a component that contains a single property as a child component of the listing component
 2.  Display property's detailed information such as price and location
     - Set up a React.js application for the client-side interface
