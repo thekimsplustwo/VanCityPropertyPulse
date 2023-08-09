@@ -115,13 +115,14 @@ Jieun was a central figure in the project, spearheading the initial brainstormin
 Elly played a key role in the project. Throughout various iterations, she actively contributed to different frontend tasks, including the creation of the navigation bar, Search Input/Filter Option, and integration of features such as map box and social sharing on detail pages. Elly's efforts also extended to enhancing the detailed page, where she implemented a wealth of features to improve its functionality. Her dedication was evident in her continuous efforts to fix bugs and make improvements to the user interface, and her work on both the core functionalities and extra styling significantly enriched the overall project quality.
 <br><br>
 ### **Ji Young Kim**
-Ji Young actively participated in the project, which demonstrated her collaborative spirit. Her technical contributions included implementing the "Mypage" section, working on both the client and server sides to connect the user page, and introducing features like Google login and pagination. In addition to enhancing the user profile page, Ji Young also implemented a chat bot. Her ability to communicate and support other team members, made her an integral part of the project's success.
+Ji Young's technical contributions include implementing the "MyPage" (user profile) section, working on both the client and the server sides to connect the user page. In addition to enhancing the user profile page, Ji Young introduced features like Google login and pagination; she also implemented the chat bot.
 <br><br>
 ### **Chao Zhao**
 Chao contributed to the team's project through a balanced blend of organizational tasks and hands-on technical development. He researched for potential APIs and data sources. Chao's practical skills shone in the implementation of the functionality of comparisoñ. Notably, his expertise played a crucial role in overcoming deployment challenges, leading to the successful launch of the website, reflecting his knack for practical and timely solutions.
 <br><br>
 ### **Christina Su**
 Christina actively engaged with the team. Her contributions to design mock-ups and feedback on visual aspects showcased her attention to detail. Throughout various iterations, she worked on key components such as the detailed page and enhancing the compare page for easier property comparisons. Christina's consistent support of other team members and determination to fulfill her tasks underscore her valuable role within the project.
+<br><br>
 
 ## **Prototypes**
 ![Main](https://storage.googleapis.com/pukkukim/455%20Main.png)
