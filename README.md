@@ -93,7 +93,7 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 **[UNIT 4] MongoDB**
 - Our application’s data persistence capabilities were significantly enhanced through the use of MongoDB, a non-relational database system. Together with Mongoose, an Object Document Mapper (ODM), we mapped and structured the data, allowing us to effectively store and manage various information such as user profiles, as well as property and location information.
 
-**[UNIT 5] Release Engineering**
+**[UNIT 5] Builds and Deployment**
 - We deployed our application on Oracle Cloud Infrastructure, provisioned a Ubuntu Virtual Machine instance to host our website. We configured it with nginx for port management (reverse proxy) and PM2 for Node.js process management. In addition, we incorporated the GitHub Action Workflow for automated frontend tests through Playwright.
 <br><br>
 
@@ -109,19 +109,19 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 
 ## Contributions
 ### **Jieun Kim**
-Jieun was a central figure in the project, spearheading the initial brainstorming and meticulously setting up the infrastructure, including both frontend and backend architectures. Her robust technical skills and extensive knowledge were demonstrated through her development of a very large part of the project, covering various aspects such as property details, API flow, and database connections. Jieun's proficiency in both coding and technology extended to deploying the application and resolving critical issues. Her consistent assistance to other team members, along with her extraordinary leadership and balanced skill set, showcased a remarkable blend of technical mastery and collaborative spirit. Her commitment to excellence and ability to build complex components set a strong foundation for the project's success and marked her as an invaluable asset to the team.
+Jieun was a key figure in the project, driving the initial brainstorming and setting up the frontend and backend. She developed a significant portion of the project, including property details, API flow, and database connections, while also deploying the app and assisting the team. Her technical proficiency, leadership, and collaborative nature were evident in her balanced skill set and support for other team members.
 <br><br>
 ### **Chohyeon (Elly) Kim**
-Elly played a key role in the project. Throughout various iterations, she actively contributed to different frontend tasks, including the creation of the navigation bar, Search Input/Filter Option, and integration of features such as MapBox and SNS sharing function on detail pages. Elly's efforts also extended to enhancing the detailed page, where she implemented a wealth of features to improve its functionality. Her dedication was evident in her continuous efforts to fix bugs and make improvements to the user interface, and her work on both the core functionalities and extra styling significantly enriched the overall project quality.
+Elly played a hands-on role in the project's various stages, working on frontend tasks like the navigation bar, Search Input/Filter, and integrating features like MapBox and SNS sharing. She also improved the detailed page with added functionality and dedicatedly fixed bugs and enhanced the user interface. Her work on core functions and styling greatly improved the project's overall quality.
 <br><br>
 ### **Ji Young Kim**
-Ji Young's technical contributions include implementing the "MyPage" (user profile) section, working on both the client and the server sides to connect the user page. In addition to enhancing the user profile page, Ji Young introduced features like Google Auth login and pagination; she also implemented the interactive Chat Bot through Microsft Power Platform.
+Ji Young's technical contributions include implementing the User Profile page, working on both the client and the server sides to connect the user page. In addition to enhancing the User Profile page, Ji Young introduced features like Google Auth login and pagination; she also implemented the interactive Chat Bot through Microsoft Power Platform.
 <br><br>
 ### **Chao Zhao**
-Chao contributed to the team's project through a balanced blend of organizational tasks and hands-on technical development. He researched for potential APIs and data sources. Chao's practical skills shone in the implementation of the functionality of comparison. Notably, his expertise played a crucial role in overcoming deployment challenges, leading to the successful deployment of the website, reflecting his knack for practical and timely solutions.
+Chao contributed to the team's project through a balanced blend of organizational tasks and hands-on technical development. Initially, he researched for potential APIs and data sources, and throughout the project, Chao's practical skills shone in the implementation of the functionality of Comparison, among others. Notably, his expertise played a crucial role in overcoming deployment challenges, leading to the successful deployment of the website, reflecting his knack for practical and timely solutions.
 <br><br>
 ### **Christina Su**
-Christina actively engaged with the team. Her contributions to design mock-ups and feedback on visual aspects showcased her attention to detail. Throughout various iterations, she worked on key components such as the detailed page and enhancing the compare page for easier property comparisons. Christina's consistent support of other team members and determination to fulfill her tasks underscore her valuable role within the project.
+Christina's contributions to design mock-ups and feedback on visual aspects showcased her attention to detail. Throughout various iterations, she worked on key components such as the Detailed Page and enhancing the Compare page for easier property comparisons. Additionally, she contributed to the team by crafting meeting minutes and creating PowerPoint slides for our presentations.
 <br><br>
 
 ## **Prototypes**
