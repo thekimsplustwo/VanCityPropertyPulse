@@ -14,6 +14,10 @@ function WalkScore({ zpid }) {
     dispatch(getWalkAndTransitScoreAsync({ zpid, token }));
   }, [zpid]);
 
+  useEffect(() => {
+    //
+  }, [walkAndTransitScore]);
+
   return (
     walkAndTransitScore?.walkScore?.ws_link && (
       <Wrapper>
