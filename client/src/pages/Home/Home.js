@@ -142,6 +142,7 @@ function Home() {
           showHeartIcon
           searchParams={searchParams}
           setSearchClicked={setSearchClicked}
+          showPagination
         />
       </Main>
     )
