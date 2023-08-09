@@ -12,9 +12,11 @@ import NearbyMe from '../../components/User/NearbyMe';
 
 function MyPage() {
   const token = localStorage.getItem('token');
-  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const isLogin = useSelector(state => state.users.isLogin);
   const navigateToLogin = () => {
     navigate('/');
