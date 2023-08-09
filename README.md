@@ -87,12 +87,15 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 ## Technology Usage
 
 **[UNIT 1] HTML/CSS/JavaScript**
+- HTML, CSS, and JavaScript were utilized not only to construct the app's fundamental layout and styling but also to create custom animations, design unique scrollbars, integrate canvas graphs, enhance accessibility, and ensure responsiveness. Additionally, styles were methodically arranged into CSS modules, facilitating cleaner and more precise scoping.
 
 
 **[UNIT 5] Release Engineering**
-- Oracle Cloud infrastructure was used to deploy our application. We utilized the Oracle Virtual Machine to host our website. On that machine, we used the Ubuntu OS. We configured using the nginx (reverse proxy to expose our express js server port 10010 to https port 443) and pm2 as a process manager for running Node.js. Our domain name is registered by Cloudflare and managed by their nameservers. We also used their CDN networks deployment to [...].
-- We also used CERTBOT to provision the SSL certificate, which auto-renew every 90 days, to keep the website secure and to comply to Google's authentication requirements. As well, we deployed GitHub Action to run CodeQL, which will scan code dependencies and vulnerabilities in our code base. It also scans for potential API secrets, exposed on our public repo. We also deployed Github Action Workflow for automated frontend tests, using Playwright.
-- To improve observability and monitoring out deployed instances, we deployed DataDog tracer to our VM instance. It helps us to monitor real-time server performance, and it alerts us if there's any abnormal latencies happen to our server. It also helps us to pinpoint any errors. Lastly, the synthetic testing also helps us to make sure the site is reachable and functioning correctly in multiple platforms/devices on different geographic locations.
+- Oracle Cloud Infrastructure played a critical role in the deployment of our application. Utilizing the Oracle Virtual Machine, we hosted our website, running it on the Ubuntu OS. Configuration was performed using nginx, which acted as a reverse proxy to expose our Express.js server port 10010 to HTTPS port 443, and pm2, employed as a process manager for running Node.js. Our domain name was registered through Cloudflare, and we leveraged their nameservers for domain management. Additionally, their CDN network was employed for deployment, enhancing the scalability and security of our application.
+
+- For securing the website and aligning with Google's authentication requirements, we implemented CERTBOT to provision the SSL certificate. This is set to auto-renew every 90 days, ensuring constant security. We also introduced GitHub Actions to run CodeQL, which actively scans for code dependencies and vulnerabilities within our codebase. This includes checks for potential API secrets that might be exposed in our public repository. Furthermore, we deployed the GitHub Action Workflow for automated frontend testing, utilizing Playwright.
+  
+- Lastly, to augment observability and monitoring across our deployed instances, we integrated DataDog tracer into our VM instance. This powerful tool offers real-time server performance insights, alerting us if any abnormal latencies occur. It also helps in identifying errors and ensures that the synthetic testing confirms the site's accessibility and proper functioning across various platforms, devices, and geographic locations. By combining these tools and services, we've created a robust, secure, and efficient infrastructure tailored to our specific needs.
 
 ## **Prototypes**
 ![Main](https://storage.googleapis.com/pukkukim/455%20Main.png)
