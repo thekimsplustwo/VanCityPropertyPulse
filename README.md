@@ -2,67 +2,63 @@
 
 ## **Project Description**
 VanCity Property Pulse is a web application that allows potential home buyers to search, view details, and save listings for properties for sale in Vancouver. The app features a search interface to filter listings by criteria like price and location, displays property details like price and amenities, and lets them save favourite listings. The goal is to provide an easy way to find and compare properties on the market in Vancouver.
-
 <br><br>
 
 ## **Project Task Requirements**
 
 ### Minimal Requirements
-✅ **1. Display a list of properties.:**
+✅ **1. Display a list of properties:**
 - As a potential home buyer, I want to see a list of properties with basic information like address, price, number of bedrooms, etc. so that I can get a quick overview of available listings in Vancouver.
 
-✅ **2. Display property's detailed information such as price and location.:**
+✅ **2. Display property's detailed information such as price and location:**
 - As a potential home buyer, I want to click on a property and see all details like description, photos, map location, etc so I can determine if it meets my criteria.
 
-✅ **3. Implement user interface for searching and filtering through listings.:**
+✅ **3. Implement user interface for searching and filtering through listings:**
 - As a potential home buyer, I want to search listings by location, number of bedrooms, price range etc. so I can narrow down the listings to those matching my criteria.
-
 <br><br>
 
 ### Standard Requirements 
 
-✅ **1. Implement a feature for users to save their favorite properties.:**
+✅ **1. Implement a feature for users to save their favorite properties:**
 - As a potential home buyer, I want the ability to favorite and unfavorite properties by clicking a button and view my favorited listings in a separate section so that I can easily track and access properties I'm interested in.
     
-✅ **2. Incorporate a user authentication system.:**
+✅ **2. Incorporate a user authentication system:**
 - As a potential home buyer, I want to easily log in and out of my account so I can keep it personalized.
     
-✅ **3. Provide users with the nearby properties of the selected property.:**
+✅ **3. Provide users with the nearby properties of the selected property:**
 - As a potential home buyer, I want to click a button on a property to view nearby listings so I can see other available options near that location.
     
-✅ **4. Provide users with the nearby properties of their location.:**
+✅ **4. Provide users with the nearby properties of their location:**
 - As a potential home buyer, I want to get the list of properties nearby my location based on my profile setting so that I can have a better judgment on the vicinity.
     
-✅ **5. Implement a feature for users to compare properties' attributes such as price, the number of bedrooms/bathrooms, etc.:**
+✅ **5. Implement a feature for users to compare properties' attributes such as price, the number of bedrooms/bathrooms, etc:**
 - As a potential home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
 
-✅ **6. Share properties through Social Network Sites.:** 
+✅ **6. Share properties through Social Network Sites:** 
 - As a potential home buyer, I want to be able to share property information that I am interested in with my friends so that I can make informed decisions on my target property and get more involvement from my friends.
-
 <br><br>
 
 ### Stretch Requirements ### 
-✅ 1. Implement an interactive Chatbot to allow users to quickly navigate to appropriate pages and content through an intuitive conversational interface.
-   - As a home buyer, I want to interact with a chatbot that asks me qualifying questions and provides custom links so that I can easily find relevant information.
+✅ **1. Implement an interactive Chatbot to allow users to quickly navigate to appropriate pages and content through an intuitive conversational interface.**
+- As a home buyer, I want to interact with a chatbot that asks me qualifying questions and provides custom links so that I can easily find relevant information.
 
-✅ 2. Integrate with a map API to display a property's location on a map.
- - As a home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
+✅ **2. Integrate with a map API to display a property's location on a map.**
+- As a home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
 
-⚠ 3. Visualize properties' locations on a single map. 
-  - As a home buyer, I want to view listed properties plotted on an interactive map so that I can easily see where each home is located relative to amenities, landmarks, and boundaries.
+⚠ **3. Visualize properties' locations on a single map.**
+- As a home buyer, I want to view listed properties plotted on an interactive map so that I can easily see where each home is located relative to amenities, landmarks, and boundaries.
 <br>** progress: building on coordinators of properties(latitude, longitude) to be rendered, need to communicate with the listing API.   
 
-✅ 4. Compare prices of properties in the selected area
-  - As a home buyer, I want to view and compare the listing prices of properties in my desired neighborhoods so I can understand the market and price ranges in those areas.
+✅ **4. Compare prices of properties in the selected area.**
+- As a home buyer, I want to view and compare the listing prices of properties in my desired neighborhoods so I can understand the market and price ranges in those areas.
 
-⚠ 5. Walk And Distance Score
-  -  As a home buyer, I want to see walk scores and distance to amenities like schools, parks, and shopping for properties I'm considering so that I can evaluate accessibility and convenience when making a decision.
+⚠ **5. Walk And Distance Score**
+- As a home buyer, I want to see walk scores and distance to amenities like schools, parks, and shopping for properties I'm considering so that I can evaluate accessibility and convenience when making a decision.
 <br>** progress: cross-site iframe issue on the deployed application
  
-❌ 6. Implement AI Chatbot with NLP model to interact with users in natural language 
-  -  As a home buyer, I want to interact with a smart chatbot that understands natural language so I can get customized assistance through intuitive conversational exchanges.
+❌ **6. Implement AI Chatbot with NLP model to interact with users in natural language**
+- As a home buyer, I want to interact with a smart chatbot that understands natural language so I can get customized assistance through intuitive conversational exchanges.
 <br>** progress: accumulating training data for NLP models to allow algorithms to meet the requirements.
-
 <br><br>
 
 **Task Breakdown:**
@@ -71,12 +67,10 @@ VanCity Property Pulse is a web application that allows potential home buyers to
     - Create a mock date for a list of properties
     - Create a component that contains a list of properties
     - Create a component that contains a single property as a child component of the listing component
-<br><br>
 2.  Display property's detailed information such as price and location
     - Set up a React.js application for the client-side interface
     - Get selected property id (pid) from URL ( /properties/:pid ) to retrieve property information 
     - Display property information such as address, price, and image(s)
-<br><br>
 3. Implement user interface for searching and filtering through listings.
     - Set up a React.js application for the client-side interface.
     - Implement a listings page with a table or list of properties.
@@ -101,18 +95,17 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 
 **[UNIT 5] Release Engineering**
 - We deployed our application on Oracle Cloud Infrastructure, using the Oracle Virtual Machine to host our website on Ubuntu OS, and configured it with nginx for port management and m2 for Node.js process management. In addition, we incorporated the GitHub Action Workflow for automated frontend tests through Playwright.
-
 <br><br>
 
 ## Above and Beyond
 1. Oracle Cloud was selected over render.com after careful consideration of our specific needs and priorities. Oracle Cloud offered a more comprehensive suite of services, including advanced security measures, scalable resources, and robust support for various development environments. While render.com provides a straightforward and agile deployment process, we found that Oracle Cloud's broader range of functionalities aligned more closely with our goals for responsiveness and security. The decision to use Oracle Cloud also stemmed from its proven reliability, enterprise-grade capabilities, and flexibility in configuration, all of which were vital in our pursuit of building a responsive and secure website.
 2. To augment observability and monitoring across our deployed instances, we integrated DataDog tracer into our VM instance. This powerful tool offers real-time server performance insights, alerting us if any abnormal latencies occur. It also helps in identifying errors and ensures that the synthetic testing confirms the site's accessibility and proper functioning across various platforms, devices, and geographic locations. By combining these tools and services, we've created a robust, secure, and efficient infrastructure tailored to our specific needs.
 3. Our domain name was managed through Cloudflare, which allowed us to use the same domain for the client and the server; their CD network was instrumental in bolstering our application's scalability and security. To enhance the website's security in line with Google's standards, we utilized CERTBOT for SSL certificates, with an auto-renewal feature every 90 days, and integrated GitHub Actions for vulnerability scanning with CodeQL.
-
 <br><br>
 
 ## Next Steps
 - To provide walk scores and distances to local facilities, we plan to resolve the current cross-site frame issues using Cross-Origin Resource Sharing (CORS) policies and third-party distance measurement APIs. Our goal of implementing a smart AI chatbot with Natural Language Processing (NLP) needs to be progressed by accumulating specific real estate dialogues for training, potentially utilizing pre-trained models like GPT-4. These efforts align with our commitment to enhance the application's interactivity, accessibility, and intelligent user interaction.
+<br><br>
 
 ## Contributions
 - 
@@ -122,9 +115,7 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 ![Geolocation](https://storage.googleapis.com/pukkukim/455%20Geolocation.png)
 ![Item](https://storage.googleapis.com/pukkukim/455%20Item.png)
 
-
 ### :gear: Development Workflow
-
 
 #### Getting Started
 * Make sure you have [Node.js](https://nodejs.org/en/) and [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed
@@ -135,13 +126,10 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 * `npm start`to run both the server and the client concurrently.
 * We use port 3000 for the client and 10010 for the server. If you assign these ports to other apps, change the port.
 
-
 #### Setting up React App
 
 
-
 #### Setting up the Mongo DB
-
 
 
 #### Making Changes
