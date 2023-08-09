@@ -41,8 +41,8 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 <br><br>
 
 ### Stretch Requirements ### 
-✅ 1. Implement Artificial Chatbot to allow users to quickly navigate to appropriate pages and content through an intuitive conversational interface.
-   - As a home buyer, I want to interact with an intelligent chatbot that asks me qualifying questions and provides custom links so that I can easily find relevant information.
+✅ 1. Implement an interactive Chatbot to allow users to quickly navigate to appropriate pages and content through an intuitive conversational interface.
+   - As a home buyer, I want to interact with a chatbot that asks me qualifying questions and provides custom links so that I can easily find relevant information.
 
 ✅ 2. Integrate with a map API to display a property's location on a map.
  - As a home buyer, I want to be able to compare the prices, number of bedrooms, number of bathrooms, square footage, and other attributes of different properties so that I can easily see which homes match my criteria and preferences.
@@ -56,8 +56,12 @@ VanCity Property Pulse is a web application that allows potential home buyers to
 
 ⚠ 5. Walk And Distance Score
   -  I want to see walk scores and distance to amenities like schools, parks, and shopping for properties I'm considering so that I can evaluate accessibility and convenience when making a decision.
-*progress: cross-site iframe issue
+<br>** progress: cross-site iframe issue on the deployed application
  
+❌ 6. Implement AI Chatbot with NLP model to interact with users in natural language 
+  -  As a home buyer, I want to interact with a smart chatbot that understands natural language so I can get customized assistance through intuitive conversational exchanges.
+<br>** progress: accumulating training data for NLP models to allow algorithms to meet the requirements.
+
 <br><br>
 
 **Task Breakdown:**
